@@ -1,0 +1,17 @@
+version: '3.2'
+
+services:
+  # MySQL DB
+  mysql:
+    environment:
+      MYSQL_DATABASE: travel_db
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: password123
+      MYSQL_ROOT_PASSWORD: password123
+    image: mysql
+#    restart: always
+    container_name: local_mysql
+    security_opt:
+      - seccomp:unconfined
+    ports:
+      - "3306:3306"

@@ -1,0 +1,32 @@
+{% load static %}
+{% load compress %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Travel Pocket</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% block css %}
+        {% compress css inline %}
+            <link rel="stylesheet" href="{% static 'travel_planner/scss/general.scss' %}">
+{#            <link rel="stylesheet" type='text/scss' href="{{ root_url }}/travel_planner/static/travel_planner/scss/general.scss/general.css">#}
+{#            <link rel="stylesheet" type='text/scss' href="{{ root_url }}/travel_planner/static/travel_planner/scss/general.scss/general.css">#}
+        {% endcompress %}
+    {% endblock %}
+</head>
+
+{% block body %}
+    <body>
+
+    </body>
+{% endblock %}
+
+{% block footer %}
+    <footer>
+
+    </footer>
+{% endblock %}
+</html>
