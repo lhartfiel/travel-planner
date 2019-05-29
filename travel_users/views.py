@@ -14,7 +14,7 @@ def login_view(request):
 
     if user is not None:
         login(request, user)
-        return render(request, 'users/login.html')
+        return render(request, 'travel_users/login.html')
 
     else:
         return 'Oops, invalid login credentials'
@@ -30,7 +30,7 @@ def edit_view(request):
     else:
         edit_user = CustomUser.objects.get(username=request.GET.username)
         form = CustomUserEditForm(edit_user)
-        return render(request, 'users/edit.html', {'form': form})
+        return render(request, 'travel_users/edit.html', {'form': form})
 
 
 def signup_view(request):
@@ -43,4 +43,4 @@ def signup_view(request):
             # return render(request, 'travel_users/signup.html', {'form': form})
     else:
         form = UserCreationForm()
-        return render(request, 'users/signup.html', {'form': form})
+        return render(request, 'travel_users/signup.html', {'form': form})
