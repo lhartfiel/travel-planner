@@ -1,4 +1,4 @@
-{% load static %}
+{% load static from staticfiles %}
 {% load compress %}
 
 <!DOCTYPE html>
@@ -12,17 +12,18 @@
     {% block css %}
         {% compress css inline %}
             <link rel="stylesheet" href="{% static 'travel_planner/scss/general.scss' %}">
-{#            <link rel="stylesheet" type='text/scss' href="{{ root_url }}/travel_planner/static/travel_planner/scss/general.scss/general.css">#}
-{#            <link rel="stylesheet" type='text/scss' href="{{ root_url }}/travel_planner/static/travel_planner/scss/general.scss/general.css">#}
+            <link rel="stylesheet" href="{% static 'travel_planner/scss/components/_forms.scss' %}">
         {% endcompress %}
     {% endblock %}
 </head>
 
-{% block body %}
-    <body>
 
+    <body>
+        <div class="grid">
+            {% block body %}
+            {% endblock %}
+        </div>
     </body>
-{% endblock %}
 
 {% block footer %}
     <footer>

@@ -1,18 +1,12 @@
+{% extends 'base.html' %}
 {% load static %}
 {% load compress %}
 
-
-{% block css %}
-{#    {% compress css inline %}#}
-        <link rel="stylesheet" href="{% static 'admin/css/base.css' %}">
-        <link rel="stylesheet" href="{% static 'admin/css/forms.css' %}">
-        <link rel="stylesheet" href="{% static 'admin/css/forms.css' %}">
-{#    {% endcompress %}#}
+{% block body %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <h2>Edit Your Profile Info Below:</h2>
+        {{ form }}
+        <input type="submit" value="Submit">
+    </form>
 {% endblock %}
-
-<form action="" method="post">
-    {% csrf_token %}
-    <h2>Edit Your Profile Info Below:</h2>
-    {{ form }}
-    <input type="submit" value="Submit">
-</form>

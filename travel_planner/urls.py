@@ -17,12 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from travel_users import views
 from django.views.generic import TemplateView
+from travel_users.views import ProfileView, ProfileEditView, UserSignupView
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html')),
     path('admin/', admin.site.urls),
     path('', include('django.contrib.auth.urls'), name='login'),
-    path('profile/', TemplateView.as_view(template_name='travel_users/login.html')),
-    path('edit/<username>/', views.edit_view, name='edit'),
-    path('signup/', views.signup_view, name="signup"),
+    path('profile/', ProfileView.as_view()),
+    path('edit/<username>/', ProfileEditView.as_view(), name='edit'),
+    path('signup/', UserSignupView.as_view(), name="signup"),
 ]

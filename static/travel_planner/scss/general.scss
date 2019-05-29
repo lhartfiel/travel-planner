@@ -1,5 +1,13 @@
+@import '/components/_variables.scss';
+
+
 html {
-  background: red;
   color: blue;
-  font-size: 3.9rem;
+  font-size: 10px;
+}
+
+.grid {
+  max-width: 1440px;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
