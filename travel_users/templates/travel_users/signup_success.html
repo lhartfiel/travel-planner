@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+
+{% block body %}
+    <div class="wrapper">
+        <h2>Congrats! You're officially signed up to Travel Pocket</h2>
+        <a href="{% url 'login' %}" class="btn">Login Here</a>
+    </div>
+{% endblock %}

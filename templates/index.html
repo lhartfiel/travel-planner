@@ -7,9 +7,16 @@
 {% block body %}
     <h1>Travel Pocket</h1>
     <p>Stop tripping over your travel plans. Keep everything in one centralized location with Travel Pocket. Create groups, organize day trips, update itineraries and more!</p>
+    {% if user.is_authenticated %}
+
+    {% endif %}
     <div class="ctas ctas--home">
         <h2>Check it out…</h2>
-        <a href="{% url 'signup' %}" class="btn">Sign Up</a>
-        <a href="{% url 'login' %}" class="btn">Login</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="btn">Logout</a>
+        {% else %}
+             <a href="{% url 'signup' %}" class="btn">Sign Up</a>
+             <a href="{% url 'login' %}" class="btn">Login</a>
+        {% endif %}
     </div>
 {% endblock %}

@@ -1,0 +1,8 @@
+<h1>Let's Log You In!</h1>
+
+<form action="" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Login</button>
+    <input type="hidden" name="next" />
+</form>

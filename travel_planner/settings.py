@@ -144,7 +144,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AUTH_USER_MODEL = 'travel_users.CustomUser'
 
-LOGIN_REDIRECT_URL = '/profile'
+LOGIN_REDIRECT_URL = '/profile/'
 
 COMPRESS_CACHEABLE_PRECOMPILERS = ('text/javascript',)
 COMPRESS_ENABLED = True

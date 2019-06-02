@@ -1,27 +1,35 @@
-<h1>Welcome, {{ user.first_name }}</h1>
-<div class="wrapper">
-    <div class="profile-wrapper">
-        <h2>Your Details:</h2>
-        <p>Location: {{ user.city }}, {{ user.state }}</p>
-        <p>Email: {{ user.email }}</p>
-        <p>Phone: {{ user.phone }}</p>
-        <h2>Emergency Contact Info:</h2>
-        <p>Name: {{ user.emergency_first_name }} {{ user.emergency_last_name }}</p>
-        <p>Phone: {{ user.emergency_phone }}</p>
-        <p>Email: {{ user.emergency_email }}</p>
-        <h2>Personal Info:</h2>
-        {% if user.allergies or user.notes %}
-            {% if user.allergies %}
-                <p>Allergies:</p>
-                <p>{{ user.allergies }}</p>
+{% if user.is_authenticated %}
+    <h1>Welcome, {{ user.first_name }}</h1>
+    <div class="wrapper">
+        <div class="profile-wrapper">
+            {% if user.is_authenticated %}
+              Success! Hi there,{{ user.username }}!
             {% endif %}
-            {% if user.notes %}
-                <p>Notes:</p>
-                <p>{{ user.notes }}</p>
+            <h2>Details for: {{ user.first_name }} {{ user.last_name }}</h2>
+            <p>Location: {{ user.city }}, {{ user.state }}</p>
+            <p>Email: {{ user.email }}</p>
+            <p>Phone: {{ user.phone }}</p>
+            <h2>Emergency Contact Info:</h2>
+            <p>Name: {{ user.emergency_first_name }} {{ user.emergency_last_name }}</p>
+            <p>Phone: {{ user.emergency_phone }}</p>
+            <p>Email: {{ user.emergency_email }}</p>
+            <h2>Personal Info:</h2>
+            {% if user.allergies or user.notes %}
+                {% if user.allergies %}
+                    <p>Allergies:</p>
+                    <p>{{ user.allergies }}</p>
+                {% endif %}
+                {% if user.notes %}
+                    <p>Notes:</p>
+                    <p>{{ user.notes }}</p>
+                {% endif %}
+            {% else %}
+                <p>No additional info at this.</p>
             {% endif %}
-        {% else %}
-            <p>No additional info at this.</p>
-        {% endif %}
+        </div>
+        <a href="{% url 'edit' user.username %}" class="btn">Edit Profile</a>
     </div>
-    <a href="{% url 'edit' user.username %}" class="btn">Edit Profile</a>
-</div>
+{% else %}
+    <p>Oops! Looks like you aren't logged in.</p>
+    <a href="{% url 'login' %}" class="btn">Login</a>
+{% endif %}

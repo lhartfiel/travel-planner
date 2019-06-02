@@ -1,6 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.contrib.auth.models import AbstractUser
 from phonenumber_field.modelfields import PhoneNumberField
+from django.urls import reverse
 
 
 class CustomUser(AbstractUser):
@@ -12,7 +13,7 @@ class CustomUser(AbstractUser):
     phone = PhoneNumberField(blank=True)
     emergency_first_name = models.CharField(max_length=255, blank=True)
     emergency_last_name = models.CharField(max_length=255, blank=True)
-    emergency_phone = PhoneNumberField()
+    emergency_phone = PhoneNumberField(blank=True)
     emergency_email = models.EmailField(max_length=255, blank=False)
     allergies = models.TextField(blank=True)
     notes = models.TextField(blank=True)
