@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="40d5bcd9-ea47-4f31-8daa-260e4fc22522" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/travel_group_single-page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/35d5a997-cc14-4d51-9efa-bcdd9aeedf27.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/35d5a997-cc14-4d51-9efa-bcdd9aeedf27.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_planner/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_planner/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_planner/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_planner/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_users/models.py" afterDir="false" />
-    </list>
+    <list default="true" id="40d5bcd9-ea47-4f31-8daa-260e4fc22522" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,54 +58,33 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/travel_group/views.py">
+        <entry file="file://$PROJECT_DIR$/travel_planner/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="36" column="22" lean-forward="true" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
+            <state relative-caret-position="191">
+              <caret line="23" column="64" selection-start-line="23" selection-start-column="64" selection-end-line="23" selection-end-column="64" />
               <folding>
-                <element signature="e#0#35#0" expanded="true" />
+                <element signature="e#638#670#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="9" column="34" lean-forward="true" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/travel_group/templates/travel_group/travel_group_single-page.html">
+        <entry file="file://$PROJECT_DIR$/travel_group/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/travel_group/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-125">
-              <caret line="32" column="6" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="21" />
+            <state relative-caret-position="184">
+              <caret line="31" column="16" lean-forward="true" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
               <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/travel_group/templates/travel_group/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="7" column="16" lean-forward="true" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/travel_planner/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="33" column="44" selection-start-line="33" selection-start-column="44" selection-end-line="33" selection-end-column="44" />
-              <folding>
-                <element signature="e#638#670#0" expanded="true" />
+                <element signature="e#0#35#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -190,7 +161,6 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
         <option value="$PROJECT_DIR$/travel_users/templates/travel_users/profile.html" />
-        <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/templates/registration/login.html" />
         <option value="$PROJECT_DIR$/travel_users/templates/travel_users/login.html" />
         <option value="$PROJECT_DIR$/travel_users/forms.py" />
@@ -207,6 +177,7 @@
         <option value="$PROJECT_DIR$/travel_group/templates/travel_group/index.html" />
         <option value="$PROJECT_DIR$/travel_group/views.py" />
         <option value="$PROJECT_DIR$/travel_group/templates/travel_group/travel_group_single-page.html" />
+        <option value="$PROJECT_DIR$/templates/index.html" />
       </list>
     </option>
   </component>
@@ -232,49 +203,7 @@
             <path>
               <item name="travel_planner" type="b2602c69:ProjectViewProjectNode" />
               <item name="travel_planner" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="travel_planner" type="b2602c69:ProjectViewProjectNode" />
-              <item name="travel_planner" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="registration" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="travel_planner" type="b2602c69:ProjectViewProjectNode" />
-              <item name="travel_planner" type="462c0819:PsiDirectoryNode" />
               <item name="travel_group" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="travel_planner" type="b2602c69:ProjectViewProjectNode" />
-              <item name="travel_planner" type="462c0819:PsiDirectoryNode" />
-              <item name="travel_group" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="travel_planner" type="b2602c69:ProjectViewProjectNode" />
-              <item name="travel_planner" type="462c0819:PsiDirectoryNode" />
-              <item name="travel_group" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="travel_group" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="travel_planner" type="b2602c69:ProjectViewProjectNode" />
-              <item name="travel_planner" type="462c0819:PsiDirectoryNode" />
-              <item name="travel_users" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="travel_planner" type="b2602c69:ProjectViewProjectNode" />
-              <item name="travel_planner" type="462c0819:PsiDirectoryNode" />
-              <item name="travel_users" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="travel_planner" type="b2602c69:ProjectViewProjectNode" />
-              <item name="travel_planner" type="462c0819:PsiDirectoryNode" />
-              <item name="travel_users" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="travel_users" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="travel_planner" type="b2602c69:ProjectViewProjectNode" />
@@ -370,7 +299,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96481000" />
+    <option name="totallyTimeSpent" value="96526000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -382,7 +311,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="143" y="23" width="1551" height="947" extended-state="0" />
+    <frame x="299" y="23" width="1551" height="947" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4990138" visible="true" weight="0.1486939" />
@@ -673,8 +602,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="17" column="37" lean-forward="true" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
+        <state relative-caret-position="189">
+          <caret line="9" column="34" lean-forward="true" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -774,8 +703,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/travel_planner/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="33" column="44" selection-start-line="33" selection-start-column="44" selection-end-line="33" selection-end-column="44" />
+        <state relative-caret-position="191">
+          <caret line="23" column="64" selection-start-line="23" selection-start-column="64" selection-end-line="23" selection-end-column="64" />
           <folding>
             <element signature="e#638#670#0" expanded="true" />
           </folding>
@@ -809,20 +738,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/travel_group/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="36" column="22" lean-forward="true" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/travel_group/templates/travel_group/travel_group_single-page.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
           <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/travel_group/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="31" column="16" lean-forward="true" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
