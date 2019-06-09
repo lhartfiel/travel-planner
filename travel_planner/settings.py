@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'compressor',
     'travel_planner',
+    'travel_group'
 ]
 
 MIDDLEWARE = [

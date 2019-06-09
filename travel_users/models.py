@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from phonenumber_field.modelfields import PhoneNumberField
-from django.urls import reverse
+from travel_group.models import TravelGroup
 
 
 class CustomUser(AbstractUser):
@@ -17,6 +17,7 @@ class CustomUser(AbstractUser):
     emergency_email = models.EmailField(max_length=255, blank=False)
     allergies = models.TextField(blank=True)
     notes = models.TextField(blank=True)
+    travel_group = models.ForeignKey(TravelGroup, related_name='travel_group', on_delete=models.SET_NULL, null=True, blank=True)
 
     def get_profile(self):
         user = self.objects.all()

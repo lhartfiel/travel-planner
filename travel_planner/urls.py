@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
 from travel_users.views import UserLoginView, ProfileView, ProfileEditView, UserSignupView, UserSignupSuccessView, UserLogoutView
+from travel_group.views import TravelGroupListView, TravelGroupSingleView
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html'), name='home'),
@@ -28,4 +29,7 @@ urlpatterns = [
     path('edit/<username>/', ProfileEditView.as_view(), name='edit'),
     path('signup/', UserSignupView.as_view(), name="signup"),
     path('signup/success/', UserSignupSuccessView.as_view(), name="signup_success"),
+    path('travel-group/<username>/', TravelGroupListView.as_view(), name="travel_group_index"),
+    path('travel-group/<username>/<id>/', TravelGroupSingleView.as_view(), name="travel_group_single"),
+    path('djrichtextfield/', include('djrichtextfield.urls'))
 ]

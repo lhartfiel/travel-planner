@@ -1,0 +1,32 @@
+{{ object.trip_name }}
+
+<h2>Travelers:</h2>
+<ul>
+    {% for traveler in object.travelers.all %}
+        <li>{{ traveler }}</li>
+    {% endfor %}
+</ul>
+
+<h1>Sightseeing Ideas</h1>
+<ul>
+    {% for idea in sightseeing %}
+        <li>{{ idea|safe }}</li>
+    {% endfor %}
+    <a href="" class="btn">Add another idea</a>
+</ul>
+
+<h1>Restaurant Ideas</h1>
+<ul>
+    {% for idea in restaurants %}
+        <li>{{ idea|safe}}</li>
+    {% endfor %}
+    <a href="" class="btn">Add another idea</a>
+</ul>
+
+<h1>Messages</h1>
+<ul>
+    {% for idea in messages %}
+        <li>{{ idea|safe }}</li>
+    {% endfor %}
+    <a href="" class="btn">Add another idea</a>
+</ul>
