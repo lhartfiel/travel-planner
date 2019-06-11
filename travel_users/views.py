@@ -38,13 +38,8 @@ class ProfileEditView(UpdateView):
             return HttpResponseRedirect('/')
         return render(request, self.template_name, {'form': form})
 
-    #     if username is not None:
-    #         queryset = queryset.filter(username=username)
-    #         return queryset
-
     def get_success_url(self):
         return reverse('profile', kwargs={'username': self.request.user.username})
-        # return reverse('profile:profile', kwargs={'username': self.object.username})
 
     def form_valid(self, form):
         return super().form_valid(form)

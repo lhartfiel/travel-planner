@@ -1,5 +1,6 @@
 django
 django-compressor==2.2
+django-libsass
 django-phonenumber-field
 mysql-connector-python
 phonenumbers

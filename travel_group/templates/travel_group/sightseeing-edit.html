@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load compress %}
+
+{% block body %}
+    <div class="container container--narrow">
+        <h2>Edit Sightseeing Ideas</h2>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="btn-wrap">
+                <input type="submit" value="Update">
+            </div>
+        </form>
+    </div>
+{% endblock %}

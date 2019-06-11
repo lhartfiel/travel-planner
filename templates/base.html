@@ -8,22 +8,24 @@
     <title>Travel Pocket</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Muli|Noto+Serif+KR:500,700&display=swap" rel="stylesheet">
 
     {% block css %}
-        {% compress css inline %}
-            <link rel="stylesheet" href="{% static 'travel_planner/scss/general.scss' %}">
-            <link rel="stylesheet" href="{% static 'travel_planner/scss/components/_forms.scss' %}">
+        {% compress css %}
+            <link rel="stylesheet" type="text/x-scss" href="{% static 'travel_planner/scss/general.scss' %}">
+            <link rel="stylesheet" type="text/x-scss" href="{% static 'travel_planner/scss/components/_forms.scss' %}">
+            <link rel="stylesheet" type="text/x-scss" href="{% static 'travel_planner/scss/components/_variables.scss' %}">
         {% endcompress %}
     {% endblock %}
 </head>
 
 
-    <body>
-        <div class="grid">
-            {% block body %}
-            {% endblock %}
-        </div>
-    </body>
+<body>
+    <div class="grid">
+        {% block body %}
+        {% endblock %}
+    </div>
+</body>
 
 {% block footer %}
     <footer>

@@ -19,10 +19,6 @@ class SightseeingIdeas(models.Model):
     sightseeing_idea = RichTextField(blank=True)
     travel_group = models.ForeignKey('TravelGroup', related_name='travel', on_delete=models.CASCADE)
 
-    def sightseeing_ideas(self):
-        test = self.objects.all()
-        return test
-
     class Meta:
         verbose_name = 'Sightseeing Idea'
 

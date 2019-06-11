@@ -7,6 +7,26 @@ label {
 
 input,
 textarea {
+  border: 1px solid gray;
   border-radius: 4px;
-  height: 2.5rem;
+  height: 3.5rem;
+  padding-left: 1rem;
+  margin-bottom: 2rem;
+}
+
+.btn-wrap {
+  display:  block;
+  text-align: center;
+}
+input[type="submit"] {
+  background: #e65a54;
+  border: none;
+  color: #fff;
+  display: inline-block;
+  font-size: 1.8rem;
+  height: auto;
+  line-height: 1.8rem;
+  margin-bottom: 0;
+  padding: 10px 16px;
+  width: auto;
 }

@@ -4929,117 +4929,132 @@ customuser_id</ColNames>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="1110" parent="354" name="username">
+    <column id="1110" parent="354" name="travel_group_id">
+      <Position>22</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="1111" parent="354" name="username">
       <ColNames>username</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="1111" parent="354" name="PRIMARY">
+    <index id="1112" parent="354" name="travel_users_customuser_travel_group_id_9d06f661">
+      <ColNames>travel_group_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="1113" parent="354" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="1112" parent="354" name="username">
+    <key id="1114" parent="354" name="username">
       <ColNames>username</ColNames>
       <UnderlyingIndexName>username</UnderlyingIndexName>
     </key>
-    <column id="1113" parent="355" name="id">
+    <foreign-key id="1115" parent="354" name="travel_users_customu_travel_group_id_9d06f661_fk_travel_gr">
+      <ColNames>travel_group_id</ColNames>
+      <RefSchemaName>travel_db</RefSchemaName>
+      <RefTableName>travel_group_travelgroup</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="1116" parent="355" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="1114" parent="355" name="customuser_id">
+    <column id="1117" parent="355" name="customuser_id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="1115" parent="355" name="group_id">
+    <column id="1118" parent="355" name="group_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="1116" parent="355" name="travel_users_customuser__customuser_id_group_id_a886e58e_uniq">
+    <index id="1119" parent="355" name="travel_users_customuser__customuser_id_group_id_a886e58e_uniq">
       <ColNames>customuser_id
 group_id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="1117" parent="355" name="travel_users_customu_group_id_6eb988f7_fk_auth_grou">
+    <index id="1120" parent="355" name="travel_users_customu_group_id_6eb988f7_fk_auth_grou">
       <ColNames>group_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="1118" parent="355" name="PRIMARY">
+    <key id="1121" parent="355" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="1119" parent="355" name="travel_users_customuser__customuser_id_group_id_a886e58e_uniq">
+    <key id="1122" parent="355" name="travel_users_customuser__customuser_id_group_id_a886e58e_uniq">
       <ColNames>customuser_id
 group_id</ColNames>
       <UnderlyingIndexName>travel_users_customuser__customuser_id_group_id_a886e58e_uniq</UnderlyingIndexName>
     </key>
-    <foreign-key id="1120" parent="355" name="travel_users_customu_customuser_id_ac03ff84_fk_travel_us">
+    <foreign-key id="1123" parent="355" name="travel_users_customu_customuser_id_ac03ff84_fk_travel_us">
       <ColNames>customuser_id</ColNames>
       <RefSchemaName>travel_db</RefSchemaName>
       <RefTableName>travel_users_customuser</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="1121" parent="355" name="travel_users_customu_group_id_6eb988f7_fk_auth_grou">
+    <foreign-key id="1124" parent="355" name="travel_users_customu_group_id_6eb988f7_fk_auth_grou">
       <ColNames>group_id</ColNames>
       <RefSchemaName>travel_db</RefSchemaName>
       <RefTableName>auth_group</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="1122" parent="356" name="id">
+    <column id="1125" parent="356" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="1123" parent="356" name="customuser_id">
+    <column id="1126" parent="356" name="customuser_id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="1124" parent="356" name="permission_id">
+    <column id="1127" parent="356" name="permission_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="1125" parent="356" name="travel_users_customuser__customuser_id_permission_2a2b3b30_uniq">
+    <index id="1128" parent="356" name="travel_users_customuser__customuser_id_permission_2a2b3b30_uniq">
       <ColNames>customuser_id
 permission_id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="1126" parent="356" name="travel_users_customu_permission_id_31642aa9_fk_auth_perm">
+    <index id="1129" parent="356" name="travel_users_customu_permission_id_31642aa9_fk_auth_perm">
       <ColNames>permission_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="1127" parent="356" name="PRIMARY">
+    <key id="1130" parent="356" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="1128" parent="356" name="travel_users_customuser__customuser_id_permission_2a2b3b30_uniq">
+    <key id="1131" parent="356" name="travel_users_customuser__customuser_id_permission_2a2b3b30_uniq">
       <ColNames>customuser_id
 permission_id</ColNames>
       <UnderlyingIndexName>travel_users_customuser__customuser_id_permission_2a2b3b30_uniq</UnderlyingIndexName>
     </key>
-    <foreign-key id="1129" parent="356" name="travel_users_customu_customuser_id_f2bc2349_fk_travel_us">
+    <foreign-key id="1132" parent="356" name="travel_users_customu_customuser_id_f2bc2349_fk_travel_us">
       <ColNames>customuser_id</ColNames>
       <RefSchemaName>travel_db</RefSchemaName>
       <RefTableName>travel_users_customuser</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="1130" parent="356" name="travel_users_customu_permission_id_31642aa9_fk_auth_perm">
+    <foreign-key id="1133" parent="356" name="travel_users_customu_permission_id_31642aa9_fk_auth_perm">
       <ColNames>permission_id</ColNames>
       <RefSchemaName>travel_db</RefSchemaName>
       <RefTableName>auth_permission</RefTableName>

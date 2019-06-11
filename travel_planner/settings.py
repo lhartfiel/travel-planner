@@ -163,6 +163,16 @@ COMPRESS_CSS_FILTERS = [
     'compressor.filters.cssmin.rCSSMinFilter'
 ]
 
+COMPRESS_PRECOMPILERS = (
+    ('text/coffeescript', 'coffee --compile --stdio'),
+    ('text/less', 'lessc {infile} {outfile}'),
+    ('text/x-sass', 'sass {infile} {outfile}'),
+    ('text/x-scss', 'sass --scss {infile} {outfile}'),
+    ('text/stylus', 'stylus < {infile} > {outfile}'),
+    ('text/foobar', 'path.to.MyPrecompilerFilter'),
+    ('text/x-scss', 'django_libsass.SassCompiler'),
+)
+
 LIBSASS_OUTPUT_STYLE = 'compressed'
 
 STATICFILES_FINDERS = (
