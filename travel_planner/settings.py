@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'compressor',
     'travel_planner',
-    'travel_group'
+    'travel_group',
+    'travel_transportation'
 ]
 
 MIDDLEWARE = [
@@ -178,8 +179,5 @@ LIBSASS_OUTPUT_STYLE = 'compressed'
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    #'django.contrib.staticfiles.finders.DefaultStorageFinder',
     'compressor.finders.CompressorFinder',
 )
-
-

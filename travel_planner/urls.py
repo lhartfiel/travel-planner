@@ -18,7 +18,9 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
 from travel_users.views import UserLoginView, ProfileView, ProfileEditView, UserSignupView, UserSignupSuccessView, UserLogoutView
-from travel_group.views import TravelGroupListView, TravelGroupSingleView, TravelGroupCreateView, SightseeingEditView, RestaurantEditView, MessageEditView
+from travel_group.views import TravelGroupListView, TravelGroupSingleView, TravelGroupCreateView, SightseeingEditView, \
+    RestaurantEditView, MessageEditView, SightseeingAddView, SightseeingDeleteView
+from travel_transportation.views import TransportationEditView
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html'), name='home'),
@@ -30,11 +32,13 @@ urlpatterns = [
     path('signup/', UserSignupView.as_view(), name="signup"),
     path('signup/success/', UserSignupSuccessView.as_view(), name="signup_success"),
     path('travel-group/create/', TravelGroupCreateView.as_view(), name="travel_group_create"),
-    # path('travel-group/<id>/edit', TravelGroupEditView.as_view(), name="travel_group_edit"),
-    path('travel-group/sightseeing-edit/<id>/', SightseeingEditView.as_view(), name="sightseeing_edit"),
+    path('travel-group/sightseeing-edit/<pk>/', SightseeingEditView.as_view(), name="sightseeing_edit"),
+    path('travel-group/sightseeing-add/<pk>', SightseeingAddView.as_view(), name="sightseeing_add"),
+    path('travel-group/sightseeing-delete/<pk>', SightseeingDeleteView.as_view(), name="sightseeing_delete"),
     path('travel-group/<id>/restaurant-edit/', RestaurantEditView.as_view(), name="restaurant_edit"),
     path('travel-group/<id>/message-edit/', MessageEditView.as_view(), name="message_edit"),
-    path('travel-group/<username>/', TravelGroupListView.as_view(), name="travel_group_index"),
-    path('travel-group/<username>/<id>/', TravelGroupSingleView.as_view(), name="travel_group_single"),
+    path('travel-group/for/<username>/', TravelGroupListView.as_view(), name="travel_group_index"),
+    path('travel-group/<pk>/', TravelGroupSingleView.as_view(), name="travel_group_single"),
+    path('travel-group/<pk>/transportation-edit', TransportationEditView.as_view(), name="transportation_edit"),
     path('djrichtextfield/', include('djrichtextfield.urls'))
 ]

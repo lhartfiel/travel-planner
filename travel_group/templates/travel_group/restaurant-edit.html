@@ -1,7 +1,15 @@
-<div class="container container--narrow">
-    <h2>Edit Restaurant Ideas</h2>
-    <form method="post">{% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Update">
-    </form>
-</div>
+{% extends 'base.html' %}
+
+{% block head %}
+   {{ super }}
+{% endblock %}
+
+{% block body %}
+    <div class="container container--narrow">
+        <h2>Edit Restaurant Ideas</h2>
+        <form method="post">{% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Update">
+        </form>
+    </div>
+{% endblock %}

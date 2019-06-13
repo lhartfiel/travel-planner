@@ -22,27 +22,14 @@ class ProfileView(FormView):
 
 
 class ProfileEditView(UpdateView):
-    model = CustomUser
     form_class = CustomUserChangeForm
     template_name = 'travel_users/edit.html'
-    pk_url_kwarg = 'username'
-    slug_field = "username"
 
     def get_object(self, queryset=None):
         return get_object_or_404(CustomUser, username=self.request.user.username)
 
-    def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/')
-        return render(request, self.template_name, {'form': form})
-
     def get_success_url(self):
         return reverse('profile', kwargs={'username': self.request.user.username})
-
-    def form_valid(self, form):
-        return super().form_valid(form)
 
 
 class UserLoginView(LoginView):

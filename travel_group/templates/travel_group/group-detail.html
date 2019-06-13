@@ -2,15 +2,10 @@
 {% load static from staticfiles %}
 {% load compress %}
 
-{% block css %}
-    {% compress css inline %}
-        <link rel="stylesheet" href="{% static 'travel_planner/scss/general.scss' %}">
-    {% endcompress %}
-{% endblock %}
 
 {% block body %}
-    {{ object.trip_name }}
     <div class="container container--narrow">
+        {{ object.trip_name }}
         <h2>Travelers:</h2>
         <ul>
             {% for traveler in object.travelers.all %}
@@ -20,16 +15,19 @@
 
         <h1>Sightseeing Ideas</h1>
         <ul>
-            {% for idea in sightseeing %}
-                <li>{{ idea|safe }}</li>
-                <a href="{% url 'sightseeing_edit' travelgroup.id %}" class="btn">Add another idea</a>
+            {% for idea in travelgroup.sightseeing_ideas.all %}
+               <li> <span class="li-item"> {{ idea|safe }}</span>
+                   <a href="{% url 'sightseeing_edit' idea.id %}" class="btn">Edit | </a>
+                   <a href="{% url 'sightseeing_delete' idea.id %}">Delete</a>
+               </li>
             {% endfor %}
+            <li><a href="{% url 'sightseeing_add' travelgroup.id %}">Add Another Idea</a></li>
 
         </ul>
 
         <h1>Restaurant Ideas</h1>
         <ul>
-            {% for idea in restaurants %}
+            {% for idea in travelgroup.restaurant_ideas.all %}
                 <li>{{ idea|safe}}</li>
             {% endfor %}
         {#    <a href="{% url 'restaurant_edit' trip.id %}" class="btn">Add another idea</a>#}
@@ -37,7 +35,7 @@
 
         <h1>Messages</h1>
         <ul>
-            {% for idea in messages %}
+            {% for idea in travelgroup.messages.all %}
                 <li>{{ idea|safe }}</li>
             {% endfor %}
         {#    <a href="{% url 'message_edit' trip.id %}" class="btn">Add another idea</a>#}

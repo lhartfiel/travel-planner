@@ -1,14 +1,22 @@
-<div class="container container--narrow">
-    <h1>Travel Groups</h1>
+{% extends 'base.html' %}
 
-    {% for trip in trips %}
-        <h2>{{ trip.trip_name }}</h2>
+{% block head %}
+   {{ super }}
+{% endblock %}
 
-        {% for traveler in trip.travelers.all %}
-            <li>{{ traveler }}</li>
+{% block body %}
+    <div class="container container--narrow">
+        <h1>Travel Groups</h1>
+
+        {% for trip in trips %}
+            <h2>{{ trip.trip_name }}</h2>
+
+            {% for traveler in trip.travelers.all %}
+                <li>{{ traveler }}</li>
+            {% endfor %}
+            <a href="{% url 'travel_group_single' trip.id %}" class="btn" with trip=trip>View Trip</a>
         {% endfor %}
-        <a href="{% url 'travel_group_single' user.username trip.id %}" class="btn" with trip=trip>View Trip</a>
-    {% endfor %}
-</div>
+    </div>
+{% endblock %}
 
 

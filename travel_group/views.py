@@ -1,14 +1,14 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
-from django.views.generic import TemplateView, ListView, DetailView,UpdateView, CreateView
+from django.views.generic import TemplateView, ListView, DetailView, UpdateView, CreateView, DeleteView
 from .models import TravelGroup, SightseeingIdeas, RestaurantIdeas, TravelMessages
-from .forms import GroupCreateForm, SightseeingFormSet, RestaurantFormSet, MessageFormSet, SightseeingEditForm
+from .forms import GroupCreateForm, SightseeingFormSet, RestaurantFormSet, MessageFormSet, SightseeingEditForm, SightseeingCreateForm
 from django.http import HttpResponseRedirect
 
 
 class TravelGroupListView(ListView):
     template_name = 'travel_group/group-list.html'
-    queryset = TravelGroup.objects.all()
+    queryset = TravelGroup.objects.all()  # @ToDo -- only show groups user is a part of
     context_object_name = 'travel_groups'
 
     def get_context_data(self, **kwargs):
@@ -16,35 +16,10 @@ class TravelGroupListView(ListView):
         context['trips'] = TravelGroup.objects.all()
         return context
 
-    def get_success_url(self):
-        return reverse('travel_group', kwargs={'username': self.request.user.username})
-
 
 class TravelGroupSingleView(DetailView):
     model = TravelGroup
-    pk_url_kwarg = 'id'
     template_name = 'travel_group/group-detail.html'
-
-    def get_context_data(self, **kwargs):
-        current_trip = self.object.id
-        sightseeing_ideas = SightseeingIdeas.objects.filter(travel_group_id=current_trip)
-        restaurant_ideas = RestaurantIdeas.objects.filter(travel_group_id=current_trip)
-        travel_messages = TravelMessages.objects.filter(travel_group_id=current_trip)
-        context = super().get_context_data(**kwargs)
-        context['sightseeing'] = sightseeing_ideas
-        context['restaurants'] = restaurant_ideas
-        context['messages'] = travel_messages
-        return context
-
-# class TravelGroupCreateView(FormView):
-#     model = TravelGroup
-#     template_name = 'travel_group/group-create.html'
-#     queryset = model.objects.none()
-
-# class TravelGroupEditView(UpdateView):
-#     model = TravelGroup
-#     fields = ['travelers', 'trip_name']
-#     template_name = 'travel_group/group-edit.html'
 
 
 class TravelGroupCreateView(CreateView):
@@ -55,7 +30,6 @@ class TravelGroupCreateView(CreateView):
     model = TravelGroup
     template_name = 'travel_group/group-create.html'
     form_class = GroupCreateForm
-    success_url = '/'
 
     def get(self, request, *args, **kwargs):
         self.object = None
@@ -91,27 +65,39 @@ class TravelGroupCreateView(CreateView):
     def form_invalid(self, form, sightseeing_form, restaurant_form, message_form):
         return self.render_to_response(self.get_context_data(form=form, sightseeing_form=sightseeing_form, restaurant_form=restaurant_form, message_form=message_form))
 
+    def get_success_url(self):
+        return reverse('travel_group_single', kwargs={'pk': self.object.id})
+
+
+class SightseeingAddView(CreateView):
+    model = SightseeingIdeas
+    template_name = 'travel_group/sightseeing-edit.html'
+    form_class = SightseeingCreateForm
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['travel_group'] = self.kwargs.get('pk')
+        return kwargs
+
+    def get_success_url(self):
+        return reverse('travel_group_single', kwargs={'pk': self.kwargs.get('pk')})
+
+
+class SightseeingDeleteView(DeleteView):
+    model = SightseeingIdeas
+    template_name = 'travel_group/sightseeing-delete.html'
+
+    def get_success_url(self):
+        return reverse('travel_group_single', kwargs={'pk': self.object.travel_group.id})
+
 
 class SightseeingEditView(UpdateView):
-    model = TravelGroup
-    pk_url_kwarg = 'id'
+    model = SightseeingIdeas
     form_class = SightseeingEditForm
     template_name = 'travel_group/sightseeing-edit.html'
 
-    def get_initial(self):
-        original = SightseeingIdeas.objects.filter(travel_group_id=self.object.id)
-        for item in original:
-            return {'sightseeing_idea': item}
-
-    # def form_valid(self, form):
-    #     self.object = form.save()
-    #     ideas = SightseeingIdeas.objects.all()
-    #     for idea in ideas:
-    #         idea.save()
-    #         return HttpResponseRedirect(self.get_success_url())
-
     def get_success_url(self):
-        return reverse('travel_group_single', kwargs={'username': self.request.user.username, 'id': self.object.id})
+        return reverse('travel_group_single', kwargs={'pk': self.object.travel_group.id})
 
 
 class RestaurantEditView(UpdateView):

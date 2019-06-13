@@ -5,12 +5,8 @@
 {% endblock %}
 
 {% block body %}
-
-<div class="container container--narrow">
-    <h2>Edit Messages</h2>
     <form method="post">{% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Update">
+        <p>Are you sure you want to delete "{{ object }}"?</p>
+        <input type="submit" value="Confirm">
     </form>
-</div>
 {% endblock %}

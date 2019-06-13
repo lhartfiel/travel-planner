@@ -17,7 +17,7 @@ class TravelGroup(models.Model):
 
 class SightseeingIdeas(models.Model):
     sightseeing_idea = RichTextField(blank=True)
-    travel_group = models.ForeignKey('TravelGroup', related_name='travel', on_delete=models.CASCADE)
+    travel_group = models.ForeignKey('TravelGroup', related_name='sightseeing_ideas', on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Sightseeing Idea'
@@ -28,7 +28,7 @@ class SightseeingIdeas(models.Model):
 
 class RestaurantIdeas(models.Model):
     restaurant_idea = RichTextField(blank=True)
-    travel_group = models.ForeignKey('TravelGroup', on_delete=models.CASCADE)
+    travel_group = models.ForeignKey('TravelGroup', related_name='restaurant_ideas', on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Restaurant Idea'
@@ -39,7 +39,7 @@ class RestaurantIdeas(models.Model):
 
 class TravelMessages(models.Model):
     message = RichTextField(blank=True)
-    travel_group = models.ForeignKey('TravelGroup', on_delete=models.CASCADE)
+    travel_group = models.ForeignKey('TravelGroup', related_name='messages', on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Travel Message'
