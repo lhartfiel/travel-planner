@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from django.conf.global_settings import DATETIME_INPUT_FORMATS, DATE_INPUT_FORMATS
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,6 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'qgiosyo2^%#*rsrm8_v+55xqp^czf!s2^*-9bp^&5^drv*$w=^'
 
+DATE_INPUT_FORMATS += ("%m-%d-%Y")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -97,6 +99,7 @@ DATABASES = {
         'PORT': '3306',
         'OPTIONS': {
             'autocommit': True,
+            'use_pure': True
         }
     }
 }

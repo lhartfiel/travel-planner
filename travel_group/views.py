@@ -8,12 +8,12 @@ from django.http import HttpResponseRedirect
 
 class TravelGroupListView(ListView):
     template_name = 'travel_group/group-list.html'
-    queryset = TravelGroup.objects.all()  # @ToDo -- only show groups user is a part of
+    queryset = TravelGroup.objects.all()
     context_object_name = 'travel_groups'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['trips'] = TravelGroup.objects.all()
+        context['trips'] = TravelGroup.objects.filter(travelers__id=self.request.user.id)
         return context
 
 

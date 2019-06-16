@@ -38,7 +38,8 @@
                 <a href="{% url 'edit' user.username %}" class="btn">Edit Profile</a>
                 <a href="{% url 'travel_group_create' %}" class="btn">Create Travel Group</a>
                 <a href="{% url 'travel_group_index' user.username %}" class="btn">View My Travel Groups</a>
-
+                <a href="{% url 'transportation_create' user.username %}" class="btn">Create Transportation Info</a>
+                <a href="{% url 'transportation_list' user.username %}" class="btn">View Transportation List</a>
             </div>
          </div>
 

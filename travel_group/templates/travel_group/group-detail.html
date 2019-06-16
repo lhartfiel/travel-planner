@@ -5,11 +5,14 @@
 
 {% block body %}
     <div class="container container--narrow">
-        {{ object.trip_name }}
+
         <h2>Travelers:</h2>
         <ul>
             {% for traveler in object.travelers.all %}
                 <li>{{ traveler }}</li>
+                {{ traveler.transportation }}
+{#                <a href="{% url 'transportation_detail' traveler.username traveler %}">View Travel Plans</a>#}
+
             {% endfor %}
         </ul>
 

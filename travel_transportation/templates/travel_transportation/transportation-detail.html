@@ -1,0 +1,14 @@
+<h1>Transportation Info -- {{ object.name }}</h1>
+
+
+<p>{{ object.arrival_city }}</p>
+<p>{{ object.arrival_date }}</p>
+<p>{{ object.arrival_time }}</p>
+<br>
+<p>{{ object.departure_city }}</p>
+<p>{{ object.departure_date }}</p>
+<p>{{ object.departure_time }}</p>
+
+
+<a href="{% url 'transportation_list' object.user.username %}">Back to Transportation List</a>
+<a href="{% url 'transportation_edit' object.pk %}">Edit Info</a>

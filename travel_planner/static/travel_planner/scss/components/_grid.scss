@@ -1,0 +1,16 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  max-width: 1440px;
+}
+
+.container {
+
+  &--full {
+    grid-column: 1 / -1;
+  }
+
+  &--narrow {
+    grid-column: 3 / 11;
+  }
+}

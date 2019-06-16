@@ -1,9 +1,12 @@
 from django.db import models
 # from travel_users.models import CustomUser
 from djrichtextfield.models import RichTextField
+from travel_transportation.models import Transportation
 
 
 class TravelGroup(models.Model):
+    transportation = models.ForeignKey(Transportation, related_name='transportation', on_delete=models.SET_NULL,
+                                       null=True, blank=True)
     travelers = models.ManyToManyField('travel_users.CustomUser', related_name='TravelGroup')
     trip_name = models.CharField(max_length=200, blank=False)
 

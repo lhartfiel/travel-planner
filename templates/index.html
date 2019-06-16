@@ -5,20 +5,23 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container container--narrow">
-        <h1>Travel Pocket</h1>
-        <p>Stop tripping over your travel plans. Keep everything in one centralized location with Travel Pocket. Create groups, organize day trips, update itineraries and more!</p>
-        {% if user.is_authenticated %}
-
-        {% endif %}
-        <div class="ctas ctas--home">
-            <h2>Check it out…</h2>
+    <div class="home-wrap">
+        <div class="container container--narrow">
+            <h1>Travel Pocket</h1>
+            <p>Stop tripping over your travel plans. Keep everything in one centralized location with Travel Pocket. Create groups, organize day trips, update itineraries and more!</p>
             {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}" class="btn">Logout</a>
-            {% else %}
-                 <a href="{% url 'signup' %}" class="btn">Sign Up</a>
-                 <a href="{% url 'login' %}" class="btn">Login</a>
+
             {% endif %}
+            <div class="ctas ctas--home">
+                <h2>Check it out…</h2>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}" class="btn">Logout</a>
+                    <a href="{% url 'profile' user.username %}">My Profile</a>
+                {% else %}
+                     <a href="{% url 'signup' %}" class="btn">Sign Up</a>
+                     <a href="{% url 'login' %}" class="btn">Login</a>
+                {% endif %}
+            </div>
         </div>
     </div>
 

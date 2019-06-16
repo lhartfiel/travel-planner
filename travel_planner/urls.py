@@ -20,7 +20,8 @@ from django.views.generic import TemplateView
 from travel_users.views import UserLoginView, ProfileView, ProfileEditView, UserSignupView, UserSignupSuccessView, UserLogoutView
 from travel_group.views import TravelGroupListView, TravelGroupSingleView, TravelGroupCreateView, SightseeingEditView, \
     RestaurantEditView, MessageEditView, SightseeingAddView, SightseeingDeleteView
-from travel_transportation.views import TransportationEditView
+from travel_transportation.views import TransportationEditView, TransportationCreateView, TransportationListView, \
+    TransportationDetailView, TransportationDeleteView
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html'), name='home'),
@@ -39,6 +40,10 @@ urlpatterns = [
     path('travel-group/<id>/message-edit/', MessageEditView.as_view(), name="message_edit"),
     path('travel-group/for/<username>/', TravelGroupListView.as_view(), name="travel_group_index"),
     path('travel-group/<pk>/', TravelGroupSingleView.as_view(), name="travel_group_single"),
-    path('travel-group/<pk>/transportation-edit', TransportationEditView.as_view(), name="transportation_edit"),
+    path('transportation-list/<username>', TransportationListView.as_view(), name="transportation_list"),
+    path('transportation-detail/<username>/<pk>', TransportationDetailView.as_view(), name="transportation_detail"),
+    path('transportation-create/<pk>', TransportationCreateView.as_view(), name="transportation_create"),
+    path('transportation-edit/<pk>', TransportationEditView.as_view(), name="transportation_edit"),
+    path('transportation-delete/<pk>', TransportationDeleteView.as_view(), name="transportation_delete"),
     path('djrichtextfield/', include('djrichtextfield.urls'))
 ]

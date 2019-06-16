@@ -1,14 +1,11 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from travel_users.models import CustomUser
-from travel_users.forms import CustomUserEditForm, UserCreationForm, CustomUserCreationForm, CustomUserChangeForm
-from django.views.generic import TemplateView, FormView, UpdateView, CreateView, View
-from django.contrib.auth.views import LogoutView
+from travel_users.forms import CustomUserCreationForm, CustomUserChangeForm
+from django.views.generic import TemplateView, FormView, UpdateView, CreateView
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
-from django.shortcuts import get_list_or_404, get_object_or_404
-from django.conf import settings
+from django.shortcuts import get_object_or_404
 from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView
 
