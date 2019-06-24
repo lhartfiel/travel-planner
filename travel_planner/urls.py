@@ -17,6 +17,9 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
+from django.conf import settings
+from django.conf.urls.static import static
+
 from travel_users.views import UserLoginView, ProfileView, ProfileEditView, UserSignupView, UserSignupSuccessView, UserLogoutView
 from travel_group.views import TravelGroupListView, TravelGroupSingleView, TravelGroupCreateView, SightseeingEditView, \
     RestaurantEditView, MessageEditView, SightseeingAddView, SightseeingDeleteView
@@ -46,4 +49,4 @@ urlpatterns = [
     path('transportation-edit/<pk>', TransportationEditView.as_view(), name="transportation_edit"),
     path('transportation-delete/<pk>', TransportationDeleteView.as_view(), name="transportation_delete"),
     path('djrichtextfield/', include('djrichtextfield.urls'))
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

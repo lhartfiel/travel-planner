@@ -1,7 +1,11 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  max-width: 1440px;
+
+  &__profile {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+  }
 }
 
 .container {
@@ -10,7 +14,28 @@
     grid-column: 1 / -1;
   }
 
+  &--xnarrow {
+    grid-column: 5 / 9;
+  }
+
   &--narrow {
     grid-column: 3 / 11;
+  }
+
+  &--center {
+      align-self: center;
+     justify-content: center;
+  }
+
+  &--white {
+    background: $white;
+    box-shadow: 0 4px 6px 0 rgba($gray, 0.4);
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    padding: 2rem;
+    z-index: 10;
   }
 }

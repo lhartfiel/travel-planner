@@ -5,17 +5,21 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container container--narrow">
-        <h1>Travel Groups</h1>
+    <div class="body-wrap">
+        <div class="img-wrap img-wrap--main">
+            <div class="container container--narrow container--white">
+                <h1>Travel Groups</h1>
 
-        {% for trip in trips %}
-            <h2>{{ trip.trip_name }}</h2>
+                {% for trip in trips %}
+                    <h2>{{ trip.trip_name }}</h2>
 
-            {% for traveler in trip.travelers.all %}
-                <li>{{ traveler }}</li>
-            {% endfor %}
-            <a href="{% url 'travel_group_single' trip.id %}" class="btn" with trip=trip>View Trip</a>
-        {% endfor %}
+                    {% for traveler in trip.travelers.all %}
+                        <li>{{ traveler }}</li>
+                    {% endfor %}
+                    <a href="{% url 'travel_group_single' trip.id %}" class="btn" with trip=trip>View Trip</a>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 {% endblock %}
 

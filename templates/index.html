@@ -1,26 +1,30 @@
 {% extends 'base.html' %}
+{% load static from staticfiles %}
 
 {% block head %}
    {{ super }}
 {% endblock %}
 
 {% block body %}
-    <div class="home-wrap">
-        <div class="container container--narrow">
-            <h1>Travel Pocket</h1>
-            <p>Stop tripping over your travel plans. Keep everything in one centralized location with Travel Pocket. Create groups, organize day trips, update itineraries and more!</p>
-            {% if user.is_authenticated %}
-
-            {% endif %}
-            <div class="ctas ctas--home">
-                <h2>Check it out…</h2>
+    <div class="body-wrap body-wrap__home">
+        <div class="img-wrap img-wrap--main home__img-wrap">
+{#            <img alt="Curacao buildings" src="{% static 'travel_planner/images/curacao-bw.jpg' %}"/>#}
+            <div class="container container--xnarrow container--center">
+                <div class="body-border"></div>
+                <h1 class="color-white"><span>Travel Pocket</span></h1>
+                <p class="color-white txt--center">Stop tripping over your travel plans. Keep everything in one centralized location with Travel Pocket. Create groups, organize day trips, update itineraries and more!</p>
                 {% if user.is_authenticated %}
-                    <a href="{% url 'logout' %}" class="btn">Logout</a>
-                    <a href="{% url 'profile' user.username %}">My Profile</a>
-                {% else %}
-                     <a href="{% url 'signup' %}" class="btn">Sign Up</a>
-                     <a href="{% url 'login' %}" class="btn">Login</a>
+
                 {% endif %}
+                <div class="ctas ctas--home">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'profile' user.username %}" class="btn btn--primary">My Profile</a>
+                    {% else %}
+                         <a href="{% url 'signup' %}" class="btn">Sign Up</a>
+                         <a href="{% url 'login' %}" class="btn">Login</a>
+                    {% endif %}
+                </div>
+
             </div>
         </div>
     </div>

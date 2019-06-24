@@ -152,7 +152,7 @@ AUTH_USER_MODEL = 'travel_users.CustomUser'
 LOGIN_REDIRECT_URL = '/profile/'
 
 COMPRESS_CACHEABLE_PRECOMPILERS = ('text/javascript',)
-COMPRESS_ENABLED = True
+COMPRESS_ENABLED = False
 COMPRESS_OFFLINE = False
 COMPRESS_PRECOMPILERS = ('text/x-scss', 'django_libsass.SassCompiler'),
 COMPRESS_CSS_HASHING_METHOD = 'content'
@@ -166,16 +166,6 @@ COMPRESS_CSS_FILTERS = [
     'compressor.filters.css_default.CssRelativeFilter',
     'compressor.filters.cssmin.rCSSMinFilter'
 ]
-
-COMPRESS_PRECOMPILERS = (
-    ('text/coffeescript', 'coffee --compile --stdio'),
-    ('text/less', 'lessc {infile} {outfile}'),
-    ('text/x-sass', 'sass {infile} {outfile}'),
-    ('text/x-scss', 'sass --scss {infile} {outfile}'),
-    ('text/stylus', 'stylus < {infile} > {outfile}'),
-    ('text/foobar', 'path.to.MyPrecompilerFilter'),
-    ('text/x-scss', 'django_libsass.SassCompiler'),
-)
 
 LIBSASS_OUTPUT_STYLE = 'compressed'
 

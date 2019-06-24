@@ -1,8 +1,60 @@
-.home-wrap {
-  grid-column: 1/-1;
-  width: 100vw;
-  height: 100vh;
-  background-image: url('../images/curacao-bw.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
+.body-wrap__home {
+  .container {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-items: center;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+  }
+
+  h1, p {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  h1, .ctas--home {
+    &:before,
+    &:after {
+      position: absolute;
+      border-top: 1px solid $white;
+      content: "";
+      width: 10%;
+    }
+
+    &:before {
+      left: 0;
+    }
+
+    &:after {
+      right: 0;
+    }
+  }
+
+  h1 {
+    &:before,
+    &:after {
+      top: 80px;
+    }
+  }
+  .ctas--home {
+    &:before,
+    &:after {
+      width: 30%;
+      bottom: 20px;
+    }
+  }
+}
+
+.body-border {
+  border-left: 1px solid $white;
+  border-right: 1px solid $white;
+  bottom: 20px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 80px;
 }

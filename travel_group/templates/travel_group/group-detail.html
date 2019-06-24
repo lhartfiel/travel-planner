@@ -4,44 +4,48 @@
 
 
 {% block body %}
-    <div class="container container--narrow">
+   <div class="body-wrap">
+        <div class="img-wrap img-wrap--main">
+            <div class="container container--narrow container--white">
 
-        <h2>Travelers:</h2>
-        <ul>
-            {% for traveler in object.travelers.all %}
-                <li>{{ traveler }}</li>
-                {{ traveler.transportation }}
-{#                <a href="{% url 'transportation_detail' traveler.username traveler %}">View Travel Plans</a>#}
+                <h2>Travelers:</h2>
+                <ul>
+                    {% for traveler in object.travelers.all %}
+                        <li>{{ traveler }}</li>
+                        {{ traveler.transportation }}
+        {#                <a href="{% url 'transportation_detail' traveler.username traveler %}">View Travel Plans</a>#}
 
-            {% endfor %}
-        </ul>
+                    {% endfor %}
+                </ul>
 
-        <h1>Sightseeing Ideas</h1>
-        <ul>
-            {% for idea in travelgroup.sightseeing_ideas.all %}
-               <li> <span class="li-item"> {{ idea|safe }}</span>
-                   <a href="{% url 'sightseeing_edit' idea.id %}" class="btn">Edit | </a>
-                   <a href="{% url 'sightseeing_delete' idea.id %}">Delete</a>
-               </li>
-            {% endfor %}
-            <li><a href="{% url 'sightseeing_add' travelgroup.id %}">Add Another Idea</a></li>
+                <h1>Sightseeing Ideas</h1>
+                <ul>
+                    {% for idea in travelgroup.sightseeing_ideas.all %}
+                       <li> <span class="li-item"> {{ idea|safe }}</span>
+                           <a href="{% url 'sightseeing_edit' idea.id %}" class="btn">Edit | </a>
+                           <a href="{% url 'sightseeing_delete' idea.id %}">Delete</a>
+                       </li>
+                    {% endfor %}
+                    <li><a href="{% url 'sightseeing_add' travelgroup.id %}">Add Another Idea</a></li>
 
-        </ul>
+                </ul>
 
-        <h1>Restaurant Ideas</h1>
-        <ul>
-            {% for idea in travelgroup.restaurant_ideas.all %}
-                <li>{{ idea|safe}}</li>
-            {% endfor %}
-        {#    <a href="{% url 'restaurant_edit' trip.id %}" class="btn">Add another idea</a>#}
-        </ul>
+                <h1>Restaurant Ideas</h1>
+                <ul>
+                    {% for idea in travelgroup.restaurant_ideas.all %}
+                        <li>{{ idea|safe}}</li>
+                    {% endfor %}
+                {#    <a href="{% url 'restaurant_edit' trip.id %}" class="btn">Add another idea</a>#}
+                </ul>
 
-        <h1>Messages</h1>
-        <ul>
-            {% for idea in travelgroup.messages.all %}
-                <li>{{ idea|safe }}</li>
-            {% endfor %}
-        {#    <a href="{% url 'message_edit' trip.id %}" class="btn">Add another idea</a>#}
-        </ul>
+                <h1>Messages</h1>
+                <ul>
+                    {% for idea in travelgroup.messages.all %}
+                        <li>{{ idea|safe }}</li>
+                    {% endfor %}
+                {#    <a href="{% url 'message_edit' trip.id %}" class="btn">Add another idea</a>#}
+                </ul>
+            </div>
+        </div>
     </div>
 {% endblock %}

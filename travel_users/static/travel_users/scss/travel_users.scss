@@ -1,0 +1,42 @@
+@import 'travel_planner/scss/components/_variables.scss';
+
+.profile--top {
+  grid-column: 1 / -1;
+  margin-top: -10%;
+
+  .img-wrap {
+    border: 4px solid $white;
+    background-size: cover;
+    background-position: 50%;
+    border-radius: 50%;
+    margin: 0 auto;
+    padding-top: 25%;
+    width: 25%;
+  }
+
+  .btn-wrap {
+    margin: 0 auto;
+  }
+
+  .btn--primary {
+    margin-top: 1rem;
+  }
+}
+
+.profile__pic {
+  justify-self: center;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  max-width: 100%;
+}
+
+.user-meta {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+
+  p {
+    margin-right: 2rem;
+  }
+}
