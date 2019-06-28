@@ -5,6 +5,7 @@
     {{ super }}
 
     {% block css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'travel_planner/scss/font-awesome/font-awesome.scss' %}">
         {% compress css inline %}
             <link rel="stylesheet" type="text/x-scss" href="{% static 'travel_planner/scss/general.scss' %}">
             <link rel="stylesheet" type="text/x-scss" href="{% static 'travel_group/scss/travel_group.scss' %}">
@@ -25,9 +26,24 @@
                             </div>
                             <h2 class="profile__name tac">{{ user.first_name }} {{ user.last_name }}</h2>
                             <div class="user-meta">
-                                <i class="fas fa-map-marker-alt"></i><p>{{ user.city }}, {{ user.state }}</p>
-                                <i class="fas fa-envelope"></i><p>{{ user.email }}</p>
-                                <i class="fas fa-phone"></i><p>{{ user.phone }}</p>
+                                <div class="user__detail">
+                                    <div class="detail__img-wrap">
+                                        <img class="profile__icon" src="{% static 'travel_planner/images/icon-location.png'%}" alt="Map marker">
+                                     </div>
+                                    <p>{{ user.city }}, {{ user.state }}</p>
+                                </div>
+                                <div class="user__detail">
+                                    <div class="detail__img-wrap">
+                                        <img class="profile__icon" src="{% static 'travel_planner/images/icon-email.png'%}" alt="Mail">
+                                    </div>
+                                    <p>{{ user.email }}</p>
+                                </div>
+                                <div class="user__detail">
+                                    <div class="detail__img-wrap">
+                                        <img class="profile__icon" src="{% static 'travel_planner/images/icon-phone.png'%}" alt="Phone">
+                                    </div>
+                                    <p>{{ user.phone }}</p>
+                                </div>
                             </div>
                             <div class="btn-wrap">
                                 <a href="{% url 'edit' user.username %}" class="btn btn--primary">Edit Profile</a>
@@ -35,23 +51,34 @@
                         </div>
                         <div class="wrapper">
                         <div class="profile-wrapper">
-                            <h3>Emergency Contact Info:</h3>
-                            <p>Name: {{ user.emergency_first_name }} {{ user.emergency_last_name }}</p>
-                            <p>Phone: {{ user.emergency_phone }}</p>
-                            <p>Email: {{ user.emergency_email }}</p>
-                            <h3>Personal Info:</h3>
-                            {% if user.allergies or user.notes %}
-                                {% if user.allergies %}
-                                    <p>Allergies:</p>
-                                    <p>{{ user.allergies }}</p>
+                            <div class="col--left">
+                                <h3>Emergency Contact Info:</h3>
+                                <p>Name: {{ user.emergency_first_name }} {{ user.emergency_last_name }}</p>
+                                <p>Phone: {{ user.emergency_phone }}</p>
+                                <p>Email: {{ user.emergency_email }}</p>
+                                <h3>Personal Info:</h3>
+                                {% if user.allergies or user.notes %}
+                                    {% if user.allergies %}
+                                        <p>Allergies:</p>
+                                        <p>{{ user.allergies }}</p>
+                                    {% endif %}
+                                    {% if user.notes %}
+                                        <p>Notes:</p>
+                                        <p>{{ user.notes }}</p>
+                                    {% endif %}
+                                {% else %}
+                                    <p>No additional info at this.</p>
                                 {% endif %}
-                                {% if user.notes %}
-                                    <p>Notes:</p>
-                                    <p>{{ user.notes }}</p>
-                                {% endif %}
-                            {% else %}
-                                <p>No additional info at this.</p>
-                            {% endif %}
+                            </div>
+                            <div class="col--right">
+                                <div class="travel-group">
+                                    <h3>Travel Groups</h3>
+                                    {% for group in user.get_travel_groups %}
+                                        <p>{{ group.trip_name }}</p>
+                                        <a class="link--sm" href="{% url 'travel_group_single' group.id %}">View Trip</a>
+                                    {% endfor %}
+                                </div>
+                            </div>
                         </div>
 
                         <a href="{% url 'travel_group_create' %}" class="btn">Create Travel Group</a>

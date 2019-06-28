@@ -28,6 +28,10 @@ class CustomUser(AbstractUser):
     def get_transport_id(self):
         return CustomUser.objects.get(id=self.transportation.id)
 
+    def get_travel_groups(self):
+        groups = TravelGroup.objects.filter(travelers=self.id)
+        return groups
+
     def __str__(self):
         return self.first_name
 

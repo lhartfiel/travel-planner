@@ -40,3 +40,42 @@
     margin-right: 2rem;
   }
 }
+
+.user__detail {
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+
+  p {
+    margin-left: 1rem;
+  }
+}
+
+.profile-wrapper {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr;
+}
+
+.travel-group {
+  padding-left: 2rem;
+  position: relative;
+
+  &:before,
+  &:after {
+    position: absolute;
+    content: "";
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  &:before {
+    border-left: 1px solid rgba(gray, 0.5);
+  }
+
+  &:after {
+    border-right: 1px solid rgba(gray, 0.5);
+    left: -5px;
+  }
+
+}

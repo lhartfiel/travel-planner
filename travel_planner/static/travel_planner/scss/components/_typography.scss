@@ -19,6 +19,12 @@ a {
   text-decoration: none;
 }
 
+.link {
+   &--sm {
+    font-size: 1.4rem;
+  }
+}
+
 .tac {
   text-align: center;
 }

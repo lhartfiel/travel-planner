@@ -7,7 +7,7 @@ from travel_transportation.models import Transportation
 class TravelGroup(models.Model):
     transportation = models.ForeignKey(Transportation, related_name='transportation', on_delete=models.SET_NULL,
                                        null=True, blank=True)
-    travelers = models.ManyToManyField('travel_users.CustomUser', related_name='TravelGroup')
+    travelers = models.ManyToManyField('travel_users.CustomUser', related_name='trav_group')
     trip_name = models.CharField(max_length=200, blank=False)
 
     def travel_group(self):
