@@ -1,7 +1,20 @@
-<h1>Add Transportation Info</h1>
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% load compress %}
 
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save">
-</form>
+{% block body %}
+    <div class="body-wrap">
+        <div class="img-wrap--main">
+            <div class="container container--narrow container--white">
+
+                <h1>Add Transportation Info</h1>
+
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Save">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

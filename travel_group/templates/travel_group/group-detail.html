@@ -4,47 +4,135 @@
 
 
 {% block body %}
-   <div class="body-wrap">
+    <div class="body-wrap">
         <div class="img-wrap img-wrap--main">
-            <div class="container container--narrow container--white">
+            <h1 class="group__head c--white grid--full ta--c">{{ travelgroup.trip_name }}</h1>
+            <div class="container container--narrow container--white mt--0">
+                <div class="grid--full">
+                    <h2>Travelers:</h2>
 
-                <h2>Travelers:</h2>
-                <ul>
                     {% for traveler in object.travelers.all %}
-                        <li>{{ traveler }}</li>
-                        {{ traveler.transportation }}
-        {#                <a href="{% url 'transportation_detail' traveler.username traveler %}">View Travel Plans</a>#}
+                        <div class="flex traveler">
+                            {% if traveler.profile_photo %}
+                                <div class="user__photo-wrap">
+                                    <img class="user__photo" src="{{ traveler.profile_photo.url }}" alt="">
+                                </div>
+                            {% endif %}
+                            <div class="traveler__info f--wrap">
+                                <div class="traveler__info--top f--nowrap">
+                                    <h4><span>{{ traveler.first_name }} </span><span>{{ traveler.last_name }}</span></h4>
+                                    <div class="link-group">
+                                        <a class="c--sec" href="{% url 'profile' traveler.username %}">View Profile</a>
+                                        <img
+                                            srcset="{% static 'travel_planner/images/icon-triangle-right.png' %} 1x, {% static 'travel_planner/images/icon-triangle-right@2x.png' %} 2x"
+                                            src="{% static 'travel_planner/images/icon-triangle-right.png' %}"
+                                            alt="Triangle right">
+                                    </div>
+                                </div>
+                                <ul>
+                                    {% if traveler.city or traveler.state %}
+                                        <div class="detail__img-wrap">
+                                            <img
+                                                class="profile__icon"
+                                                srcset="{% static 'travel_planner/images/icon-location.png' %} 1x,  {% static 'travel_planner/images/icon-location@2x.png' %} 2x"
+                                                src="{% static 'travel_planner/images/icon-location.png' %}"
+                                                alt="Map marker">
+                                        </div>
+                                        <li>{{ traveler.city }}{% if traveler.state %}
+                                            ,{% endif %} {{ traveler.state }}</li>
+                                    {% endif %}
+                                    {% if traveler.phone %}
+                                        <div class="detail__img-wrap">
+                                            <img
+                                                class="profile__icon"
+                                                srcset="{% static 'travel_planner/images/icon-phone.png' %} 1x, {% static 'travel_planner/images/icon-phone@2x.png' %} 2x"
+                                                src="{% static 'travel_planner/images/icon-phone.png' %}"
+                                                alt="Phone">
+                                        </div>
+                                        <li>{{ traveler.phone }}</li>
+                                    {% endif %}
+                                    {% if traveler.email %}
+                                        <div class="detail__img-wrap">
+                                            <img
+                                                    class="profile__icon"
+                                                    srcset="{% static 'travel_planner/images/icon-email.png' %} 1x, {% static 'travel_planner/images/icon-email@2x.png' %} 2x"
+                                                    src="{% static 'travel_planner/images/icon-email.png' %}"
+                                                    alt="Mail">
+                                        </div>
+                                        <li>{{ traveler.email }}</li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
 
                     {% endfor %}
-                </ul>
+                    <div class="grid--split">
+                        <div class="grid--right mr--2">
+                            <div class="group-ideas m--0">
+                                <h2>Sightseeing Ideas</h2>
+                                <ul>
+                                    {% for idea in travelgroup.sightseeing_ideas.all %}
+                                        <li class="idea-item sight-item mb--2">
+                                            <span class="idea__name sight__name"> {{ idea|safe }}</span>
+                                            <span class="sight__link">
+                                                <a class="fz--14 c--sec"
+                                                     href="{% url 'sightseeing_edit' idea.id %}"
+                                                     class="btn">edit | </a>
+                                            </span>
+                                            <span class="sight__link">
+                                                <a class="fz--14 c--sec" href="{% url 'sightseeing_delete' idea.id %}">delete</a>
+                                            </span>
+                                        </li>
+                                    {% endfor %}
 
-                <h1>Sightseeing Ideas</h1>
-                <ul>
-                    {% for idea in travelgroup.sightseeing_ideas.all %}
-                       <li> <span class="li-item"> {{ idea|safe }}</span>
-                           <a href="{% url 'sightseeing_edit' idea.id %}" class="btn">Edit | </a>
-                           <a href="{% url 'sightseeing_delete' idea.id %}">Delete</a>
-                       </li>
-                    {% endfor %}
-                    <li><a href="{% url 'sightseeing_add' travelgroup.id %}">Add Another Idea</a></li>
 
-                </ul>
-
-                <h1>Restaurant Ideas</h1>
-                <ul>
-                    {% for idea in travelgroup.restaurant_ideas.all %}
-                        <li>{{ idea|safe}}</li>
-                    {% endfor %}
-                {#    <a href="{% url 'restaurant_edit' trip.id %}" class="btn">Add another idea</a>#}
-                </ul>
-
-                <h1>Messages</h1>
-                <ul>
-                    {% for idea in travelgroup.messages.all %}
-                        <li>{{ idea|safe }}</li>
-                    {% endfor %}
-                {#    <a href="{% url 'message_edit' trip.id %}" class="btn">Add another idea</a>#}
-                </ul>
+                                </ul>
+                                 <div class="add__link ta--l">
+                                    <a class="c--sec mr--1 fw--700" href="{% url 'sightseeing_add' travelgroup.id %}">Add Sightseeing Idea</a>
+                                    <img
+                                        srcset="{% static 'travel_planner/images/icon-triangle-right.png' %} 1x, {% static 'travel_planner/images/icon-triangle-right@2x.png' %} 2x"
+                                        src="{% static 'travel_planner/images/icon-triangle-right.png' %}"
+                                        alt="Triangle right">
+                                 </div>
+                            </div>
+                        </div>
+                        <div class="grid--left mr--2">
+                            <div class="group-ideas m--0">
+                                <h2>Restaurant Ideas</h2>
+                                <ul>
+                                    {% for idea in travelgroup.restaurant_ideas.all %}
+                                        <li class="li-item rest-item mb--2">
+                                            <span class="idea__name rest__name">{{ idea|safe }}</span>
+                                            <span class="rest__link"><a class="fz--14 c--sec"
+                                                                        href="{% url 'restaurant_edit' idea.id %}">edit | </a></span>
+                                            <span class="rest__link"><a class="fz--14 c--sec"
+                                                                        href="{% url 'restaurant_delete' idea.id %}">delete</a></span>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                                <div class="add__link ta--l">
+                                    <a class="c--sec mr--1 fw--700" href="{% url 'restaurant_add' travelgroup.id %}">Add Restaurant Idea</a>
+                                    <img
+                                        srcset="{% static 'travel_planner/images/icon-triangle-right.png' %} 1x, {% static 'travel_planner/images/icon-triangle-right@2x.png' %} 2x"
+                                        src="{% static 'travel_planner/images/icon-triangle-right.png' %}"
+                                        alt="Triangle right">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid--full">
+                        <h2>Messages</h2>
+                        <ul class="msgs">
+                            {% for msg in travelgroup.messages.all %}
+                                <li class="msg-item mb--2">
+                                    <span class="msg__detail mb--1 fz--14">{{ msg.date_created_at }} &mdash; {{ msg.message_creator.first_name }} {{ msg.message_creator.last_name }}</span>
+                                    <span class="msg">{{ msg|safe }}</span>
+                                </li>
+                            {% endfor %}
+                            {#    <a href="{% url 'message_edit' trip.id %}" class="btn">Add another idea</a>#}
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

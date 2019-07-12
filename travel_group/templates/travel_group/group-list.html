@@ -12,7 +12,6 @@
 
                 {% for trip in trips %}
                     <h2>{{ trip.trip_name }}</h2>
-
                     {% for traveler in trip.travelers.all %}
                         <li>{{ traveler }}</li>
                     {% endfor %}

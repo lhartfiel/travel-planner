@@ -10,12 +10,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Muli|Noto+Serif+KR:500,700&display=swap" rel="stylesheet">
-
     {% block css %}
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/5.8.2/css/font-awesome.min.css" rel="stylesheet">
         {% compress css inline %}
             <link rel="stylesheet" type="text/x-scss" href="{% static 'travel_planner/scss/general.scss' %}">
-            <link rel="stylesheet" type="text/x-scss" href="{% static 'travel_group/scss/travel_group.scss' %}">
         {% endcompress %}
     {% endblock %}
 </head>
@@ -30,10 +28,10 @@
 </header>
 
 <body>
-<div class="grid">
-    {% block body %}
-    {% endblock %}
-</div>
+    <div class="grid">
+        {% block body %}
+        {% endblock %}
+    </div>
 </body>
 
 {% block footer %}

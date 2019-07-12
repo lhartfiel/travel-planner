@@ -1,8 +1,18 @@
-<h1>Let's Log You In!</h1>
+{% extends 'base.html' %}
+{% load static %}
+{% load compress %}
 
-<form action="" method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Login</button>
-    <input type="hidden" name="next" />
-</form>
+{% block body %}
+    <div class="body-wrap">
+        <div class="img-wrap--main">
+            <div class="container container--narrow container--white">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Login</button>
+                    <input type="hidden" name="next"/>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

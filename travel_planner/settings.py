@@ -100,7 +100,7 @@ DATABASES = {
         'OPTIONS': {
             'autocommit': True,
             'use_pure': True
-        }
+        },
     }
 }
 

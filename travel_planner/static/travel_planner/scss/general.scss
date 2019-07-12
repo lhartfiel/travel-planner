@@ -1,14 +1,21 @@
-@import 'components/_forms.scss';
 @import 'components/_normalize.scss';
+@import 'components/_forms.scss';
 @import 'components/_variables.scss';
 @import 'components/_grid.scss';
 @import 'components/_typography.scss';
+@import 'components/_utility.scss';
 @import 'components/_nav.scss';
 @import 'components/_home.scss';
+
+@import 'travel_group/static/travel_group/scss/travel_group.scss';
 
 html {
   color: #000;
   font-size: 10px;
+}
+
+* {
+  color: $charcoal;
 }
 
 body {
@@ -70,6 +77,15 @@ body {
 i.fas,
 i.fab {
   font-family: "Font Awesome 5 Solid", serif;
+}
+
+form {
+  margin: 0 auto;
+  width: 75%;
+}
+
+textarea {
+  height: 10rem;
 }
 
 

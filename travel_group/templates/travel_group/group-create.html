@@ -1,47 +1,52 @@
 {% extends 'base.html' %}
 {% load static from staticfiles %}
+{% load compress %}
 
 {% block body %}
-    <div class="container container--narrow">
-        <h2>Create new Travel Group</h2>
-        <form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <fieldset>
-        <legend>Sightseeing Ideas</legend>
-        {{ sightseeing_form.management_form }}
-        {{ sightseeing_form.non_form_errors }}
-        {% for form in sightseeing_form %}
-{#            <input type="text">#}
-            {{ form.id }}
-            <div class="inline {{ sightseeing_form.prefix }}">
-                {{ form.sightseeing_idea }}
+    <div class="body-wrap">
+        <div class="img-wrap--main">
+            <div class="container container--narrow container--white">
+                    <h2>Create new Travel Group</h2>
+                    <form action="" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <fieldset>
+                    <legend>Sightseeing Ideas</legend>
+                    {{ sightseeing_form.management_form }}
+                    {{ sightseeing_form.non_form_errors }}
+                    {% for form in sightseeing_form %}
+            {#            <input type="text">#}
+                        {{ form.id }}
+                        <div class="inline {{ sightseeing_form.prefix }}">
+                            {{ form.sightseeing_idea }}
+                        </div>
+                    {% endfor %}
+                </fieldset>
+                <fieldset>
+                    <legend>Restaurant Ideas</legend>
+                    {{ restaurant_form.management_form }}
+                    {{ restaurant_form.non_form_errors }}
+                    {% for form in restaurant_form %}
+                        {{ form.id }}
+                        <div class="inline {{ restaurant_form.prefix }}">
+                            {{ form.restaurant_idea }}
+                        </div>
+                    {% endfor %}
+                </fieldset>
+                <fieldset>
+                    <legend>Messages</legend>
+                    {{ message_form.management_form }}
+                    {{ message_form.non_form_errors }}
+                    {% for form in message_form %}
+                        {{ form.id }}
+                        <div class="inline {{ message_form.prefix }}">
+                            {{ form.message }}
+                        </div>
+                    {% endfor %}
+                </fieldset>
+                <button type="submit" value="save">Create Group</button>
+              </form>
             </div>
-        {% endfor %}
-    </fieldset>
-    <fieldset>
-        <legend>Restaurant Ideas</legend>
-        {{ restaurant_form.management_form }}
-        {{ restaurant_form.non_form_errors }}
-        {% for form in restaurant_form %}
-            {{ form.id }}
-            <div class="inline {{ restaurant_form.prefix }}">
-                {{ form.restaurant_idea }}
-            </div>
-        {% endfor %}
-    </fieldset>
-    <fieldset>
-        <legend>Messages</legend>
-        {{ message_form.management_form }}
-        {{ message_form.non_form_errors }}
-        {% for form in message_form %}
-            {{ form.id }}
-            <div class="inline {{ message_form.prefix }}">
-                {{ form.message }}
-            </div>
-        {% endfor %}
-    </fieldset>
-    <button type="submit" value="save">Create Group</button>
-  </form>
+        </div>
     </div>
 {% endblock %}

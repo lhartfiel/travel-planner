@@ -1,15 +1,22 @@
 {% extends 'base.html' %}
-
-{% block head %}
-   {{ super }}
-{% endblock %}
+{% load static %}
+{% load compress %}
 
 {% block body %}
-    <div class="container container--narrow">
-        <h2>Edit Restaurant Ideas</h2>
-        <form method="post">{% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Update">
-        </form>
+    <div class="body-wrap">
+        <div class="img-wrap--main">
+            <div class="container container--narrow container--white">
+                <h2>Edit Restaurant Ideas</h2>
+                <div class="form-wrap f--wrap">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="btn-wrap">
+                            <input type="submit" value="Update">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

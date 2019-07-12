@@ -4,10 +4,15 @@ h1 {
 
 h2 {
   font-size: 3.2rem;
+  color: $charcoal;
 }
 
 h3 {
   font-size: 2.6rem;
+}
+
+h4 {
+  font-size: 2.2rem;
 }
 
 p {
@@ -17,6 +22,10 @@ p {
 
 a {
   text-decoration: none;
+}
+
+ul {
+  padding-left: 0;
 }
 
 .link {
@@ -36,8 +45,23 @@ a {
   text-align: left;
 }
 
+.btn-wrap--ctr {
+  text-align: center;
+}
+
+.btn-wrap--left {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.btns {
+  display: flex;
+}
+
 .btn {
   border-radius: 4px;
+  margin-right: 2rem;
   padding: 10px 24px;
 
   &--nav {
@@ -58,5 +82,11 @@ a {
       border: 1px solid $tertiary;
       color: $tertiary;
     }
+  }
+
+  &--sec {
+    background: $secondary;
+    color: $white;
+    display: inline-block;
   }
 }

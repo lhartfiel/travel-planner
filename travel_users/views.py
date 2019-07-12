@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from travel_users.models import CustomUser
 from travel_users.forms import CustomUserCreationForm, CustomUserChangeForm
-from django.views.generic import TemplateView, FormView, UpdateView, CreateView
+from django.views.generic import TemplateView, FormView, UpdateView, CreateView, DetailView
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
@@ -10,10 +10,21 @@ from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView
 
 
+# class ProfileView(DetailView):
 class ProfileView(FormView):
+    model = CustomUser
     form_class = AuthenticationForm
     template_name = 'travel_users/profile.html'
+    #
+    # def get_object(self, queryset=None):
+    #     return get_object_or_404(CustomUser, username=self.request.user.username)
 
+    # def get_queryset(self):
+    #     # test = get_object_or_404(CustomUser, username=self.kwargs['username'])
+    #     test = get_object_or_404(CustomUser, username='mjhartfiel')
+    #     return test
+        # return CustomUser.objects.filter(username=self.request.user.username.username)
+    #
     def get_success_url(self):
         return reverse('profile', kwargs={'username': self.request.user.username})
 

@@ -22,7 +22,8 @@ from django.conf.urls.static import static
 
 from travel_users.views import UserLoginView, ProfileView, ProfileEditView, UserSignupView, UserSignupSuccessView, UserLogoutView
 from travel_group.views import TravelGroupListView, TravelGroupSingleView, TravelGroupCreateView, SightseeingEditView, \
-    RestaurantEditView, MessageEditView, SightseeingAddView, SightseeingDeleteView
+    RestaurantEditView, MessageEditView, SightseeingAddView, SightseeingDeleteView, RestaurantDeleteView, \
+    RestaurantAddView
 from travel_transportation.views import TransportationEditView, TransportationCreateView, TransportationListView, \
     TransportationDetailView, TransportationDeleteView
 
@@ -39,7 +40,9 @@ urlpatterns = [
     path('travel-group/sightseeing-edit/<pk>/', SightseeingEditView.as_view(), name="sightseeing_edit"),
     path('travel-group/sightseeing-add/<pk>', SightseeingAddView.as_view(), name="sightseeing_add"),
     path('travel-group/sightseeing-delete/<pk>', SightseeingDeleteView.as_view(), name="sightseeing_delete"),
-    path('travel-group/<id>/restaurant-edit/', RestaurantEditView.as_view(), name="restaurant_edit"),
+    path('travel-group/restaurant-edit/<int:id>', RestaurantEditView.as_view(), name="restaurant_edit"),
+    path('travel-group/restaurant-delete/<int:id>', RestaurantDeleteView.as_view(), name="restaurant_delete"),
+    path('travel-group/restaurant-add/<int:id>', RestaurantAddView.as_view(), name="restaurant_add"),
     path('travel-group/<id>/message-edit/', MessageEditView.as_view(), name="message_edit"),
     path('travel-group/for/<username>/', TravelGroupListView.as_view(), name="travel_group_index"),
     path('travel-group/<pk>/', TravelGroupSingleView.as_view(), name="travel_group_single"),

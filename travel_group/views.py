@@ -2,7 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.views.generic import TemplateView, ListView, DetailView, UpdateView, CreateView, DeleteView
 from .models import TravelGroup, SightseeingIdeas, RestaurantIdeas, TravelMessages
-from .forms import GroupCreateForm, SightseeingFormSet, RestaurantFormSet, MessageFormSet, SightseeingEditForm, SightseeingCreateForm
+from .forms import GroupCreateForm, SightseeingFormSet, RestaurantFormSet, MessageFormSet, SightseeingEditForm, \
+    SightseeingCreateForm, RestaurantEditForm, RestaurantCreateForm
 from django.http import HttpResponseRedirect
 
 
@@ -71,7 +72,7 @@ class TravelGroupCreateView(CreateView):
 
 class SightseeingAddView(CreateView):
     model = SightseeingIdeas
-    template_name = 'travel_group/sightseeing-edit.html'
+    template_name = 'travel_group/sightseeing-add.html'
     form_class = SightseeingCreateForm
 
     def get_form_kwargs(self):
@@ -100,9 +101,55 @@ class SightseeingEditView(UpdateView):
         return reverse('travel_group_single', kwargs={'pk': self.object.travel_group.id})
 
 
+class RestaurantAddView(CreateView):
+    model = RestaurantIdeas
+    template_name = 'travel_group/restaurant-add.html'
+    form_class = RestaurantCreateForm
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['travel_group'] = self.kwargs.get('id')
+        return kwargs
+
+    def get_success_url(self):
+        return reverse('travel_group_single', kwargs={'pk': self.kwargs.get('id')})
+
+
 class RestaurantEditView(UpdateView):
     model = RestaurantIdeas
+    form_class = RestaurantEditForm
     template_name = 'travel_group/restaurant-edit.html'
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(RestaurantIdeas, id=self.kwargs.get('id'))
+
+    def get_success_url(self):
+        return reverse('travel_group_single', kwargs={'pk': self.object.travel_group.pk})
+
+
+class RestaurantDeleteView(DeleteView):
+    model = RestaurantIdeas
+    template_name = 'travel_group/restaurant-delete.html'
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(RestaurantIdeas, id=self.kwargs.get('id'))
+
+    def get_success_url(self):
+        return reverse('travel_group_single', kwargs={'pk': self.object.travel_group.id})
+
+
+class MessageAddView(CreateView):
+    model = TravelMessages
+    template_name = 'travel_group/restaurant-add.html'
+    form_class = MessageFormSet
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['travel_group'] = self.kwargs.get('id')
+        return kwargs
+
+    def get_success_url(self):
+        return reverse('travel_group_single', kwargs={'pk': self.kwargs.get('id')})
 
 
 class MessageEditView(UpdateView):

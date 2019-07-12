@@ -3,14 +3,20 @@
 {% load compress %}
 
 {% block body %}
-    <div class="container container--narrow">
-        <h2>Edit Sightseeing Ideas</h2>
-        <form action="" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <div class="btn-wrap">
-                <input type="submit" value="Update">
+    <div class="body-wrap">
+        <div class="img-wrap--main">
+            <div class="container container--narrow container--white">
+                <h2>Edit Sightseeing Ideas</h2>
+                <div class="form-wrap f--wrap">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="btn-wrap">
+                            <input type="submit" value="Update">
+                        </div>
+                    </form>
+                </div>
             </div>
-        </form>
+        </div>
     </div>
 {% endblock %}
