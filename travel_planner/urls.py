@@ -29,6 +29,11 @@ from travel_transportation.views import TransportationEditView, TransportationCr
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html'), name='home'),
+    path('accommodation-list/<username>', TransportationListView.as_view(), name="accommodation_list"),
+    path('accommodation-detail/<username>/<pk>', TransportationDetailView.as_view(), name="accommodation_detail"),
+    path('accommodation-create/<pk>', TransportationCreateView.as_view(), name="accommodation_create"),
+    path('accommodation-edit/<pk>', TransportationEditView.as_view(), name="accommodation_edit"),
+    path('accommodation-delete/<pk>', TransportationDeleteView.as_view(), name="accommodation_delete"),
     path('admin/', admin.site.urls),
     path('login/', UserLoginView.as_view(), name='login'),
     path('logout/', UserLogoutView.as_view(), name='logout'),

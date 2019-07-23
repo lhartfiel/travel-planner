@@ -13,7 +13,7 @@ class CustomerUserAdmin(UserAdmin):
     list_display = ['email', 'first_name', 'last_name', 'city']
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal Info', {'fields': ('first_name', 'last_name', 'city', 'state', 'profile_photo', 'phone', 'allergies')}),
+        ('Personal Info', {'fields': ('first_name', 'last_name', 'username', 'city', 'state', 'profile_photo', 'phone', 'allergies')}),
         ('Emergency Info', {'fields': ('emergency_first_name', 'emergency_last_name', 'emergency_phone', 'emergency_email')}),
         ('Additional Notes', {'fields': ('notes',)})
     )

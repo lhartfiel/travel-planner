@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'travel_users.apps.TravelUsersConfig',
+    'accommodations',
     'phonenumber_field',
     'compressor',
     'travel_planner',

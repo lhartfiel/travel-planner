@@ -142,7 +142,7 @@
                                                         <p class="group__name">{{ group.trip_name }}</p>
                                                         <div class="group__edit-wrap">
                                                             <a class="group__edit link--sm"
-                                                               href="{% url 'travel_group_single' group.id %}">View
+                                                               href="{% url 'travel_group_single' group.pk %}">View
                                                                 Trip</a>
                                                             <img
                                                                 srcset="{% static 'travel_planner/images/icon-triangle-right.png' %} 1x, {% static 'travel_planner/images/icon-triangle-right@2x.png' %} 2x"
