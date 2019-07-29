@@ -8,4 +8,3 @@ class TransportationEditForm(ModelForm):
     class Meta:
         model = Transportation
         fields = '__all__'
-        # fields = ['__all__']

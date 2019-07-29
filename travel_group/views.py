@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.views.generic import TemplateView, ListView, DetailView, UpdateView, CreateView, DeleteView
+
+from accommodations.models import Accommodations
 from .models import TravelGroup, SightseeingIdeas, RestaurantIdeas, TravelMessages
 from .forms import GroupCreateForm, SightseeingFormSet, RestaurantFormSet, MessageFormSet, SightseeingEditForm, \
     SightseeingCreateForm, RestaurantEditForm, RestaurantCreateForm
@@ -15,6 +17,16 @@ class TravelGroupListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['trips'] = TravelGroup.objects.filter(travelers__id=self.request.user.id)
+        return context
+
+
+class TravelerAccommodationListView(ListView):
+    model = TravelGroup
+    template_name = 'accommodations/accommodation-travel-list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['accommodations'] = Accommodations.objects.filter(trip__id=self.kwargs['pk'])
         return context
 
 

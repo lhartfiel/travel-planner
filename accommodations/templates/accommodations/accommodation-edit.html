@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    {% if user.is_authenticated %}
+        <div class="body-wrap">
+            <div class="img-wrap img-wrap--main">
+                <div class="container container--narrow container--center container--white">
+                    <form method="post" novalidate>
+                        <form method="post">
+                            {% csrf_token %}
+                            <h2>{{ object.name  }}</h2>
+                            {{ form }}
+                            <input type="submit" value="Save">
+                        </form>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

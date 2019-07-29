@@ -14,8 +14,10 @@
                     {% for traveler in object.travelers.all %}
                         <div class="flex traveler">
                             {% if traveler.profile_photo %}
-                                <div class="user__photo-wrap">
-                                    <img class="user__photo" src="{{ traveler.profile_photo.url }}" alt="">
+                                <div class="trav--left">
+                                    <div class="user__photo-wrap">
+                                        <img class="user__photo" src="{{ traveler.profile_photo.url }}" alt="">
+                                    </div>
                                 </div>
                             {% endif %}
                             <div class="traveler__info f--wrap">
@@ -62,6 +64,9 @@
                                         <li>{{ traveler.email }}</li>
                                     {% endif %}
                                 </ul>
+                                <div class="user-accomm">
+                                    <a href="{% url 'traveler_accommodation' travelgroup.pk traveler.username %}" class="btn btn--primary">User Accommodations</a>
+                                </div>
                             </div>
                         </div>
 

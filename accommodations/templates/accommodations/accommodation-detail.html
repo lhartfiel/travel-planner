@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+ {% block body %}
+     {% if user.is_authenticated %}
+        <div class="body-wrap">
+            <div class="img-wrap img-wrap--main">
+                <div class="container container--narrow container--center container--white">
+                    <h2>{{ object.name }}</h2>
+                    <div class="accommodation__info">
+                        <p>{{ object.address }}, {{ object.city }} — {{ object.country }}</p>
+                        {% if object.zip %}
+                            <p>{{ object.zip }}</p>
+                        {% endif %}
+                        {% if object.phone %}
+                            <p>{{ object.phone }}</p>
+                        {% endif %}
+                    </div>
+                    <p class="accommodation__date check-in">Check-in: {% if object.date_check_in %}{{ object.date_check_in }}{% else %}TBD{% endif %}</p>
+                    <p class="accommodation__date check-out">Check-out: {% if object.date_check_out %}{{ object.date_check_out }}{% else %}TBD{% endif %}</p>
+                    {% if object.type %}
+                        <p>Type of object: {{ object.type }}</p>
+                    {% endif %}
+                    {% if object.notes %}
+                        <p>{{ object.notes }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

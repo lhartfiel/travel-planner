@@ -20,20 +20,23 @@ from django.views.generic import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
 
+from accommodations.views import AccommodationListView, AccommodationDetailView, AccommodationCreateView, \
+    AccommodationEditView, AccommodationDeleteView
 from travel_users.views import UserLoginView, ProfileView, ProfileEditView, UserSignupView, UserSignupSuccessView, UserLogoutView
 from travel_group.views import TravelGroupListView, TravelGroupSingleView, TravelGroupCreateView, SightseeingEditView, \
     RestaurantEditView, MessageEditView, SightseeingAddView, SightseeingDeleteView, RestaurantDeleteView, \
-    RestaurantAddView
+    RestaurantAddView, TravelerAccommodationListView
 from travel_transportation.views import TransportationEditView, TransportationCreateView, TransportationListView, \
     TransportationDetailView, TransportationDeleteView
 
+
 urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html'), name='home'),
-    path('accommodation-list/<username>', TransportationListView.as_view(), name="accommodation_list"),
-    path('accommodation-detail/<username>/<pk>', TransportationDetailView.as_view(), name="accommodation_detail"),
-    path('accommodation-create/<pk>', TransportationCreateView.as_view(), name="accommodation_create"),
-    path('accommodation-edit/<pk>', TransportationEditView.as_view(), name="accommodation_edit"),
-    path('accommodation-delete/<pk>', TransportationDeleteView.as_view(), name="accommodation_delete"),
+    path('accommodation-list/<username>', AccommodationListView.as_view(), name="accommodation_list"),
+    path('accommodation-detail/<username>/<pk>', AccommodationDetailView.as_view(), name="accommodation_detail"),
+    path('accommodation-create', AccommodationCreateView.as_view(), name="accommodation_create"),
+    path('accommodation-edit/<pk>', AccommodationEditView.as_view(), name="accommodation_edit"),
+    path('accommodation-delete/<pk>', AccommodationDeleteView.as_view(), name="accommodation_delete"),
     path('admin/', admin.site.urls),
     path('login/', UserLoginView.as_view(), name='login'),
     path('logout/', UserLogoutView.as_view(), name='logout'),
@@ -50,6 +53,7 @@ urlpatterns = [
     path('travel-group/restaurant-add/<int:id>', RestaurantAddView.as_view(), name="restaurant_add"),
     path('travel-group/<id>/message-edit/', MessageEditView.as_view(), name="message_edit"),
     path('travel-group/for/<username>/', TravelGroupListView.as_view(), name="travel_group_index"),
+    path('travel-group/accommodations/<pk>/<username>', TravelerAccommodationListView.as_view(), name="traveler_accommodation"),
     path('travel-group/<pk>/', TravelGroupSingleView.as_view(), name="travel_group_single"),
     path('transportation-list/<username>', TransportationListView.as_view(), name="transportation_list"),
     path('transportation-detail/<username>/<pk>', TransportationDetailView.as_view(), name="transportation_detail"),

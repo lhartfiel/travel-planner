@@ -3,10 +3,13 @@ from datetime import datetime
 from django.db import models
 # from travel_users.models import CustomUser
 from djrichtextfield.models import RichTextField
+
+from accommodations.models import Accommodations
 from travel_transportation.models import Transportation
 
 
 class TravelGroup(models.Model):
+    accommodations = models.ForeignKey(Accommodations, related_name='accommodation', on_delete=models.SET_NULL, null=True, blank=True)
     transportation = models.ForeignKey(Transportation, related_name='transportation', on_delete=models.SET_NULL,
                                        null=True, blank=True)
     travelers = models.ManyToManyField('travel_users.CustomUser', related_name='trav_groups')

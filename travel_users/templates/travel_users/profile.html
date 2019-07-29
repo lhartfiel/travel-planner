@@ -22,7 +22,9 @@
                 <div class="container container--narrow container--center container--white">
                     <div class="grid__profile">
                         <div class="profile--top">
-                            <div class="img-wrap" style='background-image: url({{ user.profile_photo.url }})'>
+                            {% if user.profile_photo %}
+                                <div class="img-wrap" style='background-image: url({{ user.profile_photo.url }})'>
+                            {% endif %}
                                 {#                                <img class="profile__pic" src="{{ user.profile_photo.url }}" alt="">#}
                             </div>
                             <h2 class="profile__name tac">{{ user.first_name }} {{ user.last_name }}</h2>
