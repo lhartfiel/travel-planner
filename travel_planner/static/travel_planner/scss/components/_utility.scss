@@ -9,6 +9,10 @@
   flex-wrap: nowrap;
 }
 
+.f-align--ctr {
+  align-items: center;
+}
+
 //Alignment
 .ta--r {
   text-align: right;
@@ -75,6 +79,14 @@
   margin-bottom: 0;
 }
 
+.ml--0 {
+  margin-left: 0;
+}
+
+.mr--0 {
+  margin-right: 0;
+}
+
 .m--1 {
   margin: 1rem;
 }
@@ -113,5 +125,18 @@
 
 .mr--2 {
   margin-right: 2rem;
+}
+
+.mt--4 {
+  margin-top: 4rem;
+}
+
+.mb--4 {
+  margin-bottom: 4rem;
+}
+
+//List Items
+.li--none {
+  list-style: none;
 }
 

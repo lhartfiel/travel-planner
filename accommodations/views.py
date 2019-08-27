@@ -5,8 +5,9 @@ from django.views.generic import DetailView, TemplateView, UpdateView, CreateVie
 from django.views.generic.list import ListView
 from django.shortcuts import render
 
-from accommodations.forms import AccommodationEditForm
+from accommodations.forms import AccommodationEditForm, AccommodationCreateForm
 from accommodations.models import Accommodations
+
 
 # Create your views here.
 
@@ -39,7 +40,7 @@ class AccommodationDetailView(DetailView):
 
 class AccommodationCreateView(CreateView):
     model = Accommodations
-    fields = '__all__'
+    form_class = AccommodationCreateForm
     template_name = "accommodations/accommodation-create.html"
 
 

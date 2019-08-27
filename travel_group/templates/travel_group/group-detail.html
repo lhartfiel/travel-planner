@@ -31,42 +31,44 @@
                                             alt="Triangle right">
                                     </div>
                                 </div>
-                                <ul>
+                                <ul class="ml--0">
                                     {% if traveler.city or traveler.state %}
-                                        <div class="detail__img-wrap">
+                                        <li class="detail__img-wrap f--nowrap f-align--ctr">
                                             <img
                                                 class="profile__icon"
                                                 srcset="{% static 'travel_planner/images/icon-location.png' %} 1x,  {% static 'travel_planner/images/icon-location@2x.png' %} 2x"
                                                 src="{% static 'travel_planner/images/icon-location.png' %}"
                                                 alt="Map marker">
-                                        </div>
-                                        <li>{{ traveler.city }}{% if traveler.state %}
-                                            ,{% endif %} {{ traveler.state }}</li>
+                                            <span class="ml--1">{{ traveler.city }}{% if traveler.state %},{% endif %} {{ traveler.state }}</span>
+                                        </li>
                                     {% endif %}
                                     {% if traveler.phone %}
-                                        <div class="detail__img-wrap">
+                                        <li class="detail__img-wrap f--nowrap f-align--ctr">
                                             <img
                                                 class="profile__icon"
                                                 srcset="{% static 'travel_planner/images/icon-phone.png' %} 1x, {% static 'travel_planner/images/icon-phone@2x.png' %} 2x"
                                                 src="{% static 'travel_planner/images/icon-phone.png' %}"
                                                 alt="Phone">
-                                        </div>
-                                        <li>{{ traveler.phone }}</li>
+                                            <span class="ml--1">{{ traveler.phone }}</span>
+                                        </li>
+
                                     {% endif %}
                                     {% if traveler.email %}
-                                        <div class="detail__img-wrap">
+                                        <li class="detail__img-wrap f--nowrap f-align--ctr">
                                             <img
                                                     class="profile__icon"
                                                     srcset="{% static 'travel_planner/images/icon-email.png' %} 1x, {% static 'travel_planner/images/icon-email@2x.png' %} 2x"
                                                     src="{% static 'travel_planner/images/icon-email.png' %}"
                                                     alt="Mail">
-                                        </div>
-                                        <li>{{ traveler.email }}</li>
+                                            <span class="ml--1">{{ traveler.email }}</span>
+                                        </li>
                                     {% endif %}
                                 </ul>
-                                <div class="user-accomm">
-                                    <a href="{% url 'traveler_accommodation' travelgroup.pk traveler.username %}" class="btn btn--primary">User Accommodations</a>
-                                </div>
+                                {% if traveler.user_accommodation.all|length > 0  %}
+                                    <div class="user-accomm">
+                                        <a href="{% url 'traveler_accommodation' travelgroup.pk traveler.username %}" class="btn btn--primary">User Accommodations</a>
+                                    </div>
+                                {% endif %}
                             </div>
                         </div>
 
@@ -75,7 +77,7 @@
                         <div class="grid--right mr--2">
                             <div class="group-ideas m--0">
                                 <h2>Sightseeing Ideas</h2>
-                                <ul>
+                                <ul class="ml--0">
                                     {% for idea in travelgroup.sightseeing_ideas.all %}
                                         <li class="idea-item sight-item mb--2">
                                             <span class="idea__name sight__name"> {{ idea|safe }}</span>
@@ -89,8 +91,6 @@
                                             </span>
                                         </li>
                                     {% endfor %}
-
-
                                 </ul>
                                  <div class="add__link ta--l">
                                     <a class="c--sec mr--1 fw--700" href="{% url 'sightseeing_add' travelgroup.id %}">Add Sightseeing Idea</a>
@@ -134,8 +134,15 @@
                                     <span class="msg">{{ msg|safe }}</span>
                                 </li>
                             {% endfor %}
-                            {#    <a href="{% url 'message_edit' trip.id %}" class="btn">Add another idea</a>#}
                         </ul>
+
+                        <form action="{% url 'message_add' travelgroup.id %}" method="post">
+                            {% csrf_token %}
+                            {{ message_form.as_p }}
+                            <div class="btn-wrap">
+                                <input type="submit" value="Submit" />
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

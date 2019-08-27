@@ -1,0 +1,122 @@
+//Flex
+.f--wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.f--nowrap {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+//Alignment
+.ta--r {
+  text-align: right;
+}
+
+.ta--l {
+  text-align: left;
+}
+
+.ta--c {
+  text-align: center;
+}
+
+///Font Weights
+
+.fw--700 {
+  font-weight: 700;
+}
+
+.fw--500 {
+  font-weight: 500;
+}
+
+//Colors
+.c--sec {
+  color: $secondary;
+}
+
+.c--ter {
+  color: $tertiary;
+}
+
+.c--char {
+  color: $charcoal;
+}
+
+.c--white {
+  color: $white;
+}
+
+//Font Sizes
+.fz--14 {
+  font-size: 1.4rem;
+}
+
+.fz--16 {
+  font-size: 1.6rem;
+}
+
+.fz--20 {
+  font-size: 2rem;
+}
+
+//Margins
+.m--0 {
+  margin: 0;
+}
+
+.mt--0 {
+  margin-top: 0;
+}
+
+.mb--0 {
+  margin-bottom: 0;
+}
+
+.m--1 {
+  margin: 1rem;
+}
+
+.mt--1 {
+  margin-top: 1rem;
+}
+
+.mb--1 {
+  margin-bottom: 1rem;
+}
+
+.ml--1 {
+  margin-left: 1rem;
+}
+
+.mr--1 {
+  margin-right: 1rem;
+}
+
+.m--2 {
+  margin: 2rem;
+}
+
+.mt--2 {
+  margin-top: 2rem;
+}
+
+.mb--2 {
+  margin-bottom: 2rem;
+}
+
+.ml--2 {
+  margin-left: 2rem;
+}
+
+.mr--2 {
+  margin-right: 2rem;
+}
+
+//List Items
+.li--none {
+  list-style: none;
+}
+

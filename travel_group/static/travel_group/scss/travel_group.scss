@@ -1,3 +1,5 @@
+@import 'travel_planner/scss/general.scss';
+
 .li-item {
   display: block;
   margin-right: 2rem;
@@ -28,10 +30,6 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-}
-
-.link-group {
-
 }
 
 .traveler__info {
@@ -94,4 +92,32 @@
 
 .inline {
   margin-bottom: 3rem;
+}
+
+.trip {
+  border-radius: 4px;
+  border-top: 2.4rem $secondary solid;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+
+  .btn-wrap {
+    text-align: right;
+  }
+}
+
+.trip__name {
+  overflow: hidden;
+  position: relative;
+
+  &:after {
+    background: rgba($charcoal, 0.5);
+    content: "";
+    height: 1px;
+    margin-left: 2rem;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+
+
+  }
 }

@@ -1,12 +1,21 @@
 {% extends 'base.html' %}
 
 {% block head %}
-   {{ super }}
+    {{ block.super }}
+    {% block css %}
+         {{ block.super }}
+    {% endblock %}
 {% endblock %}
 
 {% block body %}
-    <form method="post">{% csrf_token %}
-        <p>Are you sure you want to delete "{{ object }}"?</p>
-        <input type="submit" value="Confirm">
-    </form>
+    <div class="body-wrap">
+        <div class="img-wrap img-wrap--main">
+            <div class="container container--narrow container--center container--white">
+                <form method="post">{% csrf_token %}
+                    <p>Are you sure you want to delete "{{ object }}"?</p>
+                    <input type="submit" value="Confirm">
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock %}

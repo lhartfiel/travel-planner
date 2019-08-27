@@ -7,6 +7,7 @@
             <div class="img-wrap img-wrap--main">
                 <div class="container container--narrow container--center container--white">
                     <div class="place">
+                    {% if accommodations|length > 0 %}
                         {% for place in accommodations %}
                             {% if forloop.first %}
                                 <h2>{{ place.trip }} Accommodations for {{ user.first_name }}</h2>
@@ -32,9 +33,14 @@
                                 <p>{{ place.notes }}</p>
                             {% endif %}
                         {% endfor %}
-                        <div class="btn-wrap">
-                         <a class="btn btn--sec" href="{% url 'accommodation_create' %}">Add Accommodation</a>
-                        </div>
+                        {% if user.is_authenticated and user.username == profile_user %}
+                            <div class="btn-wrap">
+                             <a class="btn btn--sec" href="{% url 'accommodation_create' %}">Add Accommodation</a>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <p>Oops! Looks like there aren't any accommodations</p>
+                    {% endif %}
                     </div>
                 </div>
             </div>

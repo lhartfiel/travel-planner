@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db.models import Count, QuerySet
 from phonenumber_field.modelfields import PhoneNumberField
 from travel_group.models import TravelGroup
 from travel_transportation.models import Transportation
@@ -25,6 +26,9 @@ class CustomUser(AbstractUser):
 
     def get_transport_id(self):
         return CustomUser.objects.get(id=self.transportation.id)
+
+    def order_by_travel_group(self):
+        return Transportation.objects.filter(user_id=self.id).order_by('travel_group')
 
     def __str__(self):
         return self.first_name

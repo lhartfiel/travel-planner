@@ -11,22 +11,14 @@ from django.contrib.auth.views import LoginView
 
 
 # class ProfileView(DetailView):
-class ProfileView(FormView):
+class ProfileView(TemplateView):
     model = CustomUser
-    form_class = AuthenticationForm
     template_name = 'travel_users/profile.html'
-    #
-    # def get_object(self, queryset=None):
-    #     return get_object_or_404(CustomUser, username=self.request.user.username)
 
-    # def get_queryset(self):
-    #     # test = get_object_or_404(CustomUser, username=self.kwargs['username'])
-    #     test = get_object_or_404(CustomUser, username='mjhartfiel')
-    #     return test
-        # return CustomUser.objects.filter(username=self.request.user.username.username)
-    #
-    def get_success_url(self):
-        return reverse('profile', kwargs={'username': self.request.user.username})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['profile_user'] = get_object_or_404(CustomUser, username=kwargs.get('username'))
+        return context
 
 
 class ProfileEditView(UpdateView):

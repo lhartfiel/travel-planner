@@ -1,8 +1,11 @@
-@import 'travel_planner/scss/components/_variables.scss';
+@import 'travel_planner/scss/general.scss';
 
 .profile--top {
   grid-column: 1 / -1;
-  margin-top: -10%;
+
+  &__img {
+    margin-top: -10%;
+  }
 
   .img-wrap {
     border: 4px solid $white;
@@ -36,12 +39,15 @@
 }
 
 .user-meta {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
 
   p {
     margin-right: 2.5rem;
+  }
+
+  @include bp(min, $bp-lg) {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
   }
 }
 
@@ -49,15 +55,24 @@
   align-items: center;
   display: flex;
   flex-wrap: nowrap;
+  justify-content: center;
 
   p {
     margin-left: 1rem;
+  }
+
+  @include bp(min, $bp-lg) {
+
   }
 }
 
 .profile-wrapper {
   display: grid;
-  grid-template-columns: 2.5fr 1.75fr;
+
+  @include bp(min, $bp-lg) {
+    grid-template-columns: 2.5fr 1.75fr;
+
+  }
 }
 
 .group__name {
@@ -112,13 +127,15 @@
     left: 0;
   }
 
-  &:before {
-    border-left: 1px solid rgba(gray, 0.5);
-  }
+  @include bp(min, $bp-lg) {
+    &:before {
+      border-left: 1px solid rgba(gray, 0.5);
+    }
 
-  &:after {
-    border-right: 1px solid rgba(gray, 0.5);
-    left: -5px;
+    &:after {
+      border-right: 1px solid rgba(gray, 0.5);
+      left: -5px;
+    }
   }
 }
 
@@ -128,6 +145,6 @@
 }
 
 .transport__info,
-.travel__info{
+.travel__info {
   display: flex;
 }

@@ -1,14 +1,50 @@
 {% extends 'base.html' %}
+{% load compress static %}
 
-<h1>Transportation List</h1>
+{% block head %}
+    {{ block.super }}
+    {% block css %}
+         {{ block.super }}
+        {% compress css inline %}
+            <link rel="stylesheet" type="text/x-scss" href="{% static 'travel_transportation/scss/transport.scss' %}">
+        {% endcompress %}
+    {% endblock %}
+{% endblock %}
 
-<ul>Transportation for {{ user.username }}</ul>
-{% for transport in transportation %}
-    <li>
-        {{ transport.name }}
-    </li>
-    <a href="{% url 'transportation_detail' transport.user.username transport.pk %}">View Info</a>
-    <a href="{% url 'transportation_edit' transport.pk %}" class="btn">Edit Info</a>
-    <a href="{% url 'transportation_delete' transport.pk %}" class="btn">Delete Info</a>
-    <a href="{% url 'transportation_create' transport.pk %}" class="btn">Add Another</a>
-{% endfor %}
+{% block body %}
+    <div class="body-wrap">
+        <div class="img-wrap img-wrap--main">
+            <div class="container container--narrow container--center container--white">
+
+                <h2>Transportation List</h2>
+                {% regroup transportation by travel_group as groups %}
+                Transportation for {{ user_profile.first_name }} {{ user_profile.last_name }}
+                {% for group in groups %}
+                    <h4>{{ group.grouper.trip_name }}</h4>
+                    {% for transport in group.list %}
+                        <div class="transport-wrap mb--4">
+                    <ul class="transport-list">
+                        <li class="li--none mb--1 mt--2">
+                            <span class="fw--700">{{ transport.name }}</span>
+                        </li>
+                        <li class="li--none">
+                            {{ transport.departure_city }}
+                            <img
+                            srcset="{% static 'travel_planner/images/icon-arrow-right.png' %} 1x, {% static 'travel_planner/images/icon-arrow-right.png' %} 2x"
+                            src="{% static 'travel_planner/images/icon-arrow-right.png' %}"
+                            alt="">
+                            {{ transport.arrival_city }}</li>
+                    </ul>
+                    <a class="btn btn--sec" href="{% url 'transportation_detail' transport.user.username transport.pk %}">View Info</a>
+                    {% if user.username == user_profile.username %}
+                        <a class="btn btn--sec" href="{% url 'transportation_edit' transport.pk %}" class="btn">Edit Info</a>
+                        <a class="btn btn--sec" href="{% url 'transportation_delete' transport.pk %}" class="btn">Delete Info</a>
+                        <a class="btn btn--sec" href="{% url 'transportation_create' transport.pk %}" class="btn">Add Another</a>
+                    {% endif %}
+                </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -25,7 +25,7 @@ from accommodations.views import AccommodationListView, AccommodationDetailView,
 from travel_users.views import UserLoginView, ProfileView, ProfileEditView, UserSignupView, UserSignupSuccessView, UserLogoutView
 from travel_group.views import TravelGroupListView, TravelGroupSingleView, TravelGroupCreateView, SightseeingEditView, \
     RestaurantEditView, MessageEditView, SightseeingAddView, SightseeingDeleteView, RestaurantDeleteView, \
-    RestaurantAddView, TravelerAccommodationListView
+    RestaurantAddView, TravelerAccommodationListView, MessageAddView
 from travel_transportation.views import TransportationEditView, TransportationCreateView, TransportationListView, \
     TransportationDetailView, TransportationDeleteView
 
@@ -52,6 +52,7 @@ urlpatterns = [
     path('travel-group/restaurant-delete/<int:id>', RestaurantDeleteView.as_view(), name="restaurant_delete"),
     path('travel-group/restaurant-add/<int:id>', RestaurantAddView.as_view(), name="restaurant_add"),
     path('travel-group/<id>/message-edit/', MessageEditView.as_view(), name="message_edit"),
+    path('travel-group/message-add/<int:id>', MessageAddView.as_view(), name="message_add"),
     path('travel-group/for/<username>/', TravelGroupListView.as_view(), name="travel_group_index"),
     path('travel-group/accommodations/<pk>/<username>', TravelerAccommodationListView.as_view(), name="traveler_accommodation"),
     path('travel-group/<pk>/', TravelGroupSingleView.as_view(), name="travel_group_single"),

@@ -1,12 +1,15 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
+from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView, UpdateView, CreateView, DeleteView
+from django.views.generic.detail import SingleObjectMixin
+from django.views.generic.edit import FormMixin, FormView
 
 from accommodations.models import Accommodations
 from .models import TravelGroup, SightseeingIdeas, RestaurantIdeas, TravelMessages
 from .forms import GroupCreateForm, SightseeingFormSet, RestaurantFormSet, MessageFormSet, SightseeingEditForm, \
-    SightseeingCreateForm, RestaurantEditForm, RestaurantCreateForm
-from django.http import HttpResponseRedirect
+    SightseeingCreateForm, RestaurantEditForm, RestaurantCreateForm, MessageCreateForm
+from django.http import HttpResponseRedirect, HttpResponseForbidden
 
 
 class TravelGroupListView(ListView):
@@ -16,7 +19,8 @@ class TravelGroupListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['trips'] = TravelGroup.objects.filter(travelers__id=self.request.user.id)
+        username = self.kwargs['username']
+        context['trips'] = TravelGroup.objects.filter(travelers__username=username)
         return context
 
 
@@ -25,14 +29,22 @@ class TravelerAccommodationListView(ListView):
     template_name = 'accommodations/accommodation-travel-list.html'
 
     def get_context_data(self, **kwargs):
+        username = self.kwargs['username']
         context = super().get_context_data(**kwargs)
-        context['accommodations'] = Accommodations.objects.filter(trip__id=self.kwargs['pk'])
+        context['profile_user'] = username
+        context['accommodations'] = Accommodations.objects.filter(trip__id=self.kwargs['pk'], user__username=username)
         return context
 
 
 class TravelGroupSingleView(DetailView):
     model = TravelGroup
     template_name = 'travel_group/group-detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['messages'] = TravelMessages.objects.filter(travel_group=context.get('travelgroup'))
+        context['message_form'] = MessageCreateForm(initial={'message_creator': self.request.user, 'travel_group': context.get('travelgroup')})
+        return context
 
 
 class TravelGroupCreateView(CreateView):
@@ -57,9 +69,11 @@ class TravelGroupCreateView(CreateView):
         self.object = None
         form_class = self.get_form_class()
         form = self.get_form(form_class)
+        data = request.POST.copy()
+        data['messages-0-message_creator'] = self.request.user.id
         sightseeing_form = SightseeingFormSet(self.request.POST)
         restaurant_form = RestaurantFormSet(self.request.POST)
-        message_form = MessageFormSet(self.request.POST)
+        message_form = MessageFormSet(data)
         if form.is_valid() and sightseeing_form.is_valid() and restaurant_form.is_valid() and message_form.is_valid():
             return self.form_valid(form, sightseeing_form, restaurant_form, message_form)
         else:
@@ -151,14 +165,13 @@ class RestaurantDeleteView(DeleteView):
 
 
 class MessageAddView(CreateView):
-    model = TravelMessages
-    template_name = 'travel_group/restaurant-add.html'
-    form_class = MessageFormSet
+    form_class = MessageCreateForm
+    template_name = 'travel_group/message-add.html'
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['travel_group'] = self.kwargs.get('id')
-        return kwargs
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.message_creator = self.request.user
+        return form
 
     def get_success_url(self):
         return reverse('travel_group_single', kwargs={'pk': self.kwargs.get('id')})

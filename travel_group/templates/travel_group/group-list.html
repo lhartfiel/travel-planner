@@ -1,24 +1,34 @@
 {% extends 'base.html' %}
+{% load compress static %}
 
 {% block head %}
-   {{ super }}
+    {{ block.super }}
+    {% block css %}
+         {{ block.super }}
+        {% compress css inline %}
+            <link rel="stylesheet" type="text/x-scss" href="{% static 'travel_group/scss/travel_group.scss' %}">
+        {% endcompress %}
+    {% endblock %}
 {% endblock %}
 
 {% block body %}
     <div class="body-wrap">
-        <div class="img-wrap img-wrap--main">
-            <div class="container container--narrow container--white">
+            <div class="container container--narrow container--center">
                 <h1>Travel Groups</h1>
-
-                {% for trip in trips %}
-                    <h2>{{ trip.trip_name }}</h2>
-                    {% for traveler in trip.travelers.all %}
-                        <li>{{ traveler }}</li>
+                <div class="trip-list flex--wrap ">
+                    {% for trip in trips %}
+                        <div class="trip flex--2 container--white">
+                            <h3 class="trip__name fw-500"><span>{{ trip.trip_name }}</span></h3>
+                            {% for traveler in trip.travelers.all %}
+                                <li class="li--none mb--1">{{ traveler }} | <a href="{% url 'profile' traveler.username %}" class="c--sec">View Profile</a></li>
+                            {% endfor %}
+                            <div class="btn-wrap">
+                            <a href="{% url 'travel_group_single' trip.id %}" class="btn btn--ter" with trip=trip>View Trip</a>
+                            </div>
+                        </div>
                     {% endfor %}
-                    <a href="{% url 'travel_group_single' trip.id %}" class="btn" with trip=trip>View Trip</a>
-                {% endfor %}
+                </div>
             </div>
-        </div>
     </div>
 {% endblock %}
 

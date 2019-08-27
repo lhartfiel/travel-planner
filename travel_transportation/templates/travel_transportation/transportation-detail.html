@@ -1,14 +1,74 @@
-<h1>Transportation Info -- {{ object.name }}</h1>
+{% extends 'base.html' %}
+{% load compress static %}
 
+{% block head %}
+    {{ block.super }}
+    {% block css %}
+        {{ block.super }}
+        {% compress css inline %}
+            <link rel="stylesheet" type="text/x-scss" href="{% static 'travel_transportation/scss/transport.scss' %}">
+        {% endcompress %}
+    {% endblock %}
+{% endblock %}
 
-<p>{{ object.arrival_city }}</p>
-<p>{{ object.arrival_date }}</p>
-<p>{{ object.arrival_time }}</p>
-<br>
-<p>{{ object.departure_city }}</p>
-<p>{{ object.departure_date }}</p>
-<p>{{ object.departure_time }}</p>
+{% block body %}
+    <div class="body-wrap">
+        <div class="img-wrap img-wrap--main">
+            <div class="container container--narrow container--center container--white">
+                <h2>Transportation Details — {{ object.name }}</h2>
+                <div class="transport--general">
+                    {% if object.travel_group %}
+                        <p class="fw--700">Travel Group: {{ object.travel_group }}</p>
+                    {% endif %}
+                    {% if object.type %}
+                        <p class="fw--700">Type: <span>{{ object.type }}</span></p>
+                    {% endif %}
+                    {% if object.flight_no or object.carrier %}
+                        <p class="rw--700">Carrier: {{ object.carrier }} {% if object.flight_no %} | {% endif %} Flight no: {{ object.flight_no }}</p>
+                    {% endif %}
+                </div>
+                <div class="transport-wrap f--wrap mb--4">
+                    <div class="transport transport--depart">
+                        <h3 class="fw--700">Departure Info:</h3>
+                        <ul class="transport-list">
+                            {% if object.departure_city %}
+                                <li class="li--none mb--1"><span class="fw--700">City: </span>{{ object.departure_city }}</li>
+                            {% endif %}
+                            {% if object.departure_date %}
+                                <li class="li--none mb--1"><span class="fw--700">Date:</span> {{ object.departure_date }}</li>
+                            {% endif %}
+                            {% if object.departure_date %}
+                                <li class="li--none mb--1"><span class="fw--700">Time:</span> {{ object.departure_time }}</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="transport transport--arrive">
+                        <h3 class="fw--700">Arrival Info:</h3>
+                        <ul class="transport-list">
+                            {% if object.arrival_city %}
+                                <li class="li--none mb--1"><span class="fw--700">City: </span> {{ object.arrival_city }}</li>
+                            {% endif %}
+                            {% if object.arrival_date %}
+                                <li class="li--none mb--1"><span class="fw--700">Date:</span> {{ object.arrival_date }}</li>
+                            {% endif %}
+                            {% if object.arrival_time %}
+                                <li class="li--none mb--1"><span class="fw--700">Time:</span> {{ object.arrival_time }}</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+                {% if object.notes %}
+                <div class="notes mb--2">
+                    <h3 class="fw--700">Notes</h3>
+                    <p>{{ object.notes }}</p>
+                </div>
+                {% endif %}
+                <a class="btn btn--sec" href="{% url 'transportation_list' object.user.username %}">Back to Transportation List</a>
+                {% if user.username == user_profile.username %}
+                    <a class="btn btn--sec" href="{% url 'transportation_edit' object.pk %}">Edit Info</a>
+                {% endif %}
+            </div>
 
-
-<a href="{% url 'transportation_list' object.user.username %}">Back to Transportation List</a>
-<a href="{% url 'transportation_edit' object.pk %}">Edit Info</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,97 @@
+.li-item {
+  display: block;
+  margin-right: 2rem;
+}
+
+.trav--left {
+  flex-basis: 25%;
+  width: 25%;
+}
+
+.user__photo-wrap {
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  width: 130px;
+  height: 130px;
+}
+
+.user__photo {
+  display: block;
+  width: auto;
+  height: auto;
+}
+
+.traveler__info--top {
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.link-group {
+
+}
+
+.traveler__info {
+  flex-grow: 1;
+  margin-left: 3rem;
+
+  > h4 {
+    margin-bottom: 0.5rem;
+    width: 100%;
+  }
+
+  ul {
+    display: flex;
+    padding-left: 0;
+  }
+
+  li {
+    list-style: none;
+    margin-left: 1rem;
+    margin-right: 3rem;
+  }
+}
+
+.traveler {
+  border-bottom: 1px solid rgba(gray, 0.4);
+  padding-bottom: 2rem;
+}
+
+.group__head {
+  z-index: 10;
+}
+
+.group-ideas {
+
+  li {
+    list-style: none;
+    padding-left: 2.5rem;
+    position: relative;
+
+    &:after {
+      content: url('/static/travel_planner/images/icon-triangle-right.svg');
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+}
+
+.idea__name {
+  display: block;
+}
+
+.msg-item {
+  list-style: none;
+}
+
+.msg__detail {
+  display: block;
+}
+
+.inline {
+  margin-bottom: 3rem;
+}

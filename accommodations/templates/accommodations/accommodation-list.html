@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 
- {% block body %}
-     {% if user.is_authenticated %}
+{% block body %}
+    {% if user.is_authenticated %}
         <div class="body-wrap">
             <div class="img-wrap img-wrap--main">
                 <div class="container container--narrow container--center container--white">
-                    <h2>Travel Accommodations for {{user.first_name}} {{ user.last_name }}</h2>
+                    <h2>Travel Accommodations for {{ user.first_name }} {{ user.last_name }}</h2>
                     <div class="place">
                         {% for key, place in places.items %}
                             <h3>{{ key }}</h3>
@@ -15,7 +15,8 @@
                                 <a href="{% url 'accommodation_detail' user.username accommodation.pk %}">View Deets</a>
                                 <a href="{% url 'accommodation_edit' accommodation.pk %}">Edit Accommodation</a>
                                 <div class="accommodation__info">
-                                    <p>{{ accommodation.address }}, {{ accommodation.city }} — {{ accommodation.country }}</p>
+                                    <p>{{ accommodation.address }}, {{ accommodation.city }}
+                                        — {{ accommodation.country }}</p>
                                     {% if accommodation.zip %}
                                         <p>{{ accommodation.zip }}</p>
                                     {% endif %}
@@ -23,8 +24,12 @@
                                         <p>{{ accommodation.phone }}</p>
                                     {% endif %}
                                 </div>
-                                <p class="accommodation__date check-in">Check-in: {% if accommodation.date_check_in %}{{ accommodation.date_check_in }}{% else %}TBD{% endif %}</p>
-                                <p class="accommodation__date check-out">Check-out: {% if accommodation.date_check_out %}{{ accommodation.date_check_out }}{% else %}TBD{% endif %}</p>
+                                <p class="accommodation__date check-in">Check-in:
+                                    {% if accommodation.date_check_in %}{{ accommodation.date_check_in }}{% else %}
+                                        TBD{% endif %}</p>
+                                <p class="accommodation__date check-out">Check-out:
+                                    {% if accommodation.date_check_out %}{{ accommodation.date_check_out }}{% else %}
+                                        TBD{% endif %}</p>
                                 {% if accommodation.type %}
                                     <p>Type of accommodation: {{ accommodation.type }}</p>
                                 {% endif %}
@@ -32,13 +37,16 @@
                                     <p>{{ accommodation.notes }}</p>
                                 {% endif %}
                             {% endfor %}
-                            <div class="btn-wrap">
-                             <a class="btn btn--sec" href="{% url 'accommodation_create' %}">Add Accommodation</a>
-                            </div>
+                            {% if user.is_authenticated and user.username == profile_user.username %}
+                                <div class="btn-wrap">
+                                    <a class="btn btn--sec" href="{% url 'accommodation_create' %}">Add
+                                        Accommodation</a>
+                                </div>
+                            {% endif %}
                         {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
-     {% endif %}
- {% endblock %}
+    {% endif %}
+{% endblock %}

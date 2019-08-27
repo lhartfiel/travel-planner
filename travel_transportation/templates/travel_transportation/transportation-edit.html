@@ -1,7 +1,29 @@
-<h1>Edit Transportation Info</h1>
+{% extends 'base.html' %}
+{% load compress static %}
 
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save">
-</form>
+{% block head %}
+    {{ block.super }}
+    {% block css %}
+         {{ block.super }}
+        {% compress css inline %}
+            <link rel="stylesheet" type="text/x-scss" href="{% static 'travel_transportation/scss/transport.scss' %}">
+        {% endcompress %}
+    {% endblock %}
+{% endblock %}
+
+{% block body %}
+    <div class="body-wrap">
+        <div class="img-wrap img-wrap--main">
+            <div class="container container--narrow container--center container--white">
+
+                <h2 class="ta--c">Edit Transportation Info</h2>
+
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Save">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
