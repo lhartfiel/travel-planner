@@ -24,12 +24,18 @@ a {
   text-decoration: none;
 }
 
-ul {
+ul, ol {
+  margin-left: 2rem;
   padding-left: 0;
+
+  li {
+    color: rgba($charcoal, 0.6);
+    margin-bottom: 0.5rem;
+  }
 }
 
 .link {
-   &--sm {
+  &--sm {
     font-size: 1.4rem;
   }
 }
@@ -37,6 +43,7 @@ ul {
 .tac {
   text-align: center;
 }
+
 .tar {
   text-align: right;
 }
@@ -88,5 +95,27 @@ ul {
     background: $secondary;
     color: $white;
     display: inline-block;
+  }
+
+  &--ter {
+    background: $purple;
+    color: $white;
+    display: inline-block;
+  }
+}
+
+button[type="submit"] {
+  background: $tertiary;
+  border: 1px solid $tertiary;
+  border-radius: 4px;
+  color: $white;
+  cursor: pointer;
+  padding: 10px 24px;
+  transition: 0.4s ease all;
+
+  &:hover {
+    background: $white;
+    border: 1px solid $tertiary;
+    color: $tertiary;
   }
 }

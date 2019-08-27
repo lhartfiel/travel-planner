@@ -1,4 +1,6 @@
 @import 'components/_normalize.scss';
+@import 'components/_breakpoints.scss';
+@import 'components/_mixins.scss';
 @import 'components/_forms.scss';
 @import 'components/_variables.scss';
 @import 'components/_grid.scss';
@@ -7,7 +9,7 @@
 @import 'components/_nav.scss';
 @import 'components/_home.scss';
 
-@import 'travel_group/static/travel_group/scss/travel_group.scss';
+@import '../../travel_group/static/travel_group/scss/travel_group.scss';
 
 html {
   color: #000;
@@ -87,6 +89,18 @@ form {
 
 textarea {
   height: 10rem;
+}
+
+#id_password {
+  display: none;
+
+  ~ .helptext {
+    display: none;
+  }
+}
+
+label[for="id_password"] {
+  display: none;
 }
 
 

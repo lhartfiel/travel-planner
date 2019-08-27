@@ -33,12 +33,9 @@
     grid-column: 1 / -1;
   }
 
-  &--xnarrow {
-    grid-column: 5 / 9;
-  }
-
-  &--narrow {
-    grid-column: 3 / 11;
+  &--xnarrow,
+  &--narrow{
+    grid-column: 2 / 12;
   }
 
   &--center {
@@ -57,9 +54,39 @@
     padding: 2rem;
     z-index: 10;
   }
+
+  @include bp(min, $bp-lg) {
+      &--xnarrow {
+        grid-column: 5 / 9;
+      }
+
+      &--narrow {
+      grid-column: 3 / 11;
+    }
+  }
 }
 
 .flex {
   display: flex;
   flex-wrap: nowrap;
+}
+
+.flex--wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex--2 {
+  flex-basis: 100%;
+  @include bp(min, $bp-lg) {
+    flex-basis: calc(50% - 2rem);
+
+    &:nth-child(odd) {
+      margin-right: 1rem;
+    }
+
+    &:nth-child(even) {
+      margin-left: 1rem;
+    }
+  }
 }
