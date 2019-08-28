@@ -13,11 +13,16 @@
 
 {% block body %}
     <div class="body-wrap">
+            <div class="hero hero--sm container--full pos--rel pt--4 pb--4 o-hide">
+                <div class="bkg-img pos--abs">
+                    <img src="{% static 'travel_planner/images/curacao-bw.jpg' %}" alt="">
+                </div>
+                <h1 class="tac c--white">My Travel Groups</h1>
+            </div>
             <div class="container container--narrow container--center">
-                <h1>Travel Groups</h1>
                 <div class="trip-list flex--wrap ">
                     {% for trip in trips %}
-                        <div class="trip flex--2 container--white">
+                        <div class="trip flex--wrap flex--2 container--white">
                             <h3 class="trip__name fw-500"><span>{{ trip.trip_name }}</span></h3>
                             {% for traveler in trip.travelers.all %}
                                 <li class="li--none mb--1">{{ traveler }} | <a href="{% url 'profile' traveler.username %}" class="c--sec">View Profile</a></li>

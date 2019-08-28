@@ -4,16 +4,10 @@
     <list default="true" id="40d5bcd9-ea47-4f31-8daa-260e4fc22522" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/travel_group/scss/travel_group.scss" beforeDir="false" afterPath="$PROJECT_DIR$/static/travel_group/scss/travel_group.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/travel_planner/scss/components/_grid.scss" beforeDir="false" afterPath="$PROJECT_DIR$/static/travel_planner/scss/components/_grid.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/travel_planner/scss/components/_home.scss" beforeDir="false" afterPath="$PROJECT_DIR$/static/travel_planner/scss/components/_home.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/travel_planner/scss/components/_nav.scss" beforeDir="false" afterPath="$PROJECT_DIR$/static/travel_planner/scss/components/_nav.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/travel_planner/scss/components/_typography.scss" beforeDir="false" afterPath="$PROJECT_DIR$/static/travel_planner/scss/components/_typography.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/travel_planner/scss/components/_utility.scss" beforeDir="false" afterPath="$PROJECT_DIR$/static/travel_planner/scss/components/_utility.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/travel_planner/scss/components/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/static/travel_planner/scss/components/_variables.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/travel_planner/scss/general.scss" beforeDir="false" afterPath="$PROJECT_DIR$/static/travel_planner/scss/general.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/travel_transportation/scss/transport.scss" beforeDir="false" afterPath="$PROJECT_DIR$/static/travel_transportation/scss/transport.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/travel_users/scss/travel_users.scss" beforeDir="false" afterPath="$PROJECT_DIR$/static/travel_users/scss/travel_users.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_group/templates/travel_group/group-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/group-detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel_group/static/travel_group/scss/travel_group.scss" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/static/travel_group/scss/travel_group.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel_group/templates/travel_group/group-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/group-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel_planner/static/travel_planner/scss/components/_utility.scss" beforeDir="false" afterPath="$PROJECT_DIR$/travel_planner/static/travel_planner/scss/components/_utility.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -299,7 +293,8 @@
       <workItem from="1565471057656" duration="20573000" />
       <workItem from="1565643134092" duration="14561000" />
       <workItem from="1566231851641" duration="8010000" />
-      <workItem from="1566683415091" duration="26541000" />
+      <workItem from="1566683415091" duration="27216000" />
+      <workItem from="1566960515898" duration="2147000" />
     </task>
     <servers />
   </component>

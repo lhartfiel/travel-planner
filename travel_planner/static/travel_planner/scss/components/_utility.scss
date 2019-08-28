@@ -13,6 +13,15 @@
   align-items: center;
 }
 
+//Position
+.pos--abs {
+  position: absolute;
+}
+
+.pos--rel {
+  position: relative;
+}
+
 //Alignment
 .ta--r {
   text-align: right;
@@ -140,3 +149,6 @@
   list-style: none;
 }
 
+.o-hide {
+  overflow: hidden;
+}
