@@ -27,6 +27,12 @@ class TransportationEditForm(ModelForm):
 
 class TransportationCreateForm(forms.ModelForm):
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            if visible.name == 'arrival_date' or visible.name == 'arrival_city' or visible.name == 'arrival_date':
+                visible.field.widget.attrs['class'] = 'transport'
+
     class Meta:
         model = Transportation
         exclude = ['user']

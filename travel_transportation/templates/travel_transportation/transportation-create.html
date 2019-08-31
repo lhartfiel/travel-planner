@@ -18,7 +18,22 @@
                 <h2 class="ta--c">Add Transportation Info</h2>
                 <form action="" method="post">
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    <ul class="transport-list flex--wrap">
+                        {% for field in form.visible_fields %}
+                            {% if field.name == 'arrival_city' or field.name == 'arrival_date' or field.name == 'arrival_time' or field.name == 'departure_city' or field.name == 'departure_date' or field.name == 'departure_time' %}
+                                <li class="transport-wrap transport-wrap--sm li--none">
+                                    <label for="">{{ field.label }}</label>
+                                    {{ field }}
+                                </li>
+                            {% else %}
+                                <li class="transport-wrap li--none">
+                                    <label for="">{{ field.label }}</label>
+                                    {{ field }}
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+{#                    {{ form.as_ul }}#}
                     <input type="submit" value="Save">
                 </form>
             </div>
