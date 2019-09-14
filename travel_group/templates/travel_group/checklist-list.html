@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% load compress %}
+
+{% block head %}
+    {{ block.super }}
+    {% block css %}
+        {% compress css inline %}
+            <link rel="stylesheet" type="text/x-scss" href="{% static 'travel_group/scss/travel_group.scss' %}">
+        {% endcompress %}
+    {% endblock %}
+{% endblock %}
+
+{% block body %}
+    <div class="body-wrap">
+        <div class="img-wrap img-wrap--main">
+            <div class="container container--narrow container--white mt--0">
+                <div class="grid--full">
+                    <h1>Checklist Detail</h1>
+                    <ul>
+                        {% for item in items %}
+                            <li>{{ item }}
+                                <a href="{% url 'travel_checklist_edit' item.id request.user.username %}">Edit</a> |
+                                <a href="{% url 'travel_checklist_delete' item.id request.user.username %}">Delete</a></li>
+                        {% endfor %}
+                    </ul>
+                    <h3>Add another item</h3>
+                    <form action="{% url 'travel_checklist_create' travelgroup request.user.username %}" method="post">
+                        {% csrf_token %}
+                        {{ checklist_form.as_p }}
+                        <div class="btn-wrap">
+                            <input type="submit" value="Submit" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+{% endblock %}

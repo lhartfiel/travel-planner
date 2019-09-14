@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% load compress %}
+
+{% block head %}
+    {{ block.super }}
+    {% block css %}
+        {% compress css inline %}
+            <link rel="stylesheet" type="text/x-scss" href="{% static 'travel_group/scss/travel_group.scss' %}">
+        {% endcompress %}
+    {% endblock %}
+{% endblock %}
+
+{% block body %}
+    <div class="body-wrap">
+        <div class="img-wrap img-wrap--main">
+            <div class="container container--narrow container--white mt--0">
+                <div class="grid--full">
+                    <h1>Edit</h1>
+                    <form method="post">{% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" value="Update">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

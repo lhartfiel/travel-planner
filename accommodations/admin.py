@@ -5,7 +5,7 @@ from .models import Accommodations
 
 
 class AccommodationsAdmin(admin.ModelAdmin):
-    list_display = ['name', 'city', 'date_check_in', 'date_check_out', ]
+    list_display = ['title', 'city', 'date_check_in', 'date_check_out', ]
 
 
 admin.site.register(Accommodations, AccommodationsAdmin)

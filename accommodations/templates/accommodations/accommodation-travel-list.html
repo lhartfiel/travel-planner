@@ -33,13 +33,13 @@
                                 <p>{{ place.notes }}</p>
                             {% endif %}
                         {% endfor %}
-                        {% if user.is_authenticated and user.username == profile_user %}
-                            <div class="btn-wrap">
-                             <a class="btn btn--sec" href="{% url 'accommodation_create' %}">Add Accommodation</a>
-                            </div>
-                        {% endif %}
                     {% else %}
                         <p>Oops! Looks like there aren't any accommodations</p>
+                    {% endif %}
+                    {% if user.is_authenticated and user.username == profile_user %}
+                        <div class="btn-wrap">
+                            <a class="btn btn--sec" href="{% url 'accommodation_create' %}">Add Accommodation</a>
+                        </div>
                     {% endif %}
                     </div>
                 </div>

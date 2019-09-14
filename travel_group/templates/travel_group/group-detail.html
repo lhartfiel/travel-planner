@@ -30,9 +30,10 @@
                             {% endif %}
                             <div class="traveler__info f--wrap">
                                 <div class="traveler__info--top f--nowrap">
-                                    <h4><span>{{ traveler.first_name }} </span><span>{{ traveler.last_name }}</span></h4>
+                                    <h4 class="mb--1"><span>{{ traveler.first_name }} </span><span>{{ traveler.last_name }}</span></h4>
                                     <div class="link-group">
                                         <a class="c--sec" href="{% url 'profile' traveler.username %}">View Profile</a>
+                                        <a class="c--sec" href="{% url 'travel_checklist_list' travelgroup.pk traveler.username %}">Traveler Checklist</a>
                                         <img
                                             srcset="{% static 'travel_planner/images/icon-triangle-right.png' %} 1x, {% static 'travel_planner/images/icon-triangle-right@2x.png' %} 2x"
                                             src="{% static 'travel_planner/images/icon-triangle-right.png' %}"
@@ -41,7 +42,7 @@
                                 </div>
                                 <ul class="ml--0">
                                     {% if traveler.city or traveler.state %}
-                                        <li class="detail__img-wrap f--nowrap f-align--ctr">
+                                        <li class="ml--0 detail__img-wrap f--nowrap f-align--ctr">
                                             <img
                                                 class="profile__icon"
                                                 srcset="{% static 'travel_planner/images/icon-location.png' %} 1x,  {% static 'travel_planner/images/icon-location@2x.png' %} 2x"
@@ -73,7 +74,7 @@
                                     {% endif %}
                                 </ul>
                                 {% if traveler.user_accommodation.all|length > 0  %}
-                                    <div class="user-accomm">
+                                    <div class="user-accomm d--blk w--100">
                                         <a href="{% url 'traveler_accommodation' travelgroup.pk traveler.username %}" class="btn btn--primary">User Accommodations</a>
                                     </div>
                                 {% endif %}

@@ -6,9 +6,10 @@ from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import FormMixin, FormView
 
 from accommodations.models import Accommodations
-from .models import TravelGroup, SightseeingIdeas, RestaurantIdeas, TravelMessages
+from .models import TravelGroup, SightseeingIdeas, RestaurantIdeas, TravelMessages, ChecklistItems
 from .forms import GroupCreateForm, SightseeingFormSet, RestaurantFormSet, MessageFormSet, SightseeingEditForm, \
-    SightseeingCreateForm, RestaurantEditForm, RestaurantCreateForm, MessageCreateForm
+    SightseeingCreateForm, RestaurantEditForm, RestaurantCreateForm, MessageCreateForm, ChecklistCreateForm, \
+    ChecklistEditForm
 from django.http import HttpResponseRedirect, HttpResponseForbidden
 
 
@@ -181,3 +182,53 @@ class MessageEditView(UpdateView):
     model = TravelMessages
     template_name = 'travel_group/message-edit.html'
 
+
+class TravelGroupChecklistView(CreateView):
+    model = ChecklistItems
+    form_class = ChecklistCreateForm
+    template_name = 'travel_group/checklist-add.html'
+
+    def form_valid(self, form):
+        # TODO Verify that current user is submitting the form
+        return super().form_valid(form)
+
+    def get_initial(self):
+        """Return the initial data to use for forms on this view."""
+        initial = {'travel_group': self.kwargs.get('id'), 'checklist_creator': self.request.user}
+        return initial
+
+    def get_success_url(self):
+        return reverse('travel_checklist_list', kwargs={'id': self.kwargs.get('id'), 'username': self.request.user})
+
+
+class TravelGroupChecklistEditView(UpdateView):
+    model = ChecklistItems
+    template_name = 'travel_group/checklist-edit.html'
+    form_class = ChecklistEditForm
+
+    def get_success_url(self):
+        return reverse('travel_checklist_list', kwargs={'id': self.object.travel_group.id, 'username': self.request.user.username})
+
+
+class TravelGroupChecklistList(ListView):
+    model = ChecklistItems
+    queryset = ChecklistItems.objects.all()
+    template_name = 'travel_group/checklist-list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['items'] = self.object_list
+        context['travelgroup'] = self.kwargs.get('id')
+        context['checklist_form'] = ChecklistCreateForm(initial={'checklist_creator': self.request.user, 'travel_group': self.kwargs.get('id')})
+        return context
+
+
+class TravelGroupChecklistDelete(DeleteView):
+    model = ChecklistItems
+    template_name = 'travel_group/checklist-delete.html'
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(ChecklistItems, pk=self.kwargs.get('pk'))
+
+    def get_success_url(self):
+        return reverse('travel_checklist_list', kwargs={'id': self.object.travel_group.id, 'username': self.request.user.username})

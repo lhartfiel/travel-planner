@@ -23,6 +23,19 @@ class TravelGroup(models.Model):
         return self.trip_name
 
 
+class ChecklistItems(models.Model):
+    checklist_item = RichTextField(blank=True)
+    checklist_creator = models.ForeignKey('travel_users.CustomUser', related_name='checklist_creator', on_delete=models.CASCADE)
+    item_status = models.BooleanField(default=False)
+    travel_group = models.ForeignKey('TravelGroup', related_name='checklist_items', on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = 'Checklist Items'
+
+    def __str__(self):
+        return self.checklist_item
+
+
 class SightseeingIdeas(models.Model):
     sightseeing_idea = RichTextField(blank=True)
     travel_group = models.ForeignKey('TravelGroup', related_name='sightseeing_ideas', on_delete=models.CASCADE)

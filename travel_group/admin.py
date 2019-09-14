@@ -1,5 +1,22 @@
 from django.contrib import admin
-from travel_group.models import TravelGroup, SightseeingIdeas, RestaurantIdeas, TravelMessages
+from travel_group.models import TravelGroup, SightseeingIdeas, RestaurantIdeas, TravelMessages, ChecklistItems
+
+
+class ChecklistItemsAdmin(admin.TabularInline):
+    model = ChecklistItems
+    fields = ('checklist_item', 'checklist_creator', 'item_status', 'travel_group',)
+    extra = 1
+
+    def save_model(self, request, instance, form, change):
+        user = request.user
+        instance = form.save(commit=False)
+        if not change or not instance.created_by:
+            instance.created_by = user
+        instance.modified_by = user
+        instance.save()
+        form.save_m2m()
+        return instance
+
 
 class SightseeingIdeasAdmin(admin.TabularInline):
     model = SightseeingIdeas
@@ -39,7 +56,8 @@ class TravelGroupAdmin(admin.ModelAdmin):
     inlines = [
         SightseeingIdeasAdmin,
         RestaurantIdeasAdmin,
-        TravelMessagesAdmin
+        TravelMessagesAdmin,
+        ChecklistItemsAdmin,
     ]
 
 

@@ -5,14 +5,13 @@ from django import forms
 from django.forms.utils import ErrorList
 from django.shortcuts import get_object_or_404
 
-from travel_group.models import TravelGroup, SightseeingIdeas, RestaurantIdeas, TravelMessages
+from travel_group.models import TravelGroup, SightseeingIdeas, RestaurantIdeas, TravelMessages, ChecklistItems
 from django.forms.models import inlineformset_factory
 
 from travel_users.models import CustomUser
 
 
 class GroupCreateForm(ModelForm):
-    # sightseeing = forms.ModelMultipleChoiceField(queryset=SightseeingIdeas.objects.all())
 
     class Meta:
         model = TravelGroup
@@ -73,6 +72,23 @@ class MessageEditForm(ModelForm):
     class Meta:
         model = TravelMessages
         fields = ['message', 'travel_group']
+
+
+class ChecklistCreateForm(ModelForm):
+
+    class Meta:
+        model = ChecklistItems
+        fields = ['checklist_item', 'checklist_creator', 'travel_group',]
+        widgets = {
+            'checklist_creator': HiddenInput(),
+            'travel_group': HiddenInput()
+        }
+
+
+class ChecklistEditForm(ModelForm):
+    class Meta:
+        model = ChecklistItems
+        fields = ['checklist_item']
 
 
 SightseeingFormSet = inlineformset_factory(TravelGroup, SightseeingIdeas, extra=1, fields=('sightseeing_idea', ))
