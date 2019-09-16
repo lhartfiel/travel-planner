@@ -2,31 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="40d5bcd9-ea47-4f31-8daa-260e4fc22522" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/checklist-add.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/checklist-delete.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/checklist-edit.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/checklist-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/35d5a997-cc14-4d51-9efa-bcdd9aeedf27.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/35d5a997-cc14-4d51-9efa-bcdd9aeedf27.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accommodations/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/accommodations/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accommodations/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/accommodations/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accommodations/templates/accommodations/accommodation-travel-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/accommodations/templates/accommodations/accommodation-travel-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_group/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/travel_group/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_group/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_group/static/travel_group/scss/travel_group.scss" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/static/travel_group/scss/travel_group.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_group/templates/travel_group/group-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/group-detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_group/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_planner/static/travel_planner/scss/components/_grid.scss" beforeDir="false" afterPath="$PROJECT_DIR$/travel_planner/static/travel_planner/scss/components/_grid.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_planner/static/travel_planner/scss/components/_typography.scss" beforeDir="false" afterPath="$PROJECT_DIR$/travel_planner/static/travel_planner/scss/components/_typography.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_planner/static/travel_planner/scss/components/_utility.scss" beforeDir="false" afterPath="$PROJECT_DIR$/travel_planner/static/travel_planner/scss/components/_utility.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_planner/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_planner/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_transportation/templates/travel_transportation/transportation-create.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_transportation/templates/travel_transportation/transportation-create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_transportation/templates/travel_transportation/transportation-edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_transportation/templates/travel_transportation/transportation-edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_users/static/travel_users/scss/travel_users.scss" beforeDir="false" afterPath="$PROJECT_DIR$/travel_users/static/travel_users/scss/travel_users.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_users/templates/travel_users/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_users/templates/travel_users/edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_users/templates/travel_users/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_users/templates/travel_users/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_users/templates/travel_users/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_users/templates/travel_users/signup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel_group/templates/travel_group/checklist-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/checklist-list.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -316,7 +294,7 @@
       <workItem from="1566960515898" duration="3066000" />
       <workItem from="1567283646032" duration="3489000" />
       <workItem from="1567650654365" duration="17280000" />
-      <workItem from="1568064207886" duration="8011000" />
+      <workItem from="1568064207886" duration="13691000" />
     </task>
     <servers />
   </component>
@@ -354,6 +332,7 @@
         <watch expression="transport.field" language="Python" />
         <watch expression="visible" language="Python" />
         <watch expression="form" language="Python" />
+        <watch expression="field" language="HTML" />
       </configuration>
     </watches-manager>
   </component>

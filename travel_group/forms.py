@@ -78,17 +78,17 @@ class ChecklistCreateForm(ModelForm):
 
     class Meta:
         model = ChecklistItems
-        fields = ['checklist_item', 'checklist_creator', 'travel_group',]
+        fields = ['checklist_item', 'checklist_creator', 'travel_group', 'item_status']
         widgets = {
             'checklist_creator': HiddenInput(),
-            'travel_group': HiddenInput()
+            'travel_group': HiddenInput(),
         }
 
 
 class ChecklistEditForm(ModelForm):
     class Meta:
         model = ChecklistItems
-        fields = ['checklist_item']
+        fields = ['checklist_item', 'item_status']
 
 
 SightseeingFormSet = inlineformset_factory(TravelGroup, SightseeingIdeas, extra=1, fields=('sightseeing_idea', ))

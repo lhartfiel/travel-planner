@@ -19,9 +19,31 @@
                     <h1>Checklist Detail</h1>
                     <ul>
                         {% for item in items %}
-                            <li>{{ item }}
-                                <a href="{% url 'travel_checklist_edit' item.id request.user.username %}">Edit</a> |
-                                <a href="{% url 'travel_checklist_delete' item.id request.user.username %}">Delete</a></li>
+                            <form action="{% url 'travel_checklist_edit' item.id request.user.username %}" method="post">
+                                {% csrf_token %}
+                                {%  for field in checklist_form.visible_fields %}
+                                        {% if field.html_name == 'item_status' and not item.item_status %}
+                                            <li>
+                                                {{ field.label }}
+                                                {{ field }}
+                                                {{ item }}
+                                                <a href="{% url 'travel_checklist_edit' item.id request.user.username %}">Edit</a> |
+                                                <a href="{% url 'travel_checklist_delete' item.id request.user.username %}">Delete</a>
+                                            </li>
+                                        {% elif field.html_name == 'checklist_item' and item.item_status %}
+                                            <li>
+                                                <span style="color:red">X - Checked! </span>
+                                                {{ item }}
+                                                <a href="{% url 'travel_checklist_edit' item.id request.user.username %}">Edit</a> |
+                                                <a href="{% url 'travel_checklist_delete' item.id request.user.username %}">Delete</a>
+                                            </li>
+                                        {% endif %}
+                                {% endfor %}
+                                <div class="btn-wrap">
+                                    <input type="submit" value="Update Status" />
+                                </div>
+                            </form>
+
                         {% endfor %}
                     </ul>
                     <h3>Add another item</h3>
