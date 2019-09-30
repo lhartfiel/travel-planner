@@ -206,6 +206,12 @@ class TravelGroupChecklistEditView(UpdateView):
     template_name = 'travel_group/checklist-edit.html'
     form_class = ChecklistEditForm
 
+    def get_initial(self):
+        initial = self.initial.copy()
+        obj = self.get_object()
+        initial['checklist_item'] = self.object.checklist_item
+        return initial
+
     def get_success_url(self):
         return reverse('travel_checklist_list', kwargs={'id': self.object.travel_group.id, 'username': self.request.user.username})
 
@@ -219,7 +225,8 @@ class TravelGroupChecklistList(ListView):
         context = super().get_context_data(**kwargs)
         context['items'] = self.object_list
         context['travelgroup'] = self.kwargs.get('id')
-        context['checklist_form'] = ChecklistCreateForm(initial={'checklist_creator': self.request.user, 'travel_group': self.kwargs.get('id')})
+        context['checklist_create_form'] = ChecklistCreateForm(initial={'checklist_creator': self.request.user, 'travel_group': self.kwargs.get('id')})
+        context['checklist_form'] = ChecklistEditForm(initial={'checklist_creator': self.request.user, 'travel_group': self.kwargs.get('id')})
         return context
 
 

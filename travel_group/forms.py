@@ -94,3 +94,4 @@ class ChecklistEditForm(ModelForm):
 SightseeingFormSet = inlineformset_factory(TravelGroup, SightseeingIdeas, extra=1, fields=('sightseeing_idea', ))
 RestaurantFormSet = inlineformset_factory(TravelGroup, RestaurantIdeas, extra=1, fields=('restaurant_idea', ))
 MessageFormSet = inlineformset_factory(TravelGroup, TravelMessages, extra=1, fields=('message', 'message_creator'))
+ChecklistFormSet = inlineformset_factory(TravelGroup, ChecklistItems, extra=0, fields=('checklist_item', 'item_status'))

@@ -15,43 +15,43 @@
     <div class="body-wrap">
         <div class="img-wrap img-wrap--main">
             <div class="container container--narrow container--white mt--0">
-                <div class="grid--full">
+                <div class="grid--full checklist">
                     <h1>Checklist Detail</h1>
-                    <ul>
-                        {% for item in items %}
-                            <form action="{% url 'travel_checklist_edit' item.id request.user.username %}" method="post">
-                                {% csrf_token %}
-                                {%  for field in checklist_form.visible_fields %}
-                                        {% if field.html_name == 'item_status' and not item.item_status %}
-                                            <li>
-                                                {{ field.label }}
-                                                {{ field }}
-                                                {{ item }}
-                                                <a href="{% url 'travel_checklist_edit' item.id request.user.username %}">Edit</a> |
-                                                <a href="{% url 'travel_checklist_delete' item.id request.user.username %}">Delete</a>
-                                            </li>
-                                        {% elif field.html_name == 'checklist_item' and item.item_status %}
-                                            <li>
-                                                <span style="color:red">X - Checked! </span>
-                                                {{ item }}
-                                                <a href="{% url 'travel_checklist_edit' item.id request.user.username %}">Edit</a> |
-                                                <a href="{% url 'travel_checklist_delete' item.id request.user.username %}">Delete</a>
-                                            </li>
-                                        {% endif %}
-                                {% endfor %}
-                                <div class="btn-wrap">
-                                    <input type="submit" value="Update Status" />
+                    {% for field in items %}
+                        <form class="checklist__items mb--2" action="{% url 'travel_checklist_edit' field.id request.user.username %}" method="post">
+                            {% csrf_token %}
+                            <div class="flex j--btwn">
+                                <div class="checklist__info flex">
+                                    <input type="hidden" name="checklist_item" value="{{ field }}">
+                                    {% if not field.item_status %}
+                                        {{ checklist_form.item_status }}
+                                        <label for="item_status"></label>
+                                        <p class="checklist__item m--0 mr--2">{{ field }}</p>
+                                        <a href="{% url 'travel_checklist_edit' field.id request.user.username %}">edit</a>
+                                        |
+                                        <a href="{% url 'travel_checklist_delete' field.id request.user.username %}">delete</a>
+                                    {% elif field.item_status %}
+                                        {{ checklist_form.item_status }}
+                                        <label for="item_status--check"></label>
+                                        <p class="checklist__item m--0 mr--2">{{ field }}</p>
+{#                                        <span style="color:red">X - Checked! </span>#}
+                                        <a href="{% url 'travel_checklist_edit' field.id request.user.username %}">edit</a>
+                                        |
+                                        <a href="{% url 'travel_checklist_delete' field.id request.user.username %}">delete</a>
+                                    {% endif %}
                                 </div>
-                            </form>
-
-                        {% endfor %}
-                    </ul>
+                                <div class="btn-wrap">
+                                    <input type="submit" value="Complete Item"/>
+                                </div>
+                            </div>
+                        </form>
+                    {% endfor %}
                     <h3>Add another item</h3>
                     <form action="{% url 'travel_checklist_create' travelgroup request.user.username %}" method="post">
                         {% csrf_token %}
-                        {{ checklist_form.as_p }}
+                        {{ checklist_create_form.as_p }}
                         <div class="btn-wrap">
-                            <input type="submit" value="Submit" />
+                            <input type="submit" value="Submit"/>
                         </div>
                     </form>
                 </div>

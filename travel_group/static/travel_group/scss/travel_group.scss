@@ -143,3 +143,63 @@
     top: 0;
   }
 }
+
+.checklist {
+  margin: 0 auto;
+  width: 75%;
+
+  form {
+    margin-left: 0;
+  }
+}
+
+.checklist__items {
+  width: 100%;
+
+  #id_item_status {
+    height: 3rem;
+    margin-bottom: 0;
+    opacity: 0;
+    width: 3rem;
+
+    + label {
+      height: 3rem;
+      margin-left: -3rem;
+      padding-left: 3rem;
+      width: 3rem;
+    }
+
+    + label[for="item_status"] {
+      border: 2px solid rgba($charcoal, 0.4);
+      border-radius: 4px;
+    }
+
+    &:checked + label[for="item_status"],
+    + label[for="item_status--check"] {
+      display: inline-block;
+      background: url('/static/travel_planner/images/icon-checkbox.svg') no-repeat 0 0;
+      background-size: contain;
+      line-height: 3rem;
+    }
+  }
+}
+
+.checklist__item {
+  line-height: 1.2em;
+  margin-left: 2rem;
+}
+
+.checklist__info {
+  a {
+    color: $secondary;
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+}
+
+#id_item_status,
+label {
+  width: auto;
+}
+
+
