@@ -25,7 +25,7 @@
                                     <input type="hidden" name="checklist_item" value="{{ field }}">
                                     {% if not field.item_status %}
                                         {{ checklist_form.item_status }}
-                                        <label for="item_status"></label>
+                                        <label for="item_status" data-id="{{ field.id }}" data-travelid="{{ field.travel_group.id }}"></label>
                                         <p class="checklist__item m--0 mr--2">{{ field }}</p>
                                         <a href="{% url 'travel_checklist_edit' field.id request.user.username %}">edit</a>
                                         |
@@ -40,9 +40,9 @@
                                         <a href="{% url 'travel_checklist_delete' field.id request.user.username %}">delete</a>
                                     {% endif %}
                                 </div>
-                                <div class="btn-wrap">
-                                    <input type="submit" value="Complete Item"/>
-                                </div>
+{#                                <div class="btn-wrap">#}
+{#                                    <input type="submit" value="Complete Item"/>#}
+{#                                </div>#}
                             </div>
                         </form>
                     {% endfor %}
@@ -56,8 +56,37 @@
                     </form>
                 </div>
             </div>
-
-
         </div>
     </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script>
+        let checkboxes = document.querySelectorAll('.checklist__info input[type="checkbox"]');
+        if(checkboxes) {
+            axios.defaults.xsrfCookieName = 'csrftoken';
+            axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+            axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+            checkboxes.forEach( (checkbox) => {
+                checkbox.addEventListener('click', function(){
+                    let itemId = parseInt(checkbox.nextElementSibling.getAttribute('data-id'));
+                    let user = "{{ request.user.username }}";
+                    let checklist_creator_id = {{ request.user.id }};
+                    let checklist_item = checkbox.nextElementSibling.nextElementSibling.innerHTML;
+                    let travel_group = parseInt(checkbox.nextElementSibling.getAttribute('data-travelid'));
+                    axios.post(`/travel-group/checklist-edit/${itemId}/${user}`, {
+                            checklist_creator: checklist_creator_id,
+                            checklist_item: checklist_item,
+                            travel_group: travel_group,
+                            item_status: true,
+                            item_id: itemId
+                        })
+                        .then(function(response){
+                            console.log(response.data)
+                        })
+                })
+            })
+        }
+    </script>
 {% endblock %}

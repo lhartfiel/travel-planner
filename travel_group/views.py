@@ -4,13 +4,16 @@ from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView, UpdateView, CreateView, DeleteView
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import FormMixin, FormView
+from django.views.decorators.csrf import csrf_exempt, requires_csrf_token
 
 from accommodations.models import Accommodations
 from .models import TravelGroup, SightseeingIdeas, RestaurantIdeas, TravelMessages, ChecklistItems
 from .forms import GroupCreateForm, SightseeingFormSet, RestaurantFormSet, MessageFormSet, SightseeingEditForm, \
     SightseeingCreateForm, RestaurantEditForm, RestaurantCreateForm, MessageCreateForm, ChecklistCreateForm, \
     ChecklistEditForm
-from django.http import HttpResponseRedirect, HttpResponseForbidden
+from django.http import HttpResponseRedirect, HttpResponseForbidden, JsonResponse
+import json
+
 
 
 class TravelGroupListView(ListView):
@@ -206,6 +209,27 @@ class TravelGroupChecklistEditView(UpdateView):
     template_name = 'travel_group/checklist-edit.html'
     form_class = ChecklistEditForm
 
+    def post(self, request, *args, **kwargs):
+        if self.request.method == 'POST' and request.is_ajax():
+            data = json.loads(request.body.decode('utf-8'))
+            request.POST = request.POST.copy()
+            request.POST = data
+            form = self.form_class(request.POST)
+            form.instance.checklist_creator_id = data['checklist_creator']
+            form.instance.travel_group_id = data['travel_group']
+            form.instance.checklist_item = data['checklist_item']
+            form.instance.checklist_status = True
+            form.instance.id = data['item_id']
+            form.save()
+            if form.is_valid():
+                self.object = self.get_object()
+                return super(TravelGroupChecklistEditView, self).post(request, *args, **kwargs)
+        else:
+            self.object = self.get_object()  # assign the object to the view
+            form = self.get_form()
+            if form.is_valid():
+                return self.form_valid(form)
+
     def get_initial(self):
         initial = self.initial.copy()
         obj = self.get_object()
@@ -213,6 +237,7 @@ class TravelGroupChecklistEditView(UpdateView):
         return initial
 
     def get_success_url(self):
+        print('wrong')
         return reverse('travel_checklist_list', kwargs={'id': self.object.travel_group.id, 'username': self.request.user.username})
 
 

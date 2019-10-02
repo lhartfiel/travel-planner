@@ -57,6 +57,7 @@ urlpatterns = [
     path('travel-group/message-add/<int:id>', MessageAddView.as_view(), name="message_add"),
     path('travel-group/checklist-add/<int:id>/<slug:username>', TravelGroupChecklistView.as_view(), name="travel_checklist_create"),
     path('travel-group/checklist-edit/<int:pk>/<slug:username>', TravelGroupChecklistEditView.as_view(), name="travel_checklist_edit"),
+    path('travel-group/checklist-update', TravelGroupChecklistEditView.as_view(), name="travel_checklist_update"),
     path('travel-group/checklist-delete/<int:pk>/<slug:username>', TravelGroupChecklistDelete.as_view(), name="travel_checklist_delete"),
     path('travel-group/checklist-list/<int:id>/<slug:username>', TravelGroupChecklistList.as_view(), name="travel_checklist_list"),
     path('travel-group/for/<slug:username>/', TravelGroupListView.as_view(), name="travel_group_index"),
