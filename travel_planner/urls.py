@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.db import router
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
@@ -26,10 +27,13 @@ from travel_users.views import UserLoginView, ProfileView, ProfileEditView, User
 from travel_group.views import TravelGroupListView, TravelGroupSingleView, TravelGroupCreateView, SightseeingEditView, \
     RestaurantEditView, MessageEditView, SightseeingAddView, SightseeingDeleteView, RestaurantDeleteView, \
     RestaurantAddView, TravelerAccommodationListView, MessageAddView, TravelGroupChecklistView, \
-    TravelGroupChecklistEditView, TravelGroupChecklistList, TravelGroupChecklistDelete
+    TravelGroupChecklistEditView, TravelGroupChecklistList, TravelGroupChecklistDelete, ChecklistViewSet
 from travel_transportation.views import TransportationEditView, TransportationCreateView, TransportationListView, \
     TransportationDetailView, TransportationDeleteView
 
+from rest_framework import routers
+router = routers.DefaultRouter()
+router.register(r'checklist', ChecklistViewSet)
 
 
 urlpatterns = [
@@ -68,5 +72,8 @@ urlpatterns = [
     path('transportation-create/<int:pk>', TransportationCreateView.as_view(), name="transportation_create"),
     path('transportation-edit/<int:pk>', TransportationEditView.as_view(), name="transportation_edit"),
     path('transportation-delete/<int:pk>', TransportationDeleteView.as_view(), name="transportation_delete"),
-    path('djrichtextfield/', include('djrichtextfield.urls'))
+    path('djrichtextfield/', include('djrichtextfield.urls')),
+    path('api/', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

@@ -92,6 +92,10 @@
   margin: 0;
 }
 
+.m--0auto {
+  margin: 0 auto;
+}
+
 .mt--0 {
   margin-top: 0;
 }
@@ -156,6 +160,17 @@
   margin-bottom: 4rem;
 }
 
+.mr--4 {
+  margin-right: 4rem;
+}
+
+.pr--1 {
+  padding-right: 1rem;
+}
+.pr--2 {
+  padding-right: 2rem;
+}
+
 //List Items
 .li--none {
   list-style: none;
@@ -176,4 +191,8 @@
 .help-text {
   display: block;
   margin-top: -1rem;
+}
+
+.hide {
+  display: none;
 }

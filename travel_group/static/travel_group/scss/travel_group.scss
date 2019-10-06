@@ -153,7 +153,8 @@
   }
 }
 
-.checklist__items {
+.checklist__items,
+.checklist__edit{
   width: 100%;
 
   #id_item_status {
@@ -167,21 +168,22 @@
       margin-left: -3rem;
       padding-left: 3rem;
       width: 3rem;
+      z-index: -1;
     }
+  }
 
-    + label[for="item_status"] {
+    label[for="item_status"] {
       border: 2px solid rgba($charcoal, 0.4);
       border-radius: 4px;
     }
-
-    &:checked + label[for="item_status"],
-    + label[for="item_status--check"] {
+    input[type="checkbox"]:checked + label[for="item_status"] {
+      border-color: rgba($charcoal, 0.1);
+      border-radius: 5px;
       display: inline-block;
       background: url('/static/travel_planner/images/icon-checkbox.svg') no-repeat 0 0;
       background-size: contain;
       line-height: 3rem;
     }
-  }
 }
 
 .checklist__item {

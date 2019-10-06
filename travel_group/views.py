@@ -14,6 +14,10 @@ from .forms import GroupCreateForm, SightseeingFormSet, RestaurantFormSet, Messa
 from django.http import HttpResponseRedirect, HttpResponseForbidden, JsonResponse
 import json
 
+from django.conf.urls import url, include
+from django.contrib.auth.models import User
+from rest_framework import routers, serializers, viewsets
+
 
 
 class TravelGroupListView(ListView):
@@ -264,3 +268,16 @@ class TravelGroupChecklistDelete(DeleteView):
 
     def get_success_url(self):
         return reverse('travel_checklist_list', kwargs={'id': self.object.travel_group.id, 'username': self.request.user.username})
+
+
+# Serializers define the API representation.
+class ChecklistSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = ChecklistItems
+        fields = ['checklist_item', 'item_status']
+
+
+# ViewSets define the view behavior.
+class ChecklistViewSet(viewsets.ModelViewSet):
+    queryset = ChecklistItems.objects.all()
+    serializer_class = ChecklistSerializer

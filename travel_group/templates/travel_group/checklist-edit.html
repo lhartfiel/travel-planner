@@ -14,11 +14,20 @@
 {% block body %}
     <div class="body-wrap">
         <div class="img-wrap img-wrap--main">
-            <div class="container container--narrow container--white mt--0">
-                <div class="grid--full">
-                    <h1>Edit</h1>
-                    <form method="post">{% csrf_token %}
-                        {{ form.as_p }}
+            <div class="container container--narrow container--white mt--4">
+                <div class="grid--full checklist">
+                    <h1>Edit Item</h1>
+                    <form class="checklist__edit" method="post">{% csrf_token %}
+                        <div class="flex a--ctr">
+                            <div class="flex mr--4">
+                                {{ form.item_status }}
+                                <label for="item_status"></label>
+                            </div>
+                            <div>
+                                <p>Checklist Item:</p>
+                                {{ form.checklist_item }}
+                            </div>
+                        </div>
                         <input type="submit" value="Update">
                     </form>
                 </div>

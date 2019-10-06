@@ -14,42 +14,34 @@
 {% block body %}
     <div class="body-wrap">
         <div class="img-wrap img-wrap--main">
-            <div class="container container--narrow container--white mt--0">
+            <div class="container container--narrow container--white mt--4">
                 <div class="grid--full checklist">
                     <h1>Checklist Detail</h1>
                     {% for field in items %}
-                        <form class="checklist__items mb--2" action="{% url 'travel_checklist_edit' field.id request.user.username %}" method="post">
-                            {% csrf_token %}
-                            <div class="flex j--btwn">
-                                <div class="checklist__info flex">
-                                    <input type="hidden" name="checklist_item" value="{{ field }}">
-                                    {% if not field.item_status %}
-                                        {{ checklist_form.item_status }}
-                                        <label for="item_status" data-id="{{ field.id }}" data-travelid="{{ field.travel_group.id }}"></label>
-                                        <p class="checklist__item m--0 mr--2">{{ field }}</p>
-                                        <a href="{% url 'travel_checklist_edit' field.id request.user.username %}">edit</a>
-                                        |
-                                        <a href="{% url 'travel_checklist_delete' field.id request.user.username %}">delete</a>
-                                    {% elif field.item_status %}
-                                        {{ checklist_form.item_status }}
-                                        <label for="item_status--check"></label>
-                                        <p class="checklist__item m--0 mr--2">{{ field }}</p>
-{#                                        <span style="color:red">X - Checked! </span>#}
-                                        <a href="{% url 'travel_checklist_edit' field.id request.user.username %}">edit</a>
-                                        |
-                                        <a href="{% url 'travel_checklist_delete' field.id request.user.username %}">delete</a>
-                                    {% endif %}
+                        {% if travelgroup == field.travel_group.id %}
+                            <form class="checklist__items mb--2" action="{% url 'travel_checklist_edit' field.id request.user.username %}" method="post">
+                                {% csrf_token %}
+                                <div class="flex j--btwn">
+                                    <div class="checklist__info flex">
+                                        <input type="hidden" name="checklist_item" value="{{ field }}">
+                                            {{ checklist_form.item_status }}
+                                            <label for="item_status" data-id="{{ field.id }}" data-travelid="{{ field.travel_group.id }}" data-status="{{ field.item_status }}"></label>
+                                            <p class="checklist__item m--0 mr--2">{{ field }}</p>
+                                            <a href="{% url 'travel_checklist_edit' field.id request.user.username %}">edit</a>
+                                            |
+                                            <a href="{% url 'travel_checklist_delete' field.id request.user.username %}">delete</a>
+                                    </div>
                                 </div>
-{#                                <div class="btn-wrap">#}
-{#                                    <input type="submit" value="Complete Item"/>#}
-{#                                </div>#}
-                            </div>
-                        </form>
+                            </form>
+                        {% endif %}
                     {% endfor %}
                     <h3>Add another item</h3>
                     <form action="{% url 'travel_checklist_create' travelgroup request.user.username %}" method="post">
                         {% csrf_token %}
-                        {{ checklist_create_form.as_p }}
+                        {{ checklist_create_form.checklist_item }}
+                        <div class="hide">{{ checklist_create_form.item_status }}</div>
+                        <div class="hide">{{ checklist_create_form.checklist_creator }}</div>
+                        <div class="hide">{{ checklist_create_form.travel_group }}</div>
                         <div class="btn-wrap">
                             <input type="submit" value="Submit"/>
                         </div>
@@ -69,21 +61,37 @@
             axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
             axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
             checkboxes.forEach( (checkbox) => {
+                let checkbox_checked = checkbox.nextElementSibling.getAttribute('data-status');
+                if(checkbox_checked === 'True') {
+                    checkbox.checked = true;
+                } else {
+                    checkbox.checked = false;
+                }
                 checkbox.addEventListener('click', function(){
                     let itemId = parseInt(checkbox.nextElementSibling.getAttribute('data-id'));
                     let user = "{{ request.user.username }}";
                     let checklist_creator_id = {{ request.user.id }};
                     let checklist_item = checkbox.nextElementSibling.nextElementSibling.innerHTML;
                     let travel_group = parseInt(checkbox.nextElementSibling.getAttribute('data-travelid'));
+                    checkbox_checked = checkbox.nextElementSibling.getAttribute('data-status');
+
+                    if(checkbox_checked === 'True') {
+                        checkbox.nextElementSibling.setAttribute('data-status', 'False');
+                        checkbox.checked = false;
+                    } else {
+                        checkbox.nextElementSibling.setAttribute('data-status', 'True');
+                        checkbox.checked = true;
+                    }
+
                     axios.post(`/travel-group/checklist-edit/${itemId}/${user}`, {
                             checklist_creator: checklist_creator_id,
                             checklist_item: checklist_item,
                             travel_group: travel_group,
-                            item_status: true,
+                            item_status: checkbox.checked,
                             item_id: itemId
                         })
                         .then(function(response){
-                            console.log(response.data)
+                            {#console.log(response.data)#}
                         })
                 })
             })
