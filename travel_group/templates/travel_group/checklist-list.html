@@ -18,8 +18,7 @@
                 <div class="grid--full checklist">
                     <h1>Checklist Detail</h1>
                     {% for field in items %}
-                        {% if travelgroup == field.travel_group.id %}
-                            <form class="checklist__items mb--2" action="{% url 'travel_checklist_edit' field.id request.user.username %}" method="post">
+                        <form class="checklist__items mb--2" action="{% url 'travel_checklist_edit' field.id request.user.username %}" method="post">
                                 {% csrf_token %}
                                 <div class="flex j--btwn">
                                     <div class="checklist__info flex">
@@ -33,7 +32,6 @@
                                     </div>
                                 </div>
                             </form>
-                        {% endif %}
                     {% endfor %}
                     <h3>Add another item</h3>
                     <form action="{% url 'travel_checklist_create' travelgroup request.user.username %}" method="post">

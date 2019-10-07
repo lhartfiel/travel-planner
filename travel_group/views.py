@@ -247,12 +247,13 @@ class TravelGroupChecklistEditView(UpdateView):
 
 class TravelGroupChecklistList(ListView):
     model = ChecklistItems
-    queryset = ChecklistItems.objects.all()
+    # queryset = ChecklistItems.objects.all()
     template_name = 'travel_group/checklist-list.html'
 
     def get_context_data(self, **kwargs):
+        self
         context = super().get_context_data(**kwargs)
-        context['items'] = self.object_list
+        context['items'] = ChecklistItems.objects.filter(travel_group__id=self.kwargs['id'])
         context['travelgroup'] = self.kwargs.get('id')
         context['checklist_create_form'] = ChecklistCreateForm(initial={'checklist_creator': self.request.user, 'travel_group': self.kwargs.get('id')})
         context['checklist_form'] = ChecklistEditForm(initial={'checklist_creator': self.request.user, 'travel_group': self.kwargs.get('id')})

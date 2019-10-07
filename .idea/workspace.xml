@@ -3,16 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="40d5bcd9-ea47-4f31-8daa-260e4fc22522" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_group/static/travel_group/scss/travel_group.scss" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/static/travel_group/scss/travel_group.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_group/templates/travel_group/checklist-edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/checklist-edit.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/travel_group/templates/travel_group/checklist-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/checklist-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_group/templates/travel_group/group-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/group-detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/travel_group/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_planner/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_planner/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_planner/static/travel_planner/scss/components/_grid.scss" beforeDir="false" afterPath="$PROJECT_DIR$/travel_planner/static/travel_planner/scss/components/_grid.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_planner/static/travel_planner/scss/components/_utility.scss" beforeDir="false" afterPath="$PROJECT_DIR$/travel_planner/static/travel_planner/scss/components/_utility.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_planner/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_planner/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -298,7 +290,7 @@
       <workItem from="1567650654365" duration="17280000" />
       <workItem from="1568064207886" duration="15609000" />
       <workItem from="1569719284322" duration="29943000" />
-      <workItem from="1569949433106" duration="28966000" />
+      <workItem from="1569949433106" duration="29670000" />
     </task>
     <servers />
   </component>
@@ -337,6 +329,7 @@
         <watch expression="checklist_form['item_status']" language="HTML" />
         <watch expression="field.travel_group.id" language="HTML" />
         <watch expression="field" language="HTML" />
+        <watch expression="self.kwargs['id']" language="Python" />
       </configuration>
     </watches-manager>
   </component>
