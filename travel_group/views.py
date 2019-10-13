@@ -7,6 +7,7 @@ from django.views.generic.edit import FormMixin, FormView
 from django.views.decorators.csrf import csrf_exempt, requires_csrf_token
 
 from accommodations.models import Accommodations
+from travel_users.models import CustomUser
 from .models import TravelGroup, SightseeingIdeas, RestaurantIdeas, TravelMessages, ChecklistItems
 from .forms import GroupCreateForm, SightseeingFormSet, RestaurantFormSet, MessageFormSet, SightseeingEditForm, \
     SightseeingCreateForm, RestaurantEditForm, RestaurantCreateForm, MessageCreateForm, ChecklistCreateForm, \
@@ -17,6 +18,8 @@ import json
 from django.conf.urls import url, include
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 
@@ -180,6 +183,21 @@ class MessageAddView(CreateView):
         form = super().get_form(form_class)
         form.message_creator = self.request.user
         return form
+
+    def form_valid(self, form):
+        message_body = form.cleaned_data.get('message')
+        message_group = form.cleaned_data.get('travel_group').trip_name
+        message_group_id = form.cleaned_data.get('travel_group').id
+        travelers = CustomUser.objects.filter(trav_groups=message_group_id)
+        traveler_emails = []
+        for traveler in travelers:
+            traveler_emails.append(traveler.email)
+        subject = 'A new message has been posted in ' + message_group
+        message = message_body
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = traveler_emails
+        send_mail(subject, message, email_from, recipient_list)
+        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse('travel_group_single', kwargs={'pk': self.kwargs.get('id')})

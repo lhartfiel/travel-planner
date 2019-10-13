@@ -25,9 +25,7 @@
                                         <input type="hidden" name="checklist_item" value="{{ field }}">
                                             {{ checklist_form.item_status }}
                                             <label for="item_status" data-id="{{ field.id }}" data-travelid="{{ field.travel_group.id }}" data-status="{{ field.item_status }}"></label>
-                                            <p class="checklist__item m--0 mr--2">{{ field }}</p>
-                                            <a href="{% url 'travel_checklist_edit' field.id request.user.username %}">edit</a>
-                                            |
+                                            <input type="text" class="checklist__item m--0 mr--2" value="{{ field }}">
                                             <a href="{% url 'travel_checklist_delete' field.id request.user.username %}">delete</a>
                                     </div>
                                 </div>
@@ -54,10 +52,13 @@
     {{ block.super }}
     <script>
         let checkboxes = document.querySelectorAll('.checklist__info input[type="checkbox"]');
+        let checklistField = document.querySelectorAll('.checklist__item');
         if(checkboxes) {
             axios.defaults.xsrfCookieName = 'csrftoken';
             axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
             axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+            let user = "{{ request.user.username }}";
+            let checklist_creator_id = {{ request.user.id }};
             checkboxes.forEach( (checkbox) => {
                 let checkbox_checked = checkbox.nextElementSibling.getAttribute('data-status');
                 if(checkbox_checked === 'True') {
@@ -67,9 +68,7 @@
                 }
                 checkbox.addEventListener('click', function(){
                     let itemId = parseInt(checkbox.nextElementSibling.getAttribute('data-id'));
-                    let user = "{{ request.user.username }}";
-                    let checklist_creator_id = {{ request.user.id }};
-                    let checklist_item = checkbox.nextElementSibling.nextElementSibling.innerHTML;
+                    let checklist_item = checkbox.nextElementSibling.nextElementSibling.value;
                     let travel_group = parseInt(checkbox.nextElementSibling.getAttribute('data-travelid'));
                     checkbox_checked = checkbox.nextElementSibling.getAttribute('data-status');
 
@@ -88,9 +87,35 @@
                             item_status: checkbox.checked,
                             item_id: itemId
                         })
-                        .then(function(response){
-                            {#console.log(response.data)#}
+                })
+            });
+
+            checklistField.forEach( (checklist) => {
+                function inputBlur(e){
+                    let updatedValue = e.target.value;
+                    let travel_group = parseInt(checklist.previousElementSibling.getAttribute('data-travelid'));
+                    let itemId = parseInt(checklist.previousElementSibling.getAttribute('data-id'));
+                    let itemStatus = checklist.parentElement.querySelector('#id_item_status');
+                    checklist.setAttribute('value', updatedValue);
+                        axios.post(`/travel-group/checklist-edit/${itemId}/${user}`, {
+                                checklist_creator: checklist_creator_id,
+                                checklist_item: updatedValue,
+                                travel_group: travel_group,
+                                item_status: itemStatus.checked,
+                                item_id: itemId
+                            })
+                }
+                checklist.addEventListener('click', function(){
+                    checklist.addEventListener('blur', function(e){
+                        inputBlur(e);
+                    })
+                })
+                checklist.addEventListener('keyup', function(e){
+                    if(e.keyCode === 9) {
+                        checklist.addEventListener('blur', function(e){
+                            inputBlur(e);
                         })
+                    }
                 })
             })
         }

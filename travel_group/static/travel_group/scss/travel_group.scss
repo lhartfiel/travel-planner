@@ -154,7 +154,7 @@
 }
 
 .checklist__items,
-.checklist__edit{
+.checklist__edit {
   width: 100%;
 
   #id_item_status {
@@ -166,24 +166,38 @@
     + label {
       height: 3rem;
       margin-left: -3rem;
+      margin-right: 2rem;
       padding-left: 3rem;
       width: 3rem;
       z-index: -1;
     }
   }
 
-    label[for="item_status"] {
-      border: 2px solid rgba($charcoal, 0.4);
-      border-radius: 4px;
+  label[for="item_status"] {
+    border: 2px solid rgba($charcoal, 0.4);
+    border-radius: 4px;
+  }
+
+  .checklist__item {
+    box-shadow: none;
+
+    &:focus {
+      box-shadow: 0 0 5px rgba(128,128,128,0.6);
     }
-    input[type="checkbox"]:checked + label[for="item_status"] {
-      border-color: rgba($charcoal, 0.1);
-      border-radius: 5px;
-      display: inline-block;
-      background: url('/static/travel_planner/images/icon-checkbox.svg') no-repeat 0 0;
-      background-size: contain;
-      line-height: 3rem;
-    }
+  }
+
+  input[type="checkbox"]:checked + label[for="item_status"] {
+    border-color: rgba($charcoal, 0.1);
+    border-radius: 5px;
+    display: inline-block;
+    background: url('/static/travel_planner/images/icon-checkbox.svg') no-repeat 0 0;
+    background-size: contain;
+    line-height: 3rem;
+  }
+
+  input[type="checkbox"]:focus + label[for="item_status"] {
+    outline: 3px solid $secondary;
+  }
 }
 
 .checklist__item {
@@ -192,6 +206,8 @@
 }
 
 .checklist__info {
+  width: 100%;
+
   a {
     color: $secondary;
     padding-right: 5px;
