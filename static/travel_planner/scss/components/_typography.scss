@@ -99,8 +99,15 @@ ul, ol {
 
   &--ter {
     background: $purple;
+    border: 1px solid $purple;
     color: $white;
     display: inline-block;
+    transition: 0.3s ease all;
+
+    &:hover {
+      background: $white;
+      color: $purple;
+    }
   }
 }
 

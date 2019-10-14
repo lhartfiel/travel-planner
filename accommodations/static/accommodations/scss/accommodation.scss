@@ -1,0 +1,22 @@
+@import 'travel_planner/scss/general.scss';
+
+.accommodation {
+  margin-top: 2rem;
+  &:not(.no-border) {
+    border-bottom: 2px solid rgba($charcoal, 0.3);
+  }
+
+  img {
+    align-self: center;
+  }
+}
+
+.num {
+  color: rgba($secondary, 0.3);
+  font-family: 'Noto Serif';
+  font-size: 4rem;
+  left: -4rem;
+  top: -0.5rem;
+  width: 2.6rem;
+}
+

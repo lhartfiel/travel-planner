@@ -71,7 +71,7 @@ class MessageCreateForm(ModelForm):
 class MessageEditForm(ModelForm):
     class Meta:
         model = TravelMessages
-        fields = ['message', 'travel_group']
+        fields = ['message']
 
 
 class ChecklistCreateForm(ModelForm):

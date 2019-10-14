@@ -13,6 +13,19 @@
   align-items: center;
 }
 
+//Position
+.pos--abs {
+  position: absolute;
+}
+
+.pos--rel {
+  position: relative;
+}
+
+.d--blk {
+  display: block;
+}
+
 //Alignment
 .ta--r {
   text-align: right;
@@ -49,11 +62,19 @@
   color: $charcoal;
 }
 
+.c--char-lht {
+  color: lighten($charcoal, 40%);
+}
+
 .c--white {
   color: $white;
 }
 
 //Font Sizes
+.fz--12 {
+  font-size: 1.2rem;
+}
+
 .fz--14 {
   font-size: 1.4rem;
 }
@@ -69,6 +90,10 @@
 //Margins
 .m--0 {
   margin: 0;
+}
+
+.m--0auto {
+  margin: 0 auto;
 }
 
 .mt--0 {
@@ -135,8 +160,43 @@
   margin-bottom: 4rem;
 }
 
+.mr--4 {
+  margin-right: 4rem;
+}
+
+.ml--4 {
+  margin-left: 4rem;
+}
+
+.pr--1 {
+  padding-right: 1rem;
+}
+.pr--2 {
+  padding-right: 2rem;
+}
+
 //List Items
 .li--none {
   list-style: none;
 }
 
+.o-hide {
+  overflow: hidden;
+}
+
+.w--100 {
+  width: 100%;
+}
+
+.h--100 {
+  height: 100%;
+}
+
+.help-text {
+  display: block;
+  margin-top: -1rem;
+}
+
+.hide {
+  display: none;
+}

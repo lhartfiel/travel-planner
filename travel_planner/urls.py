@@ -27,7 +27,8 @@ from travel_users.views import UserLoginView, ProfileView, ProfileEditView, User
 from travel_group.views import TravelGroupListView, TravelGroupSingleView, TravelGroupCreateView, SightseeingEditView, \
     RestaurantEditView, MessageEditView, SightseeingAddView, SightseeingDeleteView, RestaurantDeleteView, \
     RestaurantAddView, TravelerAccommodationListView, MessageAddView, TravelGroupChecklistView, \
-    TravelGroupChecklistEditView, TravelGroupChecklistList, TravelGroupChecklistDelete, ChecklistViewSet
+    TravelGroupChecklistEditView, TravelGroupChecklistList, TravelGroupChecklistDelete, ChecklistViewSet, \
+    MessageDeleteView
 from travel_transportation.views import TransportationEditView, TransportationCreateView, TransportationListView, \
     TransportationDetailView, TransportationDeleteView
 
@@ -38,7 +39,7 @@ router.register(r'checklist', ChecklistViewSet)
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html'), name='home'),
-    path('accommodation-list/<slug:username>', AccommodationListView.as_view(), name="accommodation_list"),
+    path('accommodation-list/<username>', AccommodationListView.as_view(), name="accommodation_list"),
     path('accommodation-detail/<slug:username>/<pk>', AccommodationDetailView.as_view(), name="accommodation_detail"),
     path('accommodation-create', AccommodationCreateView.as_view(), name="accommodation_create"),
     path('accommodation-edit/<pk>', AccommodationEditView.as_view(), name="accommodation_edit"),
@@ -59,6 +60,7 @@ urlpatterns = [
     path('travel-group/restaurant-add/<int:id>', RestaurantAddView.as_view(), name="restaurant_add"),
     path('travel-group/<int:id>/message-edit/', MessageEditView.as_view(), name="message_edit"),
     path('travel-group/message-add/<int:id>', MessageAddView.as_view(), name="message_add"),
+    path('travel-group/message-delete/<int:pk>', MessageDeleteView.as_view(), name="message_delete"),
     path('travel-group/checklist-add/<int:id>/<slug:username>', TravelGroupChecklistView.as_view(), name="travel_checklist_create"),
     path('travel-group/checklist-edit/<int:pk>/<slug:username>', TravelGroupChecklistEditView.as_view(), name="travel_checklist_edit"),
     path('travel-group/checklist-update', TravelGroupChecklistEditView.as_view(), name="travel_checklist_update"),

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static compress%}
+
+{% block css %}
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/5.8.2/css/font-awesome.min.css" rel="stylesheet">
+{% compress css inline %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'accommodations/scss/accommodation.scss' %}">
+{% endcompress %}
+{% endblock %}

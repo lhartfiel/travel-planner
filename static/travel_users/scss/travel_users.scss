@@ -38,6 +38,16 @@
   max-width: 100%;
 }
 
+.profile-edit {
+  .flex--2:nth-child(6) {
+    margin-left: 0;
+  }
+
+  .flex--2:nth-child(7) {
+    margin-right: 0;
+  }
+}
+
 .user-meta {
 
   p {
@@ -147,4 +157,9 @@
 .transport__info,
 .travel__info {
   display: flex;
+}
+
+label[for="id_password"],
+#id_password{
+    display: block;
 }

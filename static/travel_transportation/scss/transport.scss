@@ -6,3 +6,16 @@
   }
 }
 
+
+.transport-wrap {
+  flex-basis: 100%;
+  &--sm {
+    flex-basis: calc(33.3% - 1.34rem);
+    margin-right: 2rem;
+
+    &:nth-of-type(3),
+    &:nth-of-type(7){
+      margin-right: 0;
+    }
+  }
+}

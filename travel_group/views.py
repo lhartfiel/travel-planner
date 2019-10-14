@@ -11,7 +11,7 @@ from travel_users.models import CustomUser
 from .models import TravelGroup, SightseeingIdeas, RestaurantIdeas, TravelMessages, ChecklistItems
 from .forms import GroupCreateForm, SightseeingFormSet, RestaurantFormSet, MessageFormSet, SightseeingEditForm, \
     SightseeingCreateForm, RestaurantEditForm, RestaurantCreateForm, MessageCreateForm, ChecklistCreateForm, \
-    ChecklistEditForm
+    ChecklistEditForm, MessageEditForm
 from django.http import HttpResponseRedirect, HttpResponseForbidden, JsonResponse
 import json
 
@@ -43,7 +43,7 @@ class TravelerAccommodationListView(ListView):
         username = self.kwargs['username']
         context = super().get_context_data(**kwargs)
         context['profile_user'] = username
-        context['accommodations'] = Accommodations.objects.filter(trip__id=self.kwargs['pk'], user__username=username)
+        context['accommodations'] = Accommodations.objects.filter(trip__id=self.kwargs['pk'], user__username=username).order_by('date_check_in')
         return context
 
 
@@ -205,7 +205,25 @@ class MessageAddView(CreateView):
 
 class MessageEditView(UpdateView):
     model = TravelMessages
+    form_class = MessageEditForm
     template_name = 'travel_group/message-edit.html'
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(TravelMessages, id=self.kwargs.get('id'))
+
+    def get_success_url(self):
+        return reverse('travel_group_single', kwargs={'pk': self.object.travel_group.pk})
+
+
+class MessageDeleteView(DeleteView):
+    model = TravelMessages
+    template_name = 'travel_group/message-delete.html'
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(TravelMessages, pk=self.kwargs.get('pk'))
+
+    def get_success_url(self):
+        return reverse('travel_group_single', kwargs={'pk': self.object.travel_group.id })
 
 
 class TravelGroupChecklistView(CreateView):
@@ -259,7 +277,6 @@ class TravelGroupChecklistEditView(UpdateView):
         return initial
 
     def get_success_url(self):
-        print('wrong')
         return reverse('travel_checklist_list', kwargs={'id': self.object.travel_group.id, 'username': self.request.user.username})
 
 

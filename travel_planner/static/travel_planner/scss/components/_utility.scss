@@ -58,6 +58,10 @@
   color: $tertiary;
 }
 
+.c--pur {
+  color: $purple;
+}
+
 .c--char {
   color: $charcoal;
 }
@@ -88,6 +92,10 @@
 }
 
 //Margins
+.ml--a {
+  margin-left: auto;
+}
+
 .m--0 {
   margin: 0;
 }
@@ -152,6 +160,11 @@
   margin-right: 2rem;
 }
 
+.ml--3 {
+  margin-left: 3rem;
+  margin-left: 3rem;
+}
+
 .mt--4 {
   margin-top: 4rem;
 }
@@ -164,11 +177,19 @@
   margin-right: 4rem;
 }
 
+.ml--4 {
+  margin-left: 4rem;
+}
+
 .pr--1 {
   padding-right: 1rem;
 }
 .pr--2 {
   padding-right: 2rem;
+}
+
+.pb--2 {
+  padding-bottom: 2rem;
 }
 
 //List Items

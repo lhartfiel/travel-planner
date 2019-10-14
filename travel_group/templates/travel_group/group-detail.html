@@ -140,9 +140,10 @@
                         <h2>Messages</h2>
                         <ul class="msgs">
                             {% for msg in travelgroup.messages.all %}
-                                <li class="msg-item mb--2">
+                                <li class="msg-item mb--4">
                                     <span class="msg__detail mb--1 fz--14">{{ msg.date_created_at }} &mdash; {{ msg.message_creator.first_name }} {{ msg.message_creator.last_name }}</span>
                                     <span class="msg">{{ msg|safe }}</span>
+                                    <span class="msg__links d--blk mt--1"><a class="c--sec fz--14" href="{% url 'message_edit' msg.pk %}">Edit | </a><a class="c--sec fz--14" href="{% url 'message_delete' msg.pk %}">Delete</a></span>
                                 </li>
                             {% endfor %}
                         </ul>

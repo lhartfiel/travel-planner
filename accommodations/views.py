@@ -1,4 +1,5 @@
-from audioop import reverse
+from django.urls import reverse
+from collections import OrderedDict
 
 from django.shortcuts import render
 from django.views.generic import DetailView, TemplateView, UpdateView, CreateView
@@ -19,7 +20,7 @@ class AccommodationListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         places = self.object_list.all()
-        places_dict = {}
+        places_dict = OrderedDict()
         for place in places:
             if place.trip not in places_dict:
                 places_dict[place.trip] = [place]
@@ -54,7 +55,7 @@ class AccommodationEditView(UpdateView):
         return context
 
     def get_success_url(self):
-        return reverse('accommodation_list', kwargs={'username': self.object.user.username, 'pk': self.object.pk})
+        return reverse('accommodation_list', kwargs={'username': self.object.user.username})
 
 
 class AccommodationDeleteView(TemplateView):

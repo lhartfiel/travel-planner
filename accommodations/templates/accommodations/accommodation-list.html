@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'accommodations/base.html' %}
 {% load static %}
 
 {% block body %}
@@ -9,40 +9,58 @@
                     <h2>Travel Accommodations for {{ user.first_name }} {{ user.last_name }}</h2>
                     <div class="place">
                         {% for key, place in places.items %}
-                            <h3>{{ key }}</h3>
-                            {% for accommodation in place %}
-                                <h4>{{ accommodation.name }}</h4>
-                                <a href="{% url 'accommodation_detail' user.username accommodation.pk %}">View Deets</a>
-                                <a href="{% url 'accommodation_edit' accommodation.pk %}">Edit Accommodation</a>
-                                <div class="accommodation__info">
-                                    <p>{{ accommodation.address }}, {{ accommodation.city }}
-                                        — {{ accommodation.country }}</p>
-                                    {% if accommodation.zip %}
-                                        <p>{{ accommodation.zip }}</p>
-                                    {% endif %}
-                                    {% if accommodation.phone %}
-                                        <p>{{ accommodation.phone }}</p>
+                            <div class="accommodation">
+                                <h3>{{ key }}</h3>
+                                 {% for accommodation in place %}
+                                    <div class="accommodation flex--wrap mb--2 ml--3 pb--2 {% if forloop.last %} no-border {% endif %}">
+                                {% if accommodation.name %}
+                                    <h4>{{ accommodation.name }}</h4>
+                                {% endif %}
+                                <div class="accommodation__wrap pos--rel">
+                                    <div class="num pos--abs fw--700">{{ forloop.counter }}</div>
+                                    <div class="accommodation__info">
+                                        <h3 class="m--0 c--sec">{{ accommodation.title }} ({{ accommodation.type }})</h3>
+                                        {% if accommodation.website %}
+                                            <a class="d--blk c--pur mt--1" href="{{ accommodation.website }}">{{ accommodation.website }}</a>
+                                        {% endif %}
+                                        <p class="mb--0">
+                                            <span class="fw--700">Address:</span>
+                                            <span class="d--blk">{{ accommodation.address }}</span>
+                                            <span class="d--blk">{{ accommodation.city }} — {{ accommodation.country }}</span>
+                                        </p>
+                                        {% if accommodation.zip %}
+                                            <p>{{ accommodation.zip }}</p>
+                                        {% endif %}
+                                        {% if accommodation.phone %}
+                                            <p>{{ accommodation.phone }}</p>
+                                        {% endif %}
+                                    </div>
+                                    <div class="accommodation__dates flex">
+                                        <p class="accommodation__date check-in mr--2"><span class="fw--700">Check-in: </span> {% if accommodation.date_check_in %}{{ accommodation.date_check_in }}{% else %}TBD{% endif %}</p>
+                                        <img
+                                            srcset="{% static 'travel_planner/images/icon-arrow-right.png' %} 1x, {% static 'travel_planner/images/icon-arrow-right.png' %} 2x"
+                                            src="{% static 'travel_planner/images/icon-arrow-right.png' %}"
+                                            alt="">
+                                        <p class="accommodation__date check-out ml--2"><span class="fw--700">Check-out: </span> {% if accommodation.date_check_out %}{{ accommodation.date_check_out }}{% else %}TBD{% endif %}</p>
+                                    </div>
+                                    {% if accommodation.notes %}
+                                        <p>Notes: {{ accommodation.notes }}</p>
                                     {% endif %}
                                 </div>
-                                <p class="accommodation__date check-in">Check-in:
-                                    {% if accommodation.date_check_in %}{{ accommodation.date_check_in }}{% else %}
-                                        TBD{% endif %}</p>
-                                <p class="accommodation__date check-out">Check-out:
-                                    {% if accommodation.date_check_out %}{{ accommodation.date_check_out }}{% else %}
-                                        TBD{% endif %}</p>
-                                {% if accommodation.type %}
-                                    <p>Type of accommodation: {{ accommodation.type }}</p>
-                                {% endif %}
-                                {% if accommodation.notes %}
-                                    <p>{{ accommodation.notes }}</p>
-                                {% endif %}
-                            {% endfor %}
-                            {% if user.is_authenticated and user.username == profile_user.username %}
-                                <div class="btn-wrap">
-                                    <a class="btn btn--sec" href="{% url 'accommodation_create' %}">Add
-                                        Accommodation</a>
+                                <div class="link-group flex--wrap ml--0">
+                                    <a class="c--sec pr--1" href="{% url 'accommodation_detail' user.username accommodation.pk %}">View Details |</a>
+                                    <a class="c--sec pr--1" href="{% url 'accommodation_edit' accommodation.pk %}">Edit Accommodation |</a>
+                                    <a class="c--sec pr--1" href="{% url 'accommodation_delete' accommodation.pk %}">Delete Accommodation</a>
                                 </div>
-                            {% endif %}
+                            </div>
+                        {% endfor %}
+                                {% if user.is_authenticated and user.username == profile_user.username %}
+                                    <div class="btn-wrap">
+                                        <a class="btn btn--sec" href="{% url 'accommodation_create' %}">Add
+                                            Accommodation</a>
+                                    </div>
+                                {% endif %}
+                            </div>
                         {% endfor %}
                     </div>
                 </div>
