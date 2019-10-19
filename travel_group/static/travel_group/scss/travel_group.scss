@@ -6,8 +6,10 @@
 }
 
 .trav--left {
-  flex-basis: 25%;
-  width: 25%;
+
+  @include bp(min, $bp-lg) {
+    flex-basis: 18%;
+  }
 }
 
 .user__photo-wrap {
@@ -34,7 +36,7 @@
 
 .traveler__info {
   flex-grow: 1;
-  margin-left: 3rem;
+  margin-left: 2rem;
 
   > h4 {
     margin-bottom: 0.5rem;

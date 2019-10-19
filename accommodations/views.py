@@ -19,8 +19,8 @@ class AccommodationListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        places = self.object_list.all()
-        places_dict = OrderedDict()
+        places = self.object_list.all().order_by('date_check_in')
+        places_dict = {}
         for place in places:
             if place.trip not in places_dict:
                 places_dict[place.trip] = [place]

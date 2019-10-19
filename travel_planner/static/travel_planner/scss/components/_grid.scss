@@ -12,6 +12,11 @@
     grid-template-columns: 2.5fr 1.75fr;
   }
 
+  &--split-sm {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+  }
+
   &--left {
     grid-column: 1 / 2;
     grid-row: 1;
@@ -26,6 +31,7 @@
     grid-column: 1/ -1;
   }
 }
+
 
 .container {
 
@@ -76,6 +82,10 @@
   flex-wrap: wrap;
 }
 
+.flex--col {
+  flex-direction: column;
+}
+
 .flex--full {
   flex-basis: 100%;
 }
@@ -99,6 +109,14 @@
   justify-content: space-between;
 }
 
+.j--start {
+  justify-content: flex-start;
+}
+
 .a--ctr {
   align-items: center;
+}
+
+.a--end {
+  align-items: flex-end;
 }

@@ -53,7 +53,7 @@ class TravelGroupSingleView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['messages'] = TravelMessages.objects.filter(travel_group=context.get('travelgroup'))
+        context['messages'] = TravelMessages.objects.filter(travel_group=context.get('travelgroup')).order_by('-date_created_at')
         context['message_form'] = MessageCreateForm(initial={'message_creator': self.request.user, 'travel_group': context.get('travelgroup')})
         return context
 

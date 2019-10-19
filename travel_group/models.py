@@ -19,6 +19,7 @@ class TravelGroup(models.Model):
         group = self.objects.all()
         return group
 
+
     def __str__(self):
         return self.trip_name
 
