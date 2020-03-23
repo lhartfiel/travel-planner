@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static from staticfiles %}
+{% load static %}
 {% load compress %}
 
 {% block head %}
@@ -53,8 +53,7 @@
                                                         srcset="{% static 'travel_planner/images/icon-location.png' %} 1x,  {% static 'travel_planner/images/icon-location@2x.png' %} 2x"
                                                         src="{% static 'travel_planner/images/icon-location.png' %}"
                                                         alt="Map marker">
-                                                <span class="ml--1">{{ traveler.city }}{% if traveler.state %}
-                                                    ,{% endif %} {{ traveler.state }}</span>
+                                                <span class="ml--1">{{ traveler.city }}{% if traveler.state %},{% endif %} {{ traveler.state }}</span>
                                             </li>
                                         {% endif %}
                                         {% if traveler.phone %}

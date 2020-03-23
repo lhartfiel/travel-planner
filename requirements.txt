@@ -1,8 +1,8 @@
 djangorestframework
 django
-django-compressor==2.2
+django-compressor==2.4
 django-libsass
 django-phonenumber-field
 mysql-connector-python
 phonenumbers
-pillow
+pillow==6.0.0

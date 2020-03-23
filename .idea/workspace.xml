@@ -2,14 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="40d5bcd9-ea47-4f31-8daa-260e4fc22522" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/35d5a997-cc14-4d51-9efa-bcdd9aeedf27.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/35d5a997-cc14-4d51-9efa-bcdd9aeedf27.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/travel_planner.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/travel_planner.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accommodations/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accommodations/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_group/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_group/static/travel_group/scss/travel_group.scss" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/static/travel_group/scss/travel_group.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose-mysql.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose-mysql.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel_group/templates/travel_group/checklist-edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/checklist-edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel_group/templates/travel_group/checklist-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/checklist-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel_group/templates/travel_group/group-create.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/group-create.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/travel_group/templates/travel_group/group-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/group-detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_group/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_planner/static/travel_planner/scss/components/_grid.scss" beforeDir="false" afterPath="$PROJECT_DIR$/travel_planner/static/travel_planner/scss/components/_grid.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_planner/static/travel_planner/scss/components/_utility.scss" beforeDir="false" afterPath="$PROJECT_DIR$/travel_planner/static/travel_planner/scss/components/_utility.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel_planner/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_planner/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel_users/templates/travel_users/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_users/templates/travel_users/edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel_users/templates/travel_users/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_users/templates/travel_users/signup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel_users/templates/travel_users/signup_success.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_users/templates/travel_users/signup_success.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,6 +47,12 @@
         <item name="travel" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="travel" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="travel_db: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
     </expand>
     <select />
   </component>
@@ -65,7 +80,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -189,6 +204,28 @@
       <option name="OPTIONS" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="manage" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="travel_planner" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/manage.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="tests" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="travel_planner" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -219,8 +256,8 @@
         <env name="PYTHONUNBUFFERED" value="1" />
         <env name="DJANGO_SETTINGS_MODULE" value="travel_planner.settings" />
       </envs>
-      <option name="SDK_HOME" value="$USER_HOME$/.virtualenvs/affiliates2/djangotest/travel_planner/bin/python" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="SDK_HOME" value="$PROJECT_DIR$/.venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -241,6 +278,7 @@
       <item itemvalue="Django tests.Test: travel_group.tests.TestTravelGroup" />
       <item itemvalue="Django tests.Test: travel_group.tests.TestTravelGroup.test_user" />
       <item itemvalue="Django tests.Test: travel_group.tests.TestTravelGroup.test_travel_group" />
+      <item itemvalue="Python.manage" />
       <item itemvalue="Python.tests" />
     </list>
     <recent_temporary>
@@ -252,6 +290,26 @@
         <item itemvalue="Python.tests" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@abc95f3d" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@abc95f3d" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@441b8196" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+          </expand>
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -299,7 +357,17 @@
       <workItem from="1570915125645" duration="22444000" />
       <workItem from="1571238702034" duration="708000" />
       <workItem from="1571511319842" duration="3172000" />
-      <workItem from="1571516385831" duration="2539000" />
+      <workItem from="1571516385831" duration="3826000" />
+      <workItem from="1580271073400" duration="62000" />
+      <workItem from="1580271210584" duration="37000" />
+      <workItem from="1582159023674" duration="712000" />
+      <workItem from="1584321770614" duration="2255000" />
+      <workItem from="1584324299424" duration="1221000" />
+      <workItem from="1584325782146" duration="2594000" />
+      <workItem from="1584328512962" duration="2102000" />
+      <workItem from="1584365744745" duration="3035000" />
+      <workItem from="1584391276315" duration="1887000" />
+      <workItem from="1584916233726" duration="2855000" />
     </task>
     <servers />
   </component>
@@ -347,6 +415,7 @@
     <SUITE FILE_PATH="coverage/travel_planner$Test__travel_group_tests_TestTravelGroup_test_travel_group.coverage" NAME="Test: travel_group.tests.TestTravelGroup.test_travel_group Coverage Results" MODIFIED="1562017945995" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/travel_planner$tests.coverage" NAME="tests Coverage Results" MODIFIED="1562017412304" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/travel_planner" />
     <SUITE FILE_PATH="coverage/travel_planner$Test__travel_group_tests_TestTravelGroup.coverage" NAME="Test: travel_group.tests.TestTravelGroup Coverage Results" MODIFIED="1562017513628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/travel_planner$manage.coverage" NAME="manage Coverage Results" MODIFIED="1584323150733" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="masterDetails">
     <states>
