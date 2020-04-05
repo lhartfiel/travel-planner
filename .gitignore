@@ -84,7 +84,8 @@ target/
 *.pyc
 __pycache__/
 
-settings/
+settings/*
+travel_planner/settings/*
 local_settings.py
 settings/development.py
 settings/defaults.py
