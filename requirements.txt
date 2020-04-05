@@ -3,6 +3,7 @@ django
 django-compressor==2.4
 django-libsass
 django-phonenumber-field
+django-richtextfield==1.5.0
 mysql-connector-python
 phonenumbers
 pillow==6.0.0

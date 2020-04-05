@@ -18,11 +18,18 @@
                     <img src="{% static 'travel_planner/images/curacao-bw.jpg' %}" alt="">
                 </div>
                 <h1 class="tac c--white">My Travel Groups</h1>
+				{% if trips|length == 0 %}
+					<h2 class="c--white ta--c fw--500">You don't have any trips created</h2>
+					<div class="btn-wrap ta--c">
+						<a href="{% url 'travel_group_create' %}" class="btn btn--sec ta--c">Create Travel Group</a>
+					</div>
+				{% endif %}
             </div>
             <div class="container container--narrow container--center">
                 <div class="trip-list flex--wrap ">
-                    {% for trip in trips %}
-                        <div class="trip flex--wrap flex--2 container--white">
+					{% if trips|length > 0 %}
+                    	{% for trip in trips %}
+                        	<div class="trip flex--wrap flex--2 container--white">
                             <h3 class="trip__name fw-500"><span>{{ trip.trip_name }}</span></h3>
                             {% for traveler in trip.travelers.all %}
                                 <li class="li--none mb--1">{{ traveler }} | <a href="{% url 'profile' traveler.username %}" class="c--sec">View Profile</a></li>
@@ -31,7 +38,8 @@
                             <a href="{% url 'travel_group_single' trip.id %}" class="btn btn--ter" with trip=trip>View Trip</a>
                             </div>
                         </div>
-                    {% endfor %}
+                    	{% endfor %}
+					{% endif %}
                 </div>
             </div>
     </div>

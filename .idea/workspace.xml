@@ -2,23 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="40d5bcd9-ea47-4f31-8daa-260e4fc22522" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/accommodations/fixtures/accommodate_db.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel-planner" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel-planner/settings/settings_prod.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel_group/fixtures/group_db.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel_planner/fixtures/planner_db.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel_planner/settings/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel_planner/settings/development.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel_transportation/fixtures/transport_db.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel_users/fixtures/users_db.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/35d5a997-cc14-4d51-9efa-bcdd9aeedf27.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/35d5a997-cc14-4d51-9efa-bcdd9aeedf27.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/travel_planner.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/travel_planner.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose-mysql.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose-mysql.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_group/templates/travel_group/checklist-edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/checklist-edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_group/templates/travel_group/checklist-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/checklist-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_group/templates/travel_group/group-create.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/group-create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_group/templates/travel_group/group-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/group-detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_planner/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_planner/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_users/templates/travel_users/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_users/templates/travel_users/edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_users/templates/travel_users/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_users/templates/travel_users/signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_users/templates/travel_users/signup_success.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_users/templates/travel_users/signup_success.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel-planner/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel-planner/settings/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel-planner/travel_planner/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel-planner/travel_planner/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel_group/templates/travel_group/group-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/group-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel_planner/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_planner/settings/defaults.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel_planner/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_planner/tests.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,6 +44,21 @@
     <expand>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="Django default" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="Django default" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="Django default" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="travel_db: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="travel" type="feb32156:DbDataSourceImpl" />
       </path>
       <path>
@@ -59,6 +78,13 @@
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -71,7 +97,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="CSS" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/travel_planner" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -80,15 +106,22 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/travel_planner" />
+      <recent name="$PROJECT_DIR$/travel-planner/data" />
+      <recent name="$PROJECT_DIR$/travel-planner/static" />
+      <recent name="$PROJECT_DIR$/travel-planner/templates" />
+      <recent name="$PROJECT_DIR$/travel-planner" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/travel_planner/settings" />
+      <recent name="$PROJECT_DIR$/travel-planner/settings" />
+      <recent name="$PROJECT_DIR$/travel-planner/data/media" />
       <recent name="$PROJECT_DIR$/accommodations/static/accommodations/scss" />
       <recent name="$PROJECT_DIR$/travel_transportation/static/travel_transportation/scss" />
-      <recent name="$PROJECT_DIR$/accommodations/templates/accommodations" />
-      <recent name="$PROJECT_DIR$/travel_planner/static/travel_planner/scss/font-awesome" />
-      <recent name="$PROJECT_DIR$/travel_group/templates/travel_group" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -254,7 +287,7 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
-        <env name="DJANGO_SETTINGS_MODULE" value="travel_planner.settings" />
+        <env name="DJANGO_SETTINGS_MODULE" value="travel_planner.settings.development" />
       </envs>
       <option name="SDK_HOME" value="$PROJECT_DIR$/.venv/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -265,7 +298,7 @@
       <option name="port" value="8001" />
       <option name="host" value="127.0.0.1" />
       <option name="additionalOptions" value="" />
-      <option name="browserUrl" value="" />
+      <option name="browserUrl" value="http://127.0.0.1:8001/" />
       <option name="runTestServer" value="false" />
       <option name="runNoReload" value="false" />
       <option name="useCustomRunCommand" value="false" />
@@ -367,7 +400,11 @@
       <workItem from="1584328512962" duration="2102000" />
       <workItem from="1584365744745" duration="3035000" />
       <workItem from="1584391276315" duration="1887000" />
-      <workItem from="1584916233726" duration="2855000" />
+      <workItem from="1584916233726" duration="4257000" />
+      <workItem from="1584927688394" duration="4963000" />
+      <workItem from="1585521804580" duration="11422000" />
+      <workItem from="1586033145362" duration="11054000" />
+      <workItem from="1586052691815" duration="5643000" />
     </task>
     <servers />
   </component>
@@ -402,10 +439,13 @@
         <watch expression="self.user.trav_groups.all()" language="Python" />
       </configuration>
       <configuration name="Python.DjangoServer">
-        <watch expression="request" language="Python" />
-        <watch expression="user" language="Python" />
-        <watch expression="travel_group_messages" language="HTML" />
-        <watch expression="msg.date_created_at" language="Python" />
+        <watch expression="os.environ" language="Python" />
+        <watch expression="SECRET_KEY" language="Python" />
+        <watch expression="os.environ.get('SECRET_KEY')" language="Python" />
+        <watch expression="os" language="Python" />
+        <watch expression="os.environ['SECRET_KEY']" language="Python" />
+        <watch expression="os.environ['SECRET_KEY']" language="Python" />
+        <watch expression="DIRS" language="Python" />
       </configuration>
     </watches-manager>
   </component>
