@@ -2,27 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="40d5bcd9-ea47-4f31-8daa-260e4fc22522" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/accommodations/fixtures/accommodate_db.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/travel-planner" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/travel-planner/settings/settings_prod.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/travel_group/fixtures/group_db.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/travel_planner/fixtures/planner_db.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/travel_planner/settings/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/travel_planner/settings/development.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/travel_transportation/fixtures/transport_db.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/travel_users/fixtures/users_db.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/35d5a997-cc14-4d51-9efa-bcdd9aeedf27.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/35d5a997-cc14-4d51-9efa-bcdd9aeedf27.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/travel-planner/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel-planner/settings/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/travel-planner/travel_planner/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel-planner/travel_planner/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_group/templates/travel_group/group-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/group-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_planner/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_planner/settings/defaults.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_planner/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_planner/tests.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -404,7 +388,7 @@
       <workItem from="1584927688394" duration="4963000" />
       <workItem from="1585521804580" duration="11422000" />
       <workItem from="1586033145362" duration="11054000" />
-      <workItem from="1586052691815" duration="5643000" />
+      <workItem from="1586052691815" duration="5948000" />
     </task>
     <servers />
   </component>
