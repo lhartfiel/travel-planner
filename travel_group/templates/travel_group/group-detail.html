@@ -17,6 +17,7 @@
             <h1 class="group__head c--white grid--full ta--c">{{ travelgroup.trip_name }}</h1>
             <div class="container container--narrow container--white mt--0">
                 <div class="grid--full">
+					<a href="{% url 'travel_group_edit' travelgroup.pk %}" class="btn btn--sec">Edit Travel Group</a>
                     <h2 class="ta--l">Travelers:</h2>
 
                     {% for traveler in object.travelers.all %}

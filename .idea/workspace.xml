@@ -2,11 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="40d5bcd9-ea47-4f31-8daa-260e4fc22522" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/travel-planner/settings/settings_prod.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel-planner/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel-planner/settings/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel-planner/.env-local" beforeDir="false" afterPath="$PROJECT_DIR$/travel-planner/.env-local" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel-planner/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel-planner/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel-planner/travel_group/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel-planner/travel_group/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel-planner/travel_planner/settings.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/travel-planner/travel_planner/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel-planner/travel_planner/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel-planner/travel_planner/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel-planner/travel_planner/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel_group/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel_group/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel_group/templates/travel_group/group-create.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/group-create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel_group/templates/travel_group/group-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/group-detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel_group/templates/travel_group/group-edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/group-edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel_group/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel_planner/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_planner/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -101,11 +110,11 @@
       <recent name="$PROJECT_DIR$/travel-planner" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/travel-planner" />
       <recent name="$PROJECT_DIR$/travel_planner/settings" />
       <recent name="$PROJECT_DIR$/travel-planner/settings" />
       <recent name="$PROJECT_DIR$/travel-planner/data/media" />
       <recent name="$PROJECT_DIR$/accommodations/static/accommodations/scss" />
-      <recent name="$PROJECT_DIR$/travel_transportation/static/travel_transportation/scss" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -388,7 +397,7 @@
       <workItem from="1584927688394" duration="4963000" />
       <workItem from="1585521804580" duration="11422000" />
       <workItem from="1586033145362" duration="11054000" />
-      <workItem from="1586052691815" duration="6230000" />
+      <workItem from="1586052691815" duration="20328000" />
     </task>
     <servers />
   </component>
@@ -423,13 +432,20 @@
         <watch expression="self.user.trav_groups.all()" language="Python" />
       </configuration>
       <configuration name="Python.DjangoServer">
-        <watch expression="os.environ" language="Python" />
-        <watch expression="SECRET_KEY" language="Python" />
-        <watch expression="os.environ.get('SECRET_KEY')" language="Python" />
-        <watch expression="os" language="Python" />
-        <watch expression="os.environ['SECRET_KEY']" language="Python" />
-        <watch expression="os.environ['SECRET_KEY']" language="Python" />
         <watch expression="DIRS" language="Python" />
+        <watch expression="CustomUser.objects.get(username='lin')" language="Python" />
+        <watch expression="form.is_valid()" language="Python" />
+        <watch expression="traveler" language="Python" />
+        <watch expression="data.is_valid()" language="Python" />
+        <watch expression="self.form_invalid(form, sightseeing_form, restaurant_form, message_form)" language="Python" />
+        <watch expression="sightseeing_form.is_valid()" language="Python" />
+        <watch expression="data.is_valid()" language="Python" />
+        <watch expression="form_copy" language="Python" />
+        <watch expression="request.POST" language="Python" />
+        <watch expression="self.object.pk" language="Python" />
+        <watch expression="form.data['travelers']" language="Python" />
+        <watch expression="users" language="Python" />
+        <watch expression="self.object" language="Python" />
       </configuration>
     </watches-manager>
   </component>

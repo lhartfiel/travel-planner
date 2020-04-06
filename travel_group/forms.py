@@ -1,6 +1,6 @@
 from typing import Type, Optional, Any, Callable, Iterable
 
-from django.forms import ModelForm, BaseModelFormSet, BaseModelForm, HiddenInput
+from django.forms import ModelForm, BaseModelFormSet, BaseModelForm, HiddenInput, TextInput
 from django import forms
 from django.forms.utils import ErrorList
 from django.shortcuts import get_object_or_404
@@ -16,7 +16,9 @@ class GroupCreateForm(ModelForm):
     class Meta:
         model = TravelGroup
         fields = ['travelers', 'trip_name']
-
+        widgets = {
+            'travelers': TextInput(attrs={'size': '40', 'title': 'Type first and last name of traveler'}),
+        }
 
 class SightseeingCreateForm(ModelForm):
 

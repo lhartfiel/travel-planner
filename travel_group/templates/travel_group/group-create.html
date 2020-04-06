@@ -9,7 +9,15 @@
                 <h2 class="ta--c">Create new Travel Group</h2>
                 <form action="" method="post">
                     {% csrf_token %}
-                    {{ form.as_p }}
+					<div class="fieldWrapper">
+						<label for="{{ form.trip_name.id }}">Trip Name:</label>
+						{{ form.trip_name }}
+					</div>
+					<div class="fieldWrapper">
+						<label for="{{ form.travelers.id }}">Traveler username:</label>
+						<p class="fz--12">Multiple travelers must be comma-separated (username1, username2, etc)</p>
+						{{ form.travelers }}
+					</div>
                     <fieldset>
                         <legend>Sightseeing Ideas</legend>
                         {{ sightseeing_form.management_form }}

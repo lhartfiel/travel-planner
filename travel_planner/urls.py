@@ -28,7 +28,7 @@ from travel_group.views import TravelGroupListView, TravelGroupSingleView, Trave
     RestaurantEditView, MessageEditView, SightseeingAddView, SightseeingDeleteView, RestaurantDeleteView, \
     RestaurantAddView, TravelerAccommodationListView, MessageAddView, TravelGroupChecklistView, \
     TravelGroupChecklistEditView, TravelGroupChecklistList, TravelGroupChecklistDelete, ChecklistViewSet, \
-    MessageDeleteView
+    MessageDeleteView, TravelGroupEditView
 from travel_transportation.views import TransportationEditView, TransportationCreateView, TransportationListView, \
     TransportationDetailView, TransportationDeleteView
 
@@ -52,6 +52,7 @@ urlpatterns = [
     path('signup/', UserSignupView.as_view(), name="signup"),
     path('signup/success/', UserSignupSuccessView.as_view(), name="signup_success"),
     path('travel-group/create/', TravelGroupCreateView.as_view(), name="travel_group_create"),
+    path('travel-group/edit/<int:pk>', TravelGroupEditView.as_view(), name="travel_group_edit"),
     path('travel-group/sightseeing-edit/<int:pk>/', SightseeingEditView.as_view(), name="sightseeing_edit"),
     path('travel-group/sightseeing-add/<int:pk>', SightseeingAddView.as_view(), name="sightseeing_add"),
     path('travel-group/sightseeing-delete/<int:pk>', SightseeingDeleteView.as_view(), name="sightseeing_delete"),

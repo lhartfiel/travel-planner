@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.views import View
@@ -82,12 +83,25 @@ class TravelGroupCreateView(CreateView):
         form = self.get_form(form_class)
         data = request.POST.copy()
         data['messages-0-message_creator'] = self.request.user.id
+        data['travelers'] = form.data['travelers']
+        user_logged_in = self.request.user.username
+        try:
+            users = data['travelers'].split(", ")
+            users.append(user_logged_in)
+            user_obj = CustomUser.objects.filter(username__in=users)
+            data['travelers'] = user_obj #this must be a list
+        except ObjectDoesNotExist:
+            pass
+        request.POST = data
+        form = GroupCreateForm(self.request.POST)
         sightseeing_form = SightseeingFormSet(self.request.POST)
         restaurant_form = RestaurantFormSet(self.request.POST)
         message_form = MessageFormSet(data)
-        if form.is_valid() and sightseeing_form.is_valid() and restaurant_form.is_valid() and message_form.is_valid():
+        if form.is_valid() and sightseeing_form.is_valid() and restaurant_form.is_valid() and \
+                message_form.is_valid():
             return self.form_valid(form, sightseeing_form, restaurant_form, message_form)
         else:
+            self.form_invalid(form, sightseeing_form, restaurant_form, message_form)
             return self.form_invalid(form, sightseeing_form, restaurant_form, message_form)
 
     def form_valid(self, form, sightseeing_form, restaurant_form, message_form):
@@ -106,6 +120,15 @@ class TravelGroupCreateView(CreateView):
     def get_success_url(self):
         return reverse('travel_group_single', kwargs={'pk': self.object.id})
 
+
+class TravelGroupEditView(UpdateView):
+    model = TravelGroup
+    fields = ['travelers', 'trip_name']
+    template_name = 'travel_group/group-edit.html'
+
+    def get_success_url(self):
+        self.object
+        return reverse('travel_group_single', kwargs={'pk': self.object.id})
 
 class SightseeingAddView(CreateView):
     model = SightseeingIdeas
@@ -189,11 +212,12 @@ class MessageAddView(CreateView):
         message_group = form.cleaned_data.get('travel_group').trip_name
         message_group_id = form.cleaned_data.get('travel_group').id
         travelers = CustomUser.objects.filter(trav_groups=message_group_id)
+        message_creator = self.request.user.first_name + ' ' + self.request.user.last_name
         traveler_emails = []
         for traveler in travelers:
             traveler_emails.append(traveler.email)
         subject = 'A new message has been posted in ' + message_group
-        message = message_body
+        message = message_creator + ' wrote: ' + message_body
         email_from = settings.EMAIL_HOST_USER
         recipient_list = traveler_emails
         send_mail(subject, message, email_from, recipient_list)
