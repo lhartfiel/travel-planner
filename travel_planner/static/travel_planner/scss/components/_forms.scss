@@ -1,3 +1,56 @@
+.form-outer {
+  border-top: 2.4rem solid $secondary;
+
+  &:first-of-type {
+    margin-top: -6rem;
+  }
+}
+
+.form__bkg {
+    background-image: url('../images/curacao-bw.jpg');
+    background-size: cover;
+    background-position: 50%;
+    height: 100%;
+
+    .fieldBox {
+      background: $white;
+      border-top: 2.4rem $secondary solid;
+      border-radius: 4px;
+      box-shadow: 0 0 5px rgba(gray, 0.6);
+    }
+
+    label {
+      color: $gray;
+    }
+
+    &:after {
+      background-image: linear-gradient(180deg, #3431A0 0%, #15A09A 100%);
+      bottom: 0;
+      content: "";
+      left: 0;
+      opacity: 0.8;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+}
+
+.form--block {
+  color: $white;
+
+  &:before {
+    background: $purple;
+    border-radius: 4px;
+    content: "";
+    height: 80%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: -1;
+  }
+}
+
 input,
 textarea,
 label,
@@ -42,8 +95,8 @@ select {
 }
 
 input[type="submit"] {
-  background: #e65a54;
-  border: none;
+  background: $tertiary;
+  border: 1px solid $tertiary;
   box-shadow: none;
   color: #fff;
   cursor: pointer;
@@ -54,7 +107,7 @@ input[type="submit"] {
   margin-bottom: 0;
   padding: 10px 16px;
   transition: 0.3s ease-out all;
-  width: auto;
+  width: 100%;
 
   &:hover {
     border: 1px solid #e65a54;

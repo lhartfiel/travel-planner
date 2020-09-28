@@ -5,7 +5,8 @@ from django import forms
 from django.forms.utils import ErrorList
 from django.shortcuts import get_object_or_404
 
-from travel_group.models import TravelGroup, SightseeingIdeas, RestaurantIdeas, TravelMessages, ChecklistItems
+from travel_group.models import TravelGroup, SightseeingIdeas, RestaurantIdeas, TravelMessages, ChecklistItems, \
+    UnsplashPhotos
 from django.forms.models import inlineformset_factory
 
 from travel_users.models import CustomUser
@@ -15,7 +16,7 @@ class GroupCreateForm(ModelForm):
 
     class Meta:
         model = TravelGroup
-        fields = ['travelers', 'trip_name']
+        fields = ['travelers', 'trip_name', 'primary_destination', 'photo']
         widgets = {
             'travelers': TextInput(attrs={'size': '40', 'title': 'Type first and last name of traveler'}),
         }

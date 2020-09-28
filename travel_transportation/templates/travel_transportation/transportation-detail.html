@@ -23,9 +23,12 @@
                     {% if object.type %}
                         <p class="fw--700">Type: <span>{{ object.type }}</span></p>
                     {% endif %}
-                    {% if object.flight_no or object.carrier %}
-                        <p class="rw--700">Carrier: {{ object.carrier }} {% if object.flight_no %} | {% endif %} Flight no: {{ object.flight_no }}</p>
+                    {% if object.flight_no  %}
+                        <p class="rw--700">Flight no: {{ object.flight_no }}</p>
                     {% endif %}
+					{% if object.carrier %}
+						<p class="rw--700">Carrier: {{ object.carrier }}</p>
+					{% endif %}
                 </div>
                 <div class="transport-wrap f--wrap mb--4">
                     <div class="transport transport--depart">

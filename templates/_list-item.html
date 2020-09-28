@@ -1,0 +1,47 @@
+<div class="blk--shadow list-item flex--wrap mb--4 pos--rel">
+	<div class="img-wrap">
+		<img class="item-img" src=
+				"{% static 'travel_planner/images/travel-zipline.png' %}"
+			 alt="Zipline">
+	</div>
+	<div class="item-cnt p--2 pos--rel">
+		<h3 class="m--0 c--char">{{ group.grouper.trip_name }}</h3>
+		{% for transport in group.list %}
+			<div class="item-wrap pos--rel">
+				<div class="item-inner mt--2 pb--2">
+					<ul class="transport-list">
+						<li class="li--none mb--1 mt--2 fz--22">
+							<span class="fw--700 fz--22 c--sec">{{ transport.name }}</span>
+						</li>
+						<li class="li--none">
+							{{ transport.departure_city }}
+							<img
+							srcset="{% static 'travel_planner/images/icon-arrow-right.png' %} 1x, {% static 'travel_planner/images/icon-arrow-right.png' %} 2x"
+							src="{% static 'travel_planner/images/icon-arrow-right.png' %}"
+							alt="">
+							{{ transport.arrival_city }}</li>
+					</ul>
+					{% if user.username == user_profile.username %}
+						<div class="link-group flex--wrap ml--0 mt--3">
+							<a class="c--sec pr--1 fz--14" hre
+							   f="{% url 'transportation_edit' transport.pk %}">Edit Info |</a>
+							<a class="c--sec pr--1 fz--14" hr
+							   ef="{% url 'transportation_delete' transport.pk %}">Delete Info</a>
+						</div>
+					{% endif %}
+					<a class="item-link c--white pos--abs" href="
+{% url 'transportation_detail' transport.user.username transport.pk %}">
+						<img src="
+{% static 'travel_planner/images/icon-arrow-right.svg' %}" alt="Arrow right">
+					</a>
+				</div>
+			</div>
+		{% endfor %}
+		{% if group.list|length > 1 %}
+			<a class="btn-accord cnt__accord-link pos--abs c--white pos--abs" href="javascript:void();">
+				<img src="
+{% static 'travel_planner/images/icon-arrow-down-white.svg' %}" alt="Arrow down">
+			</a>
+		{% endif %}
+	</div>
+</div>

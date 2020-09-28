@@ -8,8 +8,20 @@ from accommodations.models import Accommodations
 from travel_transportation.models import Transportation
 
 
+class UnsplashPhotos(models.Model):
+    photo = models.CharField(max_length=400, blank=True)
+    photo_attribution = models.CharField(max_length=600, blank=True)
+    travel_group = models.ForeignKey('TravelGroup', related_name='unsplash_photo', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.photo
+
+
 class TravelGroup(models.Model):
     accommodations = models.ForeignKey(Accommodations, related_name='accommodation', on_delete=models.SET_NULL, null=True, blank=True)
+    photo = models.ForeignKey(UnsplashPhotos, related_name='display_photo', on_delete=models.SET_NULL, null=True,
+                              blank=True)
+    primary_destination = models.CharField(max_length=200, null=False, blank=False, default='')
     transportation = models.ForeignKey(Transportation, related_name='transportation', on_delete=models.SET_NULL,
                                        null=True, blank=True)
     travelers = models.ManyToManyField('travel_users.CustomUser', related_name='trav_groups')
@@ -38,6 +50,8 @@ class ChecklistItems(models.Model):
 
 class SightseeingIdeas(models.Model):
     sightseeing_idea = RichTextField(blank=True)
+    sightseeing_creator = models.ForeignKey('travel_users.CustomUser', related_name='sightseeing_creator',
+                                            on_delete=models.CASCADE, default=1)
     travel_group = models.ForeignKey('TravelGroup', related_name='sightseeing_ideas', on_delete=models.CASCADE)
 
     class Meta:
@@ -49,6 +63,8 @@ class SightseeingIdeas(models.Model):
 
 class RestaurantIdeas(models.Model):
     restaurant_idea = RichTextField(blank=True)
+    restaurant_creator = models.ForeignKey('travel_users.CustomUser', related_name='restaurant_creator',
+                                            on_delete=models.CASCADE, default=1)
     travel_group = models.ForeignKey('TravelGroup', related_name='restaurant_ideas', on_delete=models.CASCADE)
 
     class Meta:

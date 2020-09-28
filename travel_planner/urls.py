@@ -20,19 +20,22 @@ from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
+from travel_group import views
 
 from accommodations.views import AccommodationListView, AccommodationDetailView, AccommodationCreateView, \
-    AccommodationEditView, AccommodationDeleteView
-from travel_users.views import UserLoginView, ProfileView, ProfileEditView, UserSignupView, UserSignupSuccessView, UserLogoutView
+    AccommodationEditView, AccommodationDeleteView, AccommodationListTravelGroupView
+from travel_users.views import UserLoginView, ProfileView, ProfileEditView, UserSignupView, UserSignupSuccessView, \
+    UserLogoutView, ChecklistAllView
 from travel_group.views import TravelGroupListView, TravelGroupSingleView, TravelGroupCreateView, SightseeingEditView, \
     RestaurantEditView, MessageEditView, SightseeingAddView, SightseeingDeleteView, RestaurantDeleteView, \
     RestaurantAddView, TravelerAccommodationListView, MessageAddView, TravelGroupChecklistView, \
     TravelGroupChecklistEditView, TravelGroupChecklistList, TravelGroupChecklistDelete, ChecklistViewSet, \
-    MessageDeleteView, TravelGroupEditView
+    MessageDeleteView, TravelGroupEditView, TravelGroupImage
 from travel_transportation.views import TransportationEditView, TransportationCreateView, TransportationListView, \
     TransportationDetailView, TransportationDeleteView
 
 from rest_framework import routers
+
 router = routers.DefaultRouter()
 router.register(r'checklist', ChecklistViewSet)
 
@@ -40,6 +43,8 @@ router.register(r'checklist', ChecklistViewSet)
 urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html'), name='home'),
     path('accommodation-list/<username>', AccommodationListView.as_view(), name="accommodation_list"),
+    path('accommodation-list/for/<username>/<int:pk>', AccommodationListTravelGroupView.as_view(),
+         name="accommodation_list_travelgroup"),
     path('accommodation-detail/<slug:username>/<pk>', AccommodationDetailView.as_view(), name="accommodation_detail"),
     path('accommodation-create', AccommodationCreateView.as_view(), name="accommodation_create"),
     path('accommodation-edit/<pk>', AccommodationEditView.as_view(), name="accommodation_edit"),
@@ -49,6 +54,7 @@ urlpatterns = [
     path('logout/', UserLogoutView.as_view(), name='logout'),
     path('profile/<slug:username>/', ProfileView.as_view(), name="profile"),
     path('edit/<slug:username>/', ProfileEditView.as_view(), name='edit'),
+    path('checklists/for/<slug:username>/', ChecklistAllView.as_view(), name="checklists"),
     path('signup/', UserSignupView.as_view(), name="signup"),
     path('signup/success/', UserSignupSuccessView.as_view(), name="signup_success"),
     path('travel-group/create/', TravelGroupCreateView.as_view(), name="travel_group_create"),
@@ -77,6 +83,7 @@ urlpatterns = [
     path('transportation-delete/<int:pk>', TransportationDeleteView.as_view(), name="transportation_delete"),
     path('djrichtextfield/', include('djrichtextfield.urls')),
     path('api/', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls'))
+    path('api-auth/', include('rest_framework.urls')),
+    path('api-unsplash/', TravelGroupImage.as_view(), name="unsplash"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

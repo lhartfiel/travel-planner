@@ -12,155 +12,203 @@
 {% endblock %}
 
 {% block body %}
-    <div class="body-wrap">
-        <div class="img-wrap img-wrap--main">
-            <h1 class="group__head c--white grid--full ta--c">{{ travelgroup.trip_name }}</h1>
-            <div class="container container--narrow container--white mt--0">
-                <div class="grid--full">
-					<a href="{% url 'travel_group_edit' travelgroup.pk %}" class="btn btn--sec">Edit Travel Group</a>
-                    <h2 class="ta--l">Travelers:</h2>
+<div class="body-wrap mb--3">
+	<div class="hero hero--lg hero__profile pos--rel o-hide z--10">
+		<img src="{% static 'travel_planner/images/curacao-bw.jpg' %}" alt="Curacao" class="hero__bkg pos--abs
+		w--100">
+		<div class="container container--max container--center">
+			 <h1 class="group__head pos--rel c--white grid--full ta--c z--10">{{ travelgroup.trip_name }}</h1>
+		</div>
+	</div>
+	<div class="container container--max">
+		<div class="grid--2col mt--2">
+			<div class="left">
+				<div class="blk--shadow p--2">
+					<h4 class="upcase c--sec mt--1 mb--4 fz--18 b-bot--sec">Travelers</h4>
+					{% for traveler in object.travelers.all %}
+						<div class="f--wrap traveler mt--2">
+							<div class="trav--left">
+								<div class="user__photo-wrap">
+								{% if traveler.profile_photo %}
+									<img class="user__photo" src="{{ traveler.profile_photo.url }}" alt="">
+								{% else %}
+									<img src="{% static 'travel_planner/images/icon-user.svg' %}" alt=""
+										 class="user__photo user__photo--def">
+								{% endif %}
+								</div>
+							</div>
 
-                    {% for traveler in object.travelers.all %}
-                        <div class="flex--wrap traveler">
-                            {% if traveler.profile_photo %}
-                                <div class="trav--left">
-                                    <div class="user__photo-wrap">
-                                        <img class="user__photo" src="{{ traveler.profile_photo.url }}" alt="">
-                                    </div>
-                                    <a class="d--inblk btn btn--primary d--blk ta--c mt--2 mr--0" href="{% url 'profile' traveler.username %}">View
-                                        Profile</a>
-                                </div>
-                            {% endif %}
-                            <div class="traveler__info">
-                                <div class="traveler__info-wrap">
-                                    <div class="traveler__info--top flex--wrap">
-                                        <h3 class="mb--1">
-                                            <span>{{ traveler.first_name }} </span><span>{{ traveler.last_name }}</span>
-                                        </h3>
-                                    </div>
-                                    <div class="traveler__links mb--3">
-                                        <a href="{% url 'traveler_accommodation' travelgroup.pk traveler.username %}"
-                                               class="c--pur">User Accommodations</a> {% if request.user.is_authenticated == traveler.id  %} | {% endif %}                                        {% if request.user.is_authenticated == traveler.id  %}
-                                            <a class="c--pur pr--1"
-                                                   href="{% url 'travel_checklist_list' travelgroup.pk traveler.username %}">Traveler
-                                                    Checklist</a>
-                                        {% endif %}
-                                    </div>
-                                    <ul class="flex--wrap ml--0">
-                                        {% if traveler.city or traveler.state %}
-                                            <li class="ml--0 detail__img-wrap f--nowrap f-align--ctr">
-                                                <img
-                                                        class="profile__icon"
-                                                        srcset="{% static 'travel_planner/images/icon-location.png' %} 1x,  {% static 'travel_planner/images/icon-location@2x.png' %} 2x"
-                                                        src="{% static 'travel_planner/images/icon-location.png' %}"
-                                                        alt="Map marker">
-                                                <span class="ml--1">{{ traveler.city }}{% if traveler.state %},{% endif %} {{ traveler.state }}</span>
-                                            </li>
-                                        {% endif %}
-                                        {% if traveler.phone %}
-                                            <li class="detail__img-wrap f--nowrap f-align--ctr">
-                                                <img
-                                                        class="profile__icon"
-                                                        srcset="{% static 'travel_planner/images/icon-phone.png' %} 1x, {% static 'travel_planner/images/icon-phone@2x.png' %} 2x"
-                                                        src="{% static 'travel_planner/images/icon-phone.png' %}"
-                                                        alt="Phone">
-                                                <span class="ml--1">{{ traveler.phone }}</span>
-                                            </li>
-                                        {% endif %}
-                                        {% if traveler.email %}
-                                            <li class="detail__img-wrap f--nowrap f-align--ctr">
-                                                <img
-                                                        class="profile__icon"
-                                                        srcset="{% static 'travel_planner/images/icon-email.png' %} 1x, {% static 'travel_planner/images/icon-email@2x.png' %} 2x"
-                                                        src="{% static 'travel_planner/images/icon-email.png' %}"
-                                                        alt="Mail">
-                                                <span class="ml--1">{{ traveler.email }}</span>
-                                            </li>
-                                        {% endif %}
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+							<div class="traveler__info">
+								<div class="traveler__info-wrap">
+									<div class="traveler__info--top f--wrap">
+										<h4 class="mb--1 c--char">
+											<span>{{ traveler.first_name }} </span><span>{{ traveler.last_name }}</span>
+										</h4>
+									</div>
+									<div class="f--wrap ml--0 a--ctr">
+										{% if traveler.city or traveler.state %}
+											<div class="ml--0 detail__img-wrap f--nowrap f-align--ctr">
+												<img
+													class="profile__icon"
+													srcset="{% static 'travel_planner/images/icon-location.png' %} 1x,  {% static 'travel_planner/images/icon-location@2x.png' %} 2x"
+													src="{% static 'travel_planner/images/icon-location.png' %}"
+													alt="Map marker">
+												<p class="ml--1 mt--0 mb--0 c--char">{{ traveler.city }}{% if traveler.state %}
+													,{%endif %} {{ traveler.state }}</p>
+											</div>
+										{% endif %}
+									</div>
+									<div class="user-trip mt--2">
+										<a class="c--sec fz--14" href="
+{% url 'accommodation_list_travelgroup' traveler.username travelgroup.id %}">Accommodations</a>
+										<img
+											class="arrow-right"
+											srcset="{% static 'travel_planner/images/icon-triangle-right.png' %} 1x, {% static 'travel_planner/images/icon-triangle-right@2x.png' %} 2x"
+											src="{% static 'travel_planner/images/icon-triangle-right.png' %}"
+											alt="Triangle right">
+									</div>
+								</div>
+							</div>
+							<div class="f--nowrap a--ctr j--end  mt--1 w--100">
+								<a class="btn btn--primary d--blk ta--r c--white mr--1 fw--700 fz--14 w--100 ta--c"
+								   href=
+										"{% url 'profile' traveler.username %}">View Profile</a>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+				<div class="btn btn--sec d--blk mt--2 mr--0"><a href="{% url 'travel_group_edit' travelgroup.id %}"
+													class="c--white ta--c d--blk">Edit
+					Trip</a></div>
+			</div>
+			<div class="right">
+				<div class="grid--1-4 link-blk blk--shadow a--ctr mb--2">
+					<div class="icon-blk pt--1 pb--1 pr--2 pl--2 h--100">
+						<img class="icon-img" src="{% static 'travel_planner/images/icon-sightseeing.svg' %}" alt="">
+					</div>
+					<div class="cnt w--100 h--100 pr--2">
+						<div class="cnt__accord-link f--nowrap j--btwn flex--full w--100">
+							<h4 class="fw--500 upcase c--sec ml--2">Sightseeing Ideas</h4>
+							<img class="cnt-img cnt-img--accord" src="{% static 'travel_planner/images/icon-arrow-right.svg' %}"
+								 alt="">
+						</div>
+						<div class="accord--expand f--wrap flex--full ml--2 mt--3 mb--2">
+							<div class="idea-items ml--0 w--100">
+								{% for idea in travelgroup.sightseeing_ideas.all %}
+									<div class="idea-item sight-item f--nowrap a--ctr j--btwn w--100 pb--2 mb--2">
+										<div class="idea-detail">
+											<div class="idea__name sight__name c--char fz--20">
+												{{ idea|safe }}</div>
+											<div class="idea__creator fz--14 mt--1 c--char">Posted by:
+												{{ idea.sightseeing_creator.first_name }}
+												{{ idea.sightseeing_creator.last_name }}</div>
+										</div>
+										{% if user == idea.sightseeing_creator %}
+											<div class="item-links">
+												<span class="sight__link">
+													<a class="fz--14 c--sec"
+													   href="{% url 'sightseeing_edit' idea.id %}"
+													   class="btn">edit | </a>
+												</span>
+												<span class="sight__link">
+													<a class="fz--14 c--sec" href="{% url 'sightseeing_delete' idea.id %}">delete</a>
+												</span>
+											</div>
+										{% endif %}
+									</div>
+								{% endfor %}
+							</div>
+							<div class="add__link ta--l mt--3">
+								<div class="cnt__accord-link f--nowrap j--btwn flex--full w--100">
+									<a class="c--sec mr--1 fw--700" href="{% url 'sightseeing_add' travelgroup.id %}">Add
+										Sightseeing Idea</a>
+									<img
+										class="arrow-right"
+										srcset="{% static 'travel_planner/images/icon-triangle-right.png' %} 1x, {% static 'travel_planner/images/icon-triangle-right@2x.png' %} 2x"
+										src="{% static 'travel_planner/images/icon-triangle-right.png' %}"
+										alt="Triangle right">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="grid--1-4 link-blk blk--shadow a--ctr mb--2">
+					<div class="icon-blk pt--1 pb--1 pr--2 pl--2 h--100">
+						<img class="icon-img" src="{% static 'travel_planner/images/icon-food.svg' %}"
+							 alt="">
+					</div>
+					<div class="cnt w--100 h--100 pr--2">
+						<div class="cnt__accord-link f--nowrap j--btwn flex--full w--100">
+							<h4 class="fw--500 upcase c--sec ml--2">Restaurant Ideas</h4>
+							<img class="cnt-img cnt-img--accord" src=
+									"{% static 'travel_planner/images/icon-arrow-right.svg' %}"
+								 alt="">
+						</div>
+						<div class="accord--expand f--wrap flex--full ml--2 mt--3 mb--2">
+							<div class="ml--0 w--100">
+								{% for idea in travelgroup.restaurant_ideas.all %}
+									<div class="idea-item rest-item f--nowrap a--ctr j--btwn w--100 pb--2 mb--2">
+										<div class="idea-detail">
+											<div class="rest__name c--char fz--20">
+												{{ idea|safe }}</div>
+											<div class="idea__creator fz--14 mt--1 c--char">Posted by:
+												{{ idea.restaurant_creator.first_name }}
+												{{ idea.restaurant_creator.last_name }}</div>
+										</div>
+										{% if user == idea.restaurant_creator %}
+											<div class="item-links">
+												<span class="rest__link">
+													<a class="fz--14 c--sec" href="{% url 'restaurant_edit' idea.id %}">edit | </a>
+												</span>
+												<span class="rest__link">
+													<a class="fz--14 c--sec" href="{% url 'restaurant_delete' idea.id %}">delete</a>
+												</span>
+											</div>
+										{% endif %}
+									</div>
+								{% endfor %}
+							</div>
+							<div class="add__link ta--l mt--3">
+								<div class="cnt__accord-link f--nowrap j--btwn flex--full w--100">
+									<a class="c--sec mr--1 fw--700" href="{% url 'restaurant_add' travelgroup.id %}">Add
+										Restaurant Idea</a>
+									<img
+										class="arrow-right"
+										srcset="{% static 'travel_planner/images/icon-triangle-right.png' %} 1x, {% static 'travel_planner/images/icon-triangle-right@2x.png' %} 2x"
+										src="{% static 'travel_planner/images/icon-triangle-right.png' %}"
+										alt="Triangle right">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
-                    {% endfor %}
-                    <div class="grid--split">
-                        <div class="grid--right mr--2">
-                            <div class="group-ideas m--0">
-                                <h2>Sightseeing Ideas</h2>
-                                <ul class="ml--0">
-                                    {% for idea in travelgroup.sightseeing_ideas.all %}
-                                        <li class="idea-item sight-item mb--2">
-                                            <span class="idea__name sight__name"> {{ idea|safe }}</span>
-                                            <span class="sight__link">
-                                                <a class="fz--14 c--sec"
-                                                   href="{% url 'sightseeing_edit' idea.id %}"
-                                                   class="btn">edit | </a>
-                                            </span>
-                                            <span class="sight__link">
-                                                <a class="fz--14 c--sec" href="{% url 'sightseeing_delete' idea.id %}">delete</a>
-                                            </span>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                                <div class="add__link ta--l">
-                                    <a class="c--sec mr--1 fw--700" href="{% url 'sightseeing_add' travelgroup.id %}">Add
-                                        Sightseeing Idea</a>
-                                    <img
-                                            srcset="{% static 'travel_planner/images/icon-triangle-right.png' %} 1x, {% static 'travel_planner/images/icon-triangle-right@2x.png' %} 2x"
-                                            src="{% static 'travel_planner/images/icon-triangle-right.png' %}"
-                                            alt="Triangle right">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid--left mr--2">
-                            <div class="group-ideas m--0">
-                                <h2>Restaurant Ideas</h2>
-                                <ul class="ml--0">
-                                    {% for idea in travelgroup.restaurant_ideas.all %}
-                                        <li class="li-item rest-item mb--2">
-                                            <span class="idea__name rest__name">{{ idea|safe }}</span>
-                                            <span class="rest__link"><a class="fz--14 c--sec"
-                                                                        href="{% url 'restaurant_edit' idea.id %}">edit | </a></span>
-                                            <span class="rest__link"><a class="fz--14 c--sec"
-                                                                        href="{% url 'restaurant_delete' idea.id %}">delete</a></span>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                                <div class="add__link ta--l">
-                                    <a class="c--sec mr--1 fw--700" href="{% url 'restaurant_add' travelgroup.id %}">Add
-                                        Restaurant Idea</a>
-                                    <img
-                                            srcset="{% static 'travel_planner/images/icon-triangle-right.png' %} 1x, {% static 'travel_planner/images/icon-triangle-right@2x.png' %} 2x"
-                                            src="{% static 'travel_planner/images/icon-triangle-right.png' %}"
-                                            alt="Triangle right">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid--full">
-                        <h2>Messages</h2>
-                        <form action="{% url 'message_add' travelgroup.id %}" method="post" class="msg-form ml--0">
-                            {% csrf_token %}
-                                {{ message_form.as_p }}
-                            <div class="btn-wrap ta--l">
-                                <input type="submit" value="Submit"/>
-                            </div>
-                        </form>
-                        <ul class="msgs ml--0">
-                            {% for msg in messages.all %}
-                                <li class="msg-item mb--4">
-                                    <span class="msg__detail mb--1 fz--14">{{ msg.date_created_at }} &mdash; {{ msg.message_creator.first_name }} {{ msg.message_creator.last_name }}</span>
-                                    <span class="msg">{{ msg|safe }}</span>
-                                    <span class="msg__links d--blk mt--1">
-                                        <a class="c--sec fz--14" href="{% url 'message_edit' msg.pk %}">Edit | </a>
-                                        <a class="c--sec fz--14" href="{% url 'message_delete' msg.pk %}">Delete</a>
-                                    </span>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+				<div class="messages d--blk pt--1">
+					<h4 class="d--blk upcase c--sec mt--3">Messages</h4>
+					<form action="{% url 'message_add' travelgroup.id %}" method="post" class="msg-form ml--0">
+						{% csrf_token %}
+						{{ message_form.as_p }}
+						<div class="btn-wrap ta--r">
+							<input type="submit" value="Submit"/>
+						</div>
+					</form>
+					{% if messages.all.length > 0 %}
+						<ul class="msgs ml--0">
+							{% for msg in messages.all %}
+								<li class="msg-item mb--4">
+									<span class="msg__detail mb--1 fz--14">{{ msg.date_created_at }} &mdash; {{ msg.message_creator.first_name }} {{ msg.message_creator.last_name }}</span>
+									<span class="msg">{{ msg|safe }}</span>
+									<span class="msg__links d--blk mt--1">
+										<a class="c--sec fz--14" href="{% url 'message_edit' msg.pk %}">Edit | </a>
+										<a class="c--sec fz--14" href="{% url 'message_delete' msg.pk %}">Delete</a>
+									</span>
+								</li>
+							{% endfor %}
+						</ul>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock %}

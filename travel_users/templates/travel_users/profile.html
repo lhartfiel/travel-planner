@@ -15,177 +15,283 @@
 
 {% block body %}
     {% if user.is_authenticated %}
-        <div class="body-wrap">
-            <div class="img-wrap img-wrap--main">
-                <div class="container container--narrow container--center container--white">
-                    <div class="grid__profile">
-                        <div class="profile--top {% if profile_user.profile_photo %} profile--top__img{% endif %}">
-                            {% if profile_user.profile_photo %}
-                                <div class="img-wrap" style='background-image: url({{ user.profile_photo.url }})'>
-                            {% endif %}
-                                {#                                <img class="profile__pic" src="{{ user.profile_photo.url }}" alt="">#}
-                            </div>
-                            <h2 class="profile__name tac">{{ profile_user.first_name }} {{ user.last_name }}</h2>
-                            <div class="user-meta">
-                                <div class="user__detail">
-                                    {% if profile_user.city or profile_user.state %}
-                                        <div class="detail__img-wrap">
-                                            <img
-                                                class="profile__icon"
-                                                srcset="{% static 'travel_planner/images/icon-location.png' %} 1x,  {% static 'travel_planner/images/icon-location@2x.png' %} 2x"
-                                                src="{% static 'travel_planner/images/icon-location.png' %}"
-                                                alt="Map marker">
-                                        </div>
-                                        <p>{{ profile_user.city }}, {{ profile_user.state }}</p>
-                                    {% endif %}
-                                </div>
-                                <div class="user__detail">
-                                    {% if profile_user.email %}
-                                        <div class="detail__img-wrap">
-                                            <img
-                                                class="profile__icon"
-                                                srcset="{% static 'travel_planner/images/icon-email.png' %} 1x, {% static 'travel_planner/images/icon-email@2x.png' %} 2x"
-                                                src="{% static 'travel_planner/images/icon-email.png' %}"
-                                                alt="Mail">
-                                        </div>
-                                        <p>{{ profile_user.email }}</p>
-                                    {% endif %}
-                                </div>
-                                <div class="user__detail">
-                                    {% if profile_user.phone %}
-                                        <div class="detail__img-wrap">
-                                            <img
-                                                class="profile__icon"
-                                                srcset="{% static 'travel_planner/images/icon-phone.png' %} 1x, {% static 'travel_planner/images/icon-phone@2x.png' %} 2x"
-                                                src="{% static 'travel_planner/images/icon-phone.png' %}"
-                                                alt="Phone">
-                                        </div>
-                                        <p>{{ profile_user.phone }}</p>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            {% if user.is_authenticated and user.username == profile_user.username %}
-                                <div class="btn-wrap">
-                                    <a href="{% url 'edit' profile_user.username %}" class="btn btn--primary">Edit Profile</a>
-                                </div>
-                            {% endif %}
-                        </div>
-                        <div class="wrapper">
-                            <div class="profile-wrapper">
-                                <div class="col--left">
-                                    <h3>Emergency Contact Info:</h3>
-                                    <div class="profile__er-info">
-                                        {% if profile_user.emergency_first_name %}
-                                            <p>Name: {{ profile_user.emergency_first_name }} {{ profile_user.emergency_last_name }}</p>
-                                        {% endif %}
-                                        {% if profile_user.emergency_phone %}
-                                            <p>Phone: {{ profile_user.emergency_phone }}</p>
-                                        {% endif %}
-                                        {% if profile_user.emergency_email %}
-                                            <p>Email: {{ profile_user.emergency_email }}</p>
-                                        {% endif %}
-                                        <h3>Personal Info:</h3>
-                                        {% if profile_user.allergies or profile_user.notes %}
-                                            {% if profile_user.allergies %}
-                                                <p>Allergies:</p>
-                                                <p>{{ profile_user.allergies }}</p>
-                                            {% endif %}
-                                            {% if profile_user.notes %}
-                                                <p>Notes:</p>
-                                                <p>{{ profile_user.notes }}</p>
-                                            {% endif %}
-                                        {% else %}
-                                            <p>No additional info at this.</p>
-                                        {% endif %}
-                                    </div>
+        <div class="body-wrap mb--3">
+			<div class="hero hero--lg hero__profile pos--rel o-hide z--10">
+				<img src="{% static 'travel_planner/images/curacao-bw.jpg' %}" alt="Curacao" class="hero__bkg pos--abs
+				w--100">
+				<div class="container container--max container--center">
+					<div class="profile__img-wrap pos--rel">
+						{% if profile_user.profile_photo %}
+							<div class="profile__img pos--rel z--10" style='background-image: url({{ user.profile_photo.url }})
+										'></div>
+						{% endif %}
+						{% if profile_user.first_name %}
+							<h2 class="profile__name tac pos--rel c--white z--10 fw--500 mb--2"
+							>{{ profile_user.first_name }}
+								{% if profile_user.last_name  %}{{ user.last_name }}{% endif %}</h2>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			<div class="user-meta pos--rel z--10">
+				<div class="container container--max container--meta f--wrap a--ctr j--btwn w--100">
+					<div class="user__detail">
+						{% if profile_user.city or profile_user.state %}
+							<div class="detail__img-wrap">
+								<img
+									class="profile__icon mr--1"
+									srcset="{% static 'travel_planner/images/icon-location.png' %} 1x,  {% static 'travel_planner/images/icon-location@2x.png' %} 2x"
+									src="{% static 'travel_planner/images/icon-location.png' %}"
+									alt="Map marker">
+							</div>
+							<p class="c--white">{{ profile_user.city }}, {{ profile_user.state }}</p>
+						{% endif %}
+					</div>
+					<div class="user__detail">
+						{% if profile_user.email %}
+							<div class="detail__img-wrap">
+								<img
+									class="profile__icon mr--1"
+									srcset="{% static 'travel_planner/images/icon-email.png' %} 1x, {% static 'travel_planner/images/icon-email@2x.png' %} 2x"
+									src="{% static 'travel_planner/images/icon-email.png' %}"
+									alt="Mail">
+							</div>
+							<p class="c--white"><a href="mailto:{{ profile_user.email }}" class="c--white"
+							>{{ profile_user.email }}</a></p>
+						{% endif %}
+					</div>
+					<div class="user__detail">
+						{% if profile_user.phone %}
+							<div class="detail__img-wrap">
+								<img
+									class="profile__icon mr--1"
+									srcset="{% static 'travel_planner/images/icon-phone.png' %} 1x, {% static 'travel_planner/images/icon-phone@2x.png' %} 2x"
+									src="{% static 'travel_planner/images/icon-phone.png' %}"
+									alt="Phone">
+							</div>
+							<p class="c--white">{{ profile_user.phone }}</p>
+						{% endif %}
+					</div>
+				</div>
+			</div>
 
-                                    <div class="transport-group">
-                                        <div class="travel-group">
-                                            <h3>Transportation</h3>
-                                            {% regroup profile_user.order_by_travel_group by travel_group as groups %}
-                                            {% for group in groups %}
-                                                <h4>{{ group.grouper.trip_name }}</h4>
-                                            {% for transport in group.list %}
-                                                <div class="profile__group">
-                                                    <div class="transport__info">
-                                                        <p class="group__name">{{ transport.name }}</p>
-                                                        <div class="group__edit-wrap">
-                                                            <a class="group__edit link--sm"
-                                                               href="{% url 'transportation_detail' profile_user.username transport.id %}"
-                                                               class="btn">View Transportation</a>
-                                                            <img
-                                                                srcset="{% static 'travel_planner/images/icon-triangle-right.png' %} 1x, {% static 'travel_planner/images/icon-triangle-right@2x.png' %} 2x"
-                                                                src="{% static 'travel_planner/images/icon-triangle-right.png' %}"
-                                                                alt="Triangle right">
-                                                        </div>
-                                                    </div>
+			<div class="container container--max">
+				<div class="grid--2col mt--2">
+					<div class="left">
+						<div class="blk--shadow p--2">
+							{% if user == profile_user  %}
+								<a class="btn btn--primary w--100 ta--c mt--0" href=
+									"{% url 'edit' profile_user.username %}">Edit Profile</a>
+							{% endif %}
+							<div class="sb-group mb--3">
+								<h4 class="c--sec upcase b-bot--sec fz--18">Emergency Contact Info:</h4>
+								<div class="profile__er-info">
+								{% if profile_user.emergency_first_name %}
+									<p class="c--char">Name: {{ profile_user.emergency_first_name }}
+										{{ profile_user.emergency_last_name }}</p>
+								{% endif %}
+								{% if profile_user.emergency_phone %}
+									<p class="c--char mb--0">Phone: {{ profile_user.emergency_phone }}</p>
+								{% endif %}
+								{% if profile_user.emergency_email %}
+									<p class="c--char mb--0">Email: <a class="c--char" href="mailto
+									:{{ profile_user.emergency_email }}"
+									>{{ profile_user.emergency_email }}</a></p>
+								{% endif %}
+							</div>
+							</div>
+							<div class="sb-group mb--3">
+								<h4 class="c--sec upcase b-bot--sec fz--18">Personal Info:</h4>
+								<div class="profile__personal">
+								{% if profile_user.allergies or profile_user.notes %}
+									{% if profile_user.allergies %}
+										<p class="c--char upcase mb--0">Allergies:</p>
+										<p class="c--char mt--0">{{ profile_user.allergies }}</p>
+									{% endif %}
+									{% if profile_user.notes %}
+										<p class="c--char upcase mb--0">Notes:</p>
+										<p class="c--char mt--0">{{ profile_user.notes }}</p>
+									{% endif %}
+								{% else %}
+									<p class="c--char">No additional info at this.</p>
+								{% endif %}
+							</div>
+							</div>
+						</div>
+					</div>
+					<div class="right">
+						<a class="f--nowrap trav-group link-blk blk--shadow a--ctr mb--2" href="
+{% url 'travel_group_index' profile_user.username %}">
+							<span class="icon-blk pt--1 pb--1 pr--2 pl--2">
+								<img class="icon-img" src="{% static 'travel_planner/images/icon-group.svg' %}"
+									 alt=""></span>
+							<span class="cnt f--nowrap j--btwn flex--full pr--2">
+								<h4 class="fw--500 upcase c--sec ml--2 ">Travel Groups</h4>
+								<img class="cnt-img" src="{% static 'travel_planner/images/icon-arrow-right.svg' %}"
+									 alt="">
+							</span>
+						</a>
+						<a class="f--nowrap trav-group link-blk blk--shadow a--ctr mb--2" href="
+{% url 'transportation_list' profile_user.username %}">
+							<span class="icon-blk pt--1 pb--1 pr--2 pl--2">
+								<img class="icon-img" src="{% static 'travel_planner/images/icon-plane.svg' %}" alt="">
+							</span>
+							<span class="cnt f--nowrap j--btwn flex--full pr--2">
+								<h4 class="fw--500 upcase c--sec ml--2">Transportation</h4>
+								<img class="cnt-img" src="{% static 'travel_planner/images/icon-arrow-right.svg' %}"
+									 alt="">
+							</span>
+						</a>
+						<a class="f--nowrap trav-group link-blk blk--shadow a--ctr mb--2" href="{% url 'accommodation_list' profile_user.username %}">
+							<span class="icon-blk pt--1 pb--1 pr--2 pl--2">
+								<img class="icon-img" src="{% static 'travel_planner/images/icon-hotel.svg' %}"
+									 alt="">
+							</span>
+							<span class="cnt f--nowrap j--btwn flex--full pr--2">
+								<h4 class="fw--500 upcase c--sec ml--2">Accommodations</h4>
+								<img class="cnt-img" src="{% static 'travel_planner/images/icon-arrow-right.svg' %}"
+									 alt="">
+							</span>
+						</a>
 
-                                                    <p class="group__cities">{{ transport.departure_city }}
-                                                        <img
-                                                            srcset="{% static 'travel_planner/images/icon-arrow-right.png' %} 1x, {% static 'travel_planner/images/icon-arrow-right.png' %} 2x"
-                                                            src="{% static 'travel_planner/images/icon-arrow-right.png' %}"
-                                                            alt="">
-                                                        {{ transport.arrival_city }}
-                                                    </p>
+						<a class="f--nowrap trav-group link-blk blk--shadow a--ctr mb--2" href="{% url 'checklists' profile_user.username %}">
+							<span class="icon-blk pt--1 pb--1 pr--2 pl--2">
+								<img class="icon-img" src="{% static 'travel_planner/images/icon-checklist.svg' %}"
+									 alt="">
+							</span>
+							<span class="cnt f--nowrap j--btwn flex--full pr--2">
+								<h4 class="fw--500 upcase c--sec ml--2">Checklists</h4>
+								<img class="cnt-img" src="{% static 'travel_planner/images/icon-arrow-right.svg' %}"
+									 alt="">
+							</span>
+						</a>
+					</div>
+				</div>
+			</div>
 
-                                                </div>
-                                                {% endfor %}
-                                            {% endfor %}
-                                            {% if user.is_authenticated and user.username == profile_user.username %}
-                                                <div class="btns">
-                                                    <div class="btn-wrap btn-wrap--left">
-                                                        <a href="{% url 'transportation_create' profile_user.id %}" class="btn btn--sec">Add Transportation</a>
-                                                    </div>
-                                                    <div class="btn-wrap btn-wrap--left">
-                                                        <a href="{% url 'transportation_list' profile_user.username %}"
-                                                           class="btn btn--sec">View Transport List</a>
-                                                    </div>
-                                                </div>
-                                            {% endif %}
-                                        </div>
-                                    </div>
 
-                                </div>
-                                <div class="col--right er__contact">
-                                    <div class="travel-group">
-                                        <h3>Travel Groups</h3>
-                                        <div class="group-wrap f--wrap">
-                                            {% for group in profile_user.trav_groups.all %}
-                                                <div class="profile__group {% if forloop.last %} profile__group--last{% endif %}">
-                                                    <div class="travel__info">
-                                                        <p class="group__name">{{ group.trip_name }}</p>
-                                                        <div class="group__edit-wrap">
-                                                            <a class="group__edit link--sm"
-                                                               href="{% url 'travel_group_single' group.pk %}">View
-                                                                Trip</a>
-                                                            <img
-                                                                srcset="{% static 'travel_planner/images/icon-triangle-right.png' %} 1x, {% static 'travel_planner/images/icon-triangle-right@2x.png' %} 2x"
-                                                                src="{% static 'travel_planner/images/icon-triangle-right.png' %}"
-                                                                alt="Triangle right">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            {% endfor %}
-                                        </div>
-                                        {% if user.is_authenticated and user.username == profile_user.username %}
-                                            <div class="btns">
-                                                <div class="btn-wrap btn-wrap--left">
-                                                    <a href="{% url 'travel_group_create' %}" class="btn btn--sec">Create
-                                                        Travel Group</a>
-                                                </div>
-                                                <div class="btn-wrap btn-wrap--left">
-                                                    <a href="{% url 'travel_group_index' profile_user.username %}"
-                                                       class="btn btn--sec">View Travel Groups</a>
-                                                </div>
-                                            </div>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
+{#            <div class="img-wrap img-wrap--main">#}
+{#                <div class="container container--narrow container--center container--white">#}
+{#                    <div class="grid__profile">#}
+{##}
+{#                        <div class="wrapper">#}
+{#                            <div class="profile-wrapper">#}
+{#                                <div class="col--left">#}
+{#                                    <h3>Emergency Contact Info:</h3>#}
+{#                                    <div class="profile__er-info">#}
+{#                                        {% if profile_user.emergency_first_name %}#}
+{#                                            <p>Name: {{ profile_user.emergency_first_name }} {{ profile_user.emergency_last_name }}</p>#}
+{#                                        {% endif %}#}
+{#                                        {% if profile_user.emergency_phone %}#}
+{#                                            <p>Phone: {{ profile_user.emergency_phone }}</p>#}
+{#                                        {% endif %}#}
+{#                                        {% if profile_user.emergency_email %}#}
+{#                                            <p>Email: {{ profile_user.emergency_email }}</p>#}
+{#                                        {% endif %}#}
+{#                                        <h3>Personal Info:</h3>#}
+{#                                        {% if profile_user.allergies or profile_user.notes %}#}
+{#                                            {% if profile_user.allergies %}#}
+{#                                                <p>Allergies:</p>#}
+{#                                                <p>{{ profile_user.allergies }}</p>#}
+{#                                            {% endif %}#}
+{#                                            {% if profile_user.notes %}#}
+{#                                                <p>Notes:</p>#}
+{#                                                <p>{{ profile_user.notes }}</p>#}
+{#                                            {% endif %}#}
+{#                                        {% else %}#}
+{#                                            <p>No additional info at this.</p>#}
+{#                                        {% endif %}#}
+{#                                    </div>#}
+{##}
+{#                                    <div class="transport-group">#}
+{#                                        <div class="travel-group">#}
+{#                                            <h3>Transportation</h3>#}
+{#                                            {% regroup profile_user.order_by_travel_group by travel_group as groups %}#}
+{#                                            {% for group in groups %}#}
+{#                                                <h4>{{ group.grouper.trip_name }}</h4>#}
+{#                                            {% for transport in group.list %}#}
+{#                                                <div class="profile__group">#}
+{#                                                    <div class="transport__info">#}
+{#                                                        <p class="group__name">{{ transport.name }}</p>#}
+{#                                                        <div class="group__edit-wrap">#}
+{#                                                            <a class="group__edit link--sm"#}
+{#                                                               href="{% url 'transportation_detail' profile_user.username transport.id %}"#}
+{#                                                               class="btn">View Transportation</a>#}
+{#                                                            <img#}
+{#                                                                srcset="{% static 'travel_planner/images/icon-triangle-right.png' %} 1x, {% static 'travel_planner/images/icon-triangle-right@2x.png' %} 2x"#}
+{#                                                                src="{% static 'travel_planner/images/icon-triangle-right.png' %}"#}
+{#                                                                alt="Triangle right">#}
+{#                                                        </div>#}
+{#                                                    </div>#}
+{##}
+{#                                                    <p class="group__cities">{{ transport.departure_city }}#}
+{#                                                        <img#}
+{#                                                            srcset="{% static 'travel_planner/images/icon-arrow-right.png' %} 1x, {% static 'travel_planner/images/icon-arrow-right.png' %} 2x"#}
+{#                                                            src="{% static 'travel_planner/images/icon-arrow-right.png' %}"#}
+{#                                                            alt="">#}
+{#                                                        {{ transport.arrival_city }}#}
+{#                                                    </p>#}
+{##}
+{#                                                </div>#}
+{#                                                {% endfor %}#}
+{#                                            {% endfor %}#}
+{#                                            {% if user.is_authenticated and user.username == profile_user.username %}#}
+{#                                                <div class="btns">#}
+{#                                                    <div class="btn-wrap btn-wrap--left">#}
+{#                                                        <a href="{% url 'transportation_create' profile_user.id %}" class="btn btn--sec">Add Transportation</a>#}
+{#                                                    </div>#}
+{#                                                    <div class="btn-wrap btn-wrap--left">#}
+{#                                                        <a href="{% url 'transportation_list' profile_user.username %}"#}
+{#                                                           class="btn btn--sec">View Transport List</a>#}
+{#                                                    </div>#}
+{#                                                </div>#}
+{#                                            {% endif %}#}
+{#                                        </div>#}
+{#                                    </div>#}
+{##}
+{#                                </div>#}
+{#                                <div class="col--right er__contact">#}
+{#                                    <div class="travel-group">#}
+{#                                        <h3>Travel Groups</h3>#}
+{#                                        <div class="group-wrap f--wrap">#}
+{#                                            {% for group in profile_user.trav_groups.all %}#}
+{#                                                <div class="profile__group {% if forloop.last %} profile__group--last{% endif %}">#}
+{#                                                    <div class="travel__info">#}
+{#                                                        <p class="group__name">{{ group.trip_name }}</p>#}
+{#                                                        <div class="group__edit-wrap">#}
+{#                                                            <a class="group__edit link--sm"#}
+{#                                                               href="{% url 'travel_group_single' group.pk %}">View#}
+{#                                                                Trip</a>#}
+{#                                                            <img#}
+{#                                                                srcset="{% static 'travel_planner/images/icon-triangle-right.png' %} 1x, {% static 'travel_planner/images/icon-triangle-right@2x.png' %} 2x"#}
+{#                                                                src="{% static 'travel_planner/images/icon-triangle-right.png' %}"#}
+{#                                                                alt="Triangle right">#}
+{#                                                        </div>#}
+{#                                                    </div>#}
+{#                                                </div>#}
+{#                                            {% endfor %}#}
+{#                                        </div>#}
+{#                                        {% if user.is_authenticated and user.username == profile_user.username %}#}
+{#                                            <div class="btns">#}
+{#                                                <div class="btn-wrap btn-wrap--left">#}
+{#                                                    <a href="{% url 'travel_group_create' %}" class="btn btn--sec">Create#}
+{#                                                        Travel Group</a>#}
+{#                                                </div>#}
+{#                                                <div class="btn-wrap btn-wrap--left">#}
+{#                                                    <a href="{% url 'travel_group_index' profile_user.username %}"#}
+{#                                                       class="btn btn--sec">View Travel Groups</a>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        {% endif %}#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
         </div>
     {% else %}
         <p>Oops! Looks like you aren't logged in.</p>

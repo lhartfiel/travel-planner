@@ -3,16 +3,16 @@
 {% load compress %}
 
 {% block body %}
-    <div class="body-wrap">
-        <div class="img-wrap--main">
-            <div class="container container--narrow container--white">
-                <h2 class="ta--c">Edit Travel Group</h2>
-                <form action="" method="post">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit" value="Create travel group">Edit Group</button>
-                </form>
-            </div>
-        </div>
-    </div>
+	<div class="hero hero--lg hero__profile pos--rel o-hide z--10">
+		<img src="{% static 'travel_planner/images/curacao-bw.jpg' %}" alt="Curacao" class="hero__bkg pos--abs
+		w--100">
+		<div class="container container--max container--center pos--rel z--10 d--blk">
+			<h2 class="ta--c">Edit Travel Group</h2>
+			<form action="" method="post">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<button type="submit" value="Create travel group">Edit Group</button>
+			</form>
+		</div>
+	</div>
 {% endblock %}

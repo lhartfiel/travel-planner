@@ -1,5 +1,4 @@
-{% load static %}
-{% load compress %}
+{% load static compress %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +21,7 @@
 {% endblock %}
 
 <header>
-    <nav>
+    <nav class="b-shadow">
         <a href="{% url 'home' %}">Travel Pocket</a>
         {% if user.is_authenticated %}
             <div class="nav-items mt--1 mb--1">
@@ -35,13 +34,15 @@
 </header>
 
 <body>
-    <div class="grid">
-        {% block body %}
-        {% endblock %}
-    </div>
+	{% block body %}
+		<div class="grid"></div>
+	{% endblock %}
 </body>
 
 {% block javascript %}
+	{% compress js inline %}
+		<script src="{% static 'travel_planner/js/accordion.js' %}"></script>
+	{% endcompress %}
 {% endblock %}
 
 {% block footer %}

@@ -1,8 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
+from django.views.generic.base import View
+
+from travel_group.forms import ChecklistCreateForm
+from travel_group.models import ChecklistItems, TravelGroup
 from travel_users.models import CustomUser
 from travel_users.forms import CustomUserCreationForm, CustomUserChangeForm
-from django.views.generic import TemplateView, FormView, UpdateView, CreateView, DetailView
+from django.views.generic import TemplateView, FormView, UpdateView, CreateView, DetailView, ListView
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
@@ -30,6 +34,19 @@ class ProfileEditView(UpdateView):
 
     def get_success_url(self):
         return reverse('profile', kwargs={'username': self.request.user.username})
+
+
+class ChecklistAllView(TemplateView):
+    model = CustomUser
+    template_name = 'travel_users/checklist.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        username = kwargs.get('username')
+        user = CustomUser.objects.get(username=username)
+        context['checklists'] = TravelGroup.objects.filter(checklist_items__checklist_creator_id=user.id).distinct()
+        return context
+
 
 
 class UserLoginView(LoginView):

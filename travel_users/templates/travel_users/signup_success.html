@@ -6,4 +6,15 @@
         <h2>Congrats! You're officially signed up to Travel Pocket</h2>
         <a href="{% url 'login' %}" class="btn">Login Here</a>
     </div>
+
+	{% if user.is_authenticated %}
+		<div class="hero hero--lg hero__form f--wrap a--ctr j--ctr pos--rel o-hide z--10">
+			<img src="{% static 'travel_planner/images/curacao-bw.jpg' %}" alt="Curacao" class="hero__bkg pos--abs">
+			<h1 class="h1--sm group__head pos--rel c--white grid--full ta--c z--10">Congrats!</h1>
+			<p>Welcome {{ user.username }}. You're now officially signed up!</p>
+		</div>
+	{% else %}
+	<p>Oops! You aren't logged in.</p>
+	{% endif %}
+
 {% endblock %}

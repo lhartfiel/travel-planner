@@ -10,7 +10,7 @@ class Transportation(models.Model):
     departure_date = models.DateField(blank=True)
     departure_city = models.CharField(max_length=200, blank=True)
     departure_time = models.TimeField(blank=True)
-    flight_no = models.IntegerField(blank=True)
+    flight_no = models.PositiveSmallIntegerField(blank=True, null=True)
     name = models.CharField(max_length=200, help_text="Provide a name for this transportation (e.g., Madrid Return Flight)", blank=True)
     notes = models.TextField(blank=True)
     travel_group = models.ForeignKey('travel_group.TravelGroup', related_name='group_transport', on_delete=models.CASCADE, limit_choices_to={'travelers': True},)

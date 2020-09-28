@@ -1,10 +1,26 @@
 h1 {
-  font-size: 6rem;
+  font-size: 4.8rem;
+
+  &.h1--sm {
+    font-size: 3.2rem;
+  }
+
+  @include bp(min, $bp-lg) {
+    font-size: 6rem;
+
+    &.h1--sm {
+      font-size: 4.8rem;
+    }
+  }
 }
 
 h2 {
-  font-size: 3.2rem;
+  font-size: 2.8rem;
   color: $charcoal;
+
+  @include bp(min, $bp-lg){
+    font-size: 3.2rem;
+  }
 }
 
 h3 {
@@ -12,7 +28,7 @@ h3 {
 }
 
 h4 {
-  font-size: 2.2rem;
+  font-size: 2rem;
 }
 
 p {
@@ -67,6 +83,7 @@ ul, ol {
 }
 
 .btn {
+  cursor: pointer;
   border-radius: 4px;
   margin-right: 2rem;
   padding: 10px 24px;
@@ -117,12 +134,29 @@ button[type="submit"] {
   border-radius: 4px;
   color: $white;
   cursor: pointer;
-  padding: 10px 24px;
+  padding: 10px 36px;
   transition: 0.4s ease all;
 
   &:hover {
     background: $white;
     border: 1px solid $tertiary;
     color: $tertiary;
+  }
+}
+
+.txt--bb {
+  padding-bottom: 2rem;
+  position: relative;
+
+  &:after {
+    background: $white;
+    bottom: 0;
+    content: "";
+    height: 1px;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    width: 70%;
   }
 }

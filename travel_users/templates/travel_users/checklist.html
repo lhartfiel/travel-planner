@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load compress static %}
+
+{% block head %}
+    {{ super }}
+
+    {% block css %}
+        <link rel="stylesheet" type="text/x-scss"
+              href="{% static 'travel_planner/scss/font-awesome/font-awesome.scss' %}">
+        {% compress css inline %}
+            <link rel="stylesheet" type="text/x-scss" href="{% static 'travel_users/scss/travel_users.scss' %}">
+        {% endcompress %}
+    {% endblock %}
+{% endblock %}
+
+{% block body %}
+	{% if user.is_authenticated %}
+		<div class="body-wrap">
+			<div class="hero hero--lg hero__form f--wrap a--ctr j--ctr pos--rel o-hide z--10">
+				<img src="{% static 'travel_planner/images/curacao-bw.jpg' %}" alt="Curacao" class="hero__bkg pos--abs">
+				<h1 class="h1--sm group__head pos--rel c--white grid--full ta--c z--10">Checklists</h1>
+			</div>
+			<div class="container container--max container--center pos--rel z--10">
+				<div class="grid mt--2">
+					<div class="grid--8">
+						<ul>
+							{% for checklist in checklists %}
+								<li class="li--none">
+									<a class="f--nowrap trav-group link-blk blk--shadow a--ctr mb--2" href="{% url 'travel_checklist_list' checklist.pk user.username %}">
+										<span class="icon-blk pt--1 pb--1 pr--2 pl--2">
+											<img class="icon-img" src="
+{% static 'travel_planner/images/icon-checklist.svg' %}" alt="Checkmark icon">
+										</span>
+										<span class="cnt f--nowrap j--btwn flex--full pr--2">
+											<h4 class="fw--500 upcase c--sec ml--2 ">{{ checklist }}</h4>
+											<img class="cnt-img" src="{% static 'travel_planner/images/icon-arrow-right.svg' %}"
+												 alt="">
+										</span>
+									</a>
+								</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+		{% else %}
+			<p>Oops! You aren't logged in.</p>
+		</div>
+	{% endif %}
+
+{% endblock %}
+

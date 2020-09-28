@@ -3,20 +3,25 @@
 {% load compress %}
 
 {% block body %}
-    <div class="body-wrap">
-        <div class="img-wrap--main">
-            <div class="container container--narrow container--white">
-                <h2 class="ta--c">Add Restaurant Idea</h2>
-                <div class="form-wrap f--wrap">
-                    <form action="" method="post">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <div class="btn-wrap">
-                            <input type="submit" value="Update">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="body-wrap">
+		<div class="hero hero--lg hero__form f--wrap a--ctr j--ctr pos--rel o-hide z--10">
+			<img src="{% static 'travel_planner/images/curacao-bw.jpg' %}" alt="Curacao" class="hero__bkg pos--abs">
+			<h1 class="h1--sm group__head pos--rel c--white grid--full ta--c z--10">Add Restaurant Idea</h1>
+		</div>
+		<div class="container container--max container--center pos--rel z--10">
+			<div class="grid mt--2">
+				<div class="form-outer grid--6 blk--shadow p--2">
+					 <div class="form-wrap f--wrap">
+						<form action="" method="post">
+							{% csrf_token %}
+							{{ form.as_p }}
+							<div class="btn-wrap">
+								<input type="submit" value="Add Idea">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}

@@ -1,13 +1,14 @@
 @import 'components/_normalize.scss';
 @import 'components/_breakpoints.scss';
 @import 'components/_mixins.scss';
-@import 'components/_forms.scss';
 @import 'components/_variables.scss';
 @import 'components/_grid.scss';
+@import 'components/_forms.scss';
 @import 'components/_typography.scss';
 @import 'components/_utility.scss';
 @import 'components/_nav.scss';
 @import 'components/_home.scss';
+@import 'components/_list-items.scss';
 
 //@import '../../travel_group/static/travel_group/scss/travel_group.scss';
 
@@ -46,12 +47,50 @@ body {
 }
 
 .body-wrap {
-  display: grid;
-  grid-column: 1/-1;
-  grid-template-columns: repeat(12, 1fr);
   position: relative;
   width: 100vw;
 }
+
+.hero {
+    grid-column: 1 / -1;
+    max-height: 400px;
+    width: 100%;
+
+    .hero__bkg {
+      min-width: 100%;
+      object-fit: cover;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &:after {
+      //background-image: linear-gradient(180deg, #3431A0 0%, #15A09A 100%);
+      background: rgba($purple, 0.8);
+      bottom: 0;
+      content: "";
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+}
+
+.hero__form {
+    //height: 250px;
+
+    .fieldBox {
+      background: $white;
+      border-top: 2.4rem $secondary solid;
+      border-radius: 4px;
+      box-shadow: 0 0 5px rgba(gray, 0.6);
+    }
+
+    label {
+      color: $white;
+    }
+}
+
+
 
 .img-wrap--main {
   background-image: url('../images/curacao-bw.jpg');
@@ -65,7 +104,7 @@ body {
   }
 
   &:after {
-    background-image: linear-gradient(180deg, #3431A0 0%, #15A09A 100%);
+    background: rgba($purple, 0.7);
     bottom: 0;
     content: "";
     left: 0;
@@ -76,6 +115,35 @@ body {
   }
 }
 
+.img-wrap--detail {
+  background-size: cover;
+
+  &:after {
+    background: rgba($purple, 0.7);
+    bottom: 0;
+    content: "";
+    left: 0;
+    opacity: 0.8;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .hero__bkg{
+    min-width: 100%;
+    top: 0;
+  }
+}
+
+.home__img-wrap {
+  background-position: 50%;
+  height: 100%;
+
+   &:after {
+     background-image: linear-gradient(180deg, #3431A0 0%, #15A09A 100%);
+   }
+}
+
 
 i.fas,
 i.fab {
@@ -84,8 +152,10 @@ i.fab {
 
 form {
   margin: 0 auto;
-  width: 75%;
+  width: 100%;
 }
+
+
 
 textarea {
   height: 10rem;
@@ -101,6 +171,66 @@ textarea {
 
 label[for="id_password"] {
   display: none;
+}
+
+.link-blk {
+
+  &:hover {
+    .icon-img {
+      transform: scale(0.95);
+    }
+    .icon-blk {
+      background: darken($secondary, 4%);
+    }
+  }
+}
+
+.icon-blk {
+  align-self: flex-start;
+  background: $secondary;
+  border-radius: 5px;
+  transition: 0.3s ease all;
+
+  img {
+    height: 80px;
+    width: 80px;
+  }
+}
+
+.cnt-img--accord {
+  transform: rotate(90deg);
+}
+
+.accord--expand {
+  display: none;
+}
+
+.idea-item {
+  &:not(:last-child) {
+    border-bottom: 1px solid rgba(gray, 0.4);
+  }
+}
+
+.cnt {
+  &.active {
+    height: auto;
+
+    .accord--expand {
+      display: flex;
+    }
+  }
+}
+
+.cnt__accord-link {
+  cursor: pointer;
+  align-items: center;
+}
+
+.detail-wrap {
+  background: $white;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  padding: 2rem;
 }
 
 

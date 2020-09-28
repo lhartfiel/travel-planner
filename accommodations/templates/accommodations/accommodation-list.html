@@ -1,70 +1,142 @@
 {% extends 'accommodations/base.html' %}
-{% load static %}
+{% load static compress %}
 
 {% block body %}
     {% if user.is_authenticated %}
-        <div class="body-wrap">
-            <div class="img-wrap img-wrap--main">
-                <div class="container container--narrow container--center container--white">
-                    <h2>Travel Accommodations for {{ user.first_name }} {{ user.last_name }}</h2>
-                    <div class="place">
-                        {% for key, place in places.items %}
-                            <div class="accommodation">
-                                <h3>{{ key }}</h3>
-                                 {% for accommodation in place %}
-                                    <div class="accommodation flex--wrap mb--2 ml--3 pb--2 {% if forloop.last %} no-border {% endif %}">
-                                {% if accommodation.name %}
-                                    <h4>{{ accommodation.name }}</h4>
-                                {% endif %}
-                                <div class="accommodation__wrap pos--rel">
-                                    <div class="num pos--abs fw--700">{{ forloop.counter }}</div>
-                                    <div class="accommodation__info">
-                                        <h3 class="m--0 c--sec">{{ accommodation.title }} ({{ accommodation.type }})</h3>
-                                        {% if accommodation.website %}
-                                            <a class="d--blk c--pur mt--1" href="{{ accommodation.website }}">{{ accommodation.website }}</a>
-                                        {% endif %}
-                                        <p class="mb--0">
-                                            <span class="fw--700">Address:</span>
-                                            <span class="d--blk">{{ accommodation.address }}</span>
-                                            <span class="d--blk">{{ accommodation.city }} — {{ accommodation.country }}</span>
-                                        </p>
-                                        {% if accommodation.zip %}
-                                            <p>{{ accommodation.zip }}</p>
-                                        {% endif %}
-                                        {% if accommodation.phone %}
-                                            <p>{{ accommodation.phone }}</p>
-                                        {% endif %}
-                                    </div>
-                                    <div class="accommodation__dates flex">
-                                        <p class="accommodation__date check-in mr--2"><span class="fw--700">Check-in: </span> {% if accommodation.date_check_in %}{{ accommodation.date_check_in }}{% else %}TBD{% endif %}</p>
-                                        <img
-                                            srcset="{% static 'travel_planner/images/icon-arrow-right.png' %} 1x, {% static 'travel_planner/images/icon-arrow-right.png' %} 2x"
-                                            src="{% static 'travel_planner/images/icon-arrow-right.png' %}"
-                                            alt="">
-                                        <p class="accommodation__date check-out ml--2"><span class="fw--700">Check-out: </span> {% if accommodation.date_check_out %}{{ accommodation.date_check_out }}{% else %}TBD{% endif %}</p>
-                                    </div>
-                                    {% if accommodation.notes %}
-                                        <p>Notes: {{ accommodation.notes }}</p>
-                                    {% endif %}
-                                </div>
-                                <div class="link-group flex--wrap ml--0">
-                                    <a class="c--sec pr--1" href="{% url 'accommodation_detail' user.username accommodation.pk %}">View Details |</a>
-                                    <a class="c--sec pr--1" href="{% url 'accommodation_edit' accommodation.pk %}">Edit Accommodation |</a>
-                                    <a class="c--sec pr--1" href="{% url 'accommodation_delete' accommodation.pk %}">Delete Accommodation</a>
-                                </div>
-                            </div>
-                        {% endfor %}
-                                {% if user.is_authenticated and user.username == profile_user.username %}
-                                    <div class="btn-wrap">
-                                        <a class="btn btn--sec" href="{% url 'accommodation_create' %}">Add
-                                            Accommodation</a>
-                                    </div>
-                                {% endif %}
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        </div>
+		<div class="body-wrap">
+
+			{% include '_list-hero.html' with type="accommodations" %}
+
+			<div class="container container--max container--center pos--rel z--10">
+				<div class="grid mt--2">
+					{% if places|length > 0 %}
+						<div class="grid--10">
+							{% for key, place in places.items %}
+								<div class="blk--shadow list-item flex--wrap mb--4 pos--rel">
+									<div class="img-wrap">
+										<img class="item-img" src="{% static 'travel_planner/images/travel-zipline.png' %}" alt="Zipline">
+									</div>
+									<div class="item-cnt p--2 pos--rel">
+										<h3 class="m--0 c--char">{{ key }}</h3>
+										{% for accommodation in place %}
+											<div class="item-wrap pos--rel">
+												<div class="item-inner mt--2 pb--2">
+													<ul class="item-list ml--0">
+														<li class="li--none mb--1 mt--2 fz--22">
+															<span class="fw--700 fz--22 c--sec">{{ accommodation.title }} ({{ accommodation.type }})
+															</span>
+														</li>
+														<li class="li--none">
+															{% if accommodation.date_check_in %}{{ accommodation.date_check_in }}{% else %}TBD{% endif %}
+															<img
+																srcset="{% static 'travel_planner/images/icon-arrow-right.png' %} 1x, {% static 'travel_planner/images/icon-arrow-right.png' %} 2x"
+																src="{% static 'travel_planner/images/icon-arrow-right.png' %}"
+																alt="">
+															{% if accommodation.date_check_out %}{{ accommodation.date_check_out }}{% else %}TBD{% endif %}
+														</li>
+													</ul>
+													{% if user.username == user_profile.username %}
+														<div class="link-group flex--wrap ml--0 mt--3">
+															<a class="c--sec pr--1 fz--14" href="{% url 'accommodation_edit' accommodation.pk %}">Edit Info
+																|</a>
+															<a class="c--sec pr--1 fz--14" href="{% url 'accommodation_delete' accommodation.pk %}">Delete Info</a>
+														</div>
+													{% endif %}
+													<a class="item-link c--white pos--abs" href="{% url 'accommodation_detail' accommodation.user.username accommodation.pk %}">
+														<img src="{% static 'travel_planner/images/icon-arrow-right.svg' %}" alt="Arrow right">
+													</a>
+												</div>
+											</div>
+										{% endfor %}
+										{% if place|length > 1 %}
+											<a class="btn-accord cnt__accord-link pos--abs c--white pos--abs" href="javascript:void();">
+												<img src="{% static 'travel_planner/images/icon-arrow-down-white.svg' %}" alt="Arrow down">
+											</a>
+										{% endif %}
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+					{% else %}
+						<p class="ta--c fz--18 mt--4 mb--4">You don't have any accommodation items.</p>
+					{% endif %}
+				<div class="grid--8">
+					{% if user.is_authenticated and user.username == profile_user.username %}
+						<a class="btn btn--sec ta--c d--blk m--0auto mt--4" href="{% url 'accommodation_create' %}">Add New Accommodation Entry</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
     {% endif %}
 {% endblock %}
+
+
+
+
+{#{% block body %}#}
+{#			<div class="container container--max container--center pos--rel z--10">#}
+{#				<div class="grid mt--2">#}
+{#					<div class="form-outer grid--8 blk--shadow p--2">#}
+{#						  <div class="place">#}
+{#                        {% for key, place in places.items %}#}
+{#                            <div class="accommodation">#}
+{#                                <h3>{{ key }}</h3>#}
+{#                                 {% for accommodation in place %}#}
+{#                                    <div class="accommodation flex--wrap mb--2 ml--3 pb--2 {% if forloop.last %} no-border {% endif %}">#}
+{#                                {% if accommodation.name %}#}
+{#                                    <h4>{{ accommodation.name }}</h4>#}
+{#                                {% endif %}#}
+{#                                <div class="accommodation__wrap pos--rel">#}
+{#                                    <div class="num pos--abs fw--700">{{ forloop.counter }}</div>#}
+{#                                    <div class="accommodation__info">#}
+{#                                        <h3 class="m--0 c--sec">{{ accommodation.title }} ({{ accommodation.type }})</h3>#}
+{#                                        {% if accommodation.website %}#}
+{#                                            <a class="d--blk c--pur mt--1" href="{{ accommodation.website }}">{{ accommodation.website }}</a>#}
+{#                                        {% endif %}#}
+{#                                        <p class="mb--0">#}
+{#                                            <span class="fw--700">Address:</span>#}
+{#                                            <span class="d--blk">{{ accommodation.address }}</span>#}
+{#                                            <span class="d--blk">{{ accommodation.city }} — {{ accommodation.country }}</span>#}
+{#											{% if accommodation.zip %}#}
+{#												<span>{{ accommodation.zip }}</span>#}
+{#											{% endif %}#}
+{#											{% if accommodation.phone %}#}
+{#												<span>{{ accommodation.phone }}</span>#}
+{#											{% endif %}#}
+{#                                        </p>#}
+{#                                    </div>#}
+{#                                    <div class="accommodation__dates flex">#}
+{#                                        <p class="accommodation__date check-in mr--2"><span class="fw--700">Check-in: </span> {% if accommodation.date_check_in %}{{ accommodation.date_check_in }}{% else %}TBD{% endif %}</p>#}
+{#                                        <img#}
+{#                                            srcset="{% static 'travel_planner/images/icon-arrow-right.png' %} 1x, {% static 'travel_planner/images/icon-arrow-right.png' %} 2x"#}
+{#                                            src="{% static 'travel_planner/images/icon-arrow-right.png' %}"#}
+{#                                            alt="">#}
+{#                                        <p class="accommodation__date check-out ml--2"><span class="fw--700">Check-out: </span> {% if accommodation.date_check_out %}{{ accommodation.date_check_out }}{% else %}TBD{% endif %}</p>#}
+{#                                    </div>#}
+{#                                    {% if accommodation.notes %}#}
+{#                                        <p>Notes: {{ accommodation.notes }}</p>#}
+{#                                    {% endif %}#}
+{#                                </div>#}
+{#                                <div class="link-group flex--wrap ml--0">#}
+{#                                    <a class="c--sec pr--1" href="{% url 'accommodation_detail' user.username accommodation.pk %}">View Details |</a>#}
+{#                                    <a class="c--sec pr--1" href="{% url 'accommodation_edit' accommodation.pk %}">Edit Accommodation |</a>#}
+{#                                    <a class="c--sec pr--1" href="{% url 'accommodation_delete' accommodation.pk %}">Delete Accommodation</a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        {% endfor %}#}
+{#                                {% if user.is_authenticated and user.username == profile_user.username %}#}
+{#                                    <div class="btn-wrap">#}
+{#                                        <a class="btn btn--sec" href="{% url 'accommodation_create' %}">Add#}
+{#                                            Accommodation</a>#}
+{#                                    </div>#}
+{#                                {% endif %}#}
+{#                            </div>#}
+{#                        {% endfor %}#}
+{#                    </div>#}
+{#					<a class="btn btn--primary" href="{% url 'accommodation_create' %}">Add Accommodation</a>#}
+{#					</div>#}
+{#				</div>#}
+{#			</div>#}
+{#		</div>#}
+{#{% endblock %}#}
+

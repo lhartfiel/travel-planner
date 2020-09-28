@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block head %}
     {{ block.super }}
@@ -9,13 +10,22 @@
 
 {% block body %}
     <div class="body-wrap">
-        <div class="img-wrap img-wrap--main">
-            <div class="container container--narrow container--center container--white">
-                <form method="post">{% csrf_token %}
-                    <p>Are you sure you want to delete "{{ object }}"?</p>
-                    <input type="submit" value="Confirm">
-                </form>
-            </div>
-        </div>
-    </div>
+		<div class="hero hero--lg hero__form f--wrap a--ctr j--ctr pos--rel o-hide z--10">
+			<img src="{% static 'travel_planner/images/curacao-bw.jpg' %}" alt="Curacao" class="hero__bkg pos--abs">
+		</div>
+		<div class="container container--max container--center pos--rel z--10">
+			<div class="grid mt--2">
+				<div class="form-outer grid--6 blk--shadow p--2">
+					 <div class="form-wrap f--wrap">
+						<form method="post">{% csrf_token %}
+							<p class="ta--c">Are you sure you want to delete "{{ object }}"?</p>
+							<div class="f--nowrap j--ctr">
+								<input type="submit" value="Confirm">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}

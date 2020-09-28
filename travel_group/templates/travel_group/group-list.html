@@ -13,35 +13,39 @@
 
 {% block body %}
     <div class="body-wrap">
-            <div class="hero hero--sm container--full pos--rel pt--4 pb--4 o-hide">
-                <div class="bkg-img pos--abs">
-                    <img src="{% static 'travel_planner/images/curacao-bw.jpg' %}" alt="">
-                </div>
-                <h1 class="tac c--white">My Travel Groups</h1>
-				{% if trips|length == 0 %}
-					<h2 class="c--white ta--c fw--500">You don't have any trips created</h2>
-					<div class="btn-wrap ta--c">
-						<a href="{% url 'travel_group_create' %}" class="btn btn--sec ta--c">Create Travel Group</a>
+		<div class="hero hero--lg hero__form f--wrap a--ctr j--ctr pos--rel o-hide z--10">
+			<img src="{% static 'travel_planner/images/curacao-bw.jpg' %}" alt="Curacao" class="hero__bkg pos--abs">
+			<h1 class="h1--sm group__head pos--rel c--white grid--full ta--c z--10">My Travel Groups</h1>
+			{% if trips|length == 0 %}
+				<h2 class="c--white ta--c fw--500">You don't have any trips created</h2>
+			{% endif %}
+			<div class="btn-wrap ta--c d--blk w--100 z--10">
+				<a href="{% url 'travel_group_create' %}" class="btn btn--sec ta--c">Create Travel Group</a>
+			</div>
+		</div>
+		<div class="container container--narrow container--center">
+{#			{% include 'travel_group/photo.html' %}#}
+			<div class="trip-list flex--wrap ">
+				{% if trips|length > 0 %}
+					{% for trip in trips %}
+						<div class="trip flex--wrap flex--2 container--white">
+						{{ trip.primary_destination }}
+							{% for photo in photos %}
+								{{ photo.trip.primary_destination }}
+								<img src="{{ photo.trip.primary_destination }}" alt="">
+							{% endfor %}
+						<h3 class="trip__name fw-500"><span>{{ trip.trip_name }}</span></h3>
+						{% for traveler in trip.travelers.all %}
+							<li class="li--none mb--1">{{ traveler }} | <a href="{% url 'profile' traveler.username %}" class="c--sec">View Profile</a></li>
+						{% endfor %}
+						<div class="btn-wrap">
+						<a href="{% url 'travel_group_single' trip.id %}" class="btn btn--ter" with trip=trip>View Trip</a>
+						</div>
 					</div>
+					{% endfor %}
 				{% endif %}
-            </div>
-            <div class="container container--narrow container--center">
-                <div class="trip-list flex--wrap ">
-					{% if trips|length > 0 %}
-                    	{% for trip in trips %}
-                        	<div class="trip flex--wrap flex--2 container--white">
-                            <h3 class="trip__name fw-500"><span>{{ trip.trip_name }}</span></h3>
-                            {% for traveler in trip.travelers.all %}
-                                <li class="li--none mb--1">{{ traveler }} | <a href="{% url 'profile' traveler.username %}" class="c--sec">View Profile</a></li>
-                            {% endfor %}
-                            <div class="btn-wrap">
-                            <a href="{% url 'travel_group_single' trip.id %}" class="btn btn--ter" with trip=trip>View Trip</a>
-                            </div>
-                        </div>
-                    	{% endfor %}
-					{% endif %}
-                </div>
-            </div>
+			</div>
+		</div>
     </div>
 {% endblock %}
 

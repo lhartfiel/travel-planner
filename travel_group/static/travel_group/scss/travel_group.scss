@@ -13,9 +13,12 @@
 }
 
 .user__photo-wrap {
+  background: rgba($charcoal, 0.4);
   border-radius: 50%;
   display: flex;
   justify-content: center;
+  max-height: 100px;
+  max-width: 100px;
   position: relative;
   overflow: hidden;
   width: 130px;
@@ -24,8 +27,15 @@
 
 .user__photo {
   display: block;
-  width: auto;
   height: auto;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  width: auto;
+
+  &--def {
+    padding: 2rem;
+  }
 }
 
 .traveler__info--top {
@@ -55,8 +65,11 @@
 }
 
 .traveler {
-  border-bottom: 1px solid rgba(gray, 0.4);
   padding-bottom: 2rem;
+
+  &:not(:last-child) {
+     border-bottom: 1px solid rgba(gray, 0.4);
+  }
 }
 
 .group__head {
@@ -161,7 +174,9 @@
 
 .checklist__items,
 .checklist__edit {
+  position: relative;
   width: 100%;
+  z-index: 101;
 
   #id_item_status {
     height: 3rem;
@@ -171,7 +186,7 @@
 
     + label {
       height: 3rem;
-      margin-left: -3rem;
+      margin-left: -2rem;
       margin-right: 2rem;
       padding-left: 3rem;
       width: 3rem;
@@ -226,4 +241,7 @@ label {
   width: auto;
 }
 
+.arrow-right {
+  height: 100%;
+}
 

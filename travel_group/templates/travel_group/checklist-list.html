@@ -13,23 +13,26 @@
 
 {% block body %}
     <div class="body-wrap">
-        <div class="img-wrap img-wrap--main">
-            <div class="container container--narrow container--white mt--4">
-                <div class="grid--full checklist">
-                    <h1>Checklist Detail</h1>
+		<div class="hero hero--lg hero__form f--wrap a--ctr j--ctr pos--rel o-hide z--10">
+			<img src="{% static 'travel_planner/images/curacao-bw.jpg' %}" alt="Curacao" class="hero__bkg pos--abs">
+			<h1 class="h1--sm group__head pos--rel c--white grid--full ta--c z--10">Checklists</h1>
+		</div>
+		<div class="container container--max container--center pos--rel z--10">
+			<div class="grid mt--2">
+				<div class="grid--8 form-outer grid--8 blk--shadow p--2">
                     {% for field in items %}
                         <form class="checklist__items mb--2" action="{% url 'travel_checklist_edit' field.id request.user.username %}" method="post">
-                                {% csrf_token %}
-                                <div class="flex j--btwn">
-                                    <div class="checklist__info flex">
-                                        <input type="hidden" name="checklist_item" value="{{ field }}">
-                                            {{ checklist_form.item_status }}
-                                            <label for="item_status" data-id="{{ field.id }}" data-travelid="{{ field.travel_group.id }}" data-status="{{ field.item_status }}"></label>
-                                            <input type="text" class="checklist__item m--0 mr--2" value="{{ field }}">
-                                            <a href="{% url 'travel_checklist_delete' field.id request.user.username %}">delete</a>
-                                    </div>
-                                </div>
-                            </form>
+							{% csrf_token %}
+							<div class="flex j--btwn">
+								<div class="checklist__info flex">
+									<input type="hidden" name="checklist_item" value="{{ field }}">
+										{{ checklist_form.item_status }}
+										<label for="item_status" data-id="{{ field.id }}" data-travelid="{{ field.travel_group.id }}" data-status="{{ field.item_status }}"></label>
+										<input type="text" class="checklist__item m--0 mr--2" value="{{ field }}">
+										<a href="{% url 'travel_checklist_delete' field.id request.user.username %}">delete</a>
+								</div>
+							</div>
+						</form>
                     {% endfor %}
                     <h3>Add another item</h3>
                     <form action="{% url 'travel_checklist_create' travelgroup request.user.username %}" method="post">

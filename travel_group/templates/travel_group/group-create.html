@@ -14,6 +14,10 @@
 						{{ form.trip_name }}
 					</div>
 					<div class="fieldWrapper">
+						<label for="{{ form.primary_destination.id }}">Primary Destination:</label>
+						{{ form.primary_destination }}
+					</div>
+					<div class="fieldWrapper">
 						<label for="{{ form.travelers.id }}">Traveler username:</label>
 						<p class="fz--12">Multiple travelers must be comma-separated (username1, username2, etc)</p>
 						{{ form.travelers }}

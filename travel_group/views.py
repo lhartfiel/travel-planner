@@ -1,11 +1,12 @@
+import requests
+
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
-from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView, UpdateView, CreateView, DeleteView
-from django.views.generic.detail import SingleObjectMixin
-from django.views.generic.edit import FormMixin, FormView
-from django.views.decorators.csrf import csrf_exempt, requires_csrf_token
+from rest_framework.generics import RetrieveUpdateAPIView
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from accommodations.models import Accommodations
 from travel_users.models import CustomUser
@@ -16,12 +17,46 @@ from .forms import GroupCreateForm, SightseeingFormSet, RestaurantFormSet, Messa
 from django.http import HttpResponseRedirect, HttpResponseForbidden, JsonResponse
 import json
 
-from django.conf.urls import url, include
-from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
 from django.core.mail import send_mail
 from django.conf import settings
 
+
+# class UnsplashPhoto(object):
+#
+#     def __init__(self, **kwargs):
+#         for field in ('url', 'photographer', ):
+#             setattr(self, field, kwargs.get(field, None))
+#
+#     photos = {}
+#
+#
+# class UnsplashPhotoSerializer(serializers.Serializer):
+#     url = serializers.URLField()
+#     photographer = serializers.CharField()
+#
+#     def create(self, validated_data):
+#         return UnsplashPhoto(**validated_data)
+
+class TravelGroupImage(APIView):
+    queryset = TravelGroup.objects.values_list('primary_destination')
+
+    def get(self, request):
+        photo_list = TravelGroup.objects.values_list('primary_destination', flat=True).distinct()
+        filtered_list = list(filter(None, photo_list))
+        photo_dict = dict()
+        for photo in filtered_list:
+            unsplash_api = f'https://api.unsplash.com/search/photos?client_id=TK4hk3RxTdHHy5yLPsfGKkROapr5q3i2hAOKp37joHM&query={photo}&page=1'
+            try:
+                response = requests.get(unsplash_api)
+                response = response.json()
+                photo_url = response['results'][0]["urls"]["regular"]
+                photographer_name = response['results'][0]["user"]["name"]
+                photo_dict[f'{photo}'] = {'url': photo_url, 'photographer': photographer_name}
+            except AttributeError:
+                pass
+        context = {'results': photo_dict}
+        return Response(context)
 
 
 class TravelGroupListView(ListView):
@@ -32,8 +67,22 @@ class TravelGroupListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         username = self.kwargs['username']
-        context['trips'] = TravelGroup.objects.filter(travelers__username=username)
+        photos = requests.get('http://127.0.0.1:8001/api-unsplash/?format=json')
+        trips = TravelGroup.objects.filter(travelers__username=username)
+        context['trips'] = trips
+        context['photos'] = photos.json()["results"]
         return context
+
+
+    # def get(self, request, *args, **kwargs):
+    #     self
+    #     photo_list = TravelGroup.objects.values_list('primary_destination', flat=True).distinct()
+    #     # photo_list_encode = photo_list.join.replace(', ', '&').replace("'", "")
+    #     # print(photo_list_encode)
+    #
+    #     request = requests.get('https://api.unsplash.com/search/photos?client_id=TK4hk3RxTdHHy5yLPsfGKkROapr5q3i2hAOKp37joHM&page=1&query=Italy')
+    #     context = request
+    #     return render(request, "travel_group/photo.html", context=context)
 
 
 class TravelerAccommodationListView(ListView):
@@ -82,7 +131,17 @@ class TravelGroupCreateView(CreateView):
         form_class = self.get_form_class()
         form = self.get_form(form_class)
         data = request.POST.copy()
+        data_destination = form.data['primary_destination']
+
+        unsplash_api = f'https://api.unsplash.com/search/photos?client_id=TK4hk3RxTdHHy5yLPsfGKkROapr5q3i2hAOKp37joHM' \
+                       f'&query={data_destination}&page=1'
+        response = requests.get(unsplash_api)
+        response = response.json()
+        photo_url = response['results'][0]["urls"]["regular"]
+        photo_attribution = response['results'][0]["user"]["name"]
+
         data['messages-0-message_creator'] = self.request.user.id
+        data['photo'] = photo_url
         data['travelers'] = form.data['travelers']
         user_logged_in = self.request.user.username
         try:
@@ -94,6 +153,7 @@ class TravelGroupCreateView(CreateView):
             pass
         request.POST = data
         form = GroupCreateForm(self.request.POST)
+        form.photo = photo_url
         sightseeing_form = SightseeingFormSet(self.request.POST)
         restaurant_form = RestaurantFormSet(self.request.POST)
         message_form = MessageFormSet(data)
@@ -123,7 +183,7 @@ class TravelGroupCreateView(CreateView):
 
 class TravelGroupEditView(UpdateView):
     model = TravelGroup
-    fields = ['travelers', 'trip_name']
+    fields = ['travelers', 'trip_name', 'primary_destination']
     template_name = 'travel_group/group-edit.html'
 
     def get_success_url(self):
@@ -310,7 +370,6 @@ class TravelGroupChecklistList(ListView):
     template_name = 'travel_group/checklist-list.html'
 
     def get_context_data(self, **kwargs):
-        self
         context = super().get_context_data(**kwargs)
         context['items'] = ChecklistItems.objects.filter(travel_group__id=self.kwargs['id'])
         context['travelgroup'] = self.kwargs.get('id')

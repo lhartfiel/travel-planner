@@ -91,8 +91,16 @@
   font-size: 1.6rem;
 }
 
+.fz--18 {
+  font-size: 1.8rem;
+}
+
 .fz--20 {
   font-size: 2rem;
+}
+
+.fz--22 {
+  font-size: 2.2rem;
 }
 
 //Margins
@@ -163,6 +171,11 @@
 .mr--2 {
   margin-right: 2rem;
 }
+
+.mt--3 {
+  margin-top: 3rem;
+}
+
 .mb--3 {
   margin-bottom: 3rem;
 }
@@ -187,11 +200,31 @@
   margin-left: 4rem;
 }
 
+.p--1 {
+  padding: 1rem;
+}
+
+.pt--1 {
+  padding-top: 1rem;
+}
+
+.pb--1 {
+  padding-bottom: 1rem;
+}
+
 .pr--1 {
   padding-right: 1rem;
 }
+
+.p--2 {
+  padding: 2rem;
+}
 .pr--2 {
   padding-right: 2rem;
+}
+
+.pl--2 {
+  padding-left: 2rem;
 }
 
 .pb--2 {
@@ -222,4 +255,41 @@
 
 .hide {
   display: none;
+}
+
+.z--1 {
+  z-index: 1;
+}
+
+.z--10 {
+  z-index: 10;
+}
+
+.upcase {
+  text-transform: uppercase;
+}
+
+.b-shadow {
+  box-shadow: 0 0 5px 0 rgba($charcoal, 0.3);
+}
+
+.blk--shadow {
+  background: $white;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 rgba($charcoal, 0.3);
+}
+
+.b-bot--sec {
+  position: relative;
+
+  &:after {
+    border-bottom: 1px solid rgba($secondary, 0.4);
+    bottom: -1.2rem;
+    content: "";
+    left: 0;
+    right: 0;
+    position: absolute;
+    width: 30%;
+
+  }
 }

@@ -1,5 +1,6 @@
 from django.contrib import admin
-from travel_group.models import TravelGroup, SightseeingIdeas, RestaurantIdeas, TravelMessages, ChecklistItems
+from travel_group.models import TravelGroup, SightseeingIdeas, RestaurantIdeas, TravelMessages, ChecklistItems, \
+    UnsplashPhotos
 
 
 class ChecklistItemsAdmin(admin.TabularInline):
@@ -16,6 +17,12 @@ class ChecklistItemsAdmin(admin.TabularInline):
         instance.save()
         form.save_m2m()
         return instance
+
+
+class UnsplashAdmin(admin.TabularInline):
+    model = UnsplashPhotos
+    fields = ('photo', 'photo_attribution',)
+    extra = 1
 
 
 class SightseeingIdeasAdmin(admin.TabularInline):
@@ -50,10 +57,11 @@ class TravelGroupAdmin(admin.ModelAdmin):
     list_display = ('trip_name',)
     fieldsets = (
         (None, {
-            'fields': ('trip_name', 'travelers')
+            'fields': ('trip_name', 'travelers', 'primary_destination', )
         }),
     )
     inlines = [
+        UnsplashAdmin,
         SightseeingIdeasAdmin,
         RestaurantIdeasAdmin,
         TravelMessagesAdmin,

@@ -35,5 +35,12 @@ class TransportationCreateForm(forms.ModelForm):
 
     class Meta:
         model = Transportation
-        exclude = ['user']
+        fields = ['name', 'travel_group', 'type', 'arrival_date', 'arrival_time', 'arrival_city', 'departure_date', 'departure_time',
+                  'departure_city', 'carrier', 'flight_no', 'notes']
+        labels = {
+            "name": "Name (name this entry, such as Train from Rome to Florence)",
+            "carrier": "Carrier (provide an optional carrier, such as United Airlines or Eurail)",
+            "type": "Type of transportation (flight, train, ferry, etc)",
+            "flight_no": "Flight no (optional)"
+        }
         widgets = {'arrival_date': DateInputWidget(), 'departure_date': DateInputWidget(), 'arrival_time': TimeInputWidget(), 'departure_time': TimeInputWidget()}

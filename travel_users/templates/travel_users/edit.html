@@ -15,39 +15,52 @@
 
 
 {% block body %}
-    <div class="body-wrap">
-        <div class="img-wrap--main">
-            <div class="container container--narrow container--white">
-                {% if user.is_authenticated %}
-                    <form action="" method="post">
-                        {% csrf_token %}
-                        <h2>Edit Your Profile Info Below:</h2>
-                        <ul class="profile-edit flex--wrap ml--1">
-                            {% for field in form.visible_fields %}
-                                {% if field.name == 'first_name' or field.name == 'last_name' or field.name == 'city' or field.name == 'state' or field.name == 'phone' or field.name == 'email' or field.name == 'emergency_first_name' or field.name == 'emergency_last_name' or field.name == 'emergency_email' or field.name == 'emergency_phone' %}
-                                    {% if field.name == 'emergency_first_name' %}
-                                        <h3 class="d--blk w--100"> Emergency Info </h3>{% endif %}
-                                    <li class="flex--2 li--none {% if field.name == 'phone' %} mr--1 {% endif %}{% if field.name == 'email' %} ml--1 {% endif %}">
-                                        <label for="">{{ field.label }}</label>
-                                        {{ field }}
-                                    </li>
-                                {% else %}
-                                    {% if field.name == 'allergies' %}<h3 class="d--blk w--100">Additional Info </h3>
-                                    {% endif %}
-                                    {% if field.name == 'password' %} {#  Don't display password field #}
-                                    {% else %}
-                                        <li class="flex--full li--none">
-                                            <label for="">{{ field.label }}</label>
-                                            {{ field }}
-                                        </li>
-                                    {% endif %}
-                                {% endif %}
-                            {% endfor %}
-                        </ul>
-                        <input type="submit" value="save">
-                    </form>
-                {% endif %}
-            </div>
-        </div>
-    </div>
+		<div class="form__bkg f--wrap a--ctr j--ctr pos--rel z--10">
+			<div class="container container--wide container--center pos--rel z--10">
+				<div class="grid mt--2">
+					<div class="grid--full">
+						<div class="form--block grid pos--rel p--2 mt--4">
+							<div class="grid--4 mt--4 pr--1 c--white">
+								<h2 class="d--blk c--white ta--c upcase txt--bb">Edit Profile</h2>
+								<p class="c--white ta--c fz--18">Want to change your profile photo? Update your
+									emergency contact info? Add any notes? Make all of your updates in the fields
+									here!</p>
+							</div>
+							<div class="form-outer grid--8 grid--8--right blk--shadow p--2">
+								{% if user.is_authenticated %}
+									<form action="" method="post">
+										{% csrf_token %}
+										<h2>Edit Your Profile Info Below:</h2>
+										<ul class="profile-edit flex--wrap ml--1">
+											{% for field in form.visible_fields %}
+												{% if field.name == 'first_name' or field.name == 'last_name' or field.name == 'city' or field.name == 'state' or field.name == 'phone' or field.name == 'email' or field.name == 'emergency_first_name' or field.name == 'emergency_last_name' or field.name == 'emergency_email' or field.name == 'emergency_phone' %}
+													{% if field.name == 'emergency_first_name' %}
+														<h3 class="d--blk w--100"> Emergency Info </h3>{% endif %}
+													<li class="flex--2 li--none {% if field.name == 'phone' %} mr--1 {% endif %}{% if field.name == 'email' %} ml--1 {% endif %}">
+														<label for="">{{ field.label }}</label>
+														{{ field }}
+													</li>
+												{% else %}
+													{% if field.name == 'allergies' %}<h3 class="d--blk w--100">Additional Info </h3>
+													{% endif %}
+													{% if field.name == 'password' %} {#  Don't display password field #}
+													{% else %}
+														<li class="flex--full li--none">
+															<label for="">{{ field.label }}</label>
+															{{ field }}
+														</li>
+													{% endif %}
+												{% endif %}
+											{% endfor %}
+										</ul>
+										<input type="submit" value="save">
+									</form>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				</div>
+    		</div>
+		</div>
+
 {% endblock %}

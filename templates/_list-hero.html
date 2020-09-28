@@ -1,0 +1,16 @@
+{% load static %}
+{% static "" as baseUrl %}
+
+<div class="hero hero--lg hero--{{ type }} hero__form f--wrap a--ctr j--ctr pos--rel o-hide z--10">
+	<img src="{{ baseUrl }}travel_planner/images/{{ type }}.png" alt="Airplane" class="hero__bkg
+	pos--abs">
+	<div class="container container--max container--center">
+		<div class="grid">
+			<div class="grid--10">
+				<h1 class="h1--sm group__head pos--rel c--white grid--full ta--l z--10">{{ type|capfirst }} for
+					<span class="d--blk c--white fz--20">{{ user_profile.first_name }}
+						{{ user_profile.last_name }}</span></h1>
+			</div>
+		</div>
+	</div>
+</div>

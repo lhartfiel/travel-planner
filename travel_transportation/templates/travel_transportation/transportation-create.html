@@ -12,30 +12,42 @@
 {% endblock %}
 
 {% block body %}
-    <div class="body-wrap">
-        <div class="img-wrap img-wrap--main">
-            <div class="container container--narrow container--center container--white">
-                <h2 class="ta--c">Add Transportation Info</h2>
-                <form action="" method="post">
-                    {% csrf_token %}
-                    <ul class="transport-list flex--wrap">
-                        {% for field in form.visible_fields %}
-                            {% if field.name == 'arrival_city' or field.name == 'arrival_date' or field.name == 'arrival_time' or field.name == 'departure_city' or field.name == 'departure_date' or field.name == 'departure_time' %}
-                                <li class="transport-wrap transport-wrap--sm li--none">
-                                    <label for="">{{ field.label }}</label>
-                                    {{ field }}
-                                </li>
-                            {% else %}
-                                <li class="transport-wrap li--none">
-                                    <label for="">{{ field.label }}</label>
-                                    {{ field }}
-                                </li>
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
-                    <input type="submit" value="Save">
-                </form>
-            </div>
-        </div>
-    </div>
+
+		<div class="form__bkg f--wrap a--ctr j--ctr pos--rel z--10">
+			<div class="container container--wide container--center pos--rel z--10">
+				<div class="grid mt--2">
+					<div class="grid--full">
+						<div class="form--block grid pos--rel p--2 mt--4">
+							<div class="grid--4 mt--4 pr--1 c--white">
+								<h2 class="d--blk c--white ta--c upcase txt--bb">Add a Transportation Entry?</h2>
+								<p class="c--white ta--c fz--18">Complete the form to add more transportation items to your
+									trip.</p>
+							</div>
+							<div class="form-outer grid--8 grid--8--right blk--shadow p--2">
+		{#                <h2 class="ta--c">Add Transportation Info</h2>#}
+								<form action="" method="post">
+									{% csrf_token %}
+									<ul class="transport-list flex--wrap">
+										{% for field in form.visible_fields %}
+											{% if field.name == 'arrival_city' or field.name == 'arrival_date' or field.name == 'arrival_time' or field.name == 'departure_city' or field.name == 'departure_date' or field.name == 'departure_time' %}
+												<li class="transport-wrap transport-wrap--sm li--none">
+													<label for="">{{ field.label }}</label>
+													{{ field }}
+												</li>
+											{% else %}
+												<li class="transport-wrap li--none">
+													<label for="">{{ field.label }}</label>
+													{{ field }}
+												</li>
+											{% endif %}
+										{% endfor %}
+									</ul>
+									<input type="submit" value="Save">
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+    		</div>
+		</div>
 {% endblock %}

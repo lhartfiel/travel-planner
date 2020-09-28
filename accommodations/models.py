@@ -21,5 +21,5 @@ class Accommodations(models.Model):
     website = models.URLField(blank=True)
 
     def __str__(self):
-        return self.name
+        return self.title
 
