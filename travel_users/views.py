@@ -1,3 +1,5 @@
+import json
+
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.views.generic.base import View
@@ -28,6 +30,19 @@ class ProfileView(TemplateView):
 class ProfileEditView(UpdateView):
     form_class = CustomUserChangeForm
     template_name = 'travel_users/edit.html'
+
+    def post(self, request, *args, **kwargs):
+        if self.request.method == 'POST' and request.is_ajax():
+            data = json.loads(request.body.decode('utf-8'))
+            request.POST = request.POST.copy()
+            request.POST = data
+            user_obj = self.get_object()
+            travel_group_id = data.get('travel_group')
+            travel_group_obj = TravelGroup.objects.get(id=travel_group_id)
+            travel_group_obj.travel_group_invite.remove(user_obj)
+            return HttpResponseRedirect(self.get_success_url())
+            # return super(TravelGroupEditView, self).post(request, *args, **kwargs)
+
 
     def get_object(self, queryset=None):
         return get_object_or_404(CustomUser, username=self.request.user.username)

@@ -46,7 +46,7 @@
 
 .traveler__info {
   flex-grow: 1;
-  margin-left: 2rem;
+  margin-left: 1rem;
 
   > h4 {
     margin-bottom: 0.5rem;
@@ -73,7 +73,14 @@
 }
 
 .group__head {
+  text-shadow: 2px 2px 4px darken(gray, 20%);
   z-index: 10;
+
+  @include bp(min, $bp-lg) {
+    font-size: 12rem;
+    line-height: 1em;
+    margin-bottom: -1.3rem;
+  }
 }
 
 .group-ideas {
@@ -114,9 +121,7 @@
 
 .trip {
   border-radius: 4px;
-  border-top: 2.4rem $secondary solid;
-  margin-bottom: 2rem;
-  margin-top: 2rem;
+  margin-bottom: 4rem;
 
   .btn-wrap {
     align-self: flex-end;
@@ -124,8 +129,21 @@
     text-align: right;
   }
 
+
+  .btn-wrap--left {
+    align-self: flex-start;
+  }
+
+
   li {
     flex-basis: 100%;
+  }
+}
+
+.trip-list {
+  @include bp(max, $bp-md) {
+    margin-left: 2rem;
+    margin-right: 2rem;
   }
 }
 
@@ -142,8 +160,12 @@
     position: absolute;
     top: 50%;
     width: 100%;
+  }
 
-
+  &--feat {
+    &:after {
+      background: rgba($white, 0.5);
+    }
   }
 }
 
@@ -195,7 +217,7 @@
   }
 
   label[for="item_status"] {
-    border: 2px solid rgba($charcoal, 0.4);
+    border: 2px solid rgba($white, 0.4);
     border-radius: 4px;
   }
 
@@ -208,11 +230,12 @@
   }
 
   input[type="checkbox"]:checked + label[for="item_status"] {
-    border-color: rgba($charcoal, 0.1);
+    border-color: rgba($white, 0.4);
     border-radius: 5px;
     display: inline-block;
-    background: url('/static/travel_planner/images/icon-checkbox.svg') no-repeat 0 0;
-    background-size: contain;
+    background: url('/static/travel_planner/images/icon-checkbox--white.svg') no-repeat 0 0;
+    background-size: 80%;
+    background-position: center;
     line-height: 3rem;
   }
 
@@ -243,5 +266,14 @@ label {
 
 .arrow-right {
   height: 100%;
+  width: 1rem;
+}
+
+.icon-hotel {
+  svg {
+    fill: $secondary;
+    height: 24px;
+    width: 18px;
+  }
 }
 

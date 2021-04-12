@@ -12,15 +12,28 @@
 {% endblock %}
 
 {% block body %}
-    <div class="body-wrap">
-        <div class="img-wrap img-wrap--main">
-            <div class="container container--narrow container--center container--white">
-
-                <form method="post">{% csrf_token %}
-                    <p>Are you sure you want to delete "{{ object }}"?</p>
-                    <input type="submit" value="Confirm">
-                </form>
-            </div>
-        </div>
-    </div>
+	<div class="form__bkg f--wrap a--ctr j--ctr pos--rel z--10">
+		{% for item in site_settings %}
+			<div class="form__img-wrap pos--abs o-hide">
+				<img src="{{ item.transportation_photo }}" alt="Hotel bedroom" class="hero__bkg pos--abs w--100">
+				<p class="caption caption--hero pos--abs">Photo credit: {{ item.transportation_photo_attribution }}</p>
+			</div>
+		{% endfor %}
+		<div class="container container--wide container--center pos--rel z--10">
+			<div class="grid mt--2">
+				<div class="grid--6 h--100">
+					<div class="form--block grid pos--rel h--100 p--2 mt--4">
+						<div class="grid--10 h--100 mt--4 mb--4 pr--1 c--white">
+							<form method="post">{% csrf_token %}
+								<p class="ta--c c--white fz--18">Are you sure you want to delete "{{ object }}"?</p>
+								<div class="f--nowrap j--ctr">
+									<input type="submit" value="Confirm">
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}

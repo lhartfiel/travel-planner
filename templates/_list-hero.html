@@ -1,16 +1,20 @@
 {% load static %}
 {% static "" as baseUrl %}
 
-<div class="hero hero--lg hero--{{ type }} hero__form f--wrap a--ctr j--ctr pos--rel o-hide z--10">
-	<img src="{{ baseUrl }}travel_planner/images/{{ type }}.png" alt="Airplane" class="hero__bkg
-	pos--abs">
-	<div class="container container--max container--center">
-		<div class="grid">
-			<div class="grid--10">
-				<h1 class="h1--sm group__head pos--rel c--white grid--full ta--l z--10">{{ type|capfirst }} for
-					<span class="d--blk c--white fz--20">{{ user_profile.first_name }}
-						{{ user_profile.last_name }}</span></h1>
-			</div>
+<div class="hero hero--lg hero--{{ type }} hero__profile pos--rel o-hide z--10 h--100">
+	<img src="{{ baseUrl }}travel_planner/images/{{ type }}.png" alt="Airplane" class="hero__bkg pos--abs w--100">
+	{% if type == 'accommodations' %}
+		{% for item in site_settings %}
+			<img src="{{ item.accommodation_photo }}" alt="Hotel bedroom" class="hero__bkg pos--abs w--100">
+			<p class="caption caption--hero pos--abs">Photo credit: {{ item.accommodation_photo_attribution }}</p>
+		{% endfor %}
+	{% endif %}
+	<div class="container container--max container--center flex a--end h--100">
+		<h1 class="d--blk w--100 group__head pos--rel c--white grid--full ta--l mb--0 z--10">{{ type|capfirst }} for
+			<span class="d--blk c--white fz--20">{{ user_profile.first_name }}
+				{{ user_profile.last_name }}</span></h1>
+		<div class="btn-wrap ta--c d--blk w--100 z--10">
+			<a href="{% url 'travel_group_create' %}" class="btn btn--sec ta--c mb--3">Create Travel Group</a>
 		</div>
 	</div>
 </div>

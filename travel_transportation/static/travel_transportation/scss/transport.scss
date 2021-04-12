@@ -25,11 +25,6 @@
 }
 
 .hero--transportation {
-  border-bottom: 32px solid $maroon;
-
-  &:after {
-    background-color: rgba($maroon, 0.8);
-  }
   span {
     color: $white;
   }

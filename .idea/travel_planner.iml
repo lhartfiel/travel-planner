@@ -25,10 +25,10 @@
     <option name="TEMPLATE_FOLDERS">
       <list>
         <option value="$MODULE_DIR$/templates" />
+        <option value="$MODULE_DIR$/travel_planner/templates" />
+        <option value="$MODULE_DIR$/accommodations/templates" />
+        <option value="$MODULE_DIR$/travel_transportation/templates" />
       </list>
     </option>
-  </component>
-  <component name="TestRunnerService">
-    <option name="PROJECT_TEST_RUNNER" value="Unittests" />
   </component>
 </module>

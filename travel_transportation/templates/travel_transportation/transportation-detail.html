@@ -13,63 +13,79 @@
 
 {% block body %}
     <div class="body-wrap">
-        <div class="img-wrap img-wrap--main">
-            <div class="container container--narrow container--center container--white">
-                <h2>Transportation Details — {{ object.name }}</h2>
-                <div class="transport--general">
-                    {% if object.travel_group %}
-                        <p class="fw--700">Travel Group: {{ object.travel_group }}</p>
-                    {% endif %}
-                    {% if object.type %}
-                        <p class="fw--700">Type: <span>{{ object.type }}</span></p>
-                    {% endif %}
-                    {% if object.flight_no  %}
-                        <p class="rw--700">Flight no: {{ object.flight_no }}</p>
-                    {% endif %}
-					{% if object.carrier %}
-						<p class="rw--700">Carrier: {{ object.carrier }}</p>
-					{% endif %}
-                </div>
-                <div class="transport-wrap f--wrap mb--4">
-                    <div class="transport transport--depart">
-                        <h3 class="fw--700">Departure Info:</h3>
-                        <ul class="transport-list">
-                            {% if object.departure_city %}
-                                <li class="li--none mb--1"><span class="fw--700">City: </span>{{ object.departure_city }}</li>
-                            {% endif %}
-                            {% if object.departure_date %}
-                                <li class="li--none mb--1"><span class="fw--700">Date:</span> {{ object.departure_date }}</li>
-                            {% endif %}
-                            {% if object.departure_date %}
-                                <li class="li--none mb--1"><span class="fw--700">Time:</span> {{ object.departure_time }}</li>
-                            {% endif %}
-                        </ul>
-                    </div>
-                    <div class="transport transport--arrive">
-                        <h3 class="fw--700">Arrival Info:</h3>
-                        <ul class="transport-list">
-                            {% if object.arrival_city %}
-                                <li class="li--none mb--1"><span class="fw--700">City: </span> {{ object.arrival_city }}</li>
-                            {% endif %}
-                            {% if object.arrival_date %}
-                                <li class="li--none mb--1"><span class="fw--700">Date:</span> {{ object.arrival_date }}</li>
-                            {% endif %}
-                            {% if object.arrival_time %}
-                                <li class="li--none mb--1"><span class="fw--700">Time:</span> {{ object.arrival_time }}</li>
-                            {% endif %}
-                        </ul>
-                    </div>
-                </div>
-                {% if object.notes %}
-                <div class="notes mb--2">
-                    <h3 class="fw--700">Notes</h3>
-                    <p>{{ object.notes }}</p>
-                </div>
-                {% endif %}
-                <a class="btn btn--sec" href="{% url 'transportation_list' object.user.username %}">Back to Transportation List</a>
-                {% if user.username == user_profile.username %}
-                    <a class="btn btn--sec" href="{% url 'transportation_edit' object.pk %}">Edit Info</a>
-                {% endif %}
+        <div class="img-wrap img-wrap--detail">
+			{% for item in site_settings %}
+				<div class="form__img-wrap pos--abs o-hide">
+					<img src="{{ item.transportation_photo }}" alt="Airplane" class="hero__bkg pos--abs w--100">
+					<p class="caption caption--hero pos--abs">Photo credit:
+						{{ item.transportation_photo_attribution }}</p>
+				</div>
+			{% endfor %}
+
+            <div class="container container--max container--center pos--rel z--10">
+				<div class="grid">
+					<div class="grid--8">
+						<div class="detail-wrap">
+{#							<h2>Transportation Details</h2>#}
+							<h2 class="mb--2">{{ object.name }}</h2>
+							<div class="transport--general mb--2">
+								{% if object.travel_group %}
+									<p class="fw--700">Travel Group: {{ object.travel_group }}</p>
+								{% endif %}
+								{% if object.type %}
+									<p class="fw--700">Type: <span>{{ object.type }}</span></p>
+								{% endif %}
+								{% if object.flight_no  %}
+									<p class="fw--700">Flight no: {{ object.flight_no }}</p>
+								{% endif %}
+								{% if object.carrier %}
+									<p class="fw--700">Carrier: {{ object.carrier }}</p>
+								{% endif %}
+							</div>
+							<div class="transport-wrap f--wrap mb--4">
+								<div class="transport transport--depart">
+									<h3 class="">Departure Info:</h3>
+									<ul class="transport-list">
+										{% if object.departure_city %}
+											<li class="li--none mb--1"><span class="fw--700">City: </span>{{ object.departure_city }}</li>
+										{% endif %}
+										{% if object.departure_date %}
+											<li class="li--none mb--1"><span class="fw--700">Date:</span> {{ object.departure_date }}</li>
+										{% endif %}
+										{% if object.departure_date %}
+											<li class="li--none mb--1"><span class="fw--700">Time:</span> {{ object.departure_time }}</li>
+										{% endif %}
+									</ul>
+								</div>
+								<div class="transport transport--arrive">
+									<h3 class="">Arrival Info:</h3>
+									<ul class="transport-list">
+										{% if object.arrival_city %}
+											<li class="li--none mb--1"><span class="fw--700">City: </span> {{ object.arrival_city }}</li>
+										{% endif %}
+										{% if object.arrival_date %}
+											<li class="li--none mb--1"><span class="fw--700">Date:</span> {{ object.arrival_date }}</li>
+										{% endif %}
+										{% if object.arrival_time %}
+											<li class="li--none mb--1"><span class="fw--700">Time:</span> {{ object.arrival_time }}</li>
+										{% endif %}
+									</ul>
+								</div>
+							</div>
+							{% if object.notes %}
+							<div class="notes mb--2">
+								<h3 class="fw--700">Notes</h3>
+								<p>{{ object.notes }}</p>
+							</div>
+							{% endif %}
+							<a class="btn btn--primary" href=
+									"{% url 'transportation_list' object.user.username %}">Back to	Transportation List</a>
+							{% if user.username == user_profile.username %}
+								<a class="btn btn--sec" href="{% url 'transportation_edit' object.pk %}">Edit Info</a>
+							{% endif %}
+						</div>
+					</div>
+				</div>
             </div>
 
         </div>

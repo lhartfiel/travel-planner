@@ -3,17 +3,103 @@
 
 {% block body %}
     {% if user.is_authenticated %}
-        <div class="body-wrap">
-            <div class="img-wrap img-wrap--main">
-                <div class="container container--narrow container--center container--white">
-                    <form method="post">
-                        <h2>Add Accommodation</h2>
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <input type="submit" value="Save">
-                    </form>
-                </div>
-            </div>
-        </div>
+		<div class="form__bkg f--wrap a--ctr j--ctr pos--rel z--10">
+			{% for item in site_settings %}
+				<div class="form__img-wrap pos--abs o-hide">
+					<img src="{{ item.accommodation_photo }}" alt="Hotel bedroom" class="hero__bkg pos--abs w--100">
+					<p class="caption caption--hero pos--abs">Photo credit: {{ item.accommodation_photo_attribution }}</p>
+				</div>
+			{% endfor %}
+			<div class="container container--wide container--center pos--rel z--10">
+			<div class="grid mt--2">
+				<div class="grid--full h--100">
+					<div class="form--block grid pos--rel h--100 p--2 mt--4">
+						<div class="grid--4 h--100 mt--4 mb--4 pr--1 c--white">
+							<h2 class="d--blk c--white ta--c upcase txt--bb">Create Accommodation</h2>
+							<p class="c--white ta--c fz--18">Have a reservation at an AirBnB? Maybe splurging with a
+								5-star hotel? Add your accommodation to the right.
+							</p>
+						</div>
+						<div class="form-outer grid--8 grid--8--right blk--shadow p--2">
+							{% if user.is_authenticated %}
+								<div class="form-wrap f--wrap">
+									<form method="post">
+										{% csrf_token %}
+										<div class="fieldWrapper">
+											<label for="title">Accommodation Name:</label>
+											{{ form.title }}
+										</div>
+										<div class="fieldWrapper">
+											<label for="address">Address:</label>
+											{{ form.address }}
+										</div>
+										<div class="fieldWrapper flex--wrap flex--3">
+											<span >
+												<label for="city">City:</label>
+												{{ form.city }}
+											</span>
+											<span >
+												<label for="zip">Zip:</label>
+												{{ form.zip }}
+											</span>
+											<span >
+												<label for="country">Country:</label>
+												{{ form.country }}
+											</span>
+										</div>
+										<div class="fieldWrapper flex--wrap">
+											<span class="flex--2">
+												<label for="phone">Phone:</label>
+												{% if form.errors.phone %}
+													{{ form.errors.phone }}
+												{% endif %}
+												{{ form.phone }}
+											</span>
+											<span class="flex--2">
+												<label for="website">Website:</label>
+												{% if form.errors.website %}
+													{{ form.errors.website }}
+												{% endif %}
+												{{ form.website }}
+											</span>
+										</div>
+										<div class="fieldWrapper flex--wrap">
+											<span class="flex--2">
+												<label for="date_check_in">Date check in:</label>
+												{{ form.date_check_in }}
+											</span>
+											<span class="flex--2">
+												<label for="date_check_out}">Date check out:</label>
+												{{ form.date_check_out }}
+											</span>
+										</div>
+										<div class="fieldWrapper flex--wrap">
+											<span class="flex--2">
+												<label for="trip">Trip:</label>
+												{{ form.trip }}
+											</span>
+											<span class="flex--2">
+												<label for="type">Type:</label>
+												{{ form.type }}
+											</span>
+										</div>
+										<div class="fieldWrapper hide">
+											<label for="user">User:</label>
+											{{ form.user }}
+										</div>
+										<div class="fieldWrapper">
+											<label for="notes">Notes:</label>
+											{{ form.notes }}
+										</div>
+										<input type="submit" value="Save">
+									</form>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
     {% endif %}
 {% endblock %}

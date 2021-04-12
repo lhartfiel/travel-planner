@@ -5,9 +5,13 @@
 {% block body %}
     {% if user.is_authenticated %}
         <div class="body-wrap">
-            <div class="img-wrap img-wrap--accomm img-wrap--detail pos--rel o-hide">
-				<img src="{% static 'travel_planner/images/accommodations.png' %}" alt="Airplane" class="hero__bkg
-				pos--abs">
+            <div class="img-wrap img-wrap--detail pos--rel o-hide h--100">
+				{% for item in site_settings %}
+					<div class="form__img-wrap pos--abs o-hide">
+						<img src="{{ item.accommodation_photo }}" alt="Hotel bedroom" class="hero__bkg pos--abs w--100">
+						<p class="caption caption--hero pos--abs">Photo credit: {{ item.accommodation_photo_attribution }}</p>
+					</div>
+				{% endfor %}
                 <div class="container container--max container--center pos--rel z--10">
 					<div class="grid">
 						<div class="grid--8">
@@ -22,7 +26,8 @@
 									<div class="accommodation__info">
 										<h3 class="m--0 c--sec">{{ object.title }} ({{ object.type }})</h3>
 										{% if object.website %}
-											<a class="d--blk c--pur mt--1" href="{{ object.website }}">{{ object.website }}</a>
+											<a class="d--blk c--sec mt--1" href="{{ object.website }}">
+												{{ object.website }}</a>
 										{% endif %}
 										<p class="mb--0">
 											<span class="fw--700">Address:</span>

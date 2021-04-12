@@ -19,6 +19,7 @@ class CustomUser(AbstractUser):
     emergency_email = models.EmailField(max_length=255, blank=False)
     allergies = models.TextField(blank=True)
     notes = models.TextField(blank=True)
+    travel_group_invite = models.ManyToManyField(TravelGroup, related_name='travel_group_invite', null=True, blank=True)
 
     def get_profile(self):
         user = self.objects.all()
@@ -29,6 +30,9 @@ class CustomUser(AbstractUser):
 
     def order_by_travel_group(self):
         return Transportation.objects.filter(user_id=self.id).order_by('travel_group')
+
+    def get_travel_group(self):
+        return TravelGroup.objects.get(user_id=self.id)
 
     def __str__(self):
         return self.first_name

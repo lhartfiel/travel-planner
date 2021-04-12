@@ -44,7 +44,6 @@
 }
 
 ///Font Weights
-
 .fw--700 {
   font-weight: 700;
 }
@@ -76,6 +75,10 @@
 
 .c--white {
   color: $white;
+}
+
+.c--maroon {
+  color: $maroon;
 }
 
 //Font Sizes
@@ -200,6 +203,7 @@
   margin-left: 4rem;
 }
 
+
 .p--1 {
   padding: 1rem;
 }
@@ -229,6 +233,29 @@
 
 .pb--2 {
   padding-bottom: 2rem;
+}
+
+.pt--3 {
+  padding-top: 3rem;
+}
+
+.p--3 {
+  padding: 3rem;
+}
+.pr--3 {
+  padding-right: 3rem;
+}
+
+.pl--3 {
+  padding-left: 3rem;
+}
+
+.pb--3 {
+  padding-bottom: 3rem;
+}
+
+.pt--3 {
+  padding-top: 3rem;
 }
 
 //List Items
@@ -291,5 +318,19 @@
     position: absolute;
     width: 30%;
 
+  }
+}
+
+.tag {
+  background-color: $secondary;
+  border: 3px solid white;
+  color: $white;
+  left: -2rem;
+  top: -1rem;
+  width: auto;
+  z-index: 20;
+
+  p {
+    letter-spacing: 0.75px;
   }
 }

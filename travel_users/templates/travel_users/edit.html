@@ -5,9 +5,9 @@
 {% block head %}
     {{ block.super }}
     {% block css %}
-        {{ block.super }}
+{#        {{ block.super }}#}
         {% compress css inline %}
-            <link rel="stylesheet" type="text/x-scss" href="{% static 'travel_planner/scss/general.scss' %}">
+{#            <link rel="stylesheet" type="text/x-scss" href="{% static 'travel_planner/scss/general.scss' %}">#}
             <link rel="stylesheet" type="text/x-scss" href="{% static 'travel_users/scss/travel_users.scss' %}">
         {% endcompress %}
     {% endblock %}
@@ -15,7 +15,7 @@
 
 
 {% block body %}
-		<div class="form__bkg f--wrap a--ctr j--ctr pos--rel z--10">
+	<div class="form__bkg f--wrap a--ctr j--ctr pos--rel z--10">
 			<div class="container container--wide container--center pos--rel z--10">
 				<div class="grid mt--2">
 					<div class="grid--full">
@@ -36,14 +36,22 @@
 												{% if field.name == 'first_name' or field.name == 'last_name' or field.name == 'city' or field.name == 'state' or field.name == 'phone' or field.name == 'email' or field.name == 'emergency_first_name' or field.name == 'emergency_last_name' or field.name == 'emergency_email' or field.name == 'emergency_phone' %}
 													{% if field.name == 'emergency_first_name' %}
 														<h3 class="d--blk w--100"> Emergency Info </h3>{% endif %}
-													<li class="flex--2 li--none {% if field.name == 'phone' %} mr--1 {% endif %}{% if field.name == 'email' %} ml--1 {% endif %}">
+													<li class="flex--2 li--none {% if field.name == 'phone' %}flex--left {%endif %}{% if field.name == 'email' %} flex--right{% endif %}">
 														<label for="">{{ field.label }}</label>
 														{{ field }}
 													</li>
 												{% else %}
 													{% if field.name == 'allergies' %}<h3 class="d--blk w--100">Additional Info </h3>
 													{% endif %}
-													{% if field.name == 'password' %} {#  Don't display password field #}
+
+													{% if field.name == 'password' %}{#  Don't display password field #}
+
+													{% elif field.name == 'profile_photo' %}
+														<li class="flex--full li--none">
+															<label class="d--blk w--100" for=""
+															>{{ field.label }}</label>
+															<div class="d--blk w--100">{{ field }}</div>
+														</li>
 													{% else %}
 														<li class="flex--full li--none">
 															<label for="">{{ field.label }}</label>
@@ -62,5 +70,4 @@
 				</div>
     		</div>
 		</div>
-
 {% endblock %}

@@ -12,26 +12,56 @@
 {% endblock %}
 
 {% block body %}
-    <div class="body-wrap">
-        <div class="img-wrap img-wrap--main">
-            <div class="container container--narrow container--white mt--4">
-                <div class="grid--full checklist">
-                    <h1>Edit Item</h1>
-                    <form class="checklist__edit" method="post">{% csrf_token %}
-                        <div class="flex a--ctr">
-                            <div class="flex mr--4">
-                                {{ form.item_status }}
-                                <label for="item_status"></label>
-                            </div>
-                            <div>
-                                <p>Checklist Item:</p>
-                                {{ form.checklist_item }}
-                            </div>
-                        </div>
-                        <input type="submit" value="Update">
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="form__bkg f--wrap a--ctr j--ctr pos--rel z--10">
+		<div class="container container--wide container--center pos--rel z--10">
+			<div class="grid mt--2">
+				<div class="grid--6 h--100">
+					<div class="form--block grid pos--rel h--100 p--2 mt--2">
+						<div class="grid--10 h--100 mt--4 mb--4 pr--1 c--white">
+							<h1>Edit Item</h1>
+							<p class="ta--c c--white fz--18">Are you sure you want to delete "{{ object }}"?</p>
+							<form class="checklist__edit" method="post">{% csrf_token %}
+								<div class="flex a--ctr">
+									<div class="flex mr--4">
+										{{ form.item_status }}
+										<label for="item_status"></label>
+									</div>
+									<div>
+										<p>Checklist Item:</p>
+										{{ form.checklist_item }}
+									</div>
+								</div>
+								<input type="submit" value="Update">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+{#    <div class="body-wrap">#}
+{#        <div class="img-wrap img-wrap--main">#}
+{#            <div class="container container--narrow container--white mt--4">#}
+{#                <div class="grid--full checklist">#}
+{#                    <h1>Edit Item</h1>#}
+{#                    <form class="checklist__edit" method="post">{% csrf_token %}#}
+{#                        <div class="flex a--ctr">#}
+{#                            <div class="flex mr--4">#}
+{#                                {{ form.item_status }}#}
+{#                                <label for="item_status"></label>#}
+{#                            </div>#}
+{#                            <div>#}
+{#                                <p>Checklist Item:</p>#}
+{#                                {{ form.checklist_item }}#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <input type="submit" value="Update">#}
+{#                    </form>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
 {% endblock %}

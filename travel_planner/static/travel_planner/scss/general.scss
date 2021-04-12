@@ -7,7 +7,10 @@
 @import 'components/_typography.scss';
 @import 'components/_utility.scss';
 @import 'components/_nav.scss';
+@import 'components/_images.scss';
 @import 'components/_home.scss';
+@import 'components/_hero.scss';
+@import 'components/_accordion.scss';
 @import 'components/_list-items.scss';
 
 //@import '../../travel_group/static/travel_group/scss/travel_group.scss';
@@ -30,20 +33,17 @@ body {
   height: 100vh;
 }
 
-.color-white {
-  color: $white;
+footer {
+  background: rgba($charcoal, 0.15);
+  border-top: 2px solid $charcoal;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
 }
 
-.txt--left {
-  text-align: left;
-}
-
-.txt--right {
-  text-align: right;
-}
-
-.txt--center {
-  text-align: center;
+a, .link-text {
+  &:hover {
+    color: $maroon;
+  }
 }
 
 .body-wrap {
@@ -51,126 +51,9 @@ body {
   width: 100vw;
 }
 
-.hero {
-    grid-column: 1 / -1;
-    max-height: 400px;
-    width: 100%;
-
-    .hero__bkg {
-      min-width: 100%;
-      object-fit: cover;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    &:after {
-      //background-image: linear-gradient(180deg, #3431A0 0%, #15A09A 100%);
-      background: rgba($purple, 0.8);
-      bottom: 0;
-      content: "";
-      left: 0;
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-}
-
-.hero__form {
-    //height: 250px;
-
-    .fieldBox {
-      background: $white;
-      border-top: 2.4rem $secondary solid;
-      border-radius: 4px;
-      box-shadow: 0 0 5px rgba(gray, 0.6);
-    }
-
-    label {
-      color: $white;
-    }
-}
-
-
-
-.img-wrap--main {
-  background-image: url('../images/curacao-bw.jpg');
-  background-size: cover;
-  display: grid;
-  grid-column: 1 / -1;
-  grid-template-columns: repeat(12, 1fr);
-
-  img {
-    max-height: 100%;
-  }
-
-  &:after {
-    background: rgba($purple, 0.7);
-    bottom: 0;
-    content: "";
-    left: 0;
-    opacity: 0.8;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-}
-
-.img-wrap--detail {
-  background-size: cover;
-
-  &:after {
-    background: rgba($purple, 0.7);
-    bottom: 0;
-    content: "";
-    left: 0;
-    opacity: 0.8;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-
-  .hero__bkg{
-    min-width: 100%;
-    top: 0;
-  }
-}
-
-.home__img-wrap {
-  background-position: 50%;
-  height: 100%;
-
-   &:after {
-     background-image: linear-gradient(180deg, #3431A0 0%, #15A09A 100%);
-   }
-}
-
-
 i.fas,
 i.fab {
   font-family: "Font Awesome 5 Solid", serif;
-}
-
-form {
-  margin: 0 auto;
-  width: 100%;
-}
-
-
-
-textarea {
-  height: 10rem;
-}
-
-#id_password {
-  display: none;
-
-  ~ .helptext {
-    display: none;
-  }
-}
-
-label[for="id_password"] {
-  display: none;
 }
 
 .link-blk {
@@ -197,33 +80,10 @@ label[for="id_password"] {
   }
 }
 
-.cnt-img--accord {
-  transform: rotate(90deg);
-}
-
-.accord--expand {
-  display: none;
-}
-
 .idea-item {
   &:not(:last-child) {
     border-bottom: 1px solid rgba(gray, 0.4);
   }
-}
-
-.cnt {
-  &.active {
-    height: auto;
-
-    .accord--expand {
-      display: flex;
-    }
-  }
-}
-
-.cnt__accord-link {
-  cursor: pointer;
-  align-items: center;
 }
 
 .detail-wrap {
@@ -231,6 +91,47 @@ label[for="id_password"] {
   margin-top: 10%;
   margin-bottom: 10%;
   padding: 2rem;
+}
+
+.link--inline {
+  svg {
+    position: relative;
+    right: 0;
+    transition: 0.4s ease all;
+    width: 5px;
+  }
+
+  &:hover {
+    svg {
+      right: -3px;
+    }
+  }
+}
+
+.trip__name {
+  flex-basis: 100%;
+  overflow: hidden;
+  position: relative;
+
+  &:after {
+    background: rgba($charcoal, 0.5);
+    content: "";
+    height: 1px;
+    margin-left: 2rem;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+  }
+}
+
+.errorlist {
+  margin: 0;
+
+  li {
+    color: $maroon;
+    font-size: 1.2rem;
+    list-style: none;
+  }
 }
 
 

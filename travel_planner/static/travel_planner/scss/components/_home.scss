@@ -63,4 +63,14 @@
   position: absolute;
   right: 0;
   top: 80px;
+  z-index: -1;
+}
+
+.home__img-wrap {
+  background-position: 50%;
+  height: 100%;
+
+   &:after {
+     background-image: linear-gradient(180deg, #3431A0 0%, #15A09A 100%);
+   }
 }

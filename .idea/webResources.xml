@@ -6,8 +6,10 @@
         <entryData>
           <resourceRoots>
             <path value="file://$PROJECT_DIR$/travel_planner/static" />
-            <path value="file://$PROJECT_DIR$/travel_users/static" />
             <path value="file://$PROJECT_DIR$/travel_transportation/static" />
+            <path value="file://$PROJECT_DIR$/travel-planner/static" />
+            <path value="file://$PROJECT_DIR$/travel_group/static" />
+            <path value="file://$PROJECT_DIR$/travel_users/static" />
           </resourceRoots>
         </entryData>
       </entry>

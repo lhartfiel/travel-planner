@@ -1,26 +1,31 @@
 import requests
 
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
+from django import forms
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.views.generic import TemplateView, ListView, DetailView, UpdateView, CreateView, DeleteView
-from rest_framework.generics import RetrieveUpdateAPIView
+from django.views.generic.base import View, RedirectView
+from django.views.generic.edit import FormMixin, FormView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from accommodations.models import Accommodations
 from travel_users.models import CustomUser
-from .models import TravelGroup, SightseeingIdeas, RestaurantIdeas, TravelMessages, ChecklistItems
+from .models import TravelGroup, SightseeingIdeas, RestaurantIdeas, TravelMessages, ChecklistItems, UnsplashPhotos
 from .forms import GroupCreateForm, SightseeingFormSet, RestaurantFormSet, MessageFormSet, SightseeingEditForm, \
     SightseeingCreateForm, RestaurantEditForm, RestaurantCreateForm, MessageCreateForm, ChecklistCreateForm, \
-    ChecklistEditForm, MessageEditForm
-from django.http import HttpResponseRedirect, HttpResponseForbidden, JsonResponse
+    ChecklistEditForm, MessageEditForm, AddUserForm, RemoveUserForm
+from django.http import HttpResponseRedirect, HttpResponseForbidden, JsonResponse, request, HttpResponse
 import json
 
 from rest_framework import routers, serializers, viewsets
 from django.core.mail import send_mail
 from django.conf import settings
 
+
+# invite = Invitation.create('email@example.com', inviter=request.travel_user)
+# invite.send_invitation(request)
 
 # class UnsplashPhoto(object):
 #
@@ -37,6 +42,16 @@ from django.conf import settings
 #
 #     def create(self, validated_data):
 #         return UnsplashPhoto(**validated_data)
+
+
+class InviteFormView(TemplateView):
+    template_name = "travel_group/invite-form.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['travel_user'] = kwargs.get('username')
+        return context
+
 
 class TravelGroupImage(APIView):
     queryset = TravelGroup.objects.values_list('primary_destination')
@@ -68,21 +83,112 @@ class TravelGroupListView(ListView):
         context = super().get_context_data(**kwargs)
         username = self.kwargs['username']
         photos = requests.get('http://127.0.0.1:8001/api-unsplash/?format=json')
-        trips = TravelGroup.objects.filter(travelers__username=username)
+        trips = TravelGroup.objects.filter(travelers__username=username).order_by('-transportation__departure_date')
         context['trips'] = trips
         context['photos'] = photos.json()["results"]
         return context
 
 
-    # def get(self, request, *args, **kwargs):
-    #     self
-    #     photo_list = TravelGroup.objects.values_list('primary_destination', flat=True).distinct()
-    #     # photo_list_encode = photo_list.join.replace(', ', '&').replace("'", "")
-    #     # print(photo_list_encode)
-    #
-    #     request = requests.get('https://api.unsplash.com/search/photos?client_id=TK4hk3RxTdHHy5yLPsfGKkROapr5q3i2hAOKp37joHM&page=1&query=Italy')
-    #     context = request
-    #     return render(request, "travel_group/photo.html", context=context)
+class TravelGroupAddTraveler(FormView):
+    form_class = AddUserForm
+    template_name = 'travel_group/update-travelers.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(TravelGroupAddTraveler, self).get_context_data(**kwargs)
+        context['travel_group'] = self.kwargs.get('pk')
+        return context
+
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+
+        # perform a action here
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        data = self.request.POST.copy()
+        traveler_email = form.data['traveler']
+        current_travel_group = self.kwargs.get('pk')
+        current_travel_group_obj = TravelGroup.objects.get(pk=current_travel_group)
+        try:
+            current_user = CustomUser.objects.get(email__exact=traveler_email)
+
+            if current_user:
+                all_travelers = list(TravelGroup.objects.get(pk=current_travel_group).travelers.all().values_list('username', flat=True))
+                all_travelers.append(current_user.username)
+                invited_traveler = CustomUser.objects.get(email=traveler_email)
+                invited_traveler.save()
+                return HttpResponseRedirect(self.get_success_url())
+        except ObjectDoesNotExist:
+            return HttpResponseRedirect(self.send_mail(form, traveler_email, self.request.user, current_travel_group))
+
+    def get_success_url(self):
+        return reverse('travel_group_single', kwargs={'pk': self.kwargs['pk']})
+
+    def send_mail(self, form, email, sender, travel_group):
+        # Send mail to admin with valid_data['order'] and valid_data['name']
+        traveler_emails = []
+        recipient_email = email
+        travel_group_name = TravelGroup.objects.get(pk=travel_group)
+        message_creator = sender
+        message_body = '<p>Interested in joining Travel Planner? <a>Sign Up Now!</a></p>'
+        # message_group = travel_group
+        # message_group_id = travel_group.id
+        subject = message_creator.first_name + ' has invited you to ' + travel_group_name.trip_name + ' on Travel ' \
+                                                                                                     'Planner'
+        message = message_creator.first_name + ' is inviting you to Travel Planner: ' + message_body
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = traveler_emails.append(recipient_email)
+        send_mail(subject, message, email_from, traveler_emails)
+        return reverse('travel_group_single', kwargs={'pk': travel_group})
+
+
+class TravelGroupRemoveUserView(FormView):
+    form_class = RemoveUserForm
+    template_name = 'travel_group/remove-travelers.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(TravelGroupRemoveUserView, self).get_context_data(**kwargs)
+        travel_group = self.kwargs.get('pk')
+        context['travel_group'] = TravelGroup.objects.get(id=travel_group)
+        context['traveler'] = self.kwargs.get('username')
+        return context
+
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+
+        # perform a action here
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        data = self.request.POST.copy()
+        current_travel_group = self.kwargs.get('pk')
+        current_travel_group_obj = TravelGroup.objects.get(pk=current_travel_group)
+        user_to_remove = self.kwargs.get('username')
+        all_travelers = list(
+            TravelGroup.objects.get(pk=current_travel_group).travelers.all().values_list('username',
+                                                                                         flat=True))
+        all_travelers.remove(user_to_remove)
+        user_obj = CustomUser.objects.filter(username__in=all_travelers)
+        data['travelers'] = user_obj
+        current_travel_group_obj.travelers.set(user_obj)  # this must be a list
+        current_travel_group_obj.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+    def get_success_url(self):
+        return reverse('travel_group_index', kwargs={'username': self.kwargs['username']})
+
+
+class TravelGroupInvitePendingView(TemplateView):
+    template_name = 'travel_group/invite-pending.html'
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(TravelGroupInvitePendingView, self).get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['travel_group'] = TravelGroup.objects.get(id=kwargs.get('pk'))
+        return context
+
+
 
 
 class TravelerAccommodationListView(ListView):
@@ -133,17 +239,16 @@ class TravelGroupCreateView(CreateView):
         data = request.POST.copy()
         data_destination = form.data['primary_destination']
 
-        unsplash_api = f'https://api.unsplash.com/search/photos?client_id=TK4hk3RxTdHHy5yLPsfGKkROapr5q3i2hAOKp37joHM' \
-                       f'&query={data_destination}&page=1'
+        unsplash_api = unsplash_api = f'https://api.unsplash.com/search/photos?client_id=TK4hk3RxTdHHy5yLPsfGKkROapr5q3i2hAOKp37joHM&query={data_destination}&page=1'
         response = requests.get(unsplash_api)
         response = response.json()
         photo_url = response['results'][0]["urls"]["regular"]
         photo_attribution = response['results'][0]["user"]["name"]
 
         data['messages-0-message_creator'] = self.request.user.id
-        data['photo'] = photo_url
         data['travelers'] = form.data['travelers']
         user_logged_in = self.request.user.username
+
         try:
             users = data['travelers'].split(", ")
             users.append(user_logged_in)
@@ -153,19 +258,28 @@ class TravelGroupCreateView(CreateView):
             pass
         request.POST = data
         form = GroupCreateForm(self.request.POST)
-        form.photo = photo_url
+
         sightseeing_form = SightseeingFormSet(self.request.POST)
         restaurant_form = RestaurantFormSet(self.request.POST)
         message_form = MessageFormSet(data)
         if form.is_valid() and sightseeing_form.is_valid() and restaurant_form.is_valid() and \
                 message_form.is_valid():
-            return self.form_valid(form, sightseeing_form, restaurant_form, message_form)
+            return self.form_valid(form, user_logged_in, photo_url, photo_attribution, sightseeing_form, restaurant_form, message_form)
         else:
+            errors = form.errors.as_data()
             self.form_invalid(form, sightseeing_form, restaurant_form, message_form)
             return self.form_invalid(form, sightseeing_form, restaurant_form, message_form)
 
-    def form_valid(self, form, sightseeing_form, restaurant_form, message_form):
+    def form_valid(self, form, current_user, photo_url, photo_attribution, sightseeing_form, restaurant_form, message_form):
         self.object = form.save()
+        new_photo = UnsplashPhotos(
+            photo=photo_url,
+            photo_attribution=photo_attribution,
+            travel_group=form.instance
+        )
+        new_photo.save()
+        form.group_owner = current_user
+        form.save()
         sightseeing_form.instance = self.object
         sightseeing_form.save()
         restaurant_form.instance = self.object
@@ -186,9 +300,35 @@ class TravelGroupEditView(UpdateView):
     fields = ['travelers', 'trip_name', 'primary_destination']
     template_name = 'travel_group/group-edit.html'
 
+    def post(self, request, *args, **kwargs):
+        if self.request.method == 'POST' and request.is_ajax():
+            data = json.loads(request.body.decode('utf-8'))
+            request.POST = request.POST.copy()
+            request.POST = data
+            travel_obj = self.get_object()
+            all_travelers = list(travel_obj.travelers.all())
+            traveler = data.get('traveler')
+            traveler_obj = CustomUser.objects.get(username=traveler)
+            all_travelers.append(traveler_obj)
+            travel_obj.travelers.set(all_travelers)
+            travel_obj.save()
+            return super(TravelGroupEditView, self).post(request, *args, **kwargs)
+
     def get_success_url(self):
-        self.object
+        data_destination = self.object.primary_destination
+        unsplash_api = f'https://api.unsplash.com/search/photos?client_id=TK4hk3RxTdHHy5yLPsfGKkROapr5q3i2hAOKp37joHM&query={data_destination}&page=1'
+        response = requests.get(unsplash_api)
+        response = response.json()
+        photo_url = response['results'][0]["urls"]["regular"]
+        photo_attribution = response['results'][0]["user"]["name"]
+        new_photo = UnsplashPhotos(
+            photo=photo_url,
+            photo_attribution=photo_attribution,
+            travel_group=self.object
+        )
+        new_photo.save()
         return reverse('travel_group_single', kwargs={'pk': self.object.id})
+
 
 class SightseeingAddView(CreateView):
     model = SightseeingIdeas

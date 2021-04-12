@@ -1,0 +1,19 @@
+{% load static %}
+{% static "" as baseUrl %}
+
+<div class="hero hero--lg hero--{{ type }} hero__profile pos--rel o-hide z--10 h--100">
+	{% for item in site_settings %}
+		<img src="{{ item.transportation_photo }}" alt="Hotel bedroom" class="hero__bkg pos--abs w--100">
+		<p class="caption caption--hero pos--abs">Photo credit: {{ item.transportation_photo_attribution }}</p>
+	{% endfor %}
+	<div class="container container--max container--center flex--wrap a--ctr h--100">
+		<div class="hero__cnt">
+			<h1 class="d--blk w--100 group__head pos--rel c--white grid--full ta--l mb--0 z--10">Transportation for
+				<span class="d--blk c--white fz--20">{{ user_profile.first_name }}
+					{{ user_profile.last_name }}</span></h1>
+			<div class="btn-wrap pos--rel ta--c d--blk w--100 z--10">
+				<a href="{% url 'transportation_create' user.pk %}" class="btn btn--sec ta--c mb--3">Create Transportation</a>
+			</div>
+		</div>
+	</div>
+</div>

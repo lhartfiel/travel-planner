@@ -15,35 +15,52 @@
 
 {% block body %}
 	{% if user.is_authenticated %}
-		<div class="body-wrap">
-			<div class="hero hero--lg hero__form f--wrap a--ctr j--ctr pos--rel o-hide z--10">
-				<img src="{% static 'travel_planner/images/curacao-bw.jpg' %}" alt="Curacao" class="hero__bkg pos--abs">
-				<h1 class="h1--sm group__head pos--rel c--white grid--full ta--c z--10">Checklists</h1>
-			</div>
-			<div class="container container--max container--center pos--rel z--10">
-				<div class="grid mt--2">
-					<div class="grid--8">
-						<ul>
-							{% for checklist in checklists %}
-								<li class="li--none">
-									<a class="f--nowrap trav-group link-blk blk--shadow a--ctr mb--2" href="{% url 'travel_checklist_list' checklist.pk user.username %}">
-										<span class="icon-blk pt--1 pb--1 pr--2 pl--2">
-											<img class="icon-img" src="
-{% static 'travel_planner/images/icon-checklist.svg' %}" alt="Checkmark icon">
-										</span>
-										<span class="cnt f--nowrap j--btwn flex--full pr--2">
-											<h4 class="fw--500 upcase c--sec ml--2 ">{{ checklist }}</h4>
-											<img class="cnt-img" src="{% static 'travel_planner/images/icon-arrow-right.svg' %}"
-												 alt="">
-										</span>
-									</a>
-								</li>
-							{% endfor %}
-						</ul>
+		<div class="hero hero--lg pos--rel o-hide z--10">
+			{% for item in site_settings %}
+				<img src="{{ item.checklist_photo }}" alt="Airplane" class="hero__bkg pos--abs w--100">
+				<p class="caption caption--hero pos--abs">Photo credit:
+					{{ item.checklist_photo_attribution }}</p>
+			{% endfor %}
+			<div class="container container--max container--center flex--wrap a--ctr h--100">
+				<div class="hero__cnt">
+					<h1 class="h1--sm group__head pos--rel c--white grid--full ta--c z--10">Checklists</h1>
+					<div class="btn-wrap pos--rel ta--c d--blk w--100 z--10">
+						<a href="{% url 'travel_checklist_create' user.id user.username %}" class="btn btn--sec ta--c mb--3">Create Checklist</a>
 					</div>
 				</div>
 			</div>
-		{% else %}
+		</div>
+		<div class="body-wrap">
+			<div class="container container--max container--center pos--rel z--10 mb--4">
+				<div class="grid mt--2">
+					{% if checklists|length > 0 %}
+						<div class="grid--8">
+							<ul>
+								{% for checklist in checklists %}
+									<li class="li--none">
+										<a class="f--nowrap trav-group link-blk blk--shadow a--ctr mb--2" href="{% url 'travel_checklist_list' checklist.pk user.username %}">
+											<span class="icon-blk pt--1 pb--1 pr--2 pl--2">
+												<img class="icon-img" src="
+	{% static 'travel_planner/images/icon-checklist.svg' %}" alt="Checkmark icon">
+											</span>
+											<span class="cnt f--nowrap j--btwn flex--full pr--2">
+												<h4 class="fw--500 upcase c--sec ml--2 ">{{ checklist }}</h4>
+												<img class="cnt-img" src="{% static 'travel_planner/images/icon-arrow-right.svg' %}"
+													 alt="">
+											</span>
+										</a>
+									</li>
+								{% endfor %}
+							</ul>
+						</div>
+					{% else %}
+						<div class="d--blk grid--10 ta--ctr w--100 mt--3 mb--3">
+							<h2 class="c--sec ta--c fw--500">You don't have any checklists</h2>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+	{% else %}
 			<p>Oops! You aren't logged in.</p>
 		</div>
 	{% endif %}

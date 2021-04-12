@@ -1,3 +1,4 @@
+from django.core.exceptions import MultipleObjectsReturned
 from django.urls import reverse
 from collections import OrderedDict
 
@@ -31,6 +32,7 @@ class AccommodationListView(ListView):
                 places_dict[place.trip].append(place)
         context['places'] = places_dict
         context['user_profile'] = CustomUser.objects.get(username=username)
+        context['accommodations'] = Accommodations.objects.filter(user__username=username).order_by('trip')
         return context
 
 
@@ -40,15 +42,20 @@ class AccommodationListTravelGroupView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        places = [self.object_list.get(trip_id=self.kwargs['pk'])]
+        username = self.kwargs['username']
+        try:
+            places = [self.object_list.get(trip_id=self.kwargs['pk'], username=username)]
+        except:
+            places = self.object_list.filter(trip_id=self.kwargs['pk'])
+
         places_dict = {}
         for place in places:
             if place.trip not in places_dict:
                 places_dict[place.trip] = [place]
             elif place.trip in places_dict:
                 places_dict[place.trip].append(place)
-        context['places'] = places_dict
-
+            context['places'] = places_dict
+        context['accommodations'] = Accommodations.objects.filter(user__username=username, trip_id=self.kwargs['pk'])
         return context
 
 

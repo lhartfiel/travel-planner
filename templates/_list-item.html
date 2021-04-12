@@ -1,8 +1,9 @@
 <div class="blk--shadow list-item flex--wrap mb--4 pos--rel">
-	<div class="img-wrap">
-		<img class="item-img" src=
-				"{% static 'travel_planner/images/travel-zipline.png' %}"
-			 alt="Zipline">
+	<div class="img-wrap pos--rel">
+		{% for item in group.grouper.unsplash_photo.all %}
+			<img class="item-img" src="{{ item.photo }}" alt="{{ item.photo_attribution }}">
+			<p class="img-caption">Photo by: {{ item.photo_attribution }}</p>
+		{% endfor %}
 	</div>
 	<div class="item-cnt p--2 pos--rel">
 		<h3 class="m--0 c--char">{{ group.grouper.trip_name }}</h3>

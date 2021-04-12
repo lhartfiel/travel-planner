@@ -38,6 +38,10 @@ p {
 
 a {
   text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 ul, ol {
@@ -56,17 +60,6 @@ ul, ol {
   }
 }
 
-.tac {
-  text-align: center;
-}
-
-.tar {
-  text-align: right;
-}
-
-.tal {
-  text-align: left;
-}
 
 .btn-wrap--ctr {
   text-align: center;
@@ -84,18 +77,38 @@ ul, ol {
 
 .btn {
   cursor: pointer;
-  border-radius: 4px;
+  font-size: 1.6rem;
+  border-radius: 23px;
   margin-right: 2rem;
   padding: 10px 24px;
+
+   &--card {
+    background: $maroon;
+    border: 1px solid $maroon;
+    border-radius: 23px;
+    color: $white;
+    display: block;
+    transition: 0.3s ease all;
+
+    &:hover {
+      background: $white;
+      color: $maroon;
+    }
+  }
 
   &--nav {
     border: 2px solid $secondary;
     color: $black;
+
+    &:hover {
+      background-color: $secondary;
+      color: $white;
+    }
   }
 
   &--primary {
-    background: $tertiary;
-    border: 1px solid $tertiary;
+    background: $maroon;
+    border: 1px solid $maroon;
     color: $white;
     display: inline-block;
     margin-top: 2.5rem;
@@ -103,15 +116,23 @@ ul, ol {
 
     &:hover {
       background: $white;
-      border: 1px solid $tertiary;
-      color: $tertiary;
+      border: 1px solid $maroon;
+      color: $maroon;
     }
   }
 
   &--sec {
     background: $secondary;
+    border: 1px solid $secondary;
     color: $white;
     display: inline-block;
+    margin-top: 2.5rem;
+    transition: 0.4s ease all;
+
+    &:hover {
+      background: $white;
+      color: $secondary;
+    }
   }
 
   &--ter {
@@ -126,12 +147,25 @@ ul, ol {
       color: $purple;
     }
   }
+
+  &--charcoal {
+    background: $charcoal;
+    border: 1px solid $charcoal;
+    color: $white;
+    display: inline-block;
+    transition: 0.3s ease all;
+
+    &:hover {
+      background: $white;
+      color: $charcoal;
+    }
+  }
 }
 
 button[type="submit"] {
-  background: $tertiary;
-  border: 1px solid $tertiary;
-  border-radius: 4px;
+  background: $secondary;
+  border: 1px solid $secondary;
+  border-radius: 23px;
   color: $white;
   cursor: pointer;
   padding: 10px 36px;
@@ -139,8 +173,8 @@ button[type="submit"] {
 
   &:hover {
     background: $white;
-    border: 1px solid $tertiary;
-    color: $tertiary;
+    border: 1px solid $secondary;
+    color: $secondary;
   }
 }
 

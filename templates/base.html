@@ -11,7 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://fonts.googleapis.com/css?family=Muli|Noto+Serif+KR:500,700&display=swap" rel="stylesheet">
         {% block css %}
-            <link href="http://maxcdn.bootstrapcdn.com/font-awesome/5.8.2/css/font-awesome.min.css" rel="stylesheet">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
             {% compress css inline %}
                 <link rel="stylesheet" type="text/x-scss" href="{% static 'travel_planner/scss/general.scss' %}">
             {% endcompress %}
@@ -21,11 +21,31 @@
 {% endblock %}
 
 <header>
-    <nav class="b-shadow">
+    <nav class="b-shadow flex a--ctr">
         <a href="{% url 'home' %}">Travel Pocket</a>
         {% if user.is_authenticated %}
-            <div class="nav-items mt--1 mb--1">
-                <a href="{% url 'profile' user.username %}" class="c--sec pr--2">My Profile |</a>
+            <div class="nav-items flex--wrap">
+				{% if user.travel_group_invite.all|length > 0 %}
+					<div>
+						<span class="nav-alert flex--wrap c--sec mr--1">
+							<img src="{% static 'travel_planner/images/alert.svg' %}"
+								 alt="Exlamation point icon">
+							<span class="nav-invites">
+								<span class="arrow-up"></span>
+								{% for travel_invite in user.travel_group_invite.all %}
+									<a class="d--blk" href=
+											"{% url 'travel_group_invite_pending' travel_invite.id user %}">
+									{{ travel_invite }}</a>
+								{% endfor %}
+							</span>
+						</span>
+					</div>
+
+				{% endif %}
+                <a href="{% url 'profile' user.username %}" class="c--sec">
+					<span class="link-text c--sec mr--1">My Profile</span>
+					<span class="c--sec mr--1">|</span>
+				</a>
                 <a href="{% url 'travel_group_index' user.username %}" class="c--sec mr--2">My Travel Groups</a>
                 <a href="{% url 'logout' %}" class="btn btn--nav">Logout</a>
             </div>
@@ -47,7 +67,7 @@
 
 {% block footer %}
     <footer>
-        <p class="tac">&copy; {% now 'Y' %} — Travel Planner</p>
+        <p class="ta--c">&copy; {% now 'Y' %} — Travel Pocket</p>
     </footer>
 {% endblock %}
 </html>

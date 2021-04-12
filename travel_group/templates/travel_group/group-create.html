@@ -3,61 +3,139 @@
 {% load compress %}
 
 {% block body %}
-    <div class="body-wrap">
-        <div class="img-wrap--main">
-            <div class="container container--narrow container--white">
-                <h2 class="ta--c">Create new Travel Group</h2>
-                <form action="" method="post">
-                    {% csrf_token %}
-					<div class="fieldWrapper">
-						<label for="{{ form.trip_name.id }}">Trip Name:</label>
-						{{ form.trip_name }}
+	<div class="body-wrap">
+        <div class="img-wrap img-wrap--main home__img-wrap">
+            <div class="container container--narrow">
+				<div class="grid">
+					<div class="grid--full">
+							<div class="form--block grid pos--rel h--100 p--2 mt--4 z--10">
+								<div class="grid--4 h--100 mt--4 mb--4 pr--1 c--white">
+									<h2 class="d--blk c--white ta--c upcase txt--bb">Create Travel Group</h2>
+									<p class="c--white ta--c fz--18">Planning a 14-day gastronomic tour through Italy? A
+										month-long backpacking trip through southeast Asia? Create a new travel
+										group for this excursion to start gathering sightseeing, restaurant and
+										accommodation
+										ideas.</p>
+								</div>
+								<div class="form-outer grid--8 grid--8--right blk--shadow p--2">
+									{% if user.is_authenticated %}
+										 <form action="" method="post">
+							{% csrf_token %}
+							<div class="fieldWrapper">
+								<label for="{{ form.trip_name.id }}">Trip Name:</label>
+								{{ form.trip_name }}
+							</div>
+							<div class="fieldWrapper">
+								<label for="{{ form.primary_destination.id }}">Primary Destination:</label>
+								{{ form.primary_destination }}
+							</div>
+							<div class="fieldWrapper">
+								<label for="{{ form.travelers.id }}">Traveler username:</label>
+								<p class="fz--12">Multiple travelers must be comma-separated (username1, username2, etc)</p>
+								{{ form.travelers }}
+							</div>
+							<fieldset>
+								<legend>Sightseeing Ideas</legend>
+								{{ sightseeing_form.management_form }}
+								{{ sightseeing_form.non_form_errors }}
+								{% for form in sightseeing_form %}
+									{{ form.id }}
+									<div class="inline {{ sightseeing_form.prefix }}">
+										{{ form.sightseeing_idea }}
+									</div>
+								{% endfor %}
+							</fieldset>
+							<fieldset>
+								<legend>Restaurant Ideas</legend>
+								{{ restaurant_form.management_form }}
+								{{ restaurant_form.non_form_errors }}
+								{% for form in restaurant_form %}
+									{{ form.id }}
+									<div class="inline {{ restaurant_form.prefix }}">
+										{{ form.restaurant_idea }}
+									</div>
+								{% endfor %}
+							</fieldset>
+							<fieldset>
+								<legend>Messages</legend>
+								{{ message_form.management_form }}
+								{{ message_form.non_form_errors }}
+								{% for form in message_form %}
+									{{ form.id }}
+									<div class="inline {{ message_form.prefix }}">
+										{{ form.message }}
+									</div>
+								{% endfor %}
+							</fieldset>
+							<button type="submit" value="Create travel group">Create Group</button>
+						</form>
+									{% endif %}
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="fieldWrapper">
-						<label for="{{ form.primary_destination.id }}">Primary Destination:</label>
-						{{ form.primary_destination }}
-					</div>
-					<div class="fieldWrapper">
-						<label for="{{ form.travelers.id }}">Traveler username:</label>
-						<p class="fz--12">Multiple travelers must be comma-separated (username1, username2, etc)</p>
-						{{ form.travelers }}
-					</div>
-                    <fieldset>
-                        <legend>Sightseeing Ideas</legend>
-                        {{ sightseeing_form.management_form }}
-                        {{ sightseeing_form.non_form_errors }}
-                        {% for form in sightseeing_form %}
-                            {{ form.id }}
-                            <div class="inline {{ sightseeing_form.prefix }}">
-                                {{ form.sightseeing_idea }}
-                            </div>
-                        {% endfor %}
-                    </fieldset>
-                    <fieldset>
-                        <legend>Restaurant Ideas</legend>
-                        {{ restaurant_form.management_form }}
-                        {{ restaurant_form.non_form_errors }}
-                        {% for form in restaurant_form %}
-                            {{ form.id }}
-                            <div class="inline {{ restaurant_form.prefix }}">
-                                {{ form.restaurant_idea }}
-                            </div>
-                        {% endfor %}
-                    </fieldset>
-                    <fieldset>
-                        <legend>Messages</legend>
-                        {{ message_form.management_form }}
-                        {{ message_form.non_form_errors }}
-                        {% for form in message_form %}
-                            {{ form.id }}
-                            <div class="inline {{ message_form.prefix }}">
-                                {{ form.message }}
-                            </div>
-                        {% endfor %}
-                    </fieldset>
-                    <button type="submit" value="Create travel group">Create Group</button>
-                </form>
-            </div>
-        </div>
-    </div>
+				</div>
+{#			</div>#}
+		</div>
+	</div>
+
+
+
+{#    <div class="body-wrap">#}
+{#        <div class="img-wrap--main">#}
+{#            <div class="container container--narrow container--white">#}
+{#                <h2 class="ta--c">Create new Travel Group</h2>#}
+{#                <form action="" method="post">#}
+{#                    {% csrf_token %}#}
+{#					<div class="fieldWrapper">#}
+{#						<label for="{{ form.trip_name.id }}">Trip Name:</label>#}
+{#						{{ form.trip_name }}#}
+{#					</div>#}
+{#					<div class="fieldWrapper">#}
+{#						<label for="{{ form.primary_destination.id }}">Primary Destination:</label>#}
+{#						{{ form.primary_destination }}#}
+{#					</div>#}
+{#					<div class="fieldWrapper">#}
+{#						<label for="{{ form.travelers.id }}">Traveler username:</label>#}
+{#						<p class="fz--12">Multiple travelers must be comma-separated (username1, username2, etc)</p>#}
+{#						{{ form.travelers }}#}
+{#					</div>#}
+{#                    <fieldset>#}
+{#                        <legend>Sightseeing Ideas</legend>#}
+{#                        {{ sightseeing_form.management_form }}#}
+{#                        {{ sightseeing_form.non_form_errors }}#}
+{#                        {% for form in sightseeing_form %}#}
+{#                            {{ form.id }}#}
+{#                            <div class="inline {{ sightseeing_form.prefix }}">#}
+{#                                {{ form.sightseeing_idea }}#}
+{#                            </div>#}
+{#                        {% endfor %}#}
+{#                    </fieldset>#}
+{#                    <fieldset>#}
+{#                        <legend>Restaurant Ideas</legend>#}
+{#                        {{ restaurant_form.management_form }}#}
+{#                        {{ restaurant_form.non_form_errors }}#}
+{#                        {% for form in restaurant_form %}#}
+{#                            {{ form.id }}#}
+{#                            <div class="inline {{ restaurant_form.prefix }}">#}
+{#                                {{ form.restaurant_idea }}#}
+{#                            </div>#}
+{#                        {% endfor %}#}
+{#                    </fieldset>#}
+{#                    <fieldset>#}
+{#                        <legend>Messages</legend>#}
+{#                        {{ message_form.management_form }}#}
+{#                        {{ message_form.non_form_errors }}#}
+{#                        {% for form in message_form %}#}
+{#                            {{ form.id }}#}
+{#                            <div class="inline {{ message_form.prefix }}">#}
+{#                                {{ form.message }}#}
+{#                            </div>#}
+{#                        {% endfor %}#}
+{#                    </fieldset>#}
+{#                    <button type="submit" value="Create travel group">Create Group</button>#}
+{#                </form>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
 {% endblock %}

@@ -4,17 +4,23 @@
 
 {% block body %}
     <div class="body-wrap">
-        <div class="img-wrap--main">
-            <div class="container container--narrow container--white">
-                <h2 class="ta--c">Edit Message</h2>
-                <div class="form-wrap f--wrap">
-                    <form action="" method="post">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <div class="btn-wrap">
-                            <input type="submit" value="Update">
-                        </div>
-                    </form>
+        <div class="img-wrap img-wrap--main home__img-wrap">
+            <div class="container container--narrow">
+				<div class="grid">
+					<div class="grid--6">
+						<div class="container--white pos--rel z--10">
+							<h2 class="ta--c">Edit Message</h2>
+							<div class="form-wrap f--wrap">
+								<form action="" method="post">
+									{% csrf_token %}
+									{{ form.as_p }}
+									<div class="btn-wrap">
+										<input type="submit" value="Update">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
                 </div>
             </div>
         </div>

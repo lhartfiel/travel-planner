@@ -12,8 +12,13 @@
 {% endblock %}
 
 {% block body %}
-
-		<div class="form__bkg f--wrap a--ctr j--ctr pos--rel z--10">
+	<div class="form__bkg f--wrap a--ctr j--ctr pos--rel z--10">
+			{% for item in site_settings %}
+				<div class="form__img-wrap pos--abs o-hide">
+					<img src="{{ item.transportation_photo }}" alt="Hotel bedroom" class="hero__bkg pos--abs w--100">
+					<p class="caption caption--hero pos--abs">Photo credit: {{ item.transportation_photo_attribution }}</p>
+				</div>
+			{% endfor %}
 			<div class="container container--wide container--center pos--rel z--10">
 				<div class="grid mt--2">
 					<div class="grid--full">
@@ -24,26 +29,68 @@
 									trip.</p>
 							</div>
 							<div class="form-outer grid--8 grid--8--right blk--shadow p--2">
-		{#                <h2 class="ta--c">Add Transportation Info</h2>#}
-								<form action="" method="post">
-									{% csrf_token %}
-									<ul class="transport-list flex--wrap">
-										{% for field in form.visible_fields %}
-											{% if field.name == 'arrival_city' or field.name == 'arrival_date' or field.name == 'arrival_time' or field.name == 'departure_city' or field.name == 'departure_date' or field.name == 'departure_time' %}
-												<li class="transport-wrap transport-wrap--sm li--none">
-													<label for="">{{ field.label }}</label>
-													{{ field }}
-												</li>
-											{% else %}
-												<li class="transport-wrap li--none">
-													<label for="">{{ field.label }}</label>
-													{{ field }}
-												</li>
-											{% endif %}
-										{% endfor %}
-									</ul>
-									<input type="submit" value="Save">
-								</form>
+								{% csrf_token %}
+								<ul class="transport-list flex--wrap">
+									<form method="post">
+										<div class="fieldWrapper flex--wrap w--100">
+											<span class="flex--2">
+												<label for="name">Name:</label>
+												<span>{{ form.name }}</span>
+											</span>
+											<span class="flex--2">
+												<label for="travel_group">Travel Group:</label>
+												{{ form.travel_group }}
+											</span>
+										</div>
+										<div class="fieldWrapper flex--wrap flex--3 w--100">
+											<span>
+												<label for="departure_date">Departure date:</label>
+												{{ form.departure_date }}
+											</span>
+											<span>
+												<label for="departure_date">Departure city:</label>
+												{{ form.departure_city }}
+											</span>
+											<span>
+												<label for="departure_time">Departure time:</label>
+												{{ form.departure_time }}
+											</span>
+										</div>
+										<div class="fieldWrapper flex--wrap flex--3 w--100">
+											<span>
+												<label for="arrival_date">Arrival date:</label>
+												{{ form.arrival_date }}
+											</span>
+											<span>
+												<label for="arrival_city">Arrival city:</label>
+												{{ form.arrival_city }}
+											</span>
+											<span>
+												<label for="arrival_time">Arrival time:</label>
+												{{ form.arrival_time }}
+											</span>
+										</div>
+										<div class="fieldWrapper flex--wrap flex--3 w--100">
+											<span>
+												<label for="type" placeholder="flight, train, etc">Type:</label>
+												{{ form.type }}
+											</span>
+											<span>
+												<label for="carrier">Carrier:</label>
+												{{ form.carrier }}
+											</span>
+											<span>
+												<label for="flight_number">Flight no:</label>
+												{{ form.flight_no }}
+											</span>
+										</div>
+										<div class="fieldWrapper w--100">
+											<label for="notes">Notes:</label>
+											{{ form.notes }}
+										</div>
+										<input type="submit" value="Save">
+									</form>
+								</ul>
 							</div>
 						</div>
 					</div>

@@ -19,17 +19,22 @@ class UnsplashPhotos(models.Model):
 
 class TravelGroup(models.Model):
     accommodations = models.ForeignKey(Accommodations, related_name='accommodation', on_delete=models.SET_NULL, null=True, blank=True)
-    photo = models.ForeignKey(UnsplashPhotos, related_name='display_photo', on_delete=models.SET_NULL, null=True,
-                              blank=True)
+    # photo = models.ForeignKey(UnsplashPhotos, related_name='display_photo', on_delete=models.SET_NULL, null=True,
+    #                           blank=True)
     primary_destination = models.CharField(max_length=200, null=False, blank=False, default='')
     transportation = models.ForeignKey(Transportation, related_name='transportation', on_delete=models.SET_NULL,
                                        null=True, blank=True)
     travelers = models.ManyToManyField('travel_users.CustomUser', related_name='trav_groups')
+    group_owner = models.ForeignKey('travel_users.CustomUser', related_name='travel_group_owner', default=1,
+                                    null=True, blank=False, on_delete=models.SET_NULL)
     trip_name = models.CharField(max_length=200, blank=False)
 
     def travel_group(self):
         group = self.objects.all()
         return group
+
+    def get_context_data(self, **kwargs):
+        context = super.get_context_data(**kwargs)
 
     def __str__(self):
         return self.trip_name
@@ -88,3 +93,14 @@ class TravelMessages(models.Model):
         return self.message
 
 
+# class TravelGroupInvite(models.Model):
+#     invitation = get_invitation_model()
+#     recipient_email = models.EmailField(null=False, blank=False)
+#     subject_line = models.CharField(max_length=300, blank=True, default="Join my travel group on Travel Planner")
+#     travel_group = models.ForeignKey('TravelGroup', related_name='travel_group_invite', on_delete=models.CASCADE)
+#
+#     class Meta:
+#         verbose_name = 'Travel Group Invite'
+#
+#     def __str__(self):
+#         return self.travel_group

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load compress %}
+
+
+{% block body %}
+	 <div class="form__bkg f--wrap a--ctr j--ctr pos--rel z--10">
+	 		{% for photo in travelgroup.unsplash_photo.all  %}
+				<div class="form__img-wrap pos--abs o-hide">
+					<img src="{{photo}}" class="hero__bkg pos--abs w--100">
+				</div>
+			{% endfor %}
+			<div class="container container--wide container--center pos--rel z--10">
+				<div class="grid mt--2">
+					<div class="grid--full">
+						<div class="form--block grid pos--rel p--2 mt--4">
+							<div class="grid--4 mt--4 pr--1 c--white">
+								<h2 class="d--blk c--white ta--c upcase txt--bb">Add Travelers</h2>
+								<p class="c--white ta--c fz--18">Need to add a traveler to your travel group? Check
+									if they're an existing user or invite them!</p>
+							</div>
+							<div class="form-outer grid--8 grid--8--right blk--shadow p--2">
+								{% if user.is_authenticated %}
+									<form action="" method="post">
+										{% csrf_token %}
+										<h2>Add a Traveler Below:</h2>
+										<p>Enter the email address of the individual you'd like to add.</p>
+										<div class="fieldWrapper">
+											{% if form.errors %}
+												<p class="c--maroon fz--14 pt--2 pb--0 trav-error">Oops! Looks like
+													this
+													email
+													doesn't belong
+													to a
+													current user</p>
+											{% endif %}
+											<em class="c--ter">{{ field.field.error_messages.invalid }}</em>
+											{{ form }}
+										</div>
+										{% if form.errors %}
+											<form action="{% url 'travel_group_invite' travel_group %}" method="POST">
+												  {% csrf_token %}
+												  <input type="submit" value="Invite User via Email" name="email">
+											</form>
+											<a href="{% url 'travel_group_invite' travel_group %}" class="btn
+											btn--primary">Invite User via Email</a>
+										{% else %}
+											<button type="submit" value="Edit travel group">Add Traveler</button>
+										{% endif %}
+									</form>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				</div>
+    		</div>
+		</div>
+
+{% endblock %}

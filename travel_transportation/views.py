@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, DetailView, UpdateView, CreateView, DeleteView
 
+from travel_group.models import TravelGroup
 from travel_users.models import CustomUser
 from .forms import TransportationEditForm, TransportationCreateForm
 from .models import Transportation

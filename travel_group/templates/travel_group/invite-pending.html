@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load compress %}
+
+
+{% block body %}
+	 <div class="form__bkg f--wrap a--ctr j--ctr pos--rel z--10">
+	 		{% for photo in travelgroup.unsplash_photo.all  %}
+				<div class="form__img-wrap pos--abs o-hide">
+					<img src="{{photo}}" class="hero__bkg pos--abs w--100">
+				</div>
+			{% endfor %}
+			<div class="container container--wide container--center pos--rel z--10">
+				<div class="grid mt--2">
+					<div class="grid--full">
+						<div class="form--block form--block-max tall pos--rel p--2 mt--4">
+							<h2 class="d--blk c--white ta--c upcase txt--bb">You have an invite awaiting!</h2>
+							<div class="prompt">
+								<p class="d--blk c--white ta--c fz--22 fw--700 mt--2">Would you like to join
+									{{ travel_group }}?</p>
+								<div class="btns flex--wrap a--ctr j--ctr m--0auto w--auto">
+									<a class="confirm-invite d--inblk btn btn--sec ta--c mt--0 mb--2">Count Me In!</a>
+									<a class="deny-invite d--inblk btn btn--primary ta--c mt--0 mb--2">Nah...no, thanks!</a>
+								</div>
+							</div>
+							<div class="button-confirmation pos--rel ta--c mt--2">
+								<h3 class="confirm-message hide c--white">Congrats! You've just been added to <a
+										class="c--ter" href="
+{% url 'travel_group_single' travel_group.id %}">{{ travel_group }}</a>
+									.</h3>
+								<h3 class="deny-message hide c--white">No problem! We won't add you to this group.</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+{{ travel_group_set.travelers.all }}
+		 <script>
+		 	axios.defaults.xsrfCookieName = 'csrftoken';
+            axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+            axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+            let user = "{{ request.user.username }}";
+            let travelGroup = "{{ travel_group.id }}"
+			let existingTravelers = "{{ travel_group_set.travelers.all }}";
+			const promptContainer = document.querySelector('.prompt');
+			const confirmButton = document.querySelector('.confirm-invite');
+			const confirmMessage = document.querySelector('.confirm-message');
+			const denyButton = document.querySelector('.deny-invite');
+			const denyMessage = document.querySelector('.deny-message');
+			const windowOrigin = window.location.origin
+			confirmButton.addEventListener('click', () => {
+			    axios.all([
+			        axios.post(windowOrigin + `/travel-group/edit/${travelGroup}`, {
+						traveler: user
+					}),
+					 axios.post(windowOrigin + `/edit/${user}/`, {
+						travel_group: travelGroup
+					})
+				])
+				.then(axios.spread((data1, data2) => {
+					promptContainer.classList.add('hide');
+					confirmMessage.classList.remove('hide');
+				}));
+			});
+			denyButton.addEventListener('click', () => {
+			    axios.post(windowOrigin + `/edit/${user}/`, {
+					travel_group: travelGroup
+				})
+				.then(function(response) {
+				    promptContainer.classList.add('hide');
+					denyMessage.classList.remove('hide');
+				})
+
+			})
+
+		 </script>
+	 </div>
+{% endblock %}

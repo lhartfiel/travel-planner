@@ -4,18 +4,31 @@
 
 {% block body %}
     <div class="body-wrap">
+		{% for item in site_settings %}
+			<div class="form__img-wrap pos--abs o-hide">
+				<img src="{{ item.checklist_photo }}" alt="Airplane" class="hero__bkg pos--abs w--100">
+				<p class="caption caption--hero pos--abs">Photo credit:
+				{{ item.checklist_photo_attribution }}</p>
+			</div>
+		{% endfor %}
         <div class="img-wrap--main">
-            <div class="container container--narrow container--white">
-                <h2 class="ta--c">Add Checklist Item</h2>
-                <div class="form-wrap f--wrap">
-                    <form action="" method="post">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <div class="btn-wrap">
-                            <input type="submit" value="Update">
-                        </div>
-                    </form>
-                </div>
+            <div class="container container--narrow">
+				<div class="grid mt--2">
+					<div class="grid--8 h--100">
+						<div class="container--white pos--rel z--10">
+							<h2 class="ta--c">Add Checklist Item</h2>
+							<div class="form-wrap f--wrap">
+								<form action="" method="post" class="checklist-form">
+									{% csrf_token %}
+									{{ form.as_p }}
+									<div class="btn-wrap">
+										<input type="submit" value="Update">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
             </div>
         </div>
     </div>

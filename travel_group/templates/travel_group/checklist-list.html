@@ -12,43 +12,93 @@
 {% endblock %}
 
 {% block body %}
-    <div class="body-wrap">
-		<div class="hero hero--lg hero__form f--wrap a--ctr j--ctr pos--rel o-hide z--10">
-			<img src="{% static 'travel_planner/images/curacao-bw.jpg' %}" alt="Curacao" class="hero__bkg pos--abs">
-			<h1 class="h1--sm group__head pos--rel c--white grid--full ta--c z--10">Checklists</h1>
-		</div>
-		<div class="container container--max container--center pos--rel z--10">
+
+	<div class="form__bkg f--wrap a--ctr j--ctr pos--rel z--10">
+		{% for item in site_settings %}
+			<div class="form__img-wrap pos--abs o-hide">
+				<img src="{{ item.checklist_photo }}" alt="Airplane" class="hero__bkg pos--abs w--100">
+				<p class="caption caption--hero pos--abs">Photo credit:
+					{{ item.checklist_photo_attribution }}</p>
+			</div>
+		{% endfor %}
+		<div class="container container--wide container--center pos--rel z--10">
 			<div class="grid mt--2">
-				<div class="grid--8 form-outer grid--8 blk--shadow p--2">
-                    {% for field in items %}
-                        <form class="checklist__items mb--2" action="{% url 'travel_checklist_edit' field.id request.user.username %}" method="post">
-							{% csrf_token %}
-							<div class="flex j--btwn">
-								<div class="checklist__info flex">
-									<input type="hidden" name="checklist_item" value="{{ field }}">
-										{{ checklist_form.item_status }}
-										<label for="item_status" data-id="{{ field.id }}" data-travelid="{{ field.travel_group.id }}" data-status="{{ field.item_status }}"></label>
-										<input type="text" class="checklist__item m--0 mr--2" value="{{ field }}">
-										<a href="{% url 'travel_checklist_delete' field.id request.user.username %}">delete</a>
+				<div class="grid--6">
+					<div class="form--block form--block-max grid pos--rel h--100 p--2 mt--2">
+						<div class="grid--10 h--100 mb--4 pr--1 c--white">
+							<h3 class="c--white ta--c">Checklists</h3>
+							{% for field in items %}
+								<form class="checklist__items mb--2" action="{% url 'travel_checklist_edit' field.id request.user.username %}" method="post">
+									{% csrf_token %}
+									<div class="flex j--btwn">
+										<div class="checklist__info flex a--ctr">
+											<input type="hidden" name="checklist_item" value="{{ field }}">
+												{{ checklist_form.item_status }}
+												<label for="item_status" data-id="{{ field.id }}" data-travelid="{{ field.travel_group.id }}" data-status="{{ field.item_status }}"></label>
+												<input type="text" class="checklist__item m--0 mr--2" value="{{ field }}">
+												<a href="{% url 'travel_checklist_delete' field.id request.user.username %}">delete</a>
+										</div>
+									</div>
+								</form>
+							{% endfor %}
+							<h4 class="c--white">Add another item</h4>
+							<form action="{% url 'travel_checklist_create' travelgroup request.user.username %}" method="post">
+								{% csrf_token %}
+								{{ checklist_create_form.checklist_item }}
+								<div class="hide">{{ checklist_create_form.item_status }}</div>
+								<div class="hide">{{ checklist_create_form.checklist_creator }}</div>
+								<div class="hide">{{ checklist_create_form.travel_group }}</div>
+								<div class="btn-wrap">
+									<input type="submit" value="Submit"/>
 								</div>
-							</div>
-						</form>
-                    {% endfor %}
-                    <h3>Add another item</h3>
-                    <form action="{% url 'travel_checklist_create' travelgroup request.user.username %}" method="post">
-                        {% csrf_token %}
-                        {{ checklist_create_form.checklist_item }}
-                        <div class="hide">{{ checklist_create_form.item_status }}</div>
-                        <div class="hide">{{ checklist_create_form.checklist_creator }}</div>
-                        <div class="hide">{{ checklist_create_form.travel_group }}</div>
-                        <div class="btn-wrap">
-                            <input type="submit" value="Submit"/>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+{#    <div class="body-wrap">#}
+{#		<div class="hero hero--lg hero__form f--wrap a--ctr j--ctr pos--rel o-hide z--10">#}
+{#			<img src="{% static 'travel_planner/images/curacao-bw.png' %}" alt="Curacao" class="hero__bkg pos--abs">#}
+{#			<h1 class="h1--sm group__head pos--rel c--white grid--full ta--c z--10">Checklists</h1>#}
+{#		</div>#}
+{#		<div class="container container--max container--center pos--rel z--10">#}
+{#			<div class="grid mt--2">#}
+{#				<div class="grid--8 form-outer grid--8 blk--shadow p--2">#}
+{#                    {% for field in items %}#}
+{#                        <form class="checklist__items mb--2" action="{% url 'travel_checklist_edit' field.id request.user.username %}" method="post">#}
+{#							{% csrf_token %}#}
+{#							<div class="flex j--btwn">#}
+{#								<div class="checklist__info flex">#}
+{#									<input type="hidden" name="checklist_item" value="{{ field }}">#}
+{#										{{ checklist_form.item_status }}#}
+{#										<label for="item_status" data-id="{{ field.id }}" data-travelid="{{ field.travel_group.id }}" data-status="{{ field.item_status }}"></label>#}
+{#										<input type="text" class="checklist__item m--0 mr--2" value="{{ field }}">#}
+{#										<a href="{% url 'travel_checklist_delete' field.id request.user.username %}">delete</a>#}
+{#								</div>#}
+{#							</div>#}
+{#						</form>#}
+{#                    {% endfor %}#}
+{#                    <h3>Add another item</h3>#}
+{#                    <form action="{% url 'travel_checklist_create' travelgroup request.user.username %}" method="post">#}
+{#                        {% csrf_token %}#}
+{#                        {{ checklist_create_form.checklist_item }}#}
+{#                        <div class="hide">{{ checklist_create_form.item_status }}</div>#}
+{#                        <div class="hide">{{ checklist_create_form.checklist_creator }}</div>#}
+{#                        <div class="hide">{{ checklist_create_form.travel_group }}</div>#}
+{#                        <div class="btn-wrap">#}
+{#                            <input type="submit" value="Submit"/>#}
+{#                        </div>#}
+{#                    </form>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
 {% endblock %}
 
 {% block javascript %}

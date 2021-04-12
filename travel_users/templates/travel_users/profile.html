@@ -3,11 +3,11 @@
 
 {% block head %}
     {{ super }}
-
     {% block css %}
-        <link rel="stylesheet" type="text/x-scss"
-              href="{% static 'travel_planner/scss/font-awesome/font-awesome.scss' %}">
-        {% compress css inline %}
+		{{ block.super }}
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'travel_planner/scss/font-awesome/font-awesome.scss' %}">
+		{% compress css inline %}
+            <link rel="stylesheet" type="text/x-scss" href="{% static 'travel_planner/scss/general.scss' %}">
             <link rel="stylesheet" type="text/x-scss" href="{% static 'travel_users/scss/travel_users.scss' %}">
         {% endcompress %}
     {% endblock %}
@@ -17,34 +17,43 @@
     {% if user.is_authenticated %}
         <div class="body-wrap mb--3">
 			<div class="hero hero--lg hero__profile pos--rel o-hide z--10">
-				<img src="{% static 'travel_planner/images/curacao-bw.jpg' %}" alt="Curacao" class="hero__bkg pos--abs
-				w--100">
+				{% for item in site_settings %}
+					{% if item.profile_photo %}
+						<img src="{{ item.profile_photo }}" alt="Curacao" class="hero__bkg pos--abs
+					w--100">
+					{% endif %}
+					<p class="caption pos-abs">Photo credit: {{ item.profile_photo_attribution }}</p>
+				{% endfor %}
 				<div class="container container--max container--center">
 					<div class="profile__img-wrap pos--rel">
 						{% if profile_user.profile_photo %}
 							<div class="profile__img pos--rel z--10" style='background-image: url({{ user.profile_photo.url }})
 										'></div>
+						{% else %}
+							<div class="profile__img pos--rel z--10" style='background-image: url({% static 'travel_planner/images/icon-user.svg' %})
+										'></div>
 						{% endif %}
 						{% if profile_user.first_name %}
-							<h2 class="profile__name tac pos--rel c--white z--10 fw--500 mb--2"
+							<h2 class="profile__name ta--c pos--rel c--white z--10 fw--500 mb--2"
 							>{{ profile_user.first_name }}
 								{% if profile_user.last_name  %}{{ user.last_name }}{% endif %}</h2>
 						{% endif %}
 					</div>
 				</div>
 			</div>
-			<div class="user-meta pos--rel z--10">
+			<div class="user-meta pos--rel z--10 pt--1 pb--1">
 				<div class="container container--max container--meta f--wrap a--ctr j--btwn w--100">
 					<div class="user__detail">
 						{% if profile_user.city or profile_user.state %}
 							<div class="detail__img-wrap">
 								<img
 									class="profile__icon mr--1"
-									srcset="{% static 'travel_planner/images/icon-location.png' %} 1x,  {% static 'travel_planner/images/icon-location@2x.png' %} 2x"
+									srcset="{% static 'travel_planner/images/icon-location.png' %} 1x,
+{% static 'travel_planner/images/icon-location@2x.png' %} 2x"
 									src="{% static 'travel_planner/images/icon-location.png' %}"
 									alt="Map marker">
 							</div>
-							<p class="c--white">{{ profile_user.city }}, {{ profile_user.state }}</p>
+							<p class="c--white mb--0">{{ profile_user.city }}, {{ profile_user.state }}</p>
 						{% endif %}
 					</div>
 					<div class="user__detail">
@@ -56,7 +65,7 @@
 									src="{% static 'travel_planner/images/icon-email.png' %}"
 									alt="Mail">
 							</div>
-							<p class="c--white"><a href="mailto:{{ profile_user.email }}" class="c--white"
+							<p class="c--white mb--0"><a href="mailto:{{ profile_user.email }}" class="c--white"
 							>{{ profile_user.email }}</a></p>
 						{% endif %}
 					</div>
@@ -69,7 +78,7 @@
 									src="{% static 'travel_planner/images/icon-phone.png' %}"
 									alt="Phone">
 							</div>
-							<p class="c--white">{{ profile_user.phone }}</p>
+							<p class="c--white mb--0">{{ profile_user.phone }}</p>
 						{% endif %}
 					</div>
 				</div>
@@ -80,28 +89,32 @@
 					<div class="left">
 						<div class="blk--shadow p--2">
 							{% if user == profile_user  %}
-								<a class="btn btn--primary w--100 ta--c mt--0" href=
+								<a class="btn btn--primary w--100 ta--c mt--0 mb--2" href=
 									"{% url 'edit' profile_user.username %}">Edit Profile</a>
 							{% endif %}
 							<div class="sb-group mb--3">
-								<h4 class="c--sec upcase b-bot--sec fz--18">Emergency Contact Info:</h4>
+								<h4 class="c--sec upcase b-bot--sec fz--18 mb--2">Emergency Contact Info:</h4>
 								<div class="profile__er-info">
-								{% if profile_user.emergency_first_name %}
-									<p class="c--char">Name: {{ profile_user.emergency_first_name }}
-										{{ profile_user.emergency_last_name }}</p>
-								{% endif %}
-								{% if profile_user.emergency_phone %}
-									<p class="c--char mb--0">Phone: {{ profile_user.emergency_phone }}</p>
-								{% endif %}
-								{% if profile_user.emergency_email %}
-									<p class="c--char mb--0">Email: <a class="c--char" href="mailto
-									:{{ profile_user.emergency_email }}"
-									>{{ profile_user.emergency_email }}</a></p>
+								{% if profile_user.emergency_first_name or profile_user.emergency_phone or profile_user.emergency_email %}
+									{% if profile_user.emergency_first_name %}
+										<p class="c--char">Name: {{ profile_user.emergency_first_name }}
+											{{ profile_user.emergency_last_name }}</p>
+									{% endif %}
+									{% if profile_user.emergency_phone %}
+										<p class="c--char mb--0">Phone: {{ profile_user.emergency_phone }}</p>
+									{% endif %}
+									{% if profile_user.emergency_email %}
+										<p class="c--char mb--0">Email: <a class="c--char" href="mailto
+										:{{ profile_user.emergency_email }}"
+										>{{ profile_user.emergency_email }}</a></p>
+									{% endif %}
+								{% else %}
+									<p class="c--char">No emergency contact info listed.</p>
 								{% endif %}
 							</div>
 							</div>
 							<div class="sb-group mb--3">
-								<h4 class="c--sec upcase b-bot--sec fz--18">Personal Info:</h4>
+								<h4 class="c--sec upcase b-bot--sec fz--18 mb--2">Personal Info:</h4>
 								<div class="profile__personal">
 								{% if profile_user.allergies or profile_user.notes %}
 									{% if profile_user.allergies %}
@@ -113,7 +126,7 @@
 										<p class="c--char mt--0">{{ profile_user.notes }}</p>
 									{% endif %}
 								{% else %}
-									<p class="c--char">No additional info at this.</p>
+									<p class="c--char">No personal info listed.</p>
 								{% endif %}
 							</div>
 							</div>

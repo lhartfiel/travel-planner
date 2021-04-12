@@ -3,23 +3,36 @@
 {% load compress %}
 
 {% block body %}
-    <div class="hero hero--lg hero__form f--wrap a--ctr j--ctr pos--rel o-hide z--10">
-		<img src="{% static 'travel_planner/images/curacao-bw.jpg' %}" alt="Curacao" class="hero__bkg pos--abs">
-		<h1 class="h1--sm group__head pos--rel c--white grid--full ta--c z--10">Edit Sightseeing Ideas</h1>
-	</div>
-	<div class="container container--max container--center pos--rel z--10">
-		<div class="grid mt--2">
-			<div class="form-outer grid--6 blk--shadow p--2">
-				 <div class="form-wrap f--wrap">
-					<form action="" method="post">
-						{% csrf_token %}
-						{{ form.as_p }}
-						<div class="btn-wrap">
-							<input type="submit" value="Update">
+	<div class="form__bkg f--wrap a--ctr j--ctr pos--rel z--10">
+		{% for item in site_settings %}
+			<div class="form__img-wrap pos--abs o-hide">
+				<img src="{{ item.sightseeing_photo }}" alt="Hotel bedroom" class="hero__bkg pos--abs w--100">
+				<p class="caption caption--hero pos--abs">Photo credit: {{ item.sightseeing_photo_attribution }}</p>
+			</div>
+		{% endfor %}
+		<div class="container container--wide container--center pos--rel z--10">
+				<div class="grid mt--2">
+					<div class="grid--8 h--100">
+						<div class="form--block grid pos--rel h--100 p--2 mt--4">
+							<div class="grid--4 h--100 mt--4 mb--4 pr--1 c--white">
+								<h2 class="d--blk c--white ta--c upcase txt--bb">Edit Sightseeing Idea</h2>
+								<p class="c--white ta--c fz--18">Want to add more details to your sightseeing
+									idea? Edit the info here...</p>
+							</div>
+							<div class="form-outer grid--8 grid--8--right blk--shadow p--2">
+								{% if user.is_authenticated %}
+									<form action="" method="post">
+										{% csrf_token %}
+										{{ form.as_p }}
+										<div class="btn-wrap">
+											<input type="submit" value="Update">
+										</div>
+									</form>
+								{% endif %}
+							</div>
 						</div>
-					</form>
+					</div>
 				</div>
 			</div>
-		</div>
 	</div>
 {% endblock %}

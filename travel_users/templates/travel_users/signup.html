@@ -4,33 +4,37 @@
 
 {% block body %}
     <div class="body-wrap">
-        <div class="img-wrap--main">
-            <div class="container container--narrow container--white">
-                <form action="" method="post">
-                    <h2 class="ta--c">Sign up</h2>
-                    <p class="faz--14 ta--c">Interested in creating an account? Please sign up below.</p>
-                    <form action="" method="post">
-                        {% csrf_token %}
-                        <ul class="flex--wrap ml--0">
-                            {% for field in form.visible_fields %}
-                                {% if field.name == 'first_name' or field.name == 'last_name' or field.name == 'email' or field.name == 'username' %}
-                                    <li class="flex--2 li--none">
-                                        <label for="">{{ field.label }}{% if field.field.required %} <span class="fz--12 ml--1 c--char-lht">*required</span>{% endif %}</label>
-                                        {{ field }}
-                                        <span class="help-text fz--12 c--char">{{ field.help_text }}</span>
-                                    </li>
-                                {% else %}
-                                    <li class="flex--full li--none">
-                                        <label for="">{{ field.label }}{% if field.field.required %}<span class="fz--12 ml--1 c--char-lht">*required</span>{% endif %}</label>
-                                        {{ field }}
-                                        <span class="help-text fz--12 c--char">{{ field.help_text }}</span>
-                                    </li>
-                                {% endif %}
-                            {% endfor %}
-                        </ul>
-                        <button type="submit" value="save">Sign up</button>
-                    </form>
-            </div>
+        <div class="img-wrap img-wrap--main home__img-wrap">
+            <div class="container container--narrow">
+				<div class="grid">
+					<div class="grid--8">
+						<div class="container--white pos--rel z--10">
+							<h2 class="ta--c">Sign up</h2>
+							<p class="faz--14 ta--c">Interested in creating an account? Please sign up below.</p>
+							<form action="" method="post">
+								{% csrf_token %}
+								<ul class="flex--wrap ml--0">
+									{% for field in form.visible_fields %}
+										{% if field.name == 'first_name' or field.name == 'last_name' or field.name == 'email' or field.name == 'username' %}
+											<li class="flex--2 li--none">
+												<label for="">{{ field.label }}{% if field.field.required %} <span class="fz--12 ml--1 c--char-lht">*required</span>{% endif %}</label>
+												{{ field }}
+												<span class="help-text fz--12 c--char">{{ field.help_text }}</span>
+											</li>
+										{% else %}
+											<li class="flex--full li--none">
+												<label for="">{{ field.label }}{% if field.field.required %}<span class="fz--12 ml--1 c--char-lht">*required</span>{% endif %}</label>
+												{{ field }}
+												<span class="help-text fz--12 c--char">{{ field.help_text }}</span>
+											</li>
+										{% endif %}
+									{% endfor %}
+								</ul>
+								<button type="submit" value="save">Sign up</button>
+							</form>
+						</div>
+					</div>
+				</div>
         </div>
     </div>
 {% endblock %}

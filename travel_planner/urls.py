@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import url
 from django.contrib import admin
 from django.db import router
 from django.urls import path, include
@@ -30,7 +31,8 @@ from travel_group.views import TravelGroupListView, TravelGroupSingleView, Trave
     RestaurantEditView, MessageEditView, SightseeingAddView, SightseeingDeleteView, RestaurantDeleteView, \
     RestaurantAddView, TravelerAccommodationListView, MessageAddView, TravelGroupChecklistView, \
     TravelGroupChecklistEditView, TravelGroupChecklistList, TravelGroupChecklistDelete, ChecklistViewSet, \
-    MessageDeleteView, TravelGroupEditView, TravelGroupImage
+    MessageDeleteView, TravelGroupEditView, TravelGroupImage, InviteFormView, TravelGroupAddTraveler, \
+    TravelGroupRemoveUserView, TravelGroupInvitePendingView
 from travel_transportation.views import TransportationEditView, TransportationCreateView, TransportationListView, \
     TransportationDetailView, TransportationDeleteView
 
@@ -58,6 +60,11 @@ urlpatterns = [
     path('signup/', UserSignupView.as_view(), name="signup"),
     path('signup/success/', UserSignupSuccessView.as_view(), name="signup_success"),
     path('travel-group/create/', TravelGroupCreateView.as_view(), name="travel_group_create"),
+    path('travel-group/invite-pending/<int:pk>/<slug:username>', TravelGroupInvitePendingView.as_view(),
+         name="travel_group_invite_pending"),
+    path('travel-group/remove-user/<int:pk>/<slug:username>', TravelGroupRemoveUserView.as_view(),
+         name="travel_group_remove_user"),
+    path('travel-group-invite-form/<int:pk>/<slug:username>', InviteFormView.as_view(), name="invite-form"),
     path('travel-group/edit/<int:pk>', TravelGroupEditView.as_view(), name="travel_group_edit"),
     path('travel-group/sightseeing-edit/<int:pk>/', SightseeingEditView.as_view(), name="sightseeing_edit"),
     path('travel-group/sightseeing-add/<int:pk>', SightseeingAddView.as_view(), name="sightseeing_add"),
@@ -76,14 +83,17 @@ urlpatterns = [
     path('travel-group/for/<slug:username>/', TravelGroupListView.as_view(), name="travel_group_index"),
     path('travel-group/accommodations/<int:pk>/<slug:username>', TravelerAccommodationListView.as_view(), name="traveler_accommodation"),
     path('travel-group/<int:pk>/', TravelGroupSingleView.as_view(), name="travel_group_single"),
+    path('travel-group/<int:pk>/add-traveler', TravelGroupAddTraveler.as_view(), name="add_traveler"),
     path('transportation-list/<slug:username>', TransportationListView.as_view(), name="transportation_list"),
     path('transportation-detail/<slug:username>/<int:pk>', TransportationDetailView.as_view(), name="transportation_detail"),
     path('transportation-create/<int:pk>', TransportationCreateView.as_view(), name="transportation_create"),
     path('transportation-edit/<int:pk>', TransportationEditView.as_view(), name="transportation_edit"),
     path('transportation-delete/<int:pk>', TransportationDeleteView.as_view(), name="transportation_delete"),
+    url(r"^invitations/", include("pinax.invitations.urls", namespace="pinax_invitations")),
     path('djrichtextfield/', include('djrichtextfield.urls')),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls')),
     path('api-unsplash/', TravelGroupImage.as_view(), name="unsplash"),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL,
+                                                                           document_root=settings.STATIC_ROOT)
 
