@@ -28,7 +28,7 @@
 							</div>
 							<div class="form-outer grid--8 grid--8--right blk--shadow p--2">
 								{% if user.is_authenticated %}
-									<form action="" method="post">
+									<form action="" method="post" enctype="multipart/form-data">
 										{% csrf_token %}
 										<h2>Edit Your Profile Info Below:</h2>
 										<ul class="profile-edit flex--wrap ml--1">

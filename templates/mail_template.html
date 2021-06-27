@@ -1,0 +1,14 @@
+
+<div style="margin-left: 30px; margin-right: 30px; padding: 20px; text-align:center; border:1px solid #15A09A;">
+	<h3 style="font-weight: bold; font-size: 26px; color:#15A09A; font-family: sans-serif; ">You're Invited!</h3>
+	<p style="font-family: sans-serif; font-size: 16px;">{{ inviter.first_name }} {{ inviter.last_name }} has invited you to
+		join Travel Planner. With Travel Planner you can save info about all of your upcoming trips, including
+		accommodation and transportation info. We keep your trip info organized...all in one
+		spot!</p>
+	<p style="font-family: sans-serif; font-size: 18px;">Don't wait -- create an account today!</p>
+	<a href="{{ request.get_host }}/{% url 'signup' travel_group %}" style="padding: 10px 20px; background-color:
+	#15A09A;
+	color:#fff;
+	display: inline-block; text-transform: uppercase;
+	text-decoration: none; border-radius: 4px; margin-top: 10px; font-size: 22px;">Sign up!</a>
+</div>

@@ -43,6 +43,7 @@ class AccommodationListTravelGroupView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         username = self.kwargs['username']
+        person = CustomUser.objects.get(username=username)
         try:
             places = [self.object_list.get(trip_id=self.kwargs['pk'], username=username)]
         except:
@@ -56,6 +57,7 @@ class AccommodationListTravelGroupView(ListView):
                 places_dict[place.trip].append(place)
             context['places'] = places_dict
         context['accommodations'] = Accommodations.objects.filter(user__username=username, trip_id=self.kwargs['pk'])
+        context['person'] = person
         return context
 
 

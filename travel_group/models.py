@@ -24,7 +24,7 @@ class TravelGroup(models.Model):
     primary_destination = models.CharField(max_length=200, null=False, blank=False, default='')
     transportation = models.ForeignKey(Transportation, related_name='transportation', on_delete=models.SET_NULL,
                                        null=True, blank=True)
-    travelers = models.ManyToManyField('travel_users.CustomUser', related_name='trav_groups')
+    travelers = models.ManyToManyField('travel_users.CustomUser', related_name='trav_groups', null=True, blank=True)
     group_owner = models.ForeignKey('travel_users.CustomUser', related_name='travel_group_owner', default=1,
                                     null=True, blank=False, on_delete=models.SET_NULL)
     trip_name = models.CharField(max_length=200, blank=False)

@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models import Count, QuerySet
+from django.utils.translation import gettext as _
+
 from phonenumber_field.modelfields import PhoneNumberField
 from travel_group.models import TravelGroup
 from travel_transportation.models import Transportation
@@ -13,6 +15,7 @@ class CustomUser(AbstractUser):
     state = models.CharField(max_length=25, blank=True, null=True)
     profile_photo = models.ImageField(upload_to='photos/%Y', blank=True)
     phone = PhoneNumberField(blank=True)
+    email = models.EmailField(_('email address'), blank=False)
     emergency_first_name = models.CharField(max_length=255, blank=True)
     emergency_last_name = models.CharField(max_length=255, blank=True)
     emergency_phone = PhoneNumberField(blank=True)
@@ -36,4 +39,3 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.first_name
-

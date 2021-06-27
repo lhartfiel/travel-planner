@@ -19,10 +19,14 @@
 					{{ item.travelgroup_photo_attribution }}</p>
 			{% endfor %}
 			<div class="hero__cnt">
-				<h1 class="h1--sm group__head pos--rel c--white grid--full ta--c z--10">My Travel Groups</h1>
-				<div class="btn-wrap pos--rel ta--c d--blk w--100 z--10">
-					<a href="{% url 'travel_group_create' %}" class="btn btn--sec ta--c mb--3">Create Travel Group</a>
-				</div>
+				<h1 class="h1--sm group__head pos--rel c--white grid--full ta--c z--10">
+					{% if user.username == traveler.username %}My{% else %}{{ traveler.first_name }}'s{% endif %}
+					Travel Groups</h1>
+				{% if user.username == traveler.username %}
+					<div class="btn-wrap pos--rel ta--c d--blk w--100 z--10">
+						<a href="{% url 'travel_group_create' %}" class="btn btn--sec ta--c mb--3">Create Travel Group</a>
+					</div>
+				{% endif %}
 			</div>
 		</div>
 		<div class="container container--narrow container--center">
@@ -34,6 +38,7 @@
 					</div>
 				{% else %}
 					{% for trip in trips %}
+						{% if user in trip.travelers.all %}
 						{% if forloop.first %}
 							<span class="blk--shadow trip list-item list-item--featured flex--wrap flex--full mt--4
 							mb--4 pos--rel">
@@ -60,10 +65,12 @@
 											</li>
 										{% endfor %}
 									</ul>
-									<div class="btn-wrap mt--3 w--100">
-										<a href="{% url 'travel_group_single' trip.id %}" class="btn btn--ter w--100
-										ta--c" with trip=trip>View Trip</a>
-									</div>
+									{% if user.username == traveler.username %}
+										<div class="btn-wrap mt--3 w--100">
+											<a href="{% url 'travel_group_single' trip.id %}" class="btn btn--ter w--100
+											ta--c" with trip=trip>View Trip</a>
+										</div>
+									{% endif %}
 								</div>
 							</span>
 						{% else %}
@@ -97,6 +104,7 @@
 										ta--c" with trip=trip>View Trip</a>
 								</div>
 							</div>
+						{% endif %}
 						{% endif %}
 					{% endfor %}
 				{% endif %}

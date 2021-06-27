@@ -38,11 +38,14 @@ class ProfileEditView(UpdateView):
             request.POST = data
             user_obj = self.get_object()
             travel_group_id = data.get('travel_group')
-            travel_group_obj = TravelGroup.objects.get(id=travel_group_id)
-            travel_group_obj.travel_group_invite.remove(user_obj)
+            if travel_group_id:
+                travel_group_obj = TravelGroup.objects.get(id=travel_group_id)
+                travel_group_obj.travel_group_invite.remove(user_obj)
             return HttpResponseRedirect(self.get_success_url())
-            # return super(TravelGroupEditView, self).post(request, *args, **kwargs)
-
+        elif self.request.method == "POST":
+            request.POST = request.POST.copy()
+            user_obj = self.get_object()
+            return super().post(request, *args, **kwargs)
 
     def get_object(self, queryset=None):
         return get_object_or_404(CustomUser, username=self.request.user.username)
@@ -88,15 +91,26 @@ class UserSignupView(CreateView):
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
+
         if form.is_valid():
             form.save()
+            travel_group = self.kwargs.get('travel_group_id')
+            if travel_group:
+                data = self.request.POST.copy()
+                traveler_username = form.data['username']
+                all_travelers = list(
+                    TravelGroup.objects.get(pk=travel_group).travelers.all().values_list('username', flat=True))
+                all_travelers.append(traveler_username)
+                current_travel_group_obj = TravelGroup.objects.get(pk=travel_group)
+                current_travel_group_obj.travelers.add(CustomUser.objects.get(username=traveler_username))
+                current_travel_group_obj.save()
             return HttpResponseRedirect('/signup/success/')
         return render(request, self.template_name, {'form': form})
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
         form.save()
-        return super().form_valid(form)
+        return super(UserSignupView, self).form_valid(form)
 
 
 class UserSignupSuccessView(TemplateView):

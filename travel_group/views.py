@@ -3,7 +3,10 @@ import requests
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django import forms
 from django.shortcuts import render, get_object_or_404
+from django.template.loader import render_to_string
 from django.urls import reverse
+from django.utils.html import strip_tags
+from django.utils.safestring import mark_safe
 from django.views.generic import TemplateView, ListView, DetailView, UpdateView, CreateView, DeleteView
 from django.views.generic.base import View, RedirectView
 from django.views.generic.edit import FormMixin, FormView
@@ -82,10 +85,12 @@ class TravelGroupListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         username = self.kwargs['username']
+        traveler = CustomUser.objects.get(username=username)
         photos = requests.get('http://127.0.0.1:8001/api-unsplash/?format=json')
         trips = TravelGroup.objects.filter(travelers__username=username).order_by('-transportation__departure_date')
         context['trips'] = trips
         context['photos'] = photos.json()["results"]
+        context['traveler'] = traveler
         return context
 
 
@@ -128,19 +133,28 @@ class TravelGroupAddTraveler(FormView):
         # Send mail to admin with valid_data['order'] and valid_data['name']
         traveler_emails = []
         recipient_email = email
-        travel_group_name = TravelGroup.objects.get(pk=travel_group)
         message_creator = sender
-        message_body = '<p>Interested in joining Travel Planner? <a>Sign Up Now!</a></p>'
-        # message_group = travel_group
-        # message_group_id = travel_group.id
-        subject = message_creator.first_name + ' has invited you to ' + travel_group_name.trip_name + ' on Travel ' \
-                                                                                                     'Planner'
-        message = message_creator.first_name + ' is inviting you to Travel Planner: ' + message_body
+        travel_group_name = TravelGroup.objects.get(pk=travel_group)
+        html_message = render_to_string('mail_template.html', {'travel_group': travel_group, 'inviter':  message_creator})
+        plain_message = strip_tags(html_message)
+        subject = message_creator.first_name + ' has invited you to ' + travel_group_name.trip_name + ' on Travel Planner'
         email_from = settings.EMAIL_HOST_USER
-        recipient_list = traveler_emails.append(recipient_email)
-        send_mail(subject, message, email_from, traveler_emails)
-        return reverse('travel_group_single', kwargs={'pk': travel_group})
+        traveler_emails.append(recipient_email)
+        self.request.session['recipient'] = recipient_email
+        send_mail(subject, plain_message, email_from, traveler_emails, html_message=html_message)
+        return reverse('travel_group_invite_sent', kwargs={'pk': travel_group})
 
+
+class TravelGroupInviteSentView(TemplateView):
+    template_name = 'travel_group/invite-sent.html'
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(TravelGroupInviteSentView, self).get_context_data(**kwargs)
+        recipient = self.request.session.get('recipient')
+        context['travel_group'] = TravelGroup.objects.get(id=kwargs.get('pk'))
+        context['recipient'] = recipient
+        return context
 
 class TravelGroupRemoveUserView(FormView):
     form_class = RemoveUserForm
@@ -242,15 +256,18 @@ class TravelGroupCreateView(CreateView):
         unsplash_api = unsplash_api = f'https://api.unsplash.com/search/photos?client_id=TK4hk3RxTdHHy5yLPsfGKkROapr5q3i2hAOKp37joHM&query={data_destination}&page=1'
         response = requests.get(unsplash_api)
         response = response.json()
+        if len(response['results']) == 0:
+            unsplash_general_photo = f'https://api.unsplash.com/search/photos?client_id' \
+                                     f'=TK4hk3RxTdHHy5yLPsfGKkROapr5q3i2hAOKp37joHM&query="Travel"&page=1'
+            response = requests.get(unsplash_general_photo)
+            response = response.json()
         photo_url = response['results'][0]["urls"]["regular"]
         photo_attribution = response['results'][0]["user"]["name"]
-
         data['messages-0-message_creator'] = self.request.user.id
-        data['travelers'] = form.data['travelers']
         user_logged_in = self.request.user.username
 
         try:
-            users = data['travelers'].split(", ")
+            users = []
             users.append(user_logged_in)
             user_obj = CustomUser.objects.filter(username__in=users)
             data['travelers'] = user_obj #this must be a list
@@ -262,8 +279,7 @@ class TravelGroupCreateView(CreateView):
         sightseeing_form = SightseeingFormSet(self.request.POST)
         restaurant_form = RestaurantFormSet(self.request.POST)
         message_form = MessageFormSet(data)
-        if form.is_valid() and sightseeing_form.is_valid() and restaurant_form.is_valid() and \
-                message_form.is_valid():
+        if form.is_valid() and sightseeing_form.is_valid() and restaurant_form.is_valid() and message_form.is_valid():
             return self.form_valid(form, user_logged_in, photo_url, photo_attribution, sightseeing_form, restaurant_form, message_form)
         else:
             errors = form.errors.as_data()
@@ -313,6 +329,9 @@ class TravelGroupEditView(UpdateView):
             travel_obj.travelers.set(all_travelers)
             travel_obj.save()
             return super(TravelGroupEditView, self).post(request, *args, **kwargs)
+        elif self.request.method == "POST":
+            request.POST = request.POST.copy()
+            return super().post(request, *args, **kwargs)
 
     def get_success_url(self):
         data_destination = self.object.primary_destination

@@ -15,7 +15,7 @@
 				<div class="grid--8">
 					<div class="img-wrap img-wrap--main">
 						<div class="container container--narrow container--center container--white">
-							<h2>Travel Accommodations for {{ user.first_name }} {{ user.last_name }}</h2>
+							<h2>Travel Accommodations for {{ person.first_name }} {{ person.last_name }}</h2>
 							{% if accommodations|length == 0 %}
 								<p>You don't have any accommodations. Add one now!</p>
 							{% else %}

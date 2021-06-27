@@ -13,11 +13,24 @@
 							<p class="faz--14 ta--c">Interested in creating an account? Please sign up below.</p>
 							<form action="" method="post">
 								{% csrf_token %}
+								{% if form.errors %}
+									<p class="fz--16 ta--c c--maroon">This form has errors. Please correct the fields
+										indicated below.</p>
+								{% endif %}
 								<ul class="flex--wrap ml--0">
 									{% for field in form.visible_fields %}
 										{% if field.name == 'first_name' or field.name == 'last_name' or field.name == 'email' or field.name == 'username' %}
 											<li class="flex--2 li--none">
-												<label for="">{{ field.label }}{% if field.field.required %} <span class="fz--12 ml--1 c--char-lht">*required</span>{% endif %}</label>
+												<label for="">{{ field.label }}
+													{% if field.field.required %}
+														<span class="fz--12 ml--1 c--char-lht">*required</span>
+													{% endif %}
+												</label>
+												{% if field.errors %}
+													{% for error in field.errors %}
+														<p class="fz--12 c--maroon">{{ error|escape }}</p>
+													{% endfor %}
+												{% endif %}
 												{{ field }}
 												<span class="help-text fz--12 c--char">{{ field.help_text }}</span>
 											</li>

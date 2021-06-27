@@ -32,7 +32,7 @@ from travel_group.views import TravelGroupListView, TravelGroupSingleView, Trave
     RestaurantAddView, TravelerAccommodationListView, MessageAddView, TravelGroupChecklistView, \
     TravelGroupChecklistEditView, TravelGroupChecklistList, TravelGroupChecklistDelete, ChecklistViewSet, \
     MessageDeleteView, TravelGroupEditView, TravelGroupImage, InviteFormView, TravelGroupAddTraveler, \
-    TravelGroupRemoveUserView, TravelGroupInvitePendingView
+    TravelGroupRemoveUserView, TravelGroupInvitePendingView, TravelGroupInviteSentView
 from travel_transportation.views import TransportationEditView, TransportationCreateView, TransportationListView, \
     TransportationDetailView, TransportationDeleteView
 
@@ -57,9 +57,12 @@ urlpatterns = [
     path('profile/<slug:username>/', ProfileView.as_view(), name="profile"),
     path('edit/<slug:username>/', ProfileEditView.as_view(), name='edit'),
     path('checklists/for/<slug:username>/', ChecklistAllView.as_view(), name="checklists"),
+    path('signup/<int:travel_group_id>/', UserSignupView.as_view(), name="signup"),
     path('signup/', UserSignupView.as_view(), name="signup"),
     path('signup/success/', UserSignupSuccessView.as_view(), name="signup_success"),
     path('travel-group/create/', TravelGroupCreateView.as_view(), name="travel_group_create"),
+    path('travel-group/invite-sent/<int:pk>/', TravelGroupInviteSentView.as_view(), kwargs={'recipient': ''},
+         name="travel_group_invite_sent"),
     path('travel-group/invite-pending/<int:pk>/<slug:username>', TravelGroupInvitePendingView.as_view(),
          name="travel_group_invite_pending"),
     path('travel-group/remove-user/<int:pk>/<slug:username>', TravelGroupRemoveUserView.as_view(),
