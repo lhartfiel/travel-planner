@@ -19,15 +19,15 @@
 			<div class="hero hero--lg hero__profile pos--rel o-hide z--10">
 				{% for item in site_settings %}
 					{% if item.profile_photo %}
-						<img src="{{ item.profile_photo }}" alt="Curacao" class="hero__bkg pos--abs
-					w--100">
+						<img src="{{ item.profile_photo }}" alt="Curacao" class="hero__bkg pos--abs w--100">
 					{% endif %}
 					<p class="caption pos-abs">Photo credit: {{ item.profile_photo_attribution }}</p>
 				{% endfor %}
 				<div class="container container--max container--center">
 					<div class="profile__img-wrap pos--rel">
 						{% if profile_user.profile_photo %}
-							<div class="profile__img pos--rel z--10" style='background-image: url({{ user.profile_photo.url }})
+							<div class="profile__img pos--rel z--10" style='background-image: url(
+									{{ profile_user.profile_photo.url }})
 										'></div>
 						{% else %}
 							<div class="profile__img pos--rel z--10" style='background-image: url({% static 'travel_planner/images/icon-user.svg' %})

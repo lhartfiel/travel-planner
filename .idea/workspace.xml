@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="40d5bcd9-ea47-4f31-8daa-260e4fc22522" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/mail_template.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/invite-sent.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accommodations/templates/accommodations/accommodation-list-travelgroup.html" beforeDir="false" afterPath="$PROJECT_DIR$/accommodations/templates/accommodations/accommodation-list-travelgroup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accommodations/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accommodations/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site_settings/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/site_settings/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/travel-planner/.env-local" beforeDir="false" afterPath="$PROJECT_DIR$/travel-planner/.env-local" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/travel-planner/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel-planner/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/travel-planner/static/.empty" beforeDir="false" />
@@ -737,17 +732,8 @@
       <change beforePath="$PROJECT_DIR$/travel-planner/travel_planner/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel-planner/travel_planner/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/travel-planner/travel_users/static/travel_users/scss/travel_users.scss" beforeDir="false" afterPath="$PROJECT_DIR$/travel-planner/travel_users/static/travel_users/scss/travel_users.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/travel-planner/travel_users/templates/travel_users/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel-planner/travel_users/templates/travel_users/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_group/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_group/templates/travel_group/group-create.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/group-create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_group/templates/travel_group/group-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/group-detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_group/templates/travel_group/group-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/templates/travel_group/group-list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/travel_group/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_group/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_planner/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_planner/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_users/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_users/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_users/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_users/templates/travel_users/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_users/templates/travel_users/edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_users/templates/travel_users/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_users/templates/travel_users/signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel_users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/travel_users/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel_users/templates/travel_users/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/travel_users/templates/travel_users/profile.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -790,7 +776,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -1125,7 +1111,8 @@
       <workItem from="1622489535611" duration="3962000" />
       <workItem from="1624590763766" duration="3368000" />
       <workItem from="1624761632265" duration="7444000" />
-      <workItem from="1624823811223" duration="6930000" />
+      <workItem from="1624823811223" duration="9927000" />
+      <workItem from="1625430343426" duration="577000" />
     </task>
     <servers />
   </component>
@@ -1149,12 +1136,16 @@
       <screen x="0" y="25" width="1680" height="940" />
     </state>
     <state x="308" y="63" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1680.940@0.25.1680.940" timestamp="1620612653150" />
-    <state width="1622" height="457" key="GridCell.Tab.0.bottom" timestamp="1624833658590">
+    <state width="811" height="761" key="DebuggerActiveHint" timestamp="1624834274028">
+      <screen x="0" y="25" width="1680" height="940" />
+    </state>
+    <state width="811" height="761" key="DebuggerActiveHint/0.25.1680.940@0.25.1680.940" timestamp="1624834274028" />
+    <state width="1595" height="216" key="GridCell.Tab.0.bottom" timestamp="1624845831275">
       <screen x="0" y="25" width="1680" height="940" />
     </state>
     <state width="1540" height="341" key="GridCell.Tab.0.bottom/-2560.25.2560.1415/0.25.1680.940@0.25.1680.940" timestamp="1620684787706" />
     <state width="1532" height="286" key="GridCell.Tab.0.bottom/-2560.25.2560.1415/0.25.1680.942@-2560.25.2560.1415" timestamp="1617219100150" />
-    <state width="1622" height="457" key="GridCell.Tab.0.bottom/0.25.1680.940@0.25.1680.940" timestamp="1624833658590" />
+    <state width="1595" height="216" key="GridCell.Tab.0.bottom/0.25.1680.940@0.25.1680.940" timestamp="1624845831275" />
     <state width="1540" height="292" key="GridCell.Tab.0.bottom/0.25.1680.942@0.25.1680.942" timestamp="1622559699781" />
     <state width="1545" height="172" key="GridCell.Tab.0.bottom/0.25.1680.945@0.25.1680.945" timestamp="1624761691700" />
     <state width="1545" height="172" key="GridCell.Tab.0.bottom/0.25.1680.947@0.25.1680.947" timestamp="1624595055718" />
@@ -1162,12 +1153,12 @@
     <state width="1594" height="321" key="GridCell.Tab.0.bottom/0.25.1680.951@0.25.1680.951" timestamp="1618708810040" />
     <state width="1594" height="307" key="GridCell.Tab.0.bottom/0.25.1680.953@0.25.1680.953" timestamp="1618847641713" />
     <state width="1444" height="326" key="GridCell.Tab.0.bottom/0.25.1680.956@0.25.1680.956" timestamp="1617979924374" />
-    <state width="1622" height="457" key="GridCell.Tab.0.center" timestamp="1624833658590">
+    <state width="1595" height="216" key="GridCell.Tab.0.center" timestamp="1624845831274">
       <screen x="0" y="25" width="1680" height="940" />
     </state>
     <state width="1540" height="341" key="GridCell.Tab.0.center/-2560.25.2560.1415/0.25.1680.940@0.25.1680.940" timestamp="1620684787704" />
     <state width="1532" height="286" key="GridCell.Tab.0.center/-2560.25.2560.1415/0.25.1680.942@-2560.25.2560.1415" timestamp="1617219100149" />
-    <state width="1622" height="457" key="GridCell.Tab.0.center/0.25.1680.940@0.25.1680.940" timestamp="1624833658590" />
+    <state width="1595" height="216" key="GridCell.Tab.0.center/0.25.1680.940@0.25.1680.940" timestamp="1624845831274" />
     <state width="1540" height="292" key="GridCell.Tab.0.center/0.25.1680.942@0.25.1680.942" timestamp="1622559699780" />
     <state width="1545" height="172" key="GridCell.Tab.0.center/0.25.1680.945@0.25.1680.945" timestamp="1624761691698" />
     <state width="1545" height="172" key="GridCell.Tab.0.center/0.25.1680.947@0.25.1680.947" timestamp="1624595055717" />
@@ -1175,12 +1166,12 @@
     <state width="1594" height="321" key="GridCell.Tab.0.center/0.25.1680.951@0.25.1680.951" timestamp="1618708810039" />
     <state width="1594" height="307" key="GridCell.Tab.0.center/0.25.1680.953@0.25.1680.953" timestamp="1618847641712" />
     <state width="1444" height="326" key="GridCell.Tab.0.center/0.25.1680.956@0.25.1680.956" timestamp="1617979924373" />
-    <state width="1622" height="457" key="GridCell.Tab.0.left" timestamp="1624833658589">
+    <state width="1595" height="216" key="GridCell.Tab.0.left" timestamp="1624845831274">
       <screen x="0" y="25" width="1680" height="940" />
     </state>
     <state width="1540" height="341" key="GridCell.Tab.0.left/-2560.25.2560.1415/0.25.1680.940@0.25.1680.940" timestamp="1620684787704" />
     <state width="1532" height="286" key="GridCell.Tab.0.left/-2560.25.2560.1415/0.25.1680.942@-2560.25.2560.1415" timestamp="1617219100148" />
-    <state width="1622" height="457" key="GridCell.Tab.0.left/0.25.1680.940@0.25.1680.940" timestamp="1624833658589" />
+    <state width="1595" height="216" key="GridCell.Tab.0.left/0.25.1680.940@0.25.1680.940" timestamp="1624845831274" />
     <state width="1540" height="292" key="GridCell.Tab.0.left/0.25.1680.942@0.25.1680.942" timestamp="1622559699779" />
     <state width="1545" height="172" key="GridCell.Tab.0.left/0.25.1680.945@0.25.1680.945" timestamp="1624761691697" />
     <state width="1545" height="172" key="GridCell.Tab.0.left/0.25.1680.947@0.25.1680.947" timestamp="1624595055715" />
@@ -1188,12 +1179,12 @@
     <state width="1594" height="321" key="GridCell.Tab.0.left/0.25.1680.951@0.25.1680.951" timestamp="1618708810038" />
     <state width="1594" height="307" key="GridCell.Tab.0.left/0.25.1680.953@0.25.1680.953" timestamp="1618847641709" />
     <state width="1444" height="326" key="GridCell.Tab.0.left/0.25.1680.956@0.25.1680.956" timestamp="1617979924373" />
-    <state width="1622" height="457" key="GridCell.Tab.0.right" timestamp="1624833658590">
+    <state width="1595" height="216" key="GridCell.Tab.0.right" timestamp="1624845831275">
       <screen x="0" y="25" width="1680" height="940" />
     </state>
     <state width="1540" height="341" key="GridCell.Tab.0.right/-2560.25.2560.1415/0.25.1680.940@0.25.1680.940" timestamp="1620684787705" />
     <state width="1532" height="286" key="GridCell.Tab.0.right/-2560.25.2560.1415/0.25.1680.942@-2560.25.2560.1415" timestamp="1617219100150" />
-    <state width="1622" height="457" key="GridCell.Tab.0.right/0.25.1680.940@0.25.1680.940" timestamp="1624833658590" />
+    <state width="1595" height="216" key="GridCell.Tab.0.right/0.25.1680.940@0.25.1680.940" timestamp="1624845831275" />
     <state width="1540" height="292" key="GridCell.Tab.0.right/0.25.1680.942@0.25.1680.942" timestamp="1622559699780" />
     <state width="1545" height="172" key="GridCell.Tab.0.right/0.25.1680.945@0.25.1680.945" timestamp="1624761691700" />
     <state width="1545" height="172" key="GridCell.Tab.0.right/0.25.1680.947@0.25.1680.947" timestamp="1624595055718" />
@@ -1201,12 +1192,12 @@
     <state width="1594" height="321" key="GridCell.Tab.0.right/0.25.1680.951@0.25.1680.951" timestamp="1618708810039" />
     <state width="1594" height="307" key="GridCell.Tab.0.right/0.25.1680.953@0.25.1680.953" timestamp="1618847641712" />
     <state width="1444" height="326" key="GridCell.Tab.0.right/0.25.1680.956@0.25.1680.956" timestamp="1617979924374" />
-    <state width="1622" height="457" key="GridCell.Tab.1.bottom" timestamp="1624833663577">
+    <state width="1595" height="216" key="GridCell.Tab.1.bottom" timestamp="1624845831277">
       <screen x="0" y="25" width="1680" height="940" />
     </state>
     <state width="1540" height="341" key="GridCell.Tab.1.bottom/-2560.25.2560.1415/0.25.1680.940@0.25.1680.940" timestamp="1620684787708" />
     <state width="1532" height="286" key="GridCell.Tab.1.bottom/-2560.25.2560.1415/0.25.1680.942@-2560.25.2560.1415" timestamp="1617219100153" />
-    <state width="1622" height="457" key="GridCell.Tab.1.bottom/0.25.1680.940@0.25.1680.940" timestamp="1624833663577" />
+    <state width="1595" height="216" key="GridCell.Tab.1.bottom/0.25.1680.940@0.25.1680.940" timestamp="1624845831277" />
     <state width="1545" height="172" key="GridCell.Tab.1.bottom/0.25.1680.942@0.25.1680.942" timestamp="1624761733427" />
     <state width="1545" height="172" key="GridCell.Tab.1.bottom/0.25.1680.945@0.25.1680.945" timestamp="1624637742350" />
     <state width="1545" height="172" key="GridCell.Tab.1.bottom/0.25.1680.947@0.25.1680.947" timestamp="1624595055720" />
@@ -1214,12 +1205,12 @@
     <state width="1594" height="321" key="GridCell.Tab.1.bottom/0.25.1680.951@0.25.1680.951" timestamp="1618708810041" />
     <state width="1594" height="307" key="GridCell.Tab.1.bottom/0.25.1680.953@0.25.1680.953" timestamp="1618847641715" />
     <state width="1444" height="326" key="GridCell.Tab.1.bottom/0.25.1680.956@0.25.1680.956" timestamp="1617979924375" />
-    <state width="1622" height="457" key="GridCell.Tab.1.center" timestamp="1624833663576">
+    <state width="1595" height="216" key="GridCell.Tab.1.center" timestamp="1624845831276">
       <screen x="0" y="25" width="1680" height="940" />
     </state>
     <state width="1540" height="341" key="GridCell.Tab.1.center/-2560.25.2560.1415/0.25.1680.940@0.25.1680.940" timestamp="1620684787708" />
     <state width="1532" height="286" key="GridCell.Tab.1.center/-2560.25.2560.1415/0.25.1680.942@-2560.25.2560.1415" timestamp="1617219100152" />
-    <state width="1622" height="457" key="GridCell.Tab.1.center/0.25.1680.940@0.25.1680.940" timestamp="1624833663576" />
+    <state width="1595" height="216" key="GridCell.Tab.1.center/0.25.1680.940@0.25.1680.940" timestamp="1624845831276" />
     <state width="1545" height="172" key="GridCell.Tab.1.center/0.25.1680.942@0.25.1680.942" timestamp="1624761733422" />
     <state width="1545" height="172" key="GridCell.Tab.1.center/0.25.1680.945@0.25.1680.945" timestamp="1624637742348" />
     <state width="1545" height="172" key="GridCell.Tab.1.center/0.25.1680.947@0.25.1680.947" timestamp="1624595055719" />
@@ -1227,12 +1218,12 @@
     <state width="1594" height="321" key="GridCell.Tab.1.center/0.25.1680.951@0.25.1680.951" timestamp="1618708810040" />
     <state width="1594" height="307" key="GridCell.Tab.1.center/0.25.1680.953@0.25.1680.953" timestamp="1618847641713" />
     <state width="1444" height="326" key="GridCell.Tab.1.center/0.25.1680.956@0.25.1680.956" timestamp="1617979924375" />
-    <state width="1622" height="457" key="GridCell.Tab.1.left" timestamp="1624833663575">
+    <state width="1595" height="216" key="GridCell.Tab.1.left" timestamp="1624845831276">
       <screen x="0" y="25" width="1680" height="940" />
     </state>
     <state width="1540" height="341" key="GridCell.Tab.1.left/-2560.25.2560.1415/0.25.1680.940@0.25.1680.940" timestamp="1620684787707" />
     <state width="1532" height="286" key="GridCell.Tab.1.left/-2560.25.2560.1415/0.25.1680.942@-2560.25.2560.1415" timestamp="1617219100152" />
-    <state width="1622" height="457" key="GridCell.Tab.1.left/0.25.1680.940@0.25.1680.940" timestamp="1624833663575" />
+    <state width="1595" height="216" key="GridCell.Tab.1.left/0.25.1680.940@0.25.1680.940" timestamp="1624845831276" />
     <state width="1545" height="172" key="GridCell.Tab.1.left/0.25.1680.942@0.25.1680.942" timestamp="1624761733418" />
     <state width="1545" height="172" key="GridCell.Tab.1.left/0.25.1680.945@0.25.1680.945" timestamp="1624637742347" />
     <state width="1545" height="172" key="GridCell.Tab.1.left/0.25.1680.947@0.25.1680.947" timestamp="1624595055718" />
@@ -1240,12 +1231,12 @@
     <state width="1594" height="321" key="GridCell.Tab.1.left/0.25.1680.951@0.25.1680.951" timestamp="1618708810040" />
     <state width="1594" height="307" key="GridCell.Tab.1.left/0.25.1680.953@0.25.1680.953" timestamp="1618847641713" />
     <state width="1444" height="326" key="GridCell.Tab.1.left/0.25.1680.956@0.25.1680.956" timestamp="1617979924375" />
-    <state width="1622" height="457" key="GridCell.Tab.1.right" timestamp="1624833663577">
+    <state width="1595" height="216" key="GridCell.Tab.1.right" timestamp="1624845831276">
       <screen x="0" y="25" width="1680" height="940" />
     </state>
     <state width="1540" height="341" key="GridCell.Tab.1.right/-2560.25.2560.1415/0.25.1680.940@0.25.1680.940" timestamp="1620684787708" />
     <state width="1532" height="286" key="GridCell.Tab.1.right/-2560.25.2560.1415/0.25.1680.942@-2560.25.2560.1415" timestamp="1617219100153" />
-    <state width="1622" height="457" key="GridCell.Tab.1.right/0.25.1680.940@0.25.1680.940" timestamp="1624833663577" />
+    <state width="1595" height="216" key="GridCell.Tab.1.right/0.25.1680.940@0.25.1680.940" timestamp="1624845831276" />
     <state width="1545" height="172" key="GridCell.Tab.1.right/0.25.1680.942@0.25.1680.942" timestamp="1624761733426" />
     <state width="1545" height="172" key="GridCell.Tab.1.right/0.25.1680.945@0.25.1680.945" timestamp="1624637742349" />
     <state width="1545" height="172" key="GridCell.Tab.1.right/0.25.1680.947@0.25.1680.947" timestamp="1624595055719" />
@@ -1253,10 +1244,10 @@
     <state width="1594" height="321" key="GridCell.Tab.1.right/0.25.1680.951@0.25.1680.951" timestamp="1618708810040" />
     <state width="1594" height="307" key="GridCell.Tab.1.right/0.25.1680.953@0.25.1680.953" timestamp="1618847641714" />
     <state width="1444" height="326" key="GridCell.Tab.1.right/0.25.1680.956@0.25.1680.956" timestamp="1617979924375" />
-    <state x="218" y="53" key="SettingsEditor" timestamp="1624831540373">
+    <state x="379" y="25" key="SettingsEditor" timestamp="1625431013979">
       <screen x="0" y="25" width="1680" height="940" />
     </state>
-    <state x="218" y="53" key="SettingsEditor/0.25.1680.940@0.25.1680.940" timestamp="1624831540373" />
+    <state x="379" y="25" key="SettingsEditor/0.25.1680.940@0.25.1680.940" timestamp="1625431013979" />
     <state x="218" y="53" key="SettingsEditor/0.25.1680.951@0.25.1680.951" timestamp="1618708909107" />
     <state width="786" height="465" key="XDebugger.FullValuePopup" timestamp="1624768538126">
       <screen x="0" y="25" width="1680" height="940" />
@@ -1266,10 +1257,10 @@
     <state width="786" height="468" key="XDebugger.FullValuePopup/0.25.1680.945@0.25.1680.945" timestamp="1618180506943" />
     <state width="786" height="471" key="XDebugger.FullValuePopup/0.25.1680.951@0.25.1680.951" timestamp="1617247190225" />
     <state width="786" height="472" key="XDebugger.FullValuePopup/0.25.1680.953@0.25.1680.953" timestamp="1618713578527" />
-    <state x="480" y="155" width="720" height="791" key="find.popup" timestamp="1624593670963">
-      <screen x="0" y="25" width="1680" height="947" />
+    <state x="480" y="153" width="720" height="783" key="find.popup" timestamp="1624836095462">
+      <screen x="0" y="25" width="1680" height="940" />
     </state>
-    <state x="480" y="153" width="720" height="783" key="find.popup/0.25.1680.940@0.25.1680.940" timestamp="1621821615130" />
+    <state x="480" y="153" width="720" height="783" key="find.popup/0.25.1680.940@0.25.1680.940" timestamp="1624836095462" />
     <state x="480" y="154" width="720" height="786" key="find.popup/0.25.1680.942@0.25.1680.942" timestamp="1622491962780" />
     <state x="480" y="154" width="720" height="788" key="find.popup/0.25.1680.945@0.25.1680.945" timestamp="1618181899600" />
     <state x="480" y="155" width="720" height="791" key="find.popup/0.25.1680.947@0.25.1680.947" timestamp="1624593670963" />
@@ -1332,78 +1323,38 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/travel_group/views.py</url>
-          <line>328</line>
-          <option name="timeStamp" value="272" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/travel_group/views.py</url>
-          <line>325</line>
-          <option name="timeStamp" value="273" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/travel_group/views.py</url>
-          <line>324</line>
-          <option name="timeStamp" value="274" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/travel_group/views.py</url>
-          <line>323</line>
-          <option name="timeStamp" value="275" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/travel_group/views.py</url>
-          <line>321</line>
-          <option name="timeStamp" value="276" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/travel_group/views.py</url>
-          <line>281</line>
+          <line>289</line>
           <option name="timeStamp" value="280" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/travel_group/views.py</url>
-          <line>280</line>
+          <line>288</line>
           <option name="timeStamp" value="281" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/travel_group/views.py</url>
-          <line>283</line>
+          <line>291</line>
           <option name="timeStamp" value="282" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/travel_group/views.py</url>
-          <line>284</line>
+          <line>292</line>
           <option name="timeStamp" value="283" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/travel_group/views.py</url>
-          <line>309</line>
-          <option name="timeStamp" value="287" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/travel_group/views.py</url>
-          <line>137</line>
+          <line>145</line>
           <option name="timeStamp" value="289" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/travel_group/views.py</url>
-          <line>262</line>
+          <line>270</line>
           <option name="timeStamp" value="334" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/travel_group/views.py</url>
-          <line>258</line>
+          <line>268</line>
           <option name="timeStamp" value="335" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/travel_group/views.py</url>
-          <line>261</line>
-          <option name="timeStamp" value="336" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/travel_group/views.py</url>
-          <line>259</line>
-          <option name="timeStamp" value="337" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/travel_group/templates/travel_group/invite-pending.html</url>
@@ -1444,11 +1395,11 @@
         <watch expression="self.user.trav_groups.all()" language="Python" />
       </configuration>
       <configuration name="Python.DjangoServer">
-        <watch expression="" />
         <watch expression="len(response['results'][0])" language="Python" />
+        <watch expression="response" language="Python" />
         <watch expression="response['results'][0]" language="Python" />
         <watch expression="response['results']" language="Python" />
-        <watch expression="" />
+        <watch expression="requests.get('http://127.0.0.1:8001/api-unsplash/?format=json')" language="Python" />
       </configuration>
     </watches-manager>
   </component>

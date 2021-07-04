@@ -46,6 +46,12 @@ from django.conf import settings
 #     def create(self, validated_data):
 #         return UnsplashPhoto(**validated_data)
 
+def get_general_travel_photo():
+    unsplash_general_photo = f'https://api.unsplash.com/search/photos?client_id' \
+                             f'=TK4hk3RxTdHHy5yLPsfGKkROapr5q3i2hAOKp37joHM&query="Travel"&page=1'
+    response = requests.get(unsplash_general_photo)
+    response = response.json()
+    return response
 
 class InviteFormView(TemplateView):
     template_name = "travel_group/invite-form.html"
@@ -68,6 +74,8 @@ class TravelGroupImage(APIView):
             try:
                 response = requests.get(unsplash_api)
                 response = response.json()
+                if len(response['results']) == 0:
+                    response = get_general_travel_photo()
                 photo_url = response['results'][0]["urls"]["regular"]
                 photographer_name = response['results'][0]["user"]["name"]
                 photo_dict[f'{photo}'] = {'url': photo_url, 'photographer': photographer_name}
@@ -256,11 +264,10 @@ class TravelGroupCreateView(CreateView):
         unsplash_api = unsplash_api = f'https://api.unsplash.com/search/photos?client_id=TK4hk3RxTdHHy5yLPsfGKkROapr5q3i2hAOKp37joHM&query={data_destination}&page=1'
         response = requests.get(unsplash_api)
         response = response.json()
+
+        # If the destination can't be found or is misspelled, get a general travel photo
         if len(response['results']) == 0:
-            unsplash_general_photo = f'https://api.unsplash.com/search/photos?client_id' \
-                                     f'=TK4hk3RxTdHHy5yLPsfGKkROapr5q3i2hAOKp37joHM&query="Travel"&page=1'
-            response = requests.get(unsplash_general_photo)
-            response = response.json()
+            response = get_general_travel_photo()
         photo_url = response['results'][0]["urls"]["regular"]
         photo_attribution = response['results'][0]["user"]["name"]
         data['messages-0-message_creator'] = self.request.user.id
@@ -338,6 +345,8 @@ class TravelGroupEditView(UpdateView):
         unsplash_api = f'https://api.unsplash.com/search/photos?client_id=TK4hk3RxTdHHy5yLPsfGKkROapr5q3i2hAOKp37joHM&query={data_destination}&page=1'
         response = requests.get(unsplash_api)
         response = response.json()
+        if len(response['results']) == 0:
+            response = get_general_travel_photo()
         photo_url = response['results'][0]["urls"]["regular"]
         photo_attribution = response['results'][0]["user"]["name"]
         new_photo = UnsplashPhotos(
