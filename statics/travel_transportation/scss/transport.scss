@@ -1,0 +1,57 @@
+@import 'travel_planner/scss/components/_breakpoints';
+@import 'travel_planner/scss/components/_mixins';
+@import 'travel_planner/scss/components/_variables';
+
+.transport {
+  flex-basis: 50%;
+
+  &-list {
+    margin-left: 0;
+  }
+}
+
+.item-wrap {
+
+  &--sm {
+    flex-basis: calc(33.3% - 1.34rem);
+    margin-right: 2rem;
+    width: calc(33.3% - 1.34rem);
+
+    &:nth-of-type(6),
+    &:nth-of-type(9){
+      margin-right: 0;
+    }
+  }
+}
+
+.hero--transportation {
+  span {
+    color: $white;
+  }
+}
+
+.transport {
+  flex-basis: 50%;
+
+  &-list {
+    margin-left: 0;
+  }
+}
+
+
+.transport-wrap {
+  flex-basis: 100%;
+
+  @include bp(min, $bp-lg) {
+
+    &--sm {
+      flex-basis: calc(33.3% - 1.34rem);
+      margin-right: 2rem;
+
+      &:nth-of-type(6),
+      &:nth-of-type(9) {
+        margin-right: 0;
+      }
+    }
+  }
+}

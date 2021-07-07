@@ -1,0 +1,196 @@
+h1 {
+  font-size: 4.8rem;
+
+  &.h1--sm {
+    font-size: 3.2rem;
+  }
+
+  @include bp(min, $bp-lg) {
+    font-size: 6rem;
+
+    &.h1--sm {
+      font-size: 4.8rem;
+    }
+  }
+}
+
+h2 {
+  font-size: 2.8rem;
+  color: $charcoal;
+
+  @include bp(min, $bp-lg){
+    font-size: 3.2rem;
+  }
+}
+
+h3 {
+  font-size: 2.6rem;
+}
+
+h4 {
+  font-size: 2rem;
+}
+
+p {
+  font-size: 1.6rem;
+  line-height: 1.5em;
+}
+
+a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+ul, ol {
+  margin-left: 2rem;
+  padding-left: 0;
+
+  li {
+    color: rgba($charcoal, 0.6);
+    margin-bottom: 0.5rem;
+  }
+}
+
+.link {
+  &--sm {
+    font-size: 1.4rem;
+  }
+}
+
+
+.btn-wrap--ctr {
+  text-align: center;
+}
+
+.btn-wrap--left {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.btns {
+  display: flex;
+}
+
+.btn {
+  cursor: pointer;
+  font-size: 1.6rem;
+  border-radius: 23px;
+  margin-right: 2rem;
+  padding: 10px 24px;
+
+   &--card {
+    background: $maroon;
+    border: 1px solid $maroon;
+    border-radius: 23px;
+    color: $white;
+    display: block;
+    transition: 0.3s ease all;
+
+    &:hover {
+      background: $white;
+      color: $maroon;
+    }
+  }
+
+  &--nav {
+    border: 2px solid $secondary;
+    color: $black;
+
+    &:hover {
+      background-color: $secondary;
+      color: $white;
+    }
+  }
+
+  &--primary {
+    background: $maroon;
+    border: 1px solid $maroon;
+    color: $white;
+    display: inline-block;
+    margin-top: 2.5rem;
+    transition: 0.4s ease all;
+
+    &:hover {
+      background: $white;
+      border: 1px solid $maroon;
+      color: $maroon;
+    }
+  }
+
+  &--sec {
+    background: $secondary;
+    border: 1px solid $secondary;
+    color: $white;
+    display: inline-block;
+    margin-top: 2.5rem;
+    transition: 0.4s ease all;
+
+    &:hover {
+      background: $white;
+      color: $secondary;
+    }
+  }
+
+  &--ter {
+    background: $purple;
+    border: 1px solid $purple;
+    color: $white;
+    display: inline-block;
+    transition: 0.3s ease all;
+
+    &:hover {
+      background: $white;
+      color: $purple;
+    }
+  }
+
+  &--charcoal {
+    background: $charcoal;
+    border: 1px solid $charcoal;
+    color: $white;
+    display: inline-block;
+    transition: 0.3s ease all;
+
+    &:hover {
+      background: $white;
+      color: $charcoal;
+    }
+  }
+}
+
+button[type="submit"] {
+  background: $secondary;
+  border: 1px solid $secondary;
+  border-radius: 23px;
+  color: $white;
+  cursor: pointer;
+  padding: 10px 36px;
+  transition: 0.4s ease all;
+
+  &:hover {
+    background: $white;
+    border: 1px solid $secondary;
+    color: $secondary;
+  }
+}
+
+.txt--bb {
+  padding-bottom: 2rem;
+  position: relative;
+
+  &:after {
+    background: $white;
+    bottom: 0;
+    content: "";
+    height: 1px;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    width: 70%;
+  }
+}

@@ -1,0 +1,279 @@
+@import 'travel_planner/scss/general.scss';
+
+.li-item {
+  display: block;
+  margin-right: 2rem;
+}
+
+.trav--left {
+
+  @include bp(min, $bp-lg) {
+    flex-basis: 18%;
+  }
+}
+
+.user__photo-wrap {
+  background: rgba($charcoal, 0.4);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  max-height: 100px;
+  max-width: 100px;
+  position: relative;
+  overflow: hidden;
+  width: 130px;
+  height: 130px;
+}
+
+.user__photo {
+  display: block;
+  height: auto;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  width: auto;
+
+  &--def {
+    padding: 2rem;
+  }
+}
+
+.traveler__info--top {
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.traveler__info {
+  flex-grow: 1;
+  margin-left: 1rem;
+
+  > h4 {
+    margin-bottom: 0.5rem;
+    width: 100%;
+  }
+
+  ul {
+    display: flex;
+    padding-left: 0;
+  }
+
+  li {
+    list-style: none;
+    margin-right: 3rem;
+  }
+}
+
+.traveler {
+  padding-bottom: 2rem;
+
+  &:not(:last-child) {
+     border-bottom: 1px solid rgba(gray, 0.4);
+  }
+}
+
+.group__head {
+  text-shadow: 2px 2px 4px darken(gray, 20%);
+  z-index: 10;
+
+  @include bp(min, $bp-lg) {
+    font-size: 12rem;
+    line-height: 1em;
+    margin-bottom: -1.3rem;
+  }
+}
+
+.group-ideas {
+
+  li {
+    list-style: none;
+    padding-left: 2.5rem;
+    position: relative;
+
+    &:after {
+      content: url('/static/travel_planner/images/icon-triangle-right.svg');
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+}
+
+.idea__name {
+  display: block;
+}
+
+.msg-item {
+  list-style: none;
+}
+
+.msg__detail {
+  display: block;
+}
+
+.msg__links {
+  display: block;
+}
+
+.inline {
+  margin-bottom: 3rem;
+}
+
+.trip {
+  border-radius: 4px;
+  margin-bottom: 4rem;
+
+  .btn-wrap {
+    align-self: flex-end;
+    flex-basis: 100%;
+    text-align: right;
+  }
+
+
+  .btn-wrap--left {
+    align-self: flex-start;
+  }
+
+
+  li {
+    flex-basis: 100%;
+  }
+}
+
+.trip-list {
+  @include bp(max, $bp-md) {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+}
+
+.trip__name {
+  flex-basis: 100%;
+  overflow: hidden;
+  position: relative;
+
+  &:after {
+    background: rgba($charcoal, 0.5);
+    content: "";
+    height: 1px;
+    margin-left: 2rem;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+  }
+
+  &--feat {
+    &:after {
+      background: rgba($white, 0.5);
+    }
+  }
+}
+
+.bkg-img {
+  height: 100%;
+  z-index: -1;
+
+  &:after {
+    background-image: linear-gradient(180deg, #3431A0 0%, #15A09A 99%);
+    background-image: linear-gradient(180deg, #3431A0 0%, #15A09A 99%);
+    bottom: 0;
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+  }
+}
+
+.checklist {
+  margin: 0 auto;
+  width: 75%;
+
+  form {
+    margin-left: 0;
+  }
+}
+
+.checklist__items,
+.checklist__edit {
+  position: relative;
+  width: 100%;
+  z-index: 101;
+
+  #id_item_status {
+    height: 3rem;
+    margin-bottom: 0;
+    opacity: 0;
+    width: 3rem;
+
+    + label {
+      height: 3rem;
+      margin-left: -2rem;
+      margin-right: 2rem;
+      padding-left: 3rem;
+      width: 3rem;
+      z-index: -1;
+    }
+  }
+
+  label[for="item_status"] {
+    border: 2px solid rgba($white, 0.4);
+    border-radius: 4px;
+  }
+
+  .checklist__item {
+    box-shadow: none;
+
+    &:focus {
+      box-shadow: 0 0 5px rgba(128,128,128,0.6);
+    }
+  }
+
+  input[type="checkbox"]:checked + label[for="item_status"] {
+    border-color: rgba($white, 0.4);
+    border-radius: 5px;
+    display: inline-block;
+    background: url('/static/travel_planner/images/icon-checkbox--white.svg') no-repeat 0 0;
+    background-size: 80%;
+    background-position: center;
+    line-height: 3rem;
+  }
+
+  input[type="checkbox"]:focus + label[for="item_status"] {
+    outline: 3px solid $secondary;
+  }
+}
+
+.checklist__item {
+  line-height: 1.2em;
+  margin-left: 2rem;
+}
+
+.checklist__info {
+  width: 100%;
+
+  a {
+    color: $secondary;
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+}
+
+#id_item_status,
+label {
+  width: auto;
+}
+
+.arrow-right {
+  height: 100%;
+  width: 1rem;
+}
+
+.icon-hotel {
+  svg {
+    fill: $secondary;
+    height: 24px;
+    width: 18px;
+  }
+}
+
