@@ -1,0 +1,91 @@
+@import 'travel_planner/scss/general.scss';
+
+.profile__img-wrap {
+  padding-bottom: 5%;
+  padding-top: 5%;
+}
+
+.profile__img {
+  border: 4px solid $white;
+  background-size: cover;
+  background-position: 50%;
+  border-radius: 50%;
+  margin: 0 auto;
+  padding-top: 35%;
+  max-width: 35%;
+  z-index: 10;
+
+  @include bp(min, $bp-md) {
+    padding-top: 25%;
+    width: 25%;
+  }
+}
+
+.profile__name {
+  letter-spacing: 0.3px;
+}
+
+.user__detail {
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+
+  a:hover {
+    color: white;
+    text-decoration: underline;
+  }
+
+  @include bp(max, $bp-md) {
+    flex-basis: 100%;
+
+    p {
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+.user-meta {
+  background: $purple;
+  grid-column: 1/ -1;
+}
+
+.cnt-img {
+  position: relative;
+  right: 0;
+  transition: 0.3s ease all;
+  width: auto;
+}
+
+.icon-img {
+  transition: 0.3s ease all;
+}
+
+.trav-group {
+  &:hover {
+    .cnt-img {
+      right: -1rem;
+    }
+  }
+}
+
+.btn {
+  @include bp(max, $bp-lg) {
+    margin-right: 0;
+  }
+}
+
+.group__cities {
+  font-size: 1.4rem;
+  margin-top: 1rem;
+}
+
+.transport__info,
+.travel__info {
+  display: flex;
+}
+
+label[for="id_password"],
+#id_password{
+    display: block;
+}

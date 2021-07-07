@@ -1,0 +1,95 @@
+
+.hero {
+    grid-column: 1 / -1;
+    max-height: 400px;
+    width: 100%;
+
+    &:after {
+      //background-image: linear-gradient(180deg, #3431A0 0%, #15A09A 100%);
+      background: rgba($purple, 0.8);
+      bottom: 0;
+      content: "";
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+  &.hero--lg {
+    filter: contrast(120%);
+    min-height: auto;
+
+    h1 {
+      align-self: flex-end;
+      display: inline-block;
+      padding: 3rem 3rem 8rem;
+      position: relative;
+      text-align: center;
+      width: auto;
+
+      &:after,
+      &:before{
+        background: white;
+        content: "";
+        height: 3px;
+        margin: 0 auto;
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 100%;
+      }
+
+      &:before {
+        top: 1rem;
+      }
+      &:after {
+        bottom: 5rem;
+      }
+    }
+
+    &:after {
+      //background: linear-gradient(10deg, rgba(0,0,0,0.6) 29%, rgba(0,0,0,0) 61%);
+      background: linear-gradient(10deg, rgba(0,0,0,0.6) 31%, rgba(0,0,0,0.4) 45%, rgba(0,0,0,0.2) 61%);
+    }
+
+    @include bp(min, $bp-lg) {
+      min-height: 500px;
+
+      h1 {
+        align-self: center;
+      }
+    }
+  }
+}
+
+.hero__bkg {
+  min-height: 100%;
+  min-width: 100%;
+  object-fit: cover;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.caption--hero {
+  bottom: 5px;
+  color: rgba($white, 0.5);
+  font-size: 1.4rem;
+  font-style: italic;
+  left: 5px;
+  z-index: 5;
+}
+
+.hero__form {
+    //height: 250px;
+
+    .fieldBox {
+      background: $white;
+      border-top: 2.4rem $secondary solid;
+      border-radius: 4px;
+      box-shadow: 0 0 5px rgba(gray, 0.6);
+    }
+
+    label {
+      color: $white;
+    }
+}

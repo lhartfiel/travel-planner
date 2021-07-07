@@ -1,0 +1,23 @@
+.cnt-img--accord {
+  transform: rotate(90deg);
+  width: auto;
+}
+
+.accord--expand {
+  display: none;
+}
+
+.cnt {
+  &.active {
+    height: auto;
+
+    .accord--expand {
+      display: flex;
+    }
+  }
+}
+
+.cnt__accord-link {
+  cursor: pointer;
+  align-items: center;
+}

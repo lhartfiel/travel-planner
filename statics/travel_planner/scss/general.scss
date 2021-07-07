@@ -1,0 +1,137 @@
+@import 'components/_normalize.scss';
+@import 'components/_breakpoints.scss';
+@import 'components/_mixins.scss';
+@import 'components/_variables.scss';
+@import 'components/_grid.scss';
+@import 'components/_forms.scss';
+@import 'components/_typography.scss';
+@import 'components/_utility.scss';
+@import 'components/_nav.scss';
+@import 'components/_images.scss';
+@import 'components/_home.scss';
+@import 'components/_hero.scss';
+@import 'components/_accordion.scss';
+@import 'components/_list-items.scss';
+
+//@import '../../travel_group/static/travel_group/scss/travel_group.scss';
+
+html {
+  color: #000;
+  font-size: 10px;
+}
+
+* {
+  box-sizing: border-box;
+  color: $charcoal;
+}
+
+body {
+  display: grid;
+  font-size: 1.6rem;
+  font-family: 'Muli', sans-serif;
+  grid-template-rows: 0.4fr 4fr 0.4fr;
+  height: 100vh;
+}
+
+footer {
+  background: rgba($charcoal, 0.15);
+  border-top: 2px solid $charcoal;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+}
+
+a, .link-text {
+  &:hover {
+    color: $maroon;
+  }
+}
+
+.body-wrap {
+  position: relative;
+  width: 100vw;
+}
+
+i.fas,
+i.fab {
+  font-family: "Font Awesome 5 Solid", serif;
+}
+
+.link-blk {
+
+  &:hover {
+    .icon-img {
+      transform: scale(0.95);
+    }
+    .icon-blk {
+      background: darken($secondary, 4%);
+    }
+  }
+}
+
+.icon-blk {
+  align-self: flex-start;
+  background: $secondary;
+  border-radius: 5px;
+  transition: 0.3s ease all;
+
+  img {
+    height: 80px;
+    width: 80px;
+  }
+}
+
+.idea-item {
+  &:not(:last-child) {
+    border-bottom: 1px solid rgba(gray, 0.4);
+  }
+}
+
+.detail-wrap {
+  background: $white;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  padding: 2rem;
+}
+
+.link--inline {
+  svg {
+    position: relative;
+    right: 0;
+    transition: 0.4s ease all;
+    width: 5px;
+  }
+
+  &:hover {
+    svg {
+      right: -3px;
+    }
+  }
+}
+
+.trip__name {
+  flex-basis: 100%;
+  overflow: hidden;
+  position: relative;
+
+  &:after {
+    background: rgba($charcoal, 0.5);
+    content: "";
+    height: 1px;
+    margin-left: 2rem;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+  }
+}
+
+.errorlist {
+  margin: 0;
+
+  li {
+    color: $maroon;
+    font-size: 1.2rem;
+    list-style: none;
+  }
+}
+
+

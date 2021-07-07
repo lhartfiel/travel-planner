@@ -1,0 +1,40 @@
+@import 'travel_planner/scss/general.scss';
+
+.accommodation {
+  margin-top: 2rem;
+  &:not(.no-border) {
+    border-bottom: 1px solid rgba($charcoal, 0.3);
+  }
+
+  img {
+    align-self: center;
+  }
+}
+
+.num {
+  color: rgba($secondary, 0.3);
+  font-family: 'Noto Serif';
+  font-size: 4rem;
+  left: -4rem;
+  top: -0.5rem;
+  width: 2.6rem;
+}
+
+.hero--accommodations {
+  border-bottom: 32px solid $secondary;
+
+  &:after {
+    background-color: rgba($secondary, 0.8);
+  }
+
+  span {
+    color: $white;
+  }
+}
+
+.img-wrap--accomm {
+  &:after {
+    background-color: rgba($secondary, 0.7);
+  }
+}
+
