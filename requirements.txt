@@ -1,5 +1,5 @@
-djangorestframework~=3.11.0
-django~=3.0.4
+djangorestframework~=3.11.2
+django~=3.1.12
 django-compressor==2.4
 django-invitations
 django-libsass
@@ -7,6 +7,6 @@ django-phonenumber-field
 django-richtextfield==1.5.0
 mysql-connector-python
 phonenumbers
-pillow==6.0.0
+pillow==8.2.0
 
 requests~=2.20.1
